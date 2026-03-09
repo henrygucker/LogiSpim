@@ -1,0 +1,84 @@
+# ############################# TEST {{NUM}} #############################
+# /**
+# Runs tests and returns 0 if all tests passed; otherwise returns a nonzero value.
+# Modifies the value at fail_flag to a nonzero value iff one or more test fails.
+# */
+# void test_{{NUM}}(bool *fail_flag) {}
+test_{{NUM}}:
+# test_{{NUM}} Function Register Usage:
+#   $s0 holds the primary test values
+#   $s1 is pointer to the current primary test value
+#   ---
+#   $s2 can hold secondary test values
+#   $s3 can hold a pointer to the current secondary test value
+#   ---
+#   $s4 holds the most recent test output (For debugging purposes)
+#   ---
+#   $s5 is pointer to current expected value
+#   $s6 holds # of tests completed
+#   $s7 holds the number of testcases
+
+# test_{{NUM}} Function Stack Frame:
+#   (High Addresses)
+#   Word 1: Previous $ra
+#   Word 2: Previous $fp
+#   (Low Addresses)
+
+# Stack Frame Initialization:
+    addi $sp, $sp, -8
+    sw $ra, 4($sp)
+    sw $fp, 0($sp)
+    addi $fp, $sp, 0
+
+    # Moves the pointer to fail_flag to $a2 for call to print_test_output
+    move $a2, $a0
+
+    la $s1, test_{{NUM}}_primary_test_values # address of current test value
+    la $s3, test_{{NUM}}_secondary_test_values # address of current test value
+
+    la $s5, test_{{NUM}}_expected_values # address of current expected value
+
+    li $s6, 0 # number of tests completed
+    la $s7, test_{{NUM}}_num_testcases
+    lw $s7, 0($s7) # stores number of testcases
+
+test_{{NUM}}_loop:
+    beq $s6, $s7, test_{{NUM}}_loop_end # Exits loop if (num_tests_completed == num_tests)
+
+    # Loads test values and increments pointer
+    lw $s0, 0($s1)
+    addi $s1, $s1, 4
+
+    lw $s2, 0($s3)
+    addi $s3, $s3, 4
+
+    # Loads expected value and increments pointer
+    lw $a1, 0($s5)
+    addi $s5, $s5, 4
+
+    # Test Operation
+{{TEST_OPERATION_INSERTION_POINT}}
+
+    # Output value should be located in $a0
+    # Expected value has already been loaded to $a1
+    # Expected value has already been loaded into $a2 and remains unchanged
+    la $a3, test_{{NUM}}_instruction_string
+
+    jal print_test_output
+
+    addi $s6, $s6, 1
+
+    j test_{{NUM}}_loop
+
+test_{{NUM}}_loop_end:
+    lw $ra, 4($fp)
+
+    lw $fp, 0($fp)
+    addi $sp, $sp, 8
+
+    move $a0, $a2
+
+    jr $ra
+
+
+

@@ -1,0 +1,170 @@
+    .data
+# Test Content For Each Test
+# test_{{NUM}}_num_testcases: .word {{NUM_TESTCASES}}
+# test_{{NUM}}_primary_test_values: .word {{PRIMARY_TEST_VALUES}}
+# test_{{NUM}}_secondary_test_values: .word {{SECONDARY_TEST_VALUES}}
+# test_{{NUM}}_expected_values: .word {{EXPECTED_VALUES}}
+{{TEST_CONTENT_INSERTION_POINT}}
+
+
+# Test Instruction String For Each Test
+# test_{{NUM}}_instruction_string: .word {{EXPECTED_VALUES}}
+{{INSTRUCTION_STRING_INSERTION_POINT}}
+
+preface: .asciiz "{{PREFACE}}\n"
+fail_text: .asciiz "[FAIL]"
+prompt_printing_testcase_num: .asciiz " | Testcase: "
+prompt_printing_output: .asciiz " | Output: "
+prompt_printing_expected: .asciiz " | Expected: "
+all_testcases_pass_text: .asciiz "ALL TESTS PASS\n"
+    .text
+
+# main Function Stack Frame:
+# (High Addresses)
+# Word 1: Previous $ra
+# Word 2: Previous $fp
+# Word 3: Persistent did_fail flag
+# (Low Addresses)
+main:
+# Stack Frame Initialization:
+    addi $sp, $sp, -12
+    sw $ra, 8($sp)
+    sw $fp, 4($sp)
+    addi $fp, $sp, 4 # updates $fp
+
+    sw $0, -4($fp) # Initializes did_fail to 0
+
+    # Prints preface
+    li $v0, 4
+    la $a0, preface
+    syscall
+
+    # Sets $v0 to 0 to emulate a previous test routine passing
+    move $v0, $0
+
+# Test Jump Insertion Format:
+#   jal test_{{NUM}}
+{{TEST_JUMPS_INSERTION_POINT}}
+
+    # Skips printing all testcases pass if any failed
+    lw $s0, -4($fp)
+    nop
+    bgtz $s0, exit
+
+    la $a0, all_testcases_pass_text
+    li $v0, 4
+    syscall
+
+exit:
+    lw $ra, 4($fp)
+
+    lw $fp, 0($fp)
+    addi $sp, $sp, 12
+
+    jr $ra
+
+
+
+
+
+
+# /**
+# Prints output for test if test fails
+# Determines if test passes or fails by if values in $a0 and $a1 match.
+# It is expected that $s6 holds the number of testcases completed.
+# */
+# void print_test_output(
+#       word test_value=$a0,
+#       word expected_value=$a1,
+#       word *fail_flag=$a2,
+#       asciiz *instruction_string=$a3
+# );
+print_test_output:
+# print_test_output Register Usage:
+#   No Saved Registers Used
+
+# print_test_output Function Stack Frame:
+#   (High Addresses)
+#   Word 1: Previous $ra
+#   Word 2: Previous $fp
+#   Word 3: Previous $a0
+#   (Low Addresses)
+
+# Stack Frame Initialization:
+    addi $sp, $sp, -12
+    sw $ra, 8($sp)
+    sw $fp, 4($sp)
+    addi $fp, $sp, 4
+
+# Local Variable Initialization:
+    sw $a0, -4($fp) # Preserves $a0 to be restored before returning
+
+
+    beq $a0, $a1, print_test_output_exit # if (test_value == expected_value) goto print_test_output_exit
+
+    # Prints current instruction string
+    li $v0, 4
+    move $a0, $a3
+    syscall
+
+    li $v0, 11
+    li $a0, '\n'
+    syscall
+print_test_output_fail:
+    # Update fail_flag
+    andi $t0, $0, 1
+    sw $t0, 0($a2) # *fail_flag = 1;
+
+    # Fetch and print "[FAIL]" text pointer
+    la $a0, fail_text
+    syscall
+
+    # prints " | Testcase: "
+    la $a0, prompt_printing_testcase_num
+    syscall
+
+    # Prints testcase number
+    li $v0, 1
+    addi $a0, $s6, 1
+    syscall
+
+
+    # prints " | Output: "
+    li $v0, 4
+    la $a0, prompt_printing_output
+    syscall
+
+    # prints output
+    li $v0, 1
+    lw $a0, -4($fp) # Loads the preserved argument, test_value
+    syscall
+
+    # prints " | Expected: "
+    la $a0, prompt_printing_expected
+    li $v0, 4
+    syscall
+
+    # prints expected value
+    li $v0, 1
+    move $a0, $a1
+    syscall
+
+    # prints newline char
+    li $v0, 11
+    li $a0, '\n'
+    syscall
+
+print_test_output_exit:
+    # Restores registers
+    lw $ra, 4($fp)
+    lw $a0, -4($fp)
+    nop
+    # Restores $fp
+    lw $fp, 0($fp)
+
+    addi $sp, $sp, 12
+
+    jr $ra
+
+
+
