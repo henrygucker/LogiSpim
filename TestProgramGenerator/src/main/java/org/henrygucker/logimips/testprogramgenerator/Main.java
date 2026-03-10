@@ -31,7 +31,12 @@ public class Main {
         ));
 
         // Adding tests from test streams
-        boolean testsAddedSuccessfully = getFunc01Tests(tests.size())
+        boolean testsAddedSuccessfully = getFunc00Tests(tests.size())
+                .map((LogiSpimTest test) -> tests.add(test))
+                .filter((Boolean bool) -> !bool.booleanValue())
+                .count() == 0;
+
+        testsAddedSuccessfully = testsAddedSuccessfully && getFunc02Tests(tests.size())
                 .map((LogiSpimTest test) -> tests.add(test))
                 .filter((Boolean bool) -> !bool.booleanValue())
                 .count() == 0;
@@ -46,7 +51,7 @@ public class Main {
                 .filter((Boolean bool) -> !bool.booleanValue())
                 .count() == 0;
 
-        testsAddedSuccessfully = testsAddedSuccessfully && getFunc05Tests(tests.size())
+        testsAddedSuccessfully = testsAddedSuccessfully && getFunc06Tests(tests.size())
                 .map((LogiSpimTest test) -> tests.add(test))
                 .filter((Boolean bool) -> !bool.booleanValue())
                 .count() == 0;
@@ -139,7 +144,7 @@ public class Main {
         return true;
     }
 
-    static Stream<LogiSpimTest> getFunc01Tests(int currentNumTests) {
+    static Stream<LogiSpimTest> getFunc00Tests(int currentNumTests) {
         return Stream.of(new LogiSpimTest[]{
                 new LogiSpimTest(
                         ++currentNumTests,
@@ -165,9 +170,9 @@ public class Main {
         });
     }
 
-    // No Func 02
+    // No Func 01
 
-    static Stream<LogiSpimTest> getFunc03Tests(int currentNumTests) {
+    static Stream<LogiSpimTest> getFunc02Tests(int currentNumTests) {
         return Stream.of(new LogiSpimTest[]{
                 new LogiSpimTest(
                         ++currentNumTests,
@@ -193,7 +198,7 @@ public class Main {
         });
     }
 
-    static Stream<LogiSpimTest> getFunc04Tests(int currentNumTests) {
+    static Stream<LogiSpimTest> getFunc03Tests(int currentNumTests) {
         return Stream.of(new LogiSpimTest[]{
                 new LogiSpimTest(
                         ++currentNumTests,
@@ -219,7 +224,7 @@ public class Main {
         });
     }
 
-    static Stream<LogiSpimTest> getFunc05Tests(int currentNumTests) {
+    static Stream<LogiSpimTest> getFunc04Tests(int currentNumTests) {
         return Stream.of(new LogiSpimTest[]{
                 new LogiSpimTest(
                         ++currentNumTests,
@@ -231,9 +236,9 @@ public class Main {
         });
     }
 
-    // No Func 06
+    // No Func 05
 
-    static Stream<LogiSpimTest> getFunc07Tests(int currentNumTests) {
+    static Stream<LogiSpimTest> getFunc06Tests(int currentNumTests) {
         return Stream.of(new LogiSpimTest[]{
                 new LogiSpimTest(
                         ++currentNumTests,
@@ -245,7 +250,7 @@ public class Main {
         });
     }
 
-    static Stream<LogiSpimTest> getFunc08Tests(int currentNumTests) {
+    static Stream<LogiSpimTest> getFunc07Tests(int currentNumTests) {
         return Stream.of(new LogiSpimTest[]{
                 new LogiSpimTest(
                         ++currentNumTests,
@@ -257,7 +262,7 @@ public class Main {
         });
     }
 
-    static Stream<LogiSpimTest> getFunc09Tests(int currentNumTests) {
+    static Stream<LogiSpimTest> getFunc08Tests(int currentNumTests) {
         // jr
         return Stream.of(new LogiSpimTest[]{
                 new LogiSpimTest(
@@ -266,11 +271,11 @@ public class Main {
                                 "la $t0, test_" + currentNumTests + "_jump_testing_addr\n" +
                                 "add $s0, $t0, $s0\n" +
                                 "jr $s0\n" +
-                                "j test_" + currentNumTests + "_jump_test_skip_addr:\n" +
+                                "j test_" + currentNumTests + "_jump_test_skip_addr\n" +
 
                                 "test_" + currentNumTests + "_jump_testing_addr:\n" +
-                                "andi $a0, $a0, 2\n" +
-                                "andi $a0, $a0, 1\n" +
+                                "ori $a0, $a0, 2\n" +
+                                "ori $a0, $a0, 1\n" +
 
                                 "test_" + currentNumTests + "_jump_test_skip_addr:\n",
 

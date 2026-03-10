@@ -55,7 +55,7 @@ public record LogiSpimTest(int num, String testInstruction, int[] primaryTestVal
     }
 
     public String getTestInstructionStringDataEntry() {
-        return "test_" + num + "_instruction_string: .asciiz \"\\nTest " + num + ":\\n" + testInstruction + "\"";
+        return "test_" + num + "_instruction_string: .asciiz \"\\nTest " + num + ":\\n" + testInstruction.replace("\n", "\\n") + "\"";
     }
 
     public String getTestJumpEntry() {

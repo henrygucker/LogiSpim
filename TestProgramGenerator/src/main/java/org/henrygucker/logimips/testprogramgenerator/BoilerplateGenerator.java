@@ -44,8 +44,7 @@ public enum BoilerplateGenerator {
         }
 
         for (int i = 0; i < this.replacementVariables.length; i++) {
-            while (content.contains(this.replacementVariables[i]))
-                content = content.replace(this.replacementVariables[i], replacementValues[i]);
+            content = content.replace(this.replacementVariables[i], replacementValues[i]);
         }
 
         return content;
