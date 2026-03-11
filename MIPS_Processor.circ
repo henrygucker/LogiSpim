@@ -1003,7 +1003,7 @@
       <a name="incoming" val="7"/>
     </comp>
     <comp lib="0" loc="(630,520)" name="Constant">
-      <a name="value" val="0x0"/>
+      <a name="value" val="0x400424"/>
       <a name="width" val="32"/>
     </comp>
     <comp lib="0" loc="(6380,1590)" name="Tunnel">
@@ -1478,10 +1478,10 @@
     <comp lib="6" loc="(1900,1450)" name="Text">
       <a name="text" val="funct [5:0]"/>
     </comp>
-    <comp lib="6" loc="(1907,260)" name="Text">
+    <comp lib="6" loc="(1905,260)" name="Text">
       <a name="text" val="Clock Management"/>
     </comp>
-    <comp lib="6" loc="(1991,388)" name="Text">
+    <comp lib="6" loc="(1990,385)" name="Text">
       <a name="text" val="&lt;- Clock"/>
     </comp>
     <comp lib="6" loc="(1995,1630)" name="Text">
@@ -1490,10 +1490,10 @@
     <comp lib="6" loc="(2000,1580)" name="Text">
       <a name="text" val="rs [25:21]"/>
     </comp>
-    <comp lib="6" loc="(2019,420)" name="Text">
+    <comp lib="6" loc="(2015,420)" name="Text">
       <a name="text" val="Circuitry"/>
     </comp>
-    <comp lib="6" loc="(2030,403)" name="Text">
+    <comp lib="6" loc="(2030,400)" name="Text">
       <a name="text" val="Suspension"/>
     </comp>
     <comp lib="6" loc="(2070,1450)" name="Text">
@@ -1502,7 +1502,7 @@
     <comp lib="6" loc="(220,1535)" name="Text">
       <a name="text" val="10 - PCJumpAddrD"/>
     </comp>
-    <comp lib="6" loc="(220,3677)" name="Text">
+    <comp lib="6" loc="(220,3675)" name="Text">
       <a name="text" val="Breakpoint Logic"/>
     </comp>
     <comp lib="6" loc="(2245,2035)" name="Text">
@@ -1551,7 +1551,7 @@
     <comp lib="6" loc="(3365,1465)" name="Text">
       <a name="text" val="Data Forwarding"/>
     </comp>
-    <comp lib="6" loc="(355,1232)" name="Text">
+    <comp lib="6" loc="(355,1230)" name="Text">
       <a name="font" val="SansSerif bold 12"/>
       <a name="text" val="returns to LOW."/>
     </comp>
@@ -1559,23 +1559,23 @@
       <a name="font" val="SansSerif bold 12"/>
       <a name="text" val="(If MemToReg == 0b11, WriteReg is $ra)"/>
     </comp>
-    <comp lib="6" loc="(414,1178)" name="Text">
+    <comp lib="6" loc="(410,1175)" name="Text">
       <a name="font" val="SansSerif bold 12"/>
       <a name="text" val="**Note: Registers in the RegisterFile are"/>
+    </comp>
+    <comp lib="6" loc="(430,1190)" name="Text">
+      <a name="font" val="SansSerif bold 12"/>
+      <a name="text" val="written to on FALLING edges of the clock."/>
     </comp>
     <comp lib="6" loc="(430,1220)" name="Text">
       <a name="font" val="SansSerif bold 12"/>
       <a name="text" val="register writeback shown until the clock"/>
     </comp>
-    <comp lib="6" loc="(432,1193)" name="Text">
-      <a name="font" val="SansSerif bold 12"/>
-      <a name="text" val="written to on FALLING edges of the clock."/>
-    </comp>
-    <comp lib="6" loc="(443,1207)" name="Text">
+    <comp lib="6" loc="(440,1205)" name="Text">
       <a name="font" val="SansSerif bold 12"/>
       <a name="text" val="Therefore, the instruction in S5 will not have"/>
     </comp>
-    <comp lib="6" loc="(473,3515)" name="Text">
+    <comp lib="6" loc="(470,3515)" name="Text">
       <a name="font" val="SansSerif bold 20"/>
       <a name="text" val="User Control Assistance Circuitry"/>
     </comp>
@@ -1594,25 +1594,25 @@
     <comp lib="6" loc="(555,1635)" name="Text">
       <a name="text" val="PC Reset Value"/>
     </comp>
-    <comp lib="6" loc="(651,84)" name="Text">
-      <a name="font" val="SansSerif bold 24"/>
-      <a name="text" val="Pipeline State"/>
-    </comp>
-    <comp lib="6" loc="(653,375)" name="Text">
+    <comp lib="6" loc="(650,375)" name="Text">
       <a name="font" val="SansSerif bold 24"/>
       <a name="text" val="User Controls"/>
     </comp>
-    <comp lib="6" loc="(674,579)" name="Text">
+    <comp lib="6" loc="(650,80)" name="Text">
+      <a name="font" val="SansSerif bold 24"/>
+      <a name="text" val="Pipeline State"/>
+    </comp>
+    <comp lib="6" loc="(670,575)" name="Text">
       <a name="font" val="SansSerif bold 24"/>
       <a name="text" val="Emulated Console"/>
     </comp>
-    <comp lib="6" loc="(791,1935)" name="Text">
+    <comp lib="6" loc="(790,1935)" name="Text">
       <a name="text" val="Used in suspending the clock"/>
     </comp>
     <comp lib="6" loc="(825,1790)" name="Text">
       <a name="text" val="Determines if is currently executing a syscall, or if the next instruction will be executing a syscall."/>
     </comp>
-    <comp lib="6" loc="(913,464)" name="Text">
+    <comp lib="6" loc="(910,460)" name="Text">
       <a name="font" val="SansSerif bold 12"/>
       <a name="text" val="(likely due to invalid jump/branch)"/>
     </comp>
@@ -9097,8 +9097,100 @@
       <a name="addrWidth" val="24"/>
       <a name="appearance" val="logisim_evolution"/>
       <a name="contents">addr/data: 24 32
-600100c 0 a000224 25d0e003 c000000 0 10083c 825
-48d 0 1000224 25d0e003 c000000 0 800e003
+600100c 0 a000224 25d0e003 c000000 0 f4ffbd23 800bfaf
+400beaf 400be23 fcffc0af 4000224 10043c 7d048424 25d0e003 c000000
+0 25100000 8800100c 0 b300100c 0 de00100c 0
+901100c 0 3401100c 0 5f01100c 0 8a01100c 0
+b501100c 0 e001100c 0 b02100c 0 3602100c 0
+6102100c 0 8c02100c 0 b702100c 0 fcffd08f 0
+0 700001e 0 10043c be048424 4000224 25d0e003 c000000
+0 400df8f 0 de8f 0 c00bd23 800e003 0
+f4ffbd23 800bfaf 400beaf 400be23 fcffc4af 38008510 0 4000224
+2520e000 25d0e003 c000000 0 b000224 a000424 25d0e003 c000000
+0 1000830 c8ac 10043c 8f048424 25d0e003 c000000 0
+10043c 96048424 25d0e003 c000000 0 1000224 100c422 25d0e003
+c000000 0 4000224 10043c a4048424 25d0e003 c000000 0
+1000224 fcffc48f 0 25d0e003 c000000 0 10043c b0048424
+4000224 25d0e003 c000000 0 1000224 2520a000 25d0e003 c000000
+0 b000224 a000424 25d0e003 c000000 0 400df8f 0
+fcffc48f 0 0 de8f 0 c00bd23 800e003 0
+f8ffbd23 400bfaf beaf be23 25308000 10113c 4003126 10133c
+14007326 10153c 2400b526 1624 10173c f726 f78e 0
+1200d712 0 308e 0 4003122 728e 0 4007322
+a58e 0 400b522 20201202 10073c 6002e724 4000100c 0
+100d622 98001008 0 400df8f 0 de8f 0 800bd23
+2520c000 800e003 0 f8ffbd23 400bfaf beaf be23 25308000
+10113c 38003126 10133c 44007326 10153c 5000b526 1624 10173c
+3400f726 f78e 0 1200d712 0 308e 0 4003122
+728e 0 4007322 a58e 0 400b522 211000 10073c
+7b02e724 4000100c 0 100d622 c3001008 0 400df8f 0
+de8f 0 800bd23 2520c000 800e003 0 f8ffbd23 400bfaf
+beaf be23 25308000 10113c 60003126 10133c 6c007326 10153c
+7800b526 1624 10173c 5c00f726 f78e 0 1200d712 0
+308e 0 4003122 728e 0 4007322 a58e 0
+400b522 201000 10073c 9402e724 4000100c 0 100d622 ee001008
+0 400df8f 0 de8f 0 800bd23 2520c000 800e003
+0 f8ffbd23 400bfaf beaf be23 25308000 10113c 88003126
+10133c 94007326 10153c a000b526 1624 10173c 8400f726 f78e
+0 1200d712 0 308e 0 4003122 728e 0
+4007322 a58e 0 400b522 c0271000 10073c ad02e724 4000100c
+0 100d622 19011008 0 400df8f 0 de8f 0
+800bd23 2520c000 800e003 0 f8ffbd23 400bfaf beaf be23
+25308000 10113c b0003126 10133c bc007326 10153c c800b526 1624
+10173c ac00f726 f78e 0 1200d712 0 308e 0
+4003122 728e 0 4007322 a58e 0 400b522 2211000
+10073c c702e724 4000100c 0 100d622 44011008 0 400df8f
+0 de8f 0 800bd23 2520c000 800e003 0 f8ffbd23
+400bfaf beaf be23 25308000 10113c d8003126 10133c e4007326
+10153c f000b526 1624 10173c d400f726 f78e 0 1200d712
+0 308e 0 4003122 728e 0 4007322 a58e
+0 400b522 2201000 10073c e002e724 4000100c 0 100d622
+6f011008 0 400df8f 0 de8f 0 800bd23 2520c000
+800e003 0 f8ffbd23 400bfaf beaf be23 25308000 10113c
+13126 10133c c017326 10153c 1801b526 1624 10173c fc00f726
+f78e 0 1200d712 0 308e 0 4003122 728e
+0 4007322 a58e 0 400b522 c2271000 10073c f902e724
+4000100c 0 100d622 9a011008 0 400df8f 0 de8f
+0 800bd23 2520c000 800e003 0 f8ffbd23 400bfaf beaf
+be23 25308000 10113c 28013126 10133c 34017326 10153c 4001b526
+1624 10173c 2401f726 f78e 0 1200d712 0 308e
+0 4003122 728e 0 4007322 a58e 0 400b522
+3211000 10073c 1303e724 4000100c 0 100d622 c5011008 0
+400df8f 0 de8f 0 800bd23 2520c000 800e003 0
+f8ffbd23 400bfaf beaf be23 25308000 10113c 50013126 10133c
+5c017326 10153c 6801b526 1624 10173c 4c01f726 f78e 0
+1200d712 0 308e 0 4003122 728e 0 4007322
+a58e 0 400b522 3201000 10073c 2c03e724 4000100c 0
+100d622 f0011008 0 400df8f 0 de8f 0 800bd23
+2520c000 800e003 0 f8ffbd23 400bfaf beaf be23 25308000
+10113c 78013126 10133c 84017326 10153c 9001b526 1624 10173c
+7401f726 f78e 0 1200d712 0 308e 0 4003122
+728e 0 4007322 a58e 0 400b522 c3271000 10073c
+4503e724 4000100c 0 100d622 1b021008 0 400df8f 0
+de8f 0 800bd23 2520c000 800e003 0 f8ffbd23 400bfaf
+beaf be23 25308000 10113c a0013126 10133c b0017326 10153c
+c001b526 1624 10173c 9c01f726 f78e 0 1200d712 0
+308e 0 4003122 728e 0 4007322 a58e 0
+400b522 4205002 10073c 6003e724 4000100c 0 100d622 46021008
+0 400df8f 0 de8f 0 800bd23 2520c000 800e003
+0 f8ffbd23 400bfaf beaf be23 25308000 10113c d4013126
+10133c e4017326 10153c f401b526 1624 10173c d001f726 f78e
+0 1200d712 0 308e 0 4003122 728e 0
+4007322 a58e 0 400b522 6205002 10073c 7d03e724 4000100c
+0 100d622 71021008 0 400df8f 0 de8f 0
+800bd23 2520c000 800e003 0 f8ffbd23 400bfaf beaf be23
+25308000 10113c 8023126 10133c 18027326 10153c 2802b526 1624
+10173c 402f726 f78e 0 1200d712 0 308e 0
+4003122 728e 0 4007322 a58e 0 400b522 7205002
+10073c 9a03e724 4000100c 0 100d622 9c021008 0 400df8f
+0 de8f 0 800bd23 2520c000 800e003 0 f8ffbd23
+400bfaf beaf be23 25308000 10113c 3c023126 10133c 48027326
+10153c 5402b526 1624 10173c 3802f726 f78e 0 1b00d712
+0 308e 0 4003122 728e 0 4007322 a58e
+0 400b522 424 4000083c 680b0825 20801001 8000002 0
+dc021008 0 2008434 1008434 10073c b703e724 4000100c 0
+100d622 c7021008 0 400df8f 0 de8f 0 800bd23
+2520c000 800e003
 </a>
       <a name="dataWidth" val="32"/>
       <a name="label" val="user_text_section"/>
