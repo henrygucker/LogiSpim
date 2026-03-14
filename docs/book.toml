@@ -2,3 +2,7 @@
 title = "LogiSpim"
 authors = ["Henry Gucker"]
 language = "en"
+
+[output.html]
+git-repository-url = "https://github.com/henrygucker/LogiSpim/"
+git-repository-icon = "fab-github"

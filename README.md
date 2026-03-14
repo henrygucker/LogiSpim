@@ -1,16 +1,6 @@
-# Installation (MacOS w/Homebrew)
+# LogiSpim
 
-## 1.
-In a terminal, run the following command to add the cross-toolchains tap:
-```
-brew tap messense/macos-cross-toolchains
-```
+This project is currently under construction.
+Expected initial release is estimated for late April 2026.
 
-## 2.
-Then, run this command to install the cross-compilation toolchain for MIPS:
-```
-mipsel-unknown-linux-gnu
-```
-
-After these steps have been completed, MIPS files ending in .s can be converted into binary files for the processor in logisim.
-
+Documentation page can be found [here](https://henrygucker.github.io/LogiSpim/).

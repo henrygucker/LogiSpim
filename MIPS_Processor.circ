@@ -1003,7 +1003,7 @@
       <a name="incoming" val="7"/>
     </comp>
     <comp lib="0" loc="(630,520)" name="Constant">
-      <a name="value" val="0x400424"/>
+      <a name="value" val="0x400a9c"/>
       <a name="width" val="32"/>
     </comp>
     <comp lib="0" loc="(6380,1590)" name="Tunnel">
