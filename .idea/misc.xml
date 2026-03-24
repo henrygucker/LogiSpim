@@ -7,6 +7,7 @@
         <option value="$PROJECT_DIR$/FileProcessor/pom.xml" />
         <option value="$PROJECT_DIR$/ToolchainInstaller/pom.xml" />
         <option value="$PROJECT_DIR$/TestProgramGenerator/pom.xml" />
+        <option value="$PROJECT_DIR$/TestVectorGenerator/pom.xml" />
       </list>
     </option>
     <option name="ignoredFiles">

@@ -5,6 +5,8 @@
     <file url="file://$PROJECT_DIR$/FileProcessor/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/TestProgramGenerator/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/TestProgramGenerator/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/TestVectorGenerator/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/TestVectorGenerator/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/ToolchainInstaller/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/ToolchainInstaller/src/main/resources" charset="UTF-8" />
   </component>
