@@ -1,6 +1,5 @@
 package org.henrygucker.logispim.fileprocessor.actionlisteners;
 
-import org.henrygucker.logimips.fileprocessor.backend.*;
 import org.henrygucker.logispim.fileprocessor.backend.MIPSCrossCompiler;
 import org.henrygucker.logispim.fileprocessor.backend.PlatformToolchainCommands;
 import org.henrygucker.logispim.fileprocessor.backend.SettingsManager;
