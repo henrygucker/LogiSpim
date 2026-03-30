@@ -9,14 +9,14 @@
 
 # MIPS Processor
 - [Overview]()
-  - [Supported Instructions](./02_processor_info/supported_instructions.md)
+  - [Supported Instructions](02_processor_overview/supported_instructions.md)
   - [FAQ]()
 - [Pipeline Structure]()
 - [Core Components]()
   - [Instruction Memory]()
   - [Register File]()
   - [Control Unit]()
-    - [Main Decoder]()
+    - [Main Decoder](./04_core_components/main_decoder.md)
     - [ALU Decoder]()
   - [ALU]()
   - [Main Memory]()
