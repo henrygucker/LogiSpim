@@ -179,6 +179,7 @@ public class SettingsManager {
     }
 
     private static synchronized void createDefaultFile(Path path) throws SettingsManagerException {
+        // TODO: CREATE DIRECTORY ON INITIAL STARTUP
         DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
         DocumentBuilder builder = null;
         Transformer transformer = null;

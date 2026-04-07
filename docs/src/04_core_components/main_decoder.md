@@ -127,3 +127,15 @@ The numbers at the top of each column indicate which output corresponds to the c
 | 61 | `111101` |  `sdc1`   |     |      |        |      |        |     |      |     |
 | 62 | `111110` |  `sdc2`   |     |      |        |      |        |     |      |     |
 | 63 | `111111` |   `N/A`   |     |      |        |      |        |     |      |     |
+
+
+### R-Type Overrides
+The following `Funct` values for R-Type instructions have overridden outputs for MainDecoder.<br>
+*Note: This means that the overrides only occur when the OP Code is `0`.*
+
+|  Funct   |  Instruction  |  1  |  2   |   3    |  4   |   5    |  6  |  7   |  8  |
+|:--------:|:-------------:|:---:|:----:|:------:|:----:|:------:|:---:|:----:|:---:|
+| `0000xx` | `sll/srl/sra` | `1` | `00` | `0000` | `00` | `1000` | `1` | `00` | `1` |
+| `001000` |     `jr`      | `0` | `00` | `0000` | `10` | `0000` | `0` | `00` | `0` |
+| `001001` |    `jral`     | `1` | `11` | `0000` | `10` | `0000` | `0` | `00` | `0` |
+| `001100` |   `syscall`   | `1` | `11` | `0000` | `00` | `0000` | `0` | `00` | `0` |

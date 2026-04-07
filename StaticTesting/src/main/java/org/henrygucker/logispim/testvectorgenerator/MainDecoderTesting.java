@@ -1,16 +1,12 @@
 package org.henrygucker.logispim.testvectorgenerator;
 
-import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
+import java.io.*;
 import java.nio.file.Files;
+import java.nio.file.InvalidPathException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
-public class Main {
-
-    public static final String PROGRAM_JAR_NAME = "TestVectorGenerator.jar";
+public class MainDecoderTesting {
 
     /**
      * All outputs based on OP code. Displays general case for R-Type w/OP code 0.
@@ -159,62 +155,84 @@ public class Main {
             new String[]{"000000", "111111", "1", "00", "0000", "00", "1000", "0", "00", "1"}
     };
 
-    /**
-     * The
-     */
-    private static final Path outputFile = Paths.get(System.getProperty("user.home") + File.separator + "LogiSpim" + File.separator + "test_vectors" + File.separator + "main_decoder_test.txt");
+    private Path filepath;
+
+    public static final String COMPONENT_FLAG = "--main-decoder";
+
+    public MainDecoderTesting(String[] args) throws IllegalArgumentException, IOException {
+        if (args.length == 0)
+            throw new IllegalArgumentException("Second argument expected, but not provided.\n" +
+                    "Acceptable usages for " + this.COMPONENT_FLAG + ":\n" +
+                    "java -jar "+ Main.PROGRAM_JAR_NAME + this.COMPONENT_FLAG + "--create-test-vector <path to output file>\n" +
+                    "java -jar "+ Main.PROGRAM_JAR_NAME + this.COMPONENT_FLAG + "--validate-markdown-tables <path to file for testing>");
+
+        if (args[0].equals("--create-test-vector")) {
+            if (args.length < 2)
+                throw new IllegalArgumentException("2 Arguments Provided, 3 Arguments Expected:\njava -jar " + Main.PROGRAM_JAR_NAME + this.COMPONENT_FLAG + " --create-test-vector <path to output file>");
+
+            try {
+                filepath = Paths.get(args[1]);
+            } catch (InvalidPathException e) {
+                throw new IllegalArgumentException("Invalid path provided. Reason: " + e.getReason());
+            }
+
+            this.writeTestVector();
+
+            System.out.println("Output successfully written to \"" + filepath.toAbsolutePath().toString() + "\".");
+
+        } else if (args[0].equals("--validate-markdown-tables")) {
+            if (args.length < 2)
+                throw new IllegalArgumentException("2 Arguments Provided, 3 Arguments Expected:\njava -jar " + Main.PROGRAM_JAR_NAME + this.COMPONENT_FLAG + " --validate-markdown-tables <path to file for testing>");
+
+            try {
+                filepath = Paths.get(args[1]);
+            } catch (InvalidPathException e) {
+                throw new IllegalArgumentException("Invalid path provided. Reason: " + e.getReason());
+            }
+
+            assert(containsMarkdownTables(filepath));
+        } else {
+            throw new IllegalArgumentException("Invalid second argument provided.\n" +
+                    "Acceptable usages for " + this.COMPONENT_FLAG + ":\n" +
+                    "java -jar "+ Main.PROGRAM_JAR_NAME + this.COMPONENT_FLAG + "--create-test-vector <path to output file>\n" +
+                    "java -jar "+ Main.PROGRAM_JAR_NAME + this.COMPONENT_FLAG + "--validate-markdown-tables <path to file for testing>");
+        }
+
+    }
 
     public static void main(String[] args) throws IOException {
-        Files.createDirectories(outputFile.getParent());
-
-        writeOutputFile();
-        System.out.print(getMarkdownTableString());
+        System.out.print(getMarkdownTableStringByOpCode());
+        System.out.println("\n\n\n\n");
+        System.out.println(getMarkdownTableStringRTypeOverrides());
     }
 
-    private static String getMarkdownTableString() {
+    private static boolean containsMarkdownTables(Path filepath) {
+        String byOpCodeExpected = getMarkdownTableStringByOpCode().replace("\\s+", "");
+
         StringBuilder builder = new StringBuilder();
-        builder.append("MainDecoder Output by OP Code:\n");
-
-        String[] invalidOpCodeReplacementLine = new String[]{
-                " ", "  ", "    ", "  ", "    ", " ", "  ", " ", "N/A"
-        };
-
-        builder.append("| # | OP | Instruction |");
-        for (int i = 0; i < MainDecoderOutputs.values().length; i++) {
-            builder.append(" " + (i + 1) + " |");
-        }
-        builder.append('\n');
-
-        builder.append("|");
-        for (int i = 0; i < 3 + MainDecoderOutputs.values().length; i++) {
-            builder.append(" :---: |");
-        }
-        builder.append('\n');
-
-        for (int i = 0; i < mainDecoderOutputsByOpCode.length; i++) {
-            String[] testcase = mainDecoderOutputsByOpCode[i];
-
-            if (testcase == null)
-                testcase = invalidOpCodeReplacementLine;
-
-            builder.append(String.format("| %02d ", i));
-            builder.append("| `" + String.format("%6s", Integer.toBinaryString(i)).replaceAll(" ", "0") + "` ");
-            builder.append("| `" + testcase[testcase.length - 1] + "` |");
-
-            for (int j = 0; j < MainDecoderOutputs.values().length; j++) {
-                if (!testcase[j].startsWith(" "))
-                    builder.append(" `" + testcase[j] + "` |");
-                else
-                    builder.append(" |");
+        try (BufferedReader reader = new BufferedReader(new FileReader(filepath.toFile()))) {
+            String inn;
+            while ((inn = reader.readLine()) != null) {
+                builder.append(inn);
+                builder.append('\n');
             }
-            builder.append('\n');
+        } catch (IOException e) {
+            return false;
         }
 
-        return builder.toString();
+        String markdownFileContents = builder.toString().replace("\\s+", "");
+
+        if (!markdownFileContents.contains(byOpCodeExpected))
+            return false;
+
+        return true;
     }
 
-    private static void writeOutputFile() {
-        try (BufferedWriter writer = new BufferedWriter(new FileWriter(outputFile.toFile()))) {
+    private void writeTestVector() throws IOException {
+        if (filepath.getParent() != null)
+            Files.createDirectories(filepath.getParent());
+
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(filepath.toFile()))) {
             writer.write("# MainDecoder Tests\n");
             writer.write("Op[6] Funct[6] RegWrite[1] RegWriteDataSrc[2] MemOp[4] BranchOp[2] ALUOp[4] ALUSrcA[1] ALUSrcB[2] WriteRegSrc[1]\n");
 
@@ -263,4 +281,87 @@ public class Main {
             }
         } catch (IOException e) {}
     }
+
+    private static String getMarkdownTableStringByOpCode() {
+        StringBuilder builder = new StringBuilder();
+
+        String[] invalidOpCodeReplacementLine = new String[]{
+                " ", "  ", "    ", "  ", "    ", " ", "  ", " ", "N/A"
+        };
+
+        builder.append("| # | OP | Instruction |");
+        for (int i = 0; i < MainDecoderOutputs.values().length; i++) {
+            builder.append(" " + (i + 1) + " |");
+        }
+        builder.append('\n');
+
+        builder.append("|");
+        for (int i = 0; i < 3 + MainDecoderOutputs.values().length; i++) {
+            builder.append(" :---: |");
+        }
+        builder.append('\n');
+
+        for (int i = 0; i < mainDecoderOutputsByOpCode.length; i++) {
+            String[] testcase = mainDecoderOutputsByOpCode[i];
+
+            if (testcase == null)
+                testcase = invalidOpCodeReplacementLine;
+
+            builder.append(String.format("| %02d ", i));
+            builder.append("| `" + String.format("%6s", Integer.toBinaryString(i)).replaceAll(" ", "0") + "` ");
+            builder.append("| `" + testcase[testcase.length - 1] + "` |");
+
+            for (int j = 0; j < MainDecoderOutputs.values().length; j++) {
+                if (!testcase[j].startsWith(" "))
+                    builder.append(" `" + testcase[j] + "` |");
+                else
+                    builder.append(" |");
+            }
+            builder.append('\n');
+        }
+
+        return builder.toString();
+    }
+
+    private static String getMarkdownTableStringRTypeOverrides() {
+        StringBuilder builder = new StringBuilder();
+
+        final int NUM_DECODER_OUTPUTS = MainDecoderOutputs.values().length;
+        final int TABLE_COLUMNS = 2 + NUM_DECODER_OUTPUTS;
+
+        builder.append("| Funct | Instruction |");
+        for (int i = 0; i < NUM_DECODER_OUTPUTS; i++) {
+            builder.append(" " + (i + 1) + " |");
+        }
+        builder.append('\n');
+
+        builder.append("|");
+        for (int i = 0; i < TABLE_COLUMNS; i++) {
+            builder.append(" :---: |");
+        }
+        builder.append('\n');
+
+        for (int i = 0; i < mainDecoderRTypeOverrideCases.length; i++) {
+            String[] testcase = mainDecoderRTypeOverrideCases[i];
+
+            // Testcase much have the exact amount of entries as table has columns
+            assert(TABLE_COLUMNS == testcase.length);
+
+            builder.append("|");
+
+            // Funct value
+            builder.append(" `" + testcase[1] + "` |");
+
+            // Instruction name
+            builder.append(" `" + testcase[testcase.length - 1] + "` |");
+
+            for (int j = 2; j < TABLE_COLUMNS; j++) {
+                builder.append(" `" + testcase[j] + "` |");
+            }
+            builder.append('\n');
+        }
+
+        return builder.toString();
+    }
+
 }

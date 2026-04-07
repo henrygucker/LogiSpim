@@ -5,7 +5,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>org.henrygucker.logispim</groupId>
-    <artifactId>TestProgramGenerator</artifactId>
+    <artifactId>DynamicTesting</artifactId>
     <version>0.1pre</version>
 
     <properties>
