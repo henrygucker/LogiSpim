@@ -52,19 +52,13 @@
     <a name="circuitnamedboxfixedsize" val="true"/>
     <a name="simulationFrequency" val="16.0"/>
     <comp lib="0" loc="(1140,1600)" name="Tunnel">
-      <a name="label" val="InvalidInstructionAddr"/>
+      <a name="label" val="InvalidInstructionAddr_F"/>
       <a name="labelfont" val="SansSerif bold 10"/>
     </comp>
     <comp lib="0" loc="(130,1140)" name="Tunnel">
       <a name="facing" val="east"/>
       <a name="label" val="CLK"/>
       <a name="labelfont" val="SansSerif bold 10"/>
-    </comp>
-    <comp lib="0" loc="(130,3790)" name="Tunnel">
-      <a name="facing" val="east"/>
-      <a name="label" val="pc"/>
-      <a name="labelfont" val="SansSerif bold 10"/>
-      <a name="width" val="32"/>
     </comp>
     <comp lib="0" loc="(140,1240)" name="Tunnel">
       <a name="facing" val="east"/>
@@ -82,19 +76,25 @@
       <a name="label" val="CLK"/>
       <a name="labelfont" val="SansSerif bold 10"/>
     </comp>
+    <comp lib="0" loc="(140,3790)" name="Tunnel">
+      <a name="facing" val="east"/>
+      <a name="label" val="pc_F"/>
+      <a name="labelfont" val="SansSerif bold 10"/>
+      <a name="width" val="32"/>
+    </comp>
     <comp lib="0" loc="(140,3830)" name="Tunnel">
       <a name="facing" val="east"/>
       <a name="label" val="CLK"/>
       <a name="labelfont" val="SansSerif bold 10"/>
     </comp>
     <comp lib="0" loc="(1440,1590)" name="Tunnel">
-      <a name="label" val="InstructionF"/>
+      <a name="label" val="Instruction_F"/>
       <a name="labelfont" val="SansSerif bold 10"/>
       <a name="width" val="32"/>
     </comp>
     <comp lib="0" loc="(150,1110)" name="Tunnel">
       <a name="facing" val="east"/>
-      <a name="label" val="a0"/>
+      <a name="label" val="a0_D"/>
       <a name="labelfont" val="SansSerif bold 10"/>
       <a name="width" val="32"/>
     </comp>
@@ -110,7 +110,7 @@
     </comp>
     <comp lib="0" loc="(160,1180)" name="Tunnel">
       <a name="facing" val="east"/>
-      <a name="label" val="PrintChar"/>
+      <a name="label" val="PrintChar_D"/>
       <a name="labelfont" val="SansSerif bold 10"/>
     </comp>
     <comp lib="0" loc="(160,3710)" name="Tunnel">
@@ -124,12 +124,12 @@
     </comp>
     <comp lib="0" loc="(1740,290)" name="Tunnel">
       <a name="facing" val="east"/>
-      <a name="label" val="IsSyscall"/>
+      <a name="label" val="IsSyscall_F"/>
       <a name="labelfont" val="SansSerif bold 10"/>
     </comp>
     <comp lib="0" loc="(1770,320)" name="Tunnel">
       <a name="facing" val="east"/>
-      <a name="label" val="IsSuspended"/>
+      <a name="label" val="CM_IsSuspended"/>
       <a name="labelfont" val="SansSerif bold 10"/>
     </comp>
     <comp lib="0" loc="(180,3730)" name="Tunnel">
@@ -181,7 +181,7 @@
     </comp>
     <comp lib="0" loc="(1800,350)" name="Tunnel">
       <a name="facing" val="east"/>
-      <a name="label" val="SuspendProcessor"/>
+      <a name="label" val="SuspendProcessor_D"/>
       <a name="labelfont" val="SansSerif bold 10"/>
     </comp>
     <comp lib="0" loc="(1800,430)" name="Tunnel">
@@ -232,7 +232,7 @@
     </comp>
     <comp lib="0" loc="(1820,370)" name="Tunnel">
       <a name="facing" val="east"/>
-      <a name="label" val="InvalidInstructionAddr"/>
+      <a name="label" val="InvalidInstructionAddr_F"/>
       <a name="labelfont" val="SansSerif bold 10"/>
     </comp>
     <comp lib="0" loc="(1820,390)" name="Tunnel">
@@ -401,6 +401,11 @@
       <a name="label" val="CLK"/>
       <a name="labelfont" val="SansSerif bold 10"/>
     </comp>
+    <comp lib="0" loc="(2090,1490)" name="Probe">
+      <a name="appearance" val="NewPins"/>
+      <a name="label" val="RegWrite_W"/>
+      <a name="labelloc" val="north"/>
+    </comp>
     <comp lib="0" loc="(210,3690)" name="Tunnel">
       <a name="facing" val="east"/>
       <a name="label" val="EnableBreakpoint"/>
@@ -422,12 +427,12 @@
     </comp>
     <comp lib="0" loc="(2200,2970)" name="Tunnel">
       <a name="facing" val="east"/>
-      <a name="label" val="RegWriteE"/>
+      <a name="label" val="RegWrite_E"/>
       <a name="labelfont" val="SansSerif bold 10"/>
     </comp>
     <comp lib="0" loc="(2200,3050)" name="Tunnel">
       <a name="facing" val="east"/>
-      <a name="label" val="RegWriteM"/>
+      <a name="label" val="RegWrite_M"/>
       <a name="labelfont" val="SansSerif bold 10"/>
     </comp>
     <comp lib="0" loc="(2210,2100)" name="Splitter">
@@ -470,14 +475,14 @@
       <a name="value" val="0x2"/>
       <a name="width" val="5"/>
     </comp>
-    <comp lib="0" loc="(2310,2170)" name="Probe">
+    <comp lib="0" loc="(2300,2170)" name="Probe">
       <a name="appearance" val="NewPins"/>
-      <a name="label" val="PCJumpAddr"/>
+      <a name="label" val="PCJumpAddr_D"/>
       <a name="labelloc" val="south"/>
       <a name="radix" val="16"/>
     </comp>
     <comp lib="0" loc="(2360,2120)" name="Tunnel">
-      <a name="label" val="RegData1D"/>
+      <a name="label" val="RegData1_D"/>
       <a name="labelfont" val="SansSerif bold 10"/>
       <a name="width" val="32"/>
     </comp>
@@ -486,39 +491,39 @@
       <a name="out_width" val="32"/>
     </comp>
     <comp lib="0" loc="(2410,1630)" name="Tunnel">
-      <a name="label" val="v0"/>
+      <a name="label" val="v0_D"/>
       <a name="labelfont" val="SansSerif bold 10"/>
       <a name="width" val="32"/>
     </comp>
     <comp lib="0" loc="(2410,1650)" name="Tunnel">
-      <a name="label" val="a0"/>
+      <a name="label" val="a0_D"/>
       <a name="labelfont" val="SansSerif bold 10"/>
       <a name="width" val="32"/>
     </comp>
     <comp lib="0" loc="(2410,1670)" name="Tunnel">
-      <a name="label" val="a1"/>
+      <a name="label" val="a1_D"/>
       <a name="labelfont" val="SansSerif bold 10"/>
       <a name="width" val="32"/>
     </comp>
     <comp lib="0" loc="(2410,1690)" name="Tunnel">
-      <a name="label" val="a2"/>
+      <a name="label" val="a2_D"/>
       <a name="labelfont" val="SansSerif bold 10"/>
       <a name="width" val="32"/>
     </comp>
     <comp lib="0" loc="(2410,1710)" name="Tunnel">
-      <a name="label" val="sp"/>
+      <a name="label" val="sp_D"/>
       <a name="labelfont" val="SansSerif bold 10"/>
       <a name="width" val="32"/>
     </comp>
     <comp lib="0" loc="(2480,540)" name="Tunnel">
       <a name="facing" val="east"/>
-      <a name="label" val="RegData1D"/>
+      <a name="label" val="RegData1_D"/>
       <a name="labelfont" val="SansSerif bold 10"/>
       <a name="width" val="32"/>
     </comp>
     <comp lib="0" loc="(2480,560)" name="Tunnel">
       <a name="facing" val="east"/>
-      <a name="label" val="RegData2D"/>
+      <a name="label" val="RegData2_D"/>
       <a name="labelfont" val="SansSerif bold 10"/>
       <a name="width" val="32"/>
     </comp>
@@ -575,9 +580,9 @@
       <a name="label" val="Reset"/>
       <a name="labelfont" val="SansSerif bold 10"/>
     </comp>
-    <comp lib="0" loc="(2670,2170)" name="Probe">
+    <comp lib="0" loc="(2660,2170)" name="Probe">
       <a name="appearance" val="NewPins"/>
-      <a name="label" val="PCBranchAddr"/>
+      <a name="label" val="PCBranchAddr_D"/>
       <a name="labelloc" val="south"/>
       <a name="radix" val="16"/>
     </comp>
@@ -587,16 +592,16 @@
       <a name="labelfont" val="SansSerif bold 10"/>
       <a name="width" val="32"/>
     </comp>
-    <comp lib="0" loc="(2720,500)" name="Tunnel">
-      <a name="label" val="SuspendProcessor"/>
+    <comp lib="0" loc="(2740,500)" name="Tunnel">
+      <a name="label" val="SuspendProcessor_D"/>
       <a name="labelfont" val="SansSerif bold 10"/>
     </comp>
     <comp lib="0" loc="(2770,520)" name="Tunnel">
-      <a name="label" val="PrintChar"/>
+      <a name="label" val="PrintChar_D"/>
       <a name="labelfont" val="SansSerif bold 10"/>
     </comp>
     <comp lib="0" loc="(2790,540)" name="Tunnel">
-      <a name="label" val="PCSrc"/>
+      <a name="label" val="PCSrc_D"/>
       <a name="labelfont" val="SansSerif bold 10"/>
       <a name="width" val="2"/>
     </comp>
@@ -613,19 +618,19 @@
     </comp>
     <comp lib="0" loc="(2980,1520)" name="Tunnel">
       <a name="facing" val="east"/>
-      <a name="label" val="RegData1D"/>
+      <a name="label" val="RegData1_D"/>
       <a name="labelfont" val="SansSerif bold 10"/>
       <a name="width" val="32"/>
     </comp>
     <comp lib="0" loc="(2980,1560)" name="Tunnel">
       <a name="facing" val="east"/>
-      <a name="label" val="RegData2D"/>
+      <a name="label" val="RegData2_D"/>
       <a name="labelfont" val="SansSerif bold 10"/>
       <a name="width" val="32"/>
     </comp>
     <comp lib="0" loc="(2980,2990)" name="Tunnel">
       <a name="facing" val="east"/>
-      <a name="label" val="RegWriteM"/>
+      <a name="label" val="RegWrite_M"/>
       <a name="labelfont" val="SansSerif bold 10"/>
     </comp>
     <comp lib="0" loc="(300,170)" name="Tunnel">
@@ -649,7 +654,7 @@
       <a name="labelfont" val="SansSerif bold 10"/>
     </comp>
     <comp lib="0" loc="(320,3800)" name="Tunnel">
-      <a name="label" val="atBreakpoint"/>
+      <a name="label" val="atBreakpoint_F"/>
       <a name="labelfont" val="SansSerif bold 10"/>
     </comp>
     <comp lib="0" loc="(3290,2950)" name="Tunnel">
@@ -672,13 +677,13 @@
     </comp>
     <comp lib="0" loc="(330,1470)" name="Tunnel">
       <a name="facing" val="east"/>
-      <a name="label" val="PCSrc"/>
+      <a name="label" val="PCSrc_D"/>
       <a name="labelfont" val="SansSerif bold 10"/>
       <a name="width" val="2"/>
     </comp>
     <comp lib="0" loc="(330,410)" name="Tunnel">
       <a name="facing" val="south"/>
-      <a name="label" val="IsSuspended"/>
+      <a name="label" val="CM_IsSuspended"/>
       <a name="labelfont" val="SansSerif bold 10"/>
     </comp>
     <comp lib="0" loc="(3300,1560)" name="Tunnel">
@@ -693,12 +698,12 @@
       <a name="labelfont" val="SansSerif bold 10"/>
     </comp>
     <comp lib="0" loc="(3320,530)" name="Tunnel">
-      <a name="label" val="MemToRegE"/>
+      <a name="label" val="RegWriteDataSrc_E"/>
       <a name="labelfont" val="SansSerif bold 10"/>
       <a name="width" val="2"/>
     </comp>
     <comp lib="0" loc="(3330,500)" name="Tunnel">
-      <a name="label" val="RegWriteE"/>
+      <a name="label" val="RegWrite_E"/>
       <a name="labelfont" val="SansSerif bold 10"/>
     </comp>
     <comp lib="0" loc="(340,490)" name="Tunnel">
@@ -726,9 +731,9 @@
       <a name="labelfont" val="SansSerif bold 10"/>
       <a name="width" val="32"/>
     </comp>
-    <comp lib="0" loc="(3770,1470)" name="Probe">
+    <comp lib="0" loc="(3760,1470)" name="Probe">
       <a name="appearance" val="NewPins"/>
-      <a name="label" val="WriteRegSrc"/>
+      <a name="label" val="WriteRegSrc_E"/>
       <a name="labelloc" val="north"/>
     </comp>
     <comp lib="0" loc="(3860,1840)" name="Constant">
@@ -816,7 +821,7 @@
     </comp>
     <comp lib="0" loc="(3950,1470)" name="Probe">
       <a name="appearance" val="NewPins"/>
-      <a name="label" val="ALUSrcB"/>
+      <a name="label" val="ALUSrcB_E"/>
       <a name="labelloc" val="north"/>
     </comp>
     <comp lib="0" loc="(3950,1800)" name="Splitter">
@@ -826,66 +831,66 @@
       <a name="fanout" val="3"/>
     </comp>
     <comp lib="0" loc="(3990,1800)" name="Tunnel">
-      <a name="label" val="MemToRegE"/>
+      <a name="label" val="RegWriteDataSrc_E"/>
       <a name="labelfont" val="SansSerif bold 10"/>
       <a name="width" val="2"/>
     </comp>
-    <comp lib="0" loc="(4070,1470)" name="Probe">
+    <comp lib="0" loc="(4060,1470)" name="Probe">
       <a name="appearance" val="NewPins"/>
-      <a name="label" val="ALUSrcA"/>
+      <a name="label" val="ALUSrcA_E"/>
       <a name="labelloc" val="north"/>
     </comp>
-    <comp lib="0" loc="(4190,1470)" name="Probe">
+    <comp lib="0" loc="(4180,1470)" name="Probe">
       <a name="appearance" val="NewPins"/>
-      <a name="label" val="NOT_ALUOut"/>
+      <a name="label" val="NOT_ALUOut_E"/>
       <a name="labelloc" val="north"/>
     </comp>
     <comp lib="0" loc="(4320,1470)" name="Probe">
       <a name="appearance" val="NewPins"/>
       <a name="facing" val="west"/>
-      <a name="label" val="ALUControl"/>
+      <a name="label" val="ALUControl_E"/>
       <a name="labelloc" val="north"/>
     </comp>
-    <comp lib="0" loc="(4600,1570)" name="Probe">
+    <comp lib="0" loc="(4570,1570)" name="Probe">
       <a name="appearance" val="NewPins"/>
       <a name="facing" val="north"/>
-      <a name="label" val="ALUOut"/>
+      <a name="label" val="ALUOut_E"/>
       <a name="labelloc" val="south"/>
+      <a name="radix" val="16"/>
+    </comp>
+    <comp lib="0" loc="(4580,1730)" name="Probe">
+      <a name="appearance" val="NewPins"/>
+      <a name="facing" val="south"/>
+      <a name="label" val="UpperImm_E"/>
+      <a name="labelloc" val="north"/>
+      <a name="radix" val="16"/>
+    </comp>
+    <comp lib="0" loc="(4580,1780)" name="Probe">
+      <a name="appearance" val="NewPins"/>
+      <a name="facing" val="south"/>
+      <a name="label" val="RegData2_MemWriteData_E"/>
+      <a name="labelloc" val="north"/>
+      <a name="radix" val="16"/>
+    </comp>
+    <comp lib="0" loc="(4580,1830)" name="Probe">
+      <a name="appearance" val="NewPins"/>
+      <a name="facing" val="south"/>
+      <a name="label" val="WriteReg_E"/>
+      <a name="labelloc" val="north"/>
+      <a name="radix" val="16"/>
+    </comp>
+    <comp lib="0" loc="(4580,1880)" name="Probe">
+      <a name="appearance" val="NewPins"/>
+      <a name="facing" val="south"/>
+      <a name="label" val="PCPlus4_E"/>
+      <a name="labelloc" val="north"/>
       <a name="radix" val="16"/>
     </comp>
     <comp lib="0" loc="(4600,2650)" name="Tunnel">
       <a name="facing" val="east"/>
-      <a name="label" val="MemToRegE"/>
+      <a name="label" val="RegWriteDataSrc_E"/>
       <a name="labelfont" val="SansSerif bold 10"/>
       <a name="width" val="2"/>
-    </comp>
-    <comp lib="0" loc="(4610,1730)" name="Probe">
-      <a name="appearance" val="NewPins"/>
-      <a name="facing" val="south"/>
-      <a name="label" val="UpperImm"/>
-      <a name="labelloc" val="north"/>
-      <a name="radix" val="16"/>
-    </comp>
-    <comp lib="0" loc="(4610,1780)" name="Probe">
-      <a name="appearance" val="NewPins"/>
-      <a name="facing" val="south"/>
-      <a name="label" val="RegData2_WriteData"/>
-      <a name="labelloc" val="north"/>
-      <a name="radix" val="16"/>
-    </comp>
-    <comp lib="0" loc="(4610,1830)" name="Probe">
-      <a name="appearance" val="NewPins"/>
-      <a name="facing" val="south"/>
-      <a name="label" val="WriteReg"/>
-      <a name="labelloc" val="north"/>
-      <a name="radix" val="16"/>
-    </comp>
-    <comp lib="0" loc="(4610,1880)" name="Probe">
-      <a name="appearance" val="NewPins"/>
-      <a name="facing" val="south"/>
-      <a name="label" val="PCPlus4"/>
-      <a name="labelloc" val="north"/>
-      <a name="radix" val="16"/>
     </comp>
     <comp lib="0" loc="(4650,2660)" name="Splitter">
       <a name="bit1" val="2"/>
@@ -893,12 +898,12 @@
       <a name="fanout" val="3"/>
     </comp>
     <comp lib="0" loc="(5090,530)" name="Tunnel">
-      <a name="label" val="MemToRegM"/>
+      <a name="label" val="RegWriteDataSrc_M"/>
       <a name="labelfont" val="SansSerif bold 10"/>
       <a name="width" val="2"/>
     </comp>
     <comp lib="0" loc="(5100,500)" name="Tunnel">
-      <a name="label" val="RegWriteM"/>
+      <a name="label" val="RegWrite_M"/>
       <a name="labelfont" val="SansSerif bold 10"/>
     </comp>
     <comp lib="0" loc="(5110,1550)" name="Constant">
@@ -907,72 +912,77 @@
     </comp>
     <comp lib="0" loc="(5120,1500)" name="Tunnel">
       <a name="facing" val="east"/>
-      <a name="label" val="IsSuspended"/>
+      <a name="label" val="CM_IsSuspended"/>
       <a name="labelfont" val="SansSerif bold 10"/>
     </comp>
+    <comp lib="0" loc="(5130,1450)" name="Probe">
+      <a name="appearance" val="NewPins"/>
+      <a name="label" val="MemOp_M"/>
+      <a name="labelloc" val="north"/>
+    </comp>
     <comp lib="0" loc="(5440,1590)" name="Tunnel">
-      <a name="label" val="Data_MemOpANDAlign"/>
+      <a name="label" val="MM_Data_MemOpANDAlign"/>
       <a name="labelfont" val="SansSerif bold 10"/>
       <a name="width" val="5"/>
     </comp>
     <comp lib="0" loc="(5440,1610)" name="Tunnel">
-      <a name="label" val="Data_RAMAddr"/>
+      <a name="label" val="MM_Data_RAMAddr"/>
       <a name="labelfont" val="SansSerif bold 10"/>
       <a name="width" val="24"/>
     </comp>
     <comp lib="0" loc="(5440,1630)" name="Tunnel">
-      <a name="label" val="Data_Enables"/>
+      <a name="label" val="MM_Data_Enables"/>
       <a name="labelfont" val="SansSerif bold 10"/>
       <a name="width" val="7"/>
     </comp>
     <comp lib="0" loc="(5440,1650)" name="Tunnel">
-      <a name="label" val="Data_DataIn"/>
+      <a name="label" val="MM_Data_DataIn"/>
       <a name="labelfont" val="SansSerif bold 10"/>
       <a name="width" val="32"/>
     </comp>
     <comp lib="0" loc="(5440,1670)" name="Tunnel">
-      <a name="label" val="Data_InvalidAddressFlag"/>
+      <a name="label" val="MM_Data_InvalidAddressFlag"/>
       <a name="labelfont" val="SansSerif bold 10"/>
     </comp>
     <comp lib="0" loc="(5440,1690)" name="Tunnel">
-      <a name="label" val="Stack_MemOpANDAlign"/>
+      <a name="label" val="MM_Stack_MemOpANDAlign"/>
       <a name="labelfont" val="SansSerif bold 10"/>
       <a name="width" val="5"/>
     </comp>
     <comp lib="0" loc="(5440,1710)" name="Tunnel">
-      <a name="label" val="Stack_RAMAddr"/>
+      <a name="label" val="MM_Stack_RAMAddr"/>
       <a name="labelfont" val="SansSerif bold 10"/>
       <a name="width" val="24"/>
     </comp>
     <comp lib="0" loc="(5440,1730)" name="Tunnel">
-      <a name="label" val="Stack_Enables"/>
+      <a name="label" val="MM_Stack_Enables"/>
       <a name="labelfont" val="SansSerif bold 10"/>
       <a name="width" val="7"/>
     </comp>
     <comp lib="0" loc="(5440,1750)" name="Tunnel">
-      <a name="label" val="Stack_DataIn"/>
+      <a name="label" val="MM_Stack_DataIn"/>
       <a name="labelfont" val="SansSerif bold 10"/>
       <a name="width" val="32"/>
     </comp>
     <comp lib="0" loc="(5440,1770)" name="Tunnel">
-      <a name="label" val="Stack_InvalidAddressFlag"/>
+      <a name="label" val="MM_Stack_InvalidAddressFlag"/>
       <a name="labelfont" val="SansSerif bold 10"/>
     </comp>
     <comp lib="0" loc="(5550,1020)" name="Tunnel">
       <a name="facing" val="east"/>
-      <a name="label" val="Data_Enables"/>
+      <a name="label" val="MM_Data_Enables"/>
       <a name="labelfont" val="SansSerif bold 10"/>
       <a name="width" val="7"/>
     </comp>
     <comp lib="0" loc="(5550,1050)" name="Tunnel">
       <a name="facing" val="east"/>
-      <a name="label" val="Data_DataIn"/>
+      <a name="label" val="MM_Data_DataIn"/>
       <a name="labelfont" val="SansSerif bold 10"/>
       <a name="width" val="32"/>
     </comp>
     <comp lib="0" loc="(5550,990)" name="Tunnel">
       <a name="facing" val="east"/>
-      <a name="label" val="Data_RAMAddr"/>
+      <a name="label" val="MM_Data_RAMAddr"/>
       <a name="labelfont" val="SansSerif bold 10"/>
       <a name="width" val="24"/>
     </comp>
@@ -985,30 +995,30 @@
       <a name="fanout" val="7"/>
       <a name="incoming" val="7"/>
     </comp>
-    <comp lib="0" loc="(5830,990)" name="Tunnel">
-      <a name="facing" val="east"/>
-      <a name="label" val="Stack_RAMAddr"/>
-      <a name="labelfont" val="SansSerif bold 10"/>
-      <a name="width" val="24"/>
-    </comp>
     <comp lib="0" loc="(5880,1230)" name="Tunnel">
-      <a name="label" val="Data_RAMOut"/>
+      <a name="label" val="MM_Data_RAMOut"/>
       <a name="labelfont" val="SansSerif bold 10"/>
       <a name="width" val="32"/>
     </comp>
-    <comp lib="0" loc="(5890,1020)" name="Tunnel">
+    <comp lib="0" loc="(5950,1020)" name="Tunnel">
       <a name="facing" val="east"/>
-      <a name="label" val="Stack_Enables"/>
+      <a name="label" val="MM_Stack_Enables"/>
       <a name="labelfont" val="SansSerif bold 10"/>
       <a name="width" val="7"/>
     </comp>
-    <comp lib="0" loc="(5890,1050)" name="Tunnel">
+    <comp lib="0" loc="(5950,1050)" name="Tunnel">
       <a name="facing" val="east"/>
-      <a name="label" val="Stack_DataIn"/>
+      <a name="label" val="MM_Stack_DataIn"/>
       <a name="labelfont" val="SansSerif bold 10"/>
       <a name="width" val="32"/>
     </comp>
-    <comp lib="0" loc="(5950,1160)" name="Splitter">
+    <comp lib="0" loc="(5960,990)" name="Tunnel">
+      <a name="facing" val="east"/>
+      <a name="label" val="MM_Stack_RAMAddr"/>
+      <a name="labelfont" val="SansSerif bold 10"/>
+      <a name="width" val="24"/>
+    </comp>
+    <comp lib="0" loc="(5990,1160)" name="Splitter">
       <a name="appear" val="center"/>
       <a name="fanout" val="7"/>
       <a name="incoming" val="7"/>
@@ -1024,39 +1034,39 @@
       <a name="width" val="32"/>
     </comp>
     <comp lib="0" loc="(630,520)" name="Constant">
-      <a name="value" val="0x400944"/>
+      <a name="value" val="0x80000000"/>
       <a name="width" val="32"/>
-    </comp>
-    <comp lib="0" loc="(6380,1590)" name="Tunnel">
-      <a name="facing" val="east"/>
-      <a name="label" val="Data_MemOpANDAlign"/>
-      <a name="labelfont" val="SansSerif bold 10"/>
-      <a name="width" val="5"/>
     </comp>
     <comp lib="0" loc="(6380,1610)" name="Tunnel">
       <a name="facing" val="east"/>
-      <a name="label" val="Data_RAMOut"/>
+      <a name="label" val="MM_Data_RAMOut"/>
       <a name="labelfont" val="SansSerif bold 10"/>
       <a name="width" val="32"/>
     </comp>
-    <comp lib="0" loc="(6380,1630)" name="Tunnel">
-      <a name="facing" val="east"/>
-      <a name="label" val="Data_InvalidAddressFlag"/>
+    <comp lib="0" loc="(640,1540)" name="Tunnel">
+      <a name="label" val="Reset"/>
       <a name="labelfont" val="SansSerif bold 10"/>
     </comp>
-    <comp lib="0" loc="(6380,1650)" name="Tunnel">
+    <comp lib="0" loc="(6430,1590)" name="Tunnel">
       <a name="facing" val="east"/>
-      <a name="label" val="Stack_MemOpANDAlign"/>
+      <a name="label" val="MM_Data_MemOpANDAlign"/>
       <a name="labelfont" val="SansSerif bold 10"/>
       <a name="width" val="5"/>
     </comp>
-    <comp lib="0" loc="(6380,1690)" name="Tunnel">
+    <comp lib="0" loc="(6430,1650)" name="Tunnel">
       <a name="facing" val="east"/>
-      <a name="label" val="Stack_InvalidAddressFlag"/>
+      <a name="label" val="MM_Stack_MemOpANDAlign"/>
+      <a name="labelfont" val="SansSerif bold 10"/>
+      <a name="width" val="5"/>
+    </comp>
+    <comp lib="0" loc="(6440,1630)" name="Tunnel">
+      <a name="facing" val="east"/>
+      <a name="label" val="MM_Data_InvalidAddressFlag"/>
       <a name="labelfont" val="SansSerif bold 10"/>
     </comp>
-    <comp lib="0" loc="(640,1540)" name="Tunnel">
-      <a name="label" val="Reset"/>
+    <comp lib="0" loc="(6440,1690)" name="Tunnel">
+      <a name="facing" val="east"/>
+      <a name="label" val="MM_Stack_InvalidAddressFlag"/>
       <a name="labelfont" val="SansSerif bold 10"/>
     </comp>
     <comp lib="0" loc="(650,470)" name="Pin">
@@ -1076,75 +1086,75 @@
       <a name="labelfont" val="SansSerif bold 10"/>
       <a name="width" val="32"/>
     </comp>
-    <comp lib="0" loc="(6580,2750)" name="Tunnel">
-      <a name="facing" val="east"/>
-      <a name="label" val="MemToRegM"/>
-      <a name="labelfont" val="SansSerif bold 10"/>
-      <a name="width" val="2"/>
-    </comp>
     <comp lib="0" loc="(660,410)" name="Tunnel">
       <a name="facing" val="south"/>
-      <a name="label" val="atBreakpoint"/>
+      <a name="label" val="atBreakpoint_F"/>
       <a name="labelfont" val="SansSerif bold 10"/>
+    </comp>
+    <comp lib="0" loc="(6620,2750)" name="Tunnel">
+      <a name="facing" val="east"/>
+      <a name="label" val="RegWriteDataSrc_M"/>
+      <a name="labelfont" val="SansSerif bold 10"/>
+      <a name="width" val="2"/>
     </comp>
     <comp lib="0" loc="(6740,1610)" name="Probe">
       <a name="appearance" val="NewPins"/>
       <a name="facing" val="south"/>
-      <a name="label" val="ReadDataM"/>
+      <a name="label" val="MemReadData_M"/>
       <a name="labelloc" val="north"/>
       <a name="radix" val="16"/>
     </comp>
-    <comp lib="0" loc="(6740,1920)" name="Probe">
+    <comp lib="0" loc="(6780,1920)" name="Probe">
       <a name="appearance" val="NewPins"/>
       <a name="facing" val="south"/>
-      <a name="label" val="UpperImmM"/>
+      <a name="label" val="UpperImm_M"/>
       <a name="labelloc" val="north"/>
       <a name="radix" val="16"/>
     </comp>
-    <comp lib="0" loc="(6740,1970)" name="Probe">
+    <comp lib="0" loc="(6780,1970)" name="Probe">
       <a name="appearance" val="NewPins"/>
       <a name="facing" val="south"/>
-      <a name="label" val="ALUOutM"/>
+      <a name="label" val="ALUOut_M"/>
       <a name="labelloc" val="north"/>
       <a name="radix" val="16"/>
     </comp>
-    <comp lib="0" loc="(6740,2020)" name="Probe">
+    <comp lib="0" loc="(6780,2020)" name="Probe">
       <a name="appearance" val="NewPins"/>
       <a name="facing" val="south"/>
       <a name="label" val="WriteRegM"/>
       <a name="labelloc" val="north"/>
       <a name="radix" val="16"/>
     </comp>
-    <comp lib="0" loc="(6740,2070)" name="Probe">
+    <comp lib="0" loc="(6780,2070)" name="Probe">
       <a name="appearance" val="NewPins"/>
       <a name="facing" val="south"/>
-      <a name="label" val="PCPlus4M"/>
+      <a name="label" val="PCPlus4_M"/>
       <a name="labelloc" val="north"/>
       <a name="radix" val="16"/>
     </comp>
     <comp lib="0" loc="(7270,1710)" name="Probe">
       <a name="appearance" val="NewPins"/>
-      <a name="label" val="WriteRegW"/>
+      <a name="label" val="WriteReg_W"/>
       <a name="labelloc" val="north"/>
       <a name="radix" val="16"/>
     </comp>
     <comp lib="0" loc="(7350,1510)" name="Probe">
       <a name="appearance" val="NewPins"/>
       <a name="facing" val="west"/>
-      <a name="label" val="RegWriteDataSrcW"/>
+      <a name="label" val="RegWriteDataSrc_W"/>
       <a name="labelloc" val="north"/>
       <a name="radix" val="16"/>
     </comp>
     <comp lib="0" loc="(7370,1710)" name="Probe">
       <a name="appearance" val="NewPins"/>
       <a name="facing" val="west"/>
-      <a name="label" val="RegWriteDataW"/>
+      <a name="label" val="RegWriteData_W"/>
       <a name="labelloc" val="north"/>
       <a name="radix" val="16"/>
     </comp>
     <comp lib="0" loc="(740,1820)" name="Tunnel">
       <a name="facing" val="east"/>
-      <a name="label" val="pc"/>
+      <a name="label" val="pc_F"/>
       <a name="labelfont" val="SansSerif bold 10"/>
       <a name="width" val="32"/>
     </comp>
@@ -1172,12 +1182,12 @@
       <a name="labelfont" val="SansSerif bold 10"/>
     </comp>
     <comp lib="0" loc="(870,1550)" name="Tunnel">
-      <a name="label" val="pc"/>
+      <a name="label" val="pc_F"/>
       <a name="labelfont" val="SansSerif bold 10"/>
       <a name="width" val="32"/>
     </comp>
     <comp lib="0" loc="(890,1820)" name="Tunnel">
-      <a name="label" val="IsSyscall"/>
+      <a name="label" val="IsSyscall_F"/>
       <a name="labelfont" val="SansSerif bold 10"/>
     </comp>
     <comp lib="0" loc="(910,1690)" name="Constant">
@@ -1186,7 +1196,7 @@
     </comp>
     <comp lib="0" loc="(910,410)" name="Tunnel">
       <a name="facing" val="south"/>
-      <a name="label" val="InvalidInstructionAddr"/>
+      <a name="label" val="InvalidInstructionAddr_F"/>
       <a name="labelfont" val="SansSerif bold 10"/>
     </comp>
     <comp lib="1" loc="(170,3750)" name="NOT Gate">
@@ -1296,7 +1306,7 @@
       <a name="selloc" val="tr"/>
       <a name="width" val="32"/>
     </comp>
-    <comp lib="2" loc="(4120,1580)" name="Multiplexer">
+    <comp lib="2" loc="(4110,1580)" name="Multiplexer">
       <a name="selloc" val="tr"/>
       <a name="width" val="32"/>
     </comp>
@@ -1314,7 +1324,7 @@
       <a name="selloc" val="tr"/>
       <a name="width" val="32"/>
     </comp>
-    <comp lib="2" loc="(6650,2770)" name="Multiplexer">
+    <comp lib="2" loc="(6690,2770)" name="Multiplexer">
       <a name="facing" val="south"/>
       <a name="select" val="2"/>
       <a name="width" val="32"/>
@@ -1415,7 +1425,7 @@
       <a name="trigger" val="falling"/>
       <a name="type" val="nonvolatile"/>
     </comp>
-    <comp lib="4" loc="(5970,1080)" name="RAM">
+    <comp lib="4" loc="(6010,1080)" name="RAM">
       <a name="addrWidth" val="24"/>
       <a name="appearance" val="logisim_evolution"/>
       <a name="asyncread" val="true"/>
@@ -1465,7 +1475,7 @@
     </comp>
     <comp lib="5" loc="(330,410)" name="LED">
       <a name="facing" val="north"/>
-      <a name="label" val="IsSuspended"/>
+      <a name="label" val="CM_IsSuspended"/>
       <a name="labelloc" val="south"/>
     </comp>
     <comp lib="5" loc="(630,490)" name="Button">
@@ -1473,7 +1483,7 @@
     </comp>
     <comp lib="5" loc="(660,410)" name="LED">
       <a name="facing" val="north"/>
-      <a name="label" val="atBreakpoint"/>
+      <a name="label" val="atBreakpoint_F"/>
       <a name="labelloc" val="south"/>
     </comp>
     <comp lib="5" loc="(780,70)" name="LED">
@@ -1483,14 +1493,26 @@
     </comp>
     <comp lib="5" loc="(910,410)" name="LED">
       <a name="facing" val="north"/>
-      <a name="label" val="InvalidInstructionAddr"/>
+      <a name="label" val="InvalidInstructionAddr_F"/>
       <a name="labelloc" val="south"/>
     </comp>
     <comp lib="6" loc="(170,1485)" name="Text">
-      <a name="text" val="PCSrcD"/>
+      <a name="text" val="PCSrc_D"/>
+    </comp>
+    <comp lib="6" loc="(1773,217)" name="Text">
+      <a name="font" val="SansSerif bold 13"/>
+      <a name="text" val="a set of signals are HIGH."/>
     </comp>
     <comp lib="6" loc="(1790,1455)" name="Text">
       <a name="text" val="op [31:26]"/>
+    </comp>
+    <comp lib="6" loc="(1847,155)" name="Text">
+      <a name="font" val="SansSerif bold 13"/>
+      <a name="text" val="This divides CLK when not executing a syscall."/>
+    </comp>
+    <comp lib="6" loc="(1879,172)" name="Text">
+      <a name="font" val="SansSerif bold 13"/>
+      <a name="text" val="This is done to mask execution of syscalls for simplicity."/>
     </comp>
     <comp lib="6" loc="(1880,2090)" name="Text">
       <a name="text" val="addr [25:0]"/>
@@ -1498,14 +1520,18 @@
     <comp lib="6" loc="(1890,2120)" name="Text">
       <a name="text" val="op [31:26]"/>
     </comp>
-    <comp lib="6" loc="(190,1505)" name="Text">
-      <a name="text" val="00 - PC + 4"/>
+    <comp lib="6" loc="(1900,201)" name="Text">
+      <a name="font" val="SansSerif bold 13"/>
+      <a name="text" val="Additionally, there is functionality to suspend CLK when any of"/>
     </comp>
-    <comp lib="6" loc="(1900,1450)" name="Text">
+    <comp lib="6" loc="(1901,1455)" name="Text">
       <a name="text" val="funct [5:0]"/>
     </comp>
-    <comp lib="6" loc="(1905,260)" name="Text">
-      <a name="text" val="Clock Management"/>
+    <comp lib="6" loc="(1905,130)" name="Text">
+      <a name="text" val="Clock Management (CM)"/>
+    </comp>
+    <comp lib="6" loc="(195,1508)" name="Text">
+      <a name="text" val="00 - PCPlus4_F"/>
     </comp>
     <comp lib="6" loc="(1990,385)" name="Text">
       <a name="text" val="&lt;- Clock"/>
@@ -1522,11 +1548,8 @@
     <comp lib="6" loc="(2030,400)" name="Text">
       <a name="text" val="Suspension"/>
     </comp>
-    <comp lib="6" loc="(2070,1450)" name="Text">
-      <a name="text" val="RegWriteW -&gt;"/>
-    </comp>
-    <comp lib="6" loc="(220,1535)" name="Text">
-      <a name="text" val="10 - PCJumpAddrD"/>
+    <comp lib="6" loc="(223,1540)" name="Text">
+      <a name="text" val="10 - PCJumpAddr_D"/>
     </comp>
     <comp lib="6" loc="(2245,2035)" name="Text">
       <a name="font" val="SansSerif bold 18"/>
@@ -1552,11 +1575,11 @@
       <a name="font" val="SansSerif bold 12"/>
       <a name="text" val="PCJumpAddr is set to rs value if"/>
     </comp>
-    <comp lib="6" loc="(230,1520)" name="Text">
-      <a name="text" val="01 - PCBranchAddrD"/>
-    </comp>
-    <comp lib="6" loc="(230,1555)" name="Text">
+    <comp lib="6" loc="(229,1556)" name="Text">
       <a name="text" val="11 - Syscall Start Addr"/>
+    </comp>
+    <comp lib="6" loc="(230,1524)" name="Text">
+      <a name="text" val="01 - PCBranchAddr_D"/>
     </comp>
     <comp lib="6" loc="(250,3670)" name="Text">
       <a name="text" val="Breakpoint Logic"/>
@@ -1564,7 +1587,7 @@
     <comp lib="6" loc="(2645,1460)" name="Text">
       <a name="text" val="Data Forwarding"/>
     </comp>
-    <comp lib="6" loc="(2650,2040)" name="Text">
+    <comp lib="6" loc="(2648,2034)" name="Text">
       <a name="font" val="SansSerif bold 18"/>
       <a name="text" val="Computing BTA"/>
     </comp>
@@ -1580,7 +1603,7 @@
     </comp>
     <comp lib="6" loc="(3870,1865)" name="Text">
       <a name="font" val="SansSerif bold 12"/>
-      <a name="text" val="(If MemToReg == 0b11, WriteReg is $ra)"/>
+      <a name="text" val="(If RegWriteDataSrc_E == 0b11, WriteReg_E is $ra)"/>
     </comp>
     <comp lib="6" loc="(410,1175)" name="Text">
       <a name="font" val="SansSerif bold 12"/>
@@ -1608,8 +1631,9 @@
     <comp lib="6" loc="(495,3555)" name="Text">
       <a name="text" val="Used for the control panel in the top left"/>
     </comp>
-    <comp lib="6" loc="(5115,620)" name="Text">
-      <a name="text" val="MemOpM"/>
+    <comp lib="6" loc="(5000,1529)" name="Text">
+      <a name="font" val="SansSerif bold 12"/>
+      <a name="text" val="(Done for debugging to display stack) -&gt;"/>
     </comp>
     <comp lib="6" loc="(520,1550)" name="Text">
       <a name="text" val="0 - No Change"/>
@@ -1647,7 +1671,7 @@
     </comp>
     <comp lib="6" loc="(6005,930)" name="Text">
       <a name="font" val="SansSerif bold 24"/>
-      <a name="text" val="Main Memory"/>
+      <a name="text" val="Main Memory (MM)"/>
     </comp>
     <comp lib="6" loc="(650,375)" name="Text">
       <a name="font" val="SansSerif bold 24"/>
@@ -1669,31 +1693,31 @@
       <a name="text" val="(likely due to invalid jump/branch)"/>
     </comp>
     <comp loc="(1130,1600)" name="InstructionMemory"/>
-    <comp loc="(1780,1620)" name="DataPathRegister1"/>
+    <comp loc="(1780,1620)" name="DataPathRegister_F_D"/>
     <comp loc="(1780,280)" name="ClockDivider"/>
     <comp loc="(2410,1590)" name="RegisterFile"/>
-    <comp loc="(2510,2950)" name="HazardShieldD"/>
+    <comp loc="(2510,2950)" name="HazardShield_D"/>
     <comp loc="(2720,500)" name="ControlUnit"/>
-    <comp loc="(3270,1590)" name="DataPathRegister2"/>
-    <comp loc="(3270,2950)" name="HazardShieldE"/>
-    <comp loc="(3270,560)" name="ControlPathRegister2"/>
+    <comp loc="(3270,1590)" name="DataPathRegister_D_E"/>
+    <comp loc="(3270,2950)" name="HazardShield_E"/>
+    <comp loc="(3270,560)" name="ControlPathRegister_D_E"/>
     <comp loc="(360,3590)" name="InstructionMemory"/>
     <comp loc="(4520,1570)" name="ALU"/>
-    <comp loc="(5040,1570)" name="DataPathRegister3"/>
-    <comp loc="(5040,560)" name="ControlPathRegister3"/>
-    <comp loc="(5440,1590)" name="MemPreprocessor"/>
-    <comp loc="(6630,1590)" name="MemPostprocessor"/>
-    <comp loc="(7190,1570)" name="DataPathRegister4"/>
-    <comp loc="(7190,560)" name="ControlPathRegister4"/>
+    <comp loc="(5040,1570)" name="DataPathRegister_E_M"/>
+    <comp loc="(5040,560)" name="ControlPathRegister_E_M"/>
+    <comp loc="(5440,1590)" name="MM_Preprocessor"/>
+    <comp loc="(6670,1590)" name="MM_Postprocessor"/>
+    <comp loc="(7190,1570)" name="DataPathRegister_M_W"/>
+    <comp loc="(7190,560)" name="ControlPathRegister_M_W"/>
     <wire from="(1130,1600)" to="(1140,1600)"/>
     <wire from="(1130,1620)" to="(1430,1620)"/>
     <wire from="(1150,1640)" to="(1150,1680)"/>
     <wire from="(1150,1640)" to="(1560,1640)"/>
     <wire from="(1240,30)" to="(1240,1270)"/>
     <wire from="(130,1140)" to="(170,1140)"/>
-    <wire from="(130,3790)" to="(200,3790)"/>
     <wire from="(140,1240)" to="(210,1240)"/>
     <wire from="(140,3750)" to="(150,3750)"/>
+    <wire from="(140,3790)" to="(200,3790)"/>
     <wire from="(140,3830)" to="(150,3830)"/>
     <wire from="(1430,1590)" to="(1430,1620)"/>
     <wire from="(1430,1590)" to="(1440,1590)"/>
@@ -1703,9 +1727,9 @@
     <wire from="(1540,1680)" to="(1560,1680)"/>
     <wire from="(160,1180)" to="(180,1180)"/>
     <wire from="(160,3710)" to="(200,3710)"/>
-    <wire from="(1680,240)" to="(1680,490)"/>
-    <wire from="(1680,240)" to="(2120,240)"/>
-    <wire from="(1680,490)" to="(2120,490)"/>
+    <wire from="(1670,110)" to="(1670,490)"/>
+    <wire from="(1670,110)" to="(2120,110)"/>
+    <wire from="(1670,490)" to="(2120,490)"/>
     <wire from="(170,1140)" to="(170,1220)"/>
     <wire from="(170,1140)" to="(240,1140)"/>
     <wire from="(170,1220)" to="(180,1220)"/>
@@ -1789,6 +1813,7 @@
     <wire from="(2060,290)" to="(2150,290)"/>
     <wire from="(2070,2060)" to="(2070,2090)"/>
     <wire from="(2070,2090)" to="(2190,2090)"/>
+    <wire from="(2090,1490)" to="(2130,1490)"/>
     <wire from="(210,1240)" to="(260,1240)"/>
     <wire from="(210,1600)" to="(210,2350)"/>
     <wire from="(210,1600)" to="(340,1600)"/>
@@ -1796,15 +1821,16 @@
     <wire from="(210,3690)" to="(250,3690)"/>
     <wire from="(210,3770)" to="(250,3770)"/>
     <wire from="(2110,310)" to="(2140,310)"/>
+    <wire from="(2120,110)" to="(2120,490)"/>
     <wire from="(2120,1670)" to="(2120,2380)"/>
     <wire from="(2120,1670)" to="(2160,1670)"/>
     <wire from="(2120,2380)" to="(7330,2380)"/>
-    <wire from="(2120,240)" to="(2120,490)"/>
+    <wire from="(2130,1490)" to="(2130,1630)"/>
     <wire from="(2130,1630)" to="(2160,1630)"/>
     <wire from="(2130,1650)" to="(2130,2370)"/>
     <wire from="(2130,1650)" to="(2160,1650)"/>
     <wire from="(2130,2370)" to="(7310,2370)"/>
-    <wire from="(2130,390)" to="(2130,1630)"/>
+    <wire from="(2130,390)" to="(2130,1490)"/>
     <wire from="(2130,390)" to="(7280,390)"/>
     <wire from="(2140,1710)" to="(2160,1710)"/>
     <wire from="(2140,310)" to="(2140,1710)"/>
@@ -1842,7 +1868,7 @@
     <wire from="(230,1580)" to="(230,1710)"/>
     <wire from="(230,1580)" to="(340,1580)"/>
     <wire from="(230,1710)" to="(970,1710)"/>
-    <wire from="(2310,2170)" to="(2330,2170)"/>
+    <wire from="(2300,2170)" to="(2330,2170)"/>
     <wire from="(2320,2110)" to="(2320,2130)"/>
     <wire from="(2330,2160)" to="(2330,2170)"/>
     <wire from="(2330,2170)" to="(2330,2350)"/>
@@ -1899,11 +1925,12 @@
     <wire from="(2600,1540)" to="(2600,1550)"/>
     <wire from="(2620,1570)" to="(2860,1570)"/>
     <wire from="(2620,2130)" to="(2640,2130)"/>
-    <wire from="(2670,2170)" to="(2690,2170)"/>
+    <wire from="(2660,2170)" to="(2690,2170)"/>
     <wire from="(2680,2120)" to="(2690,2120)"/>
     <wire from="(2690,2120)" to="(2690,2170)"/>
     <wire from="(2690,2170)" to="(2690,2340)"/>
     <wire from="(270,150)" to="(320,150)"/>
+    <wire from="(2720,500)" to="(2740,500)"/>
     <wire from="(2720,520)" to="(2770,520)"/>
     <wire from="(2720,540)" to="(2790,540)"/>
     <wire from="(2720,560)" to="(3050,560)"/>
@@ -1931,12 +1958,12 @@
     <wire from="(3000,1520)" to="(3000,1590)"/>
     <wire from="(3000,1590)" to="(3050,1590)"/>
     <wire from="(3000,2790)" to="(3000,3030)"/>
-    <wire from="(3000,2790)" to="(6650,2790)"/>
+    <wire from="(3000,2790)" to="(6690,2790)"/>
     <wire from="(3000,3030)" to="(3050,3030)"/>
     <wire from="(3010,1560)" to="(3010,1610)"/>
     <wire from="(3010,1610)" to="(3050,1610)"/>
     <wire from="(3010,2780)" to="(3010,3010)"/>
-    <wire from="(3010,2780)" to="(6680,2780)"/>
+    <wire from="(3010,2780)" to="(6720,2780)"/>
     <wire from="(3010,3010)" to="(3050,3010)"/>
     <wire from="(3030,1750)" to="(3030,3070)"/>
     <wire from="(3030,1750)" to="(3050,1750)"/>
@@ -1974,7 +2001,7 @@
     <wire from="(3270,600)" to="(4820,600)"/>
     <wire from="(3270,620)" to="(4240,620)"/>
     <wire from="(3270,640)" to="(4230,640)"/>
-    <wire from="(3270,660)" to="(4100,660)"/>
+    <wire from="(3270,660)" to="(4090,660)"/>
     <wire from="(3270,680)" to="(3980,680)"/>
     <wire from="(3270,700)" to="(3810,700)"/>
     <wire from="(3280,500)" to="(3280,560)"/>
@@ -1990,7 +2017,7 @@
     <wire from="(3310,580)" to="(4820,580)"/>
     <wire from="(3320,1490)" to="(3320,1520)"/>
     <wire from="(3320,1540)" to="(3320,1550)"/>
-    <wire from="(3340,1570)" to="(4090,1570)"/>
+    <wire from="(3340,1570)" to="(4080,1570)"/>
     <wire from="(3460,1670)" to="(3700,1670)"/>
     <wire from="(350,210)" to="(520,210)"/>
     <wire from="(350,330)" to="(520,330)"/>
@@ -2002,17 +2029,17 @@
     <wire from="(3570,1610)" to="(3760,1610)"/>
     <wire from="(360,1470)" to="(360,1580)"/>
     <wire from="(3700,1590)" to="(3700,1670)"/>
-    <wire from="(3700,1590)" to="(4090,1590)"/>
+    <wire from="(3700,1590)" to="(4080,1590)"/>
     <wire from="(3700,1710)" to="(3700,1880)"/>
-    <wire from="(3700,1880)" to="(4610,1880)"/>
+    <wire from="(3700,1880)" to="(4580,1880)"/>
     <wire from="(3720,1650)" to="(3720,1840)"/>
     <wire from="(3720,1840)" to="(3800,1840)"/>
     <wire from="(3740,1630)" to="(3740,1820)"/>
     <wire from="(3740,1820)" to="(3800,1820)"/>
+    <wire from="(3760,1470)" to="(3810,1470)"/>
     <wire from="(3760,1610)" to="(3760,1780)"/>
     <wire from="(3760,1610)" to="(3960,1610)"/>
-    <wire from="(3760,1780)" to="(4610,1780)"/>
-    <wire from="(3770,1470)" to="(3810,1470)"/>
+    <wire from="(3760,1780)" to="(4580,1780)"/>
     <wire from="(380,150)" to="(490,150)"/>
     <wire from="(380,1600)" to="(620,1600)"/>
     <wire from="(380,270)" to="(490,270)"/>
@@ -2031,26 +2058,26 @@
     <wire from="(3880,1800)" to="(3900,1800)"/>
     <wire from="(3890,1640)" to="(3920,1640)"/>
     <wire from="(3890,1740)" to="(3910,1740)"/>
-    <wire from="(3900,1830)" to="(4610,1830)"/>
+    <wire from="(3900,1830)" to="(4580,1830)"/>
     <wire from="(3910,1650)" to="(3920,1650)"/>
     <wire from="(3940,1630)" to="(3960,1630)"/>
     <wire from="(3950,1470)" to="(3980,1470)"/>
     <wire from="(3950,1620)" to="(3950,1640)"/>
     <wire from="(3950,1620)" to="(3960,1620)"/>
     <wire from="(3950,1640)" to="(3960,1640)"/>
-    <wire from="(3950,1730)" to="(4610,1730)"/>
+    <wire from="(3950,1730)" to="(4580,1730)"/>
     <wire from="(3950,1800)" to="(3990,1800)"/>
     <wire from="(3980,1470)" to="(3980,1610)"/>
     <wire from="(3980,680)" to="(3980,1470)"/>
     <wire from="(4000,1630)" to="(4020,1630)"/>
     <wire from="(4020,1610)" to="(4020,1630)"/>
     <wire from="(4020,1610)" to="(4300,1610)"/>
-    <wire from="(4070,1470)" to="(4100,1470)"/>
-    <wire from="(4100,1470)" to="(4100,1560)"/>
-    <wire from="(4100,660)" to="(4100,1470)"/>
-    <wire from="(4120,1580)" to="(4120,1590)"/>
-    <wire from="(4120,1590)" to="(4300,1590)"/>
-    <wire from="(4190,1470)" to="(4230,1470)"/>
+    <wire from="(4060,1470)" to="(4090,1470)"/>
+    <wire from="(4090,1470)" to="(4090,1560)"/>
+    <wire from="(4090,660)" to="(4090,1470)"/>
+    <wire from="(4110,1580)" to="(4110,1590)"/>
+    <wire from="(4110,1590)" to="(4300,1590)"/>
+    <wire from="(4180,1470)" to="(4230,1470)"/>
     <wire from="(4230,1470)" to="(4230,1630)"/>
     <wire from="(4230,1630)" to="(4300,1630)"/>
     <wire from="(4230,640)" to="(4230,1470)"/>
@@ -2064,13 +2091,13 @@
     <wire from="(4270,1650)" to="(4300,1650)"/>
     <wire from="(4270,290)" to="(4270,1650)"/>
     <wire from="(4270,290)" to="(4810,290)"/>
-    <wire from="(4520,1570)" to="(4600,1570)"/>
-    <wire from="(4600,1570)" to="(4700,1570)"/>
+    <wire from="(4520,1570)" to="(4570,1570)"/>
+    <wire from="(4570,1570)" to="(4700,1570)"/>
+    <wire from="(4580,1730)" to="(4720,1730)"/>
+    <wire from="(4580,1780)" to="(4740,1780)"/>
+    <wire from="(4580,1830)" to="(4760,1830)"/>
+    <wire from="(4580,1880)" to="(4740,1880)"/>
     <wire from="(4600,2650)" to="(4650,2650)"/>
-    <wire from="(4610,1730)" to="(4720,1730)"/>
-    <wire from="(4610,1780)" to="(4740,1780)"/>
-    <wire from="(4610,1830)" to="(4760,1830)"/>
-    <wire from="(4610,1880)" to="(4740,1880)"/>
     <wire from="(4650,2650)" to="(4650,2660)"/>
     <wire from="(4650,2650)" to="(4700,2650)"/>
     <wire from="(4670,2720)" to="(4670,2740)"/>
@@ -2117,9 +2144,9 @@
     <wire from="(5050,500)" to="(5100,500)"/>
     <wire from="(5050,560)" to="(6970,560)"/>
     <wire from="(5060,1650)" to="(5060,2070)"/>
-    <wire from="(5060,2070)" to="(6660,2070)"/>
+    <wire from="(5060,2070)" to="(6700,2070)"/>
     <wire from="(5080,1630)" to="(5080,2020)"/>
-    <wire from="(5080,2020)" to="(6680,2020)"/>
+    <wire from="(5080,2020)" to="(6720,2020)"/>
     <wire from="(5080,530)" to="(5080,580)"/>
     <wire from="(5080,530)" to="(5090,530)"/>
     <wire from="(5080,580)" to="(6970,580)"/>
@@ -2129,14 +2156,16 @@
     <wire from="(5120,1500)" to="(5140,1500)"/>
     <wire from="(5120,1570)" to="(5120,1970)"/>
     <wire from="(5120,1570)" to="(5130,1570)"/>
-    <wire from="(5120,1970)" to="(6630,1970)"/>
+    <wire from="(5120,1970)" to="(6670,1970)"/>
+    <wire from="(5130,1450)" to="(5160,1450)"/>
     <wire from="(5140,1500)" to="(5140,1510)"/>
     <wire from="(5140,1530)" to="(5140,1540)"/>
     <wire from="(5140,1590)" to="(5140,1920)"/>
-    <wire from="(5140,1920)" to="(6650,1920)"/>
+    <wire from="(5140,1920)" to="(6690,1920)"/>
     <wire from="(5150,1560)" to="(5200,1560)"/>
+    <wire from="(5160,1450)" to="(5160,1590)"/>
     <wire from="(5160,1590)" to="(5220,1590)"/>
-    <wire from="(5160,600)" to="(5160,1590)"/>
+    <wire from="(5160,600)" to="(5160,1450)"/>
     <wire from="(5180,1650)" to="(5220,1650)"/>
     <wire from="(5180,290)" to="(5180,1650)"/>
     <wire from="(5180,290)" to="(6960,290)"/>
@@ -2159,56 +2188,56 @@
     <wire from="(5600,1160)" to="(5610,1160)"/>
     <wire from="(5620,1090)" to="(5630,1090)"/>
     <wire from="(5620,990)" to="(5620,1090)"/>
-    <wire from="(5830,990)" to="(5960,990)"/>
     <wire from="(5870,1210)" to="(5880,1210)"/>
     <wire from="(5880,1210)" to="(5880,1230)"/>
-    <wire from="(5890,1020)" to="(5940,1020)"/>
-    <wire from="(5890,1050)" to="(5910,1050)"/>
-    <wire from="(5910,1050)" to="(5910,1210)"/>
-    <wire from="(5910,1210)" to="(5970,1210)"/>
-    <wire from="(5940,1020)" to="(5940,1160)"/>
-    <wire from="(5940,1160)" to="(5950,1160)"/>
-    <wire from="(5960,1090)" to="(5970,1090)"/>
-    <wire from="(5960,990)" to="(5960,1090)"/>
+    <wire from="(5950,1020)" to="(5980,1020)"/>
+    <wire from="(5950,1050)" to="(5960,1050)"/>
+    <wire from="(5960,1050)" to="(5960,1210)"/>
+    <wire from="(5960,1210)" to="(6010,1210)"/>
+    <wire from="(5960,990)" to="(6000,990)"/>
+    <wire from="(5980,1020)" to="(5980,1160)"/>
+    <wire from="(5980,1160)" to="(5990,1160)"/>
     <wire from="(600,3600)" to="(640,3600)"/>
+    <wire from="(6000,1090)" to="(6010,1090)"/>
+    <wire from="(6000,990)" to="(6000,1090)"/>
     <wire from="(620,1590)" to="(620,1600)"/>
-    <wire from="(6210,1210)" to="(6220,1210)"/>
-    <wire from="(6220,1210)" to="(6220,1670)"/>
-    <wire from="(6220,1670)" to="(6410,1670)"/>
+    <wire from="(6250,1210)" to="(6260,1210)"/>
+    <wire from="(6260,1210)" to="(6260,1670)"/>
+    <wire from="(6260,1670)" to="(6450,1670)"/>
     <wire from="(630,1540)" to="(630,1580)"/>
     <wire from="(630,1540)" to="(640,1540)"/>
     <wire from="(630,1580)" to="(630,1590)"/>
     <wire from="(630,3620)" to="(640,3620)"/>
     <wire from="(630,490)" to="(650,490)"/>
     <wire from="(630,520)" to="(650,520)"/>
-    <wire from="(6380,1590)" to="(6410,1590)"/>
-    <wire from="(6380,1610)" to="(6410,1610)"/>
-    <wire from="(6380,1630)" to="(6410,1630)"/>
-    <wire from="(6380,1650)" to="(6410,1650)"/>
-    <wire from="(6380,1690)" to="(6410,1690)"/>
+    <wire from="(6380,1610)" to="(6450,1610)"/>
+    <wire from="(6430,1590)" to="(6450,1590)"/>
+    <wire from="(6430,1650)" to="(6450,1650)"/>
+    <wire from="(6440,1630)" to="(6450,1630)"/>
+    <wire from="(6440,1690)" to="(6450,1690)"/>
     <wire from="(650,1600)" to="(730,1600)"/>
-    <wire from="(6580,2750)" to="(6630,2750)"/>
     <wire from="(660,170)" to="(830,170)"/>
     <wire from="(660,190)" to="(830,190)"/>
     <wire from="(660,290)" to="(830,290)"/>
     <wire from="(660,310)" to="(830,310)"/>
-    <wire from="(6630,1610)" to="(6640,1610)"/>
-    <wire from="(6630,1970)" to="(6630,2730)"/>
-    <wire from="(6630,1970)" to="(6740,1970)"/>
-    <wire from="(6640,1610)" to="(6640,2730)"/>
-    <wire from="(6640,1610)" to="(6740,1610)"/>
-    <wire from="(6650,1920)" to="(6650,2730)"/>
-    <wire from="(6650,1920)" to="(6740,1920)"/>
-    <wire from="(6650,2770)" to="(6650,2790)"/>
-    <wire from="(6660,2070)" to="(6660,2730)"/>
-    <wire from="(6660,2070)" to="(6740,2070)"/>
-    <wire from="(6680,2020)" to="(6680,2780)"/>
-    <wire from="(6680,2020)" to="(6740,2020)"/>
+    <wire from="(6620,2750)" to="(6670,2750)"/>
+    <wire from="(6670,1610)" to="(6680,1610)"/>
+    <wire from="(6670,1970)" to="(6670,2730)"/>
+    <wire from="(6670,1970)" to="(6780,1970)"/>
+    <wire from="(6680,1610)" to="(6680,2730)"/>
+    <wire from="(6680,1610)" to="(6740,1610)"/>
+    <wire from="(6690,1920)" to="(6690,2730)"/>
+    <wire from="(6690,1920)" to="(6780,1920)"/>
+    <wire from="(6690,2770)" to="(6690,2790)"/>
+    <wire from="(6700,2070)" to="(6700,2730)"/>
+    <wire from="(6700,2070)" to="(6780,2070)"/>
+    <wire from="(6720,2020)" to="(6720,2780)"/>
+    <wire from="(6720,2020)" to="(6780,2020)"/>
     <wire from="(6740,1610)" to="(6970,1610)"/>
-    <wire from="(6740,1920)" to="(6870,1920)"/>
-    <wire from="(6740,1970)" to="(6890,1970)"/>
-    <wire from="(6740,2020)" to="(6910,2020)"/>
-    <wire from="(6740,2070)" to="(6930,2070)"/>
+    <wire from="(6780,1920)" to="(6870,1920)"/>
+    <wire from="(6780,1970)" to="(6890,1970)"/>
+    <wire from="(6780,2020)" to="(6910,2020)"/>
+    <wire from="(6780,2070)" to="(6930,2070)"/>
     <wire from="(680,3600)" to="(700,3600)"/>
     <wire from="(680,3610)" to="(700,3610)"/>
     <wire from="(6850,890)" to="(6850,1870)"/>
@@ -2317,13 +2346,13 @@
     </comp>
     <comp lib="0" loc="(200,1070)" name="Pin">
       <a name="appearance" val="NewPins"/>
-      <a name="label" val="RegData1"/>
+      <a name="label" val="RegData1_D"/>
       <a name="radix" val="16"/>
       <a name="width" val="32"/>
     </comp>
     <comp lib="0" loc="(200,1130)" name="Pin">
       <a name="appearance" val="NewPins"/>
-      <a name="label" val="RegData2"/>
+      <a name="label" val="RegData2_D"/>
       <a name="radix" val="16"/>
       <a name="width" val="32"/>
     </comp>
@@ -2360,72 +2389,72 @@
     <comp lib="0" loc="(840,320)" name="Pin">
       <a name="appearance" val="NewPins"/>
       <a name="facing" val="west"/>
-      <a name="label" val="SuspendProcessor"/>
+      <a name="label" val="SuspendProcessor_D"/>
       <a name="type" val="output"/>
     </comp>
     <comp lib="0" loc="(840,370)" name="Pin">
       <a name="appearance" val="NewPins"/>
       <a name="facing" val="west"/>
-      <a name="label" val="PrintChar"/>
+      <a name="label" val="PrintChar_D"/>
       <a name="type" val="output"/>
     </comp>
     <comp lib="0" loc="(840,570)" name="Pin">
       <a name="appearance" val="NewPins"/>
       <a name="facing" val="west"/>
-      <a name="label" val="PCSrc"/>
+      <a name="label" val="PCSrc_D"/>
       <a name="type" val="output"/>
       <a name="width" val="2"/>
     </comp>
     <comp lib="0" loc="(840,590)" name="Pin">
       <a name="appearance" val="NewPins"/>
       <a name="facing" val="west"/>
-      <a name="label" val="RegWrite"/>
+      <a name="label" val="RegWrite_D"/>
       <a name="type" val="output"/>
     </comp>
     <comp lib="0" loc="(840,610)" name="Pin">
       <a name="appearance" val="NewPins"/>
       <a name="facing" val="west"/>
-      <a name="label" val="MemToReg"/>
+      <a name="label" val="MemToReg_D"/>
       <a name="type" val="output"/>
       <a name="width" val="2"/>
     </comp>
     <comp lib="0" loc="(840,630)" name="Pin">
       <a name="appearance" val="NewPins"/>
       <a name="facing" val="west"/>
-      <a name="label" val="MemOp"/>
+      <a name="label" val="MemOp_D"/>
       <a name="type" val="output"/>
       <a name="width" val="4"/>
     </comp>
     <comp lib="0" loc="(840,650)" name="Pin">
       <a name="appearance" val="NewPins"/>
       <a name="facing" val="west"/>
-      <a name="label" val="ALUControl"/>
+      <a name="label" val="ALUControl_D"/>
       <a name="type" val="output"/>
       <a name="width" val="5"/>
     </comp>
     <comp lib="0" loc="(840,670)" name="Pin">
       <a name="appearance" val="NewPins"/>
       <a name="facing" val="west"/>
-      <a name="label" val="NOT_ALUOut"/>
+      <a name="label" val="NOT_ALUOut_D"/>
       <a name="type" val="output"/>
     </comp>
     <comp lib="0" loc="(840,690)" name="Pin">
       <a name="appearance" val="NewPins"/>
       <a name="facing" val="west"/>
-      <a name="label" val="ALUSrcA"/>
+      <a name="label" val="ALUSrcA_D"/>
       <a name="type" val="output"/>
     </comp>
     <comp lib="0" loc="(840,710)" name="Pin">
       <a name="appearance" val="NewPins"/>
       <a name="facing" val="west"/>
-      <a name="label" val="ALUSrcB"/>
+      <a name="label" val="ALUSrcB_D"/>
       <a name="type" val="output"/>
       <a name="width" val="2"/>
     </comp>
     <comp lib="0" loc="(840,730)" name="Pin">
       <a name="appearance" val="NewPins"/>
       <a name="facing" val="west"/>
-      <a name="label" val="RegDst"/>
+      <a name="label" val="WriteRegSrc_D"/>
       <a name="type" val="output"/>
     </comp>
     <comp lib="1" loc="(1040,1030)" name="AND Gate">
@@ -4336,11 +4365,11 @@
     <comp lib="6" loc="(1285,365)" name="Text">
       <a name="text" val="0010 - lw"/>
     </comp>
-    <comp lib="6" loc="(1285,545)" name="Text">
-      <a name="text" val="11 - blez/bgtz"/>
-    </comp>
     <comp lib="6" loc="(1285,960)" name="Text">
       <a name="text" val="WriteRegSrc Codes:"/>
+    </comp>
+    <comp lib="6" loc="(1287,547)" name="Text">
+      <a name="text" val="11 - blez/bgtz"/>
     </comp>
     <comp lib="6" loc="(1290,395)" name="Text">
       <a name="text" val="0100 - lbu"/>
@@ -4399,11 +4428,11 @@
     <comp lib="6" loc="(1385,245)" name="Text">
       <a name="text" val="01 - WriteData == ReadData (memory)"/>
     </comp>
-    <comp lib="6" loc="(1390,525)" name="Text">
-      <a name="text" val="10 - jump to JTA (Jump Target Address)"/>
-    </comp>
     <comp lib="6" loc="(1390,810)" name="Text">
       <a name="text" val="1 - ALUInputA == shamt (Zero-Extended)"/>
+    </comp>
+    <comp lib="6" loc="(1392,527)" name="Text">
+      <a name="text" val="10 - jump to JTA (Jump Target Address)"/>
     </comp>
     <comp lib="6" loc="(1425,330)" name="Text">
       <a name="text" val="1000 - sb"/>
@@ -10729,20 +10758,20 @@ a000824 2a488000 6008014 0 30008420 6d00000c 0 56000008
     <wire from="(820,230)" to="(1080,230)"/>
     <wire from="(830,950)" to="(1100,950)"/>
   </circuit>
-  <circuit name="DataPathRegister1">
+  <circuit name="DataPathRegister_F_D">
     <a name="appearance" val="logisim_evolution"/>
-    <a name="circuit" val="DataPathRegister1"/>
+    <a name="circuit" val="DataPathRegister_F_D"/>
     <a name="circuitnamedboxfixedsize" val="true"/>
     <a name="simulationFrequency" val="16.0"/>
     <comp lib="0" loc="(380,230)" name="Pin">
       <a name="appearance" val="NewPins"/>
-      <a name="label" val="InstrF"/>
+      <a name="label" val="Instruction_F"/>
       <a name="radix" val="16"/>
       <a name="width" val="32"/>
     </comp>
     <comp lib="0" loc="(380,420)" name="Pin">
       <a name="appearance" val="NewPins"/>
-      <a name="label" val="PCPlus4F"/>
+      <a name="label" val="PCPlus4_F"/>
       <a name="radix" val="16"/>
       <a name="width" val="32"/>
     </comp>
@@ -10757,7 +10786,7 @@ a000824 2a488000 6008014 0 30008420 6d00000c 0 56000008
     <comp lib="0" loc="(510,230)" name="Pin">
       <a name="appearance" val="NewPins"/>
       <a name="facing" val="west"/>
-      <a name="label" val="InstrD"/>
+      <a name="label" val="Instruction_D"/>
       <a name="labelloc" val="east"/>
       <a name="radix" val="16"/>
       <a name="type" val="output"/>
@@ -10766,7 +10795,7 @@ a000824 2a488000 6008014 0 30008420 6d00000c 0 56000008
     <comp lib="0" loc="(510,420)" name="Pin">
       <a name="appearance" val="NewPins"/>
       <a name="facing" val="west"/>
-      <a name="label" val="PCPlus4D"/>
+      <a name="label" val="PCPlus4_D"/>
       <a name="labelloc" val="east"/>
       <a name="radix" val="16"/>
       <a name="type" val="output"/>
@@ -10793,50 +10822,50 @@ a000824 2a488000 6008014 0 30008420 6d00000c 0 56000008
     <wire from="(470,230)" to="(510,230)"/>
     <wire from="(470,420)" to="(510,420)"/>
   </circuit>
-  <circuit name="DataPathRegister2">
+  <circuit name="DataPathRegister_D_E">
     <a name="appearance" val="logisim_evolution"/>
-    <a name="circuit" val="DataPathRegister2"/>
+    <a name="circuit" val="DataPathRegister_D_E"/>
     <a name="circuitnamedboxfixedsize" val="true"/>
     <a name="simulationFrequency" val="16.0"/>
     <comp lib="0" loc="(380,1060)" name="Pin">
       <a name="appearance" val="NewPins"/>
-      <a name="label" val="SignImmD"/>
+      <a name="label" val="SignImm_D"/>
       <a name="radix" val="16"/>
       <a name="width" val="32"/>
     </comp>
     <comp lib="0" loc="(380,1220)" name="Pin">
       <a name="appearance" val="NewPins"/>
-      <a name="label" val="PCPlus4D"/>
+      <a name="label" val="PCPlus4_D"/>
       <a name="radix" val="16"/>
       <a name="width" val="32"/>
     </comp>
     <comp lib="0" loc="(380,230)" name="Pin">
       <a name="appearance" val="NewPins"/>
-      <a name="label" val="RegData1D"/>
+      <a name="label" val="RegData1_D"/>
       <a name="radix" val="16"/>
       <a name="width" val="32"/>
     </comp>
     <comp lib="0" loc="(380,420)" name="Pin">
       <a name="appearance" val="NewPins"/>
-      <a name="label" val="RegData2D"/>
+      <a name="label" val="RegData2_D"/>
       <a name="radix" val="16"/>
       <a name="width" val="32"/>
     </comp>
     <comp lib="0" loc="(380,590)" name="Pin">
       <a name="appearance" val="NewPins"/>
-      <a name="label" val="r_rt_D"/>
+      <a name="label" val="rt_D"/>
       <a name="radix" val="16"/>
       <a name="width" val="5"/>
     </comp>
     <comp lib="0" loc="(380,780)" name="Pin">
       <a name="appearance" val="NewPins"/>
-      <a name="label" val="r_rd_D"/>
+      <a name="label" val="rd_D"/>
       <a name="radix" val="16"/>
       <a name="width" val="5"/>
     </comp>
     <comp lib="0" loc="(380,920)" name="Pin">
       <a name="appearance" val="NewPins"/>
-      <a name="label" val="shamtD"/>
+      <a name="label" val="shamt_D"/>
       <a name="radix" val="16"/>
       <a name="width" val="5"/>
     </comp>
@@ -10851,7 +10880,7 @@ a000824 2a488000 6008014 0 30008420 6d00000c 0 56000008
     <comp lib="0" loc="(510,1060)" name="Pin">
       <a name="appearance" val="NewPins"/>
       <a name="facing" val="west"/>
-      <a name="label" val="SignImmE"/>
+      <a name="label" val="SignImm_E"/>
       <a name="labelloc" val="east"/>
       <a name="radix" val="16"/>
       <a name="type" val="output"/>
@@ -10860,7 +10889,7 @@ a000824 2a488000 6008014 0 30008420 6d00000c 0 56000008
     <comp lib="0" loc="(510,1220)" name="Pin">
       <a name="appearance" val="NewPins"/>
       <a name="facing" val="west"/>
-      <a name="label" val="PCPlus4E"/>
+      <a name="label" val="PCPlus4_E"/>
       <a name="labelloc" val="east"/>
       <a name="radix" val="16"/>
       <a name="type" val="output"/>
@@ -10869,7 +10898,7 @@ a000824 2a488000 6008014 0 30008420 6d00000c 0 56000008
     <comp lib="0" loc="(510,230)" name="Pin">
       <a name="appearance" val="NewPins"/>
       <a name="facing" val="west"/>
-      <a name="label" val="RegData1E"/>
+      <a name="label" val="RegData1_E"/>
       <a name="labelloc" val="east"/>
       <a name="radix" val="16"/>
       <a name="type" val="output"/>
@@ -10878,7 +10907,7 @@ a000824 2a488000 6008014 0 30008420 6d00000c 0 56000008
     <comp lib="0" loc="(510,420)" name="Pin">
       <a name="appearance" val="NewPins"/>
       <a name="facing" val="west"/>
-      <a name="label" val="RegData2E"/>
+      <a name="label" val="RegData2_E"/>
       <a name="labelloc" val="east"/>
       <a name="radix" val="16"/>
       <a name="type" val="output"/>
@@ -10887,7 +10916,7 @@ a000824 2a488000 6008014 0 30008420 6d00000c 0 56000008
     <comp lib="0" loc="(510,590)" name="Pin">
       <a name="appearance" val="NewPins"/>
       <a name="facing" val="west"/>
-      <a name="label" val="r_rt_E"/>
+      <a name="label" val="rt_E"/>
       <a name="labelloc" val="east"/>
       <a name="radix" val="16"/>
       <a name="type" val="output"/>
@@ -10896,7 +10925,7 @@ a000824 2a488000 6008014 0 30008420 6d00000c 0 56000008
     <comp lib="0" loc="(510,780)" name="Pin">
       <a name="appearance" val="NewPins"/>
       <a name="facing" val="west"/>
-      <a name="label" val="r_rd_E"/>
+      <a name="label" val="rd_E"/>
       <a name="labelloc" val="east"/>
       <a name="radix" val="16"/>
       <a name="type" val="output"/>
@@ -10905,7 +10934,7 @@ a000824 2a488000 6008014 0 30008420 6d00000c 0 56000008
     <comp lib="0" loc="(510,920)" name="Pin">
       <a name="appearance" val="NewPins"/>
       <a name="facing" val="west"/>
-      <a name="label" val="shamtE"/>
+      <a name="label" val="shamt_E"/>
       <a name="labelloc" val="east"/>
       <a name="radix" val="16"/>
       <a name="type" val="output"/>
@@ -10968,7 +10997,7 @@ a000824 2a488000 6008014 0 30008420 6d00000c 0 56000008
     <wire from="(440,480)" to="(440,650)"/>
     <wire from="(440,650)" to="(440,840)"/>
     <wire from="(440,840)" to="(440,980)"/>
-    <wire from="(440,980)" to="(440,1040)"/>
+    <wire from="(440,980)" to="(440,1120)"/>
     <wire from="(470,1060)" to="(510,1060)"/>
     <wire from="(470,1220)" to="(510,1220)"/>
     <wire from="(470,230)" to="(510,230)"/>
@@ -10977,38 +11006,38 @@ a000824 2a488000 6008014 0 30008420 6d00000c 0 56000008
     <wire from="(470,780)" to="(510,780)"/>
     <wire from="(470,920)" to="(510,920)"/>
   </circuit>
-  <circuit name="DataPathRegister3">
+  <circuit name="DataPathRegister_E_M">
     <a name="appearance" val="logisim_evolution"/>
-    <a name="circuit" val="DataPathRegister3"/>
+    <a name="circuit" val="DataPathRegister_E_M"/>
     <a name="circuitnamedboxfixedsize" val="true"/>
     <a name="simulationFrequency" val="16.0"/>
     <comp lib="0" loc="(730,1050)" name="Pin">
       <a name="appearance" val="NewPins"/>
-      <a name="label" val="PCPlus4E"/>
+      <a name="label" val="PCPlus4_E"/>
       <a name="radix" val="16"/>
       <a name="width" val="32"/>
     </comp>
     <comp lib="0" loc="(730,340)" name="Pin">
       <a name="appearance" val="NewPins"/>
-      <a name="label" val="ALUOutE"/>
+      <a name="label" val="ALUOut_E"/>
       <a name="radix" val="16"/>
       <a name="width" val="32"/>
     </comp>
     <comp lib="0" loc="(730,500)" name="Pin">
       <a name="appearance" val="NewPins"/>
-      <a name="label" val="UpperImmE"/>
+      <a name="label" val="UpperImm_E"/>
       <a name="radix" val="16"/>
       <a name="width" val="32"/>
     </comp>
     <comp lib="0" loc="(730,650)" name="Pin">
       <a name="appearance" val="NewPins"/>
-      <a name="label" val="WriteDataE"/>
+      <a name="label" val="MemWriteData_E"/>
       <a name="radix" val="16"/>
       <a name="width" val="32"/>
     </comp>
     <comp lib="0" loc="(730,840)" name="Pin">
       <a name="appearance" val="NewPins"/>
-      <a name="label" val="WriteRegE"/>
+      <a name="label" val="WriteReg_E"/>
       <a name="radix" val="16"/>
       <a name="width" val="5"/>
     </comp>
@@ -11023,7 +11052,7 @@ a000824 2a488000 6008014 0 30008420 6d00000c 0 56000008
     <comp lib="0" loc="(860,1050)" name="Pin">
       <a name="appearance" val="NewPins"/>
       <a name="facing" val="west"/>
-      <a name="label" val="PCPlus4M"/>
+      <a name="label" val="PCPlus4_M"/>
       <a name="labelloc" val="east"/>
       <a name="radix" val="16"/>
       <a name="type" val="output"/>
@@ -11032,7 +11061,7 @@ a000824 2a488000 6008014 0 30008420 6d00000c 0 56000008
     <comp lib="0" loc="(860,340)" name="Pin">
       <a name="appearance" val="NewPins"/>
       <a name="facing" val="west"/>
-      <a name="label" val="ALUOutM"/>
+      <a name="label" val="ALUOut_M"/>
       <a name="labelloc" val="east"/>
       <a name="radix" val="16"/>
       <a name="type" val="output"/>
@@ -11041,7 +11070,7 @@ a000824 2a488000 6008014 0 30008420 6d00000c 0 56000008
     <comp lib="0" loc="(860,500)" name="Pin">
       <a name="appearance" val="NewPins"/>
       <a name="facing" val="west"/>
-      <a name="label" val="UpperImmM"/>
+      <a name="label" val="UpperImm_M"/>
       <a name="labelloc" val="east"/>
       <a name="radix" val="16"/>
       <a name="type" val="output"/>
@@ -11050,7 +11079,7 @@ a000824 2a488000 6008014 0 30008420 6d00000c 0 56000008
     <comp lib="0" loc="(860,650)" name="Pin">
       <a name="appearance" val="NewPins"/>
       <a name="facing" val="west"/>
-      <a name="label" val="WriteDataM"/>
+      <a name="label" val="MemWriteData_M"/>
       <a name="labelloc" val="east"/>
       <a name="radix" val="16"/>
       <a name="type" val="output"/>
@@ -11059,7 +11088,7 @@ a000824 2a488000 6008014 0 30008420 6d00000c 0 56000008
     <comp lib="0" loc="(860,840)" name="Pin">
       <a name="appearance" val="NewPins"/>
       <a name="facing" val="west"/>
-      <a name="label" val="WriteRegM"/>
+      <a name="label" val="WriteReg_M"/>
       <a name="labelloc" val="east"/>
       <a name="radix" val="16"/>
       <a name="type" val="output"/>
@@ -11113,38 +11142,38 @@ a000824 2a488000 6008014 0 30008420 6d00000c 0 56000008
     <wire from="(820,650)" to="(860,650)"/>
     <wire from="(820,840)" to="(860,840)"/>
   </circuit>
-  <circuit name="DataPathRegister4">
+  <circuit name="DataPathRegister_M_W">
     <a name="appearance" val="logisim_evolution"/>
-    <a name="circuit" val="DataPathRegister4"/>
+    <a name="circuit" val="DataPathRegister_M_W"/>
     <a name="circuitnamedboxfixedsize" val="true"/>
     <a name="simulationFrequency" val="16.0"/>
     <comp lib="0" loc="(380,230)" name="Pin">
       <a name="appearance" val="NewPins"/>
-      <a name="label" val="ALUOutM"/>
+      <a name="label" val="ALUOut_M"/>
       <a name="radix" val="16"/>
       <a name="width" val="32"/>
     </comp>
     <comp lib="0" loc="(380,390)" name="Pin">
       <a name="appearance" val="NewPins"/>
-      <a name="label" val="UpperImmM"/>
+      <a name="label" val="UpperImm_M"/>
       <a name="radix" val="16"/>
       <a name="width" val="32"/>
     </comp>
     <comp lib="0" loc="(380,570)" name="Pin">
       <a name="appearance" val="NewPins"/>
-      <a name="label" val="ReadDataM"/>
+      <a name="label" val="MemReadData_M"/>
       <a name="radix" val="16"/>
       <a name="width" val="32"/>
     </comp>
     <comp lib="0" loc="(380,760)" name="Pin">
       <a name="appearance" val="NewPins"/>
-      <a name="label" val="PCPlus4M"/>
+      <a name="label" val="PCPlus4_M"/>
       <a name="radix" val="16"/>
       <a name="width" val="32"/>
     </comp>
     <comp lib="0" loc="(380,950)" name="Pin">
       <a name="appearance" val="NewPins"/>
-      <a name="label" val="WriteRegM"/>
+      <a name="label" val="WriteReg_M"/>
       <a name="radix" val="16"/>
       <a name="width" val="5"/>
     </comp>
@@ -11159,7 +11188,7 @@ a000824 2a488000 6008014 0 30008420 6d00000c 0 56000008
     <comp lib="0" loc="(510,230)" name="Pin">
       <a name="appearance" val="NewPins"/>
       <a name="facing" val="west"/>
-      <a name="label" val="ALUOutW"/>
+      <a name="label" val="ALUOut_W"/>
       <a name="labelloc" val="east"/>
       <a name="radix" val="16"/>
       <a name="type" val="output"/>
@@ -11168,7 +11197,7 @@ a000824 2a488000 6008014 0 30008420 6d00000c 0 56000008
     <comp lib="0" loc="(510,390)" name="Pin">
       <a name="appearance" val="NewPins"/>
       <a name="facing" val="west"/>
-      <a name="label" val="UpperImmW"/>
+      <a name="label" val="UpperImm_W"/>
       <a name="labelloc" val="east"/>
       <a name="radix" val="16"/>
       <a name="type" val="output"/>
@@ -11177,7 +11206,7 @@ a000824 2a488000 6008014 0 30008420 6d00000c 0 56000008
     <comp lib="0" loc="(510,570)" name="Pin">
       <a name="appearance" val="NewPins"/>
       <a name="facing" val="west"/>
-      <a name="label" val="ReadDataW"/>
+      <a name="label" val="MemReadData_W"/>
       <a name="labelloc" val="east"/>
       <a name="radix" val="16"/>
       <a name="type" val="output"/>
@@ -11186,7 +11215,7 @@ a000824 2a488000 6008014 0 30008420 6d00000c 0 56000008
     <comp lib="0" loc="(510,760)" name="Pin">
       <a name="appearance" val="NewPins"/>
       <a name="facing" val="west"/>
-      <a name="label" val="PCPlus4W"/>
+      <a name="label" val="PCPlus4_W"/>
       <a name="labelloc" val="east"/>
       <a name="radix" val="16"/>
       <a name="type" val="output"/>
@@ -11195,7 +11224,7 @@ a000824 2a488000 6008014 0 30008420 6d00000c 0 56000008
     <comp lib="0" loc="(510,950)" name="Pin">
       <a name="appearance" val="NewPins"/>
       <a name="facing" val="west"/>
-      <a name="label" val="WriteRegW"/>
+      <a name="label" val="WriteReg_W"/>
       <a name="labelloc" val="east"/>
       <a name="radix" val="16"/>
       <a name="type" val="output"/>
@@ -11249,33 +11278,33 @@ a000824 2a488000 6008014 0 30008420 6d00000c 0 56000008
     <wire from="(470,760)" to="(510,760)"/>
     <wire from="(470,950)" to="(510,950)"/>
   </circuit>
-  <circuit name="ControlPathRegister2">
+  <circuit name="ControlPathRegister_D_E">
     <a name="appearance" val="logisim_evolution"/>
-    <a name="circuit" val="ControlPathRegister2"/>
+    <a name="circuit" val="ControlPathRegister_D_E"/>
     <a name="circuitnamedboxfixedsize" val="true"/>
     <a name="simulationFrequency" val="16.0"/>
     <comp lib="0" loc="(510,140)" name="Pin">
       <a name="appearance" val="NewPins"/>
-      <a name="label" val="RegWriteD"/>
+      <a name="label" val="RegWrite_D"/>
     </comp>
     <comp lib="0" loc="(510,240)" name="Pin">
       <a name="appearance" val="NewPins"/>
-      <a name="label" val="RegWriteDataSrcD"/>
+      <a name="label" val="RegWriteDataSrc_D"/>
       <a name="width" val="2"/>
     </comp>
     <comp lib="0" loc="(510,340)" name="Pin">
       <a name="appearance" val="NewPins"/>
-      <a name="label" val="MemOpD"/>
+      <a name="label" val="MemOp_D"/>
       <a name="width" val="4"/>
     </comp>
     <comp lib="0" loc="(510,440)" name="Pin">
       <a name="appearance" val="NewPins"/>
-      <a name="label" val="ALUControlD"/>
+      <a name="label" val="ALUControl_D"/>
       <a name="width" val="5"/>
     </comp>
     <comp lib="0" loc="(510,540)" name="Pin">
       <a name="appearance" val="NewPins"/>
-      <a name="label" val="NOT_ALUOutD"/>
+      <a name="label" val="NOT_ALUOut_D"/>
     </comp>
     <comp lib="0" loc="(510,640)" name="Pin">
       <a name="appearance" val="NewPins"/>
@@ -11288,7 +11317,7 @@ a000824 2a488000 6008014 0 30008420 6d00000c 0 56000008
     </comp>
     <comp lib="0" loc="(510,840)" name="Pin">
       <a name="appearance" val="NewPins"/>
-      <a name="label" val="WriteRegSrcD"/>
+      <a name="label" val="WriteRegSrc_D"/>
     </comp>
     <comp lib="0" loc="(520,940)" name="Pin">
       <a name="appearance" val="NewPins"/>
@@ -11301,34 +11330,34 @@ a000824 2a488000 6008014 0 30008420 6d00000c 0 56000008
     <comp lib="0" loc="(620,140)" name="Pin">
       <a name="appearance" val="NewPins"/>
       <a name="facing" val="west"/>
-      <a name="label" val="RegWriteE"/>
+      <a name="label" val="RegWrite_E"/>
       <a name="type" val="output"/>
     </comp>
     <comp lib="0" loc="(620,240)" name="Pin">
       <a name="appearance" val="NewPins"/>
       <a name="facing" val="west"/>
-      <a name="label" val="RegWriteDataSrcE"/>
+      <a name="label" val="RegWriteDataSrc_E"/>
       <a name="type" val="output"/>
       <a name="width" val="2"/>
     </comp>
     <comp lib="0" loc="(620,340)" name="Pin">
       <a name="appearance" val="NewPins"/>
       <a name="facing" val="west"/>
-      <a name="label" val="MemOpE"/>
+      <a name="label" val="MemOp_E"/>
       <a name="type" val="output"/>
       <a name="width" val="4"/>
     </comp>
     <comp lib="0" loc="(620,440)" name="Pin">
       <a name="appearance" val="NewPins"/>
       <a name="facing" val="west"/>
-      <a name="label" val="ALUControlE"/>
+      <a name="label" val="ALUControl_E"/>
       <a name="type" val="output"/>
       <a name="width" val="5"/>
     </comp>
     <comp lib="0" loc="(620,540)" name="Pin">
       <a name="appearance" val="NewPins"/>
       <a name="facing" val="west"/>
-      <a name="label" val="NOT_ALUOutE"/>
+      <a name="label" val="NOT_ALUOut_E"/>
       <a name="type" val="output"/>
     </comp>
     <comp lib="0" loc="(620,640)" name="Pin">
@@ -11347,7 +11376,7 @@ a000824 2a488000 6008014 0 30008420 6d00000c 0 56000008
     <comp lib="0" loc="(620,840)" name="Pin">
       <a name="appearance" val="NewPins"/>
       <a name="facing" val="west"/>
-      <a name="label" val="WriteRegSrcE"/>
+      <a name="label" val="WriteRegSrc_E"/>
       <a name="type" val="output"/>
     </comp>
     <comp lib="4" loc="(540,110)" name="Register">
@@ -11425,9 +11454,9 @@ a000824 2a488000 6008014 0 30008420 6d00000c 0 56000008
     <wire from="(600,740)" to="(620,740)"/>
     <wire from="(600,840)" to="(620,840)"/>
   </circuit>
-  <circuit name="ControlPathRegister3">
+  <circuit name="ControlPathRegister_E_M">
     <a name="appearance" val="logisim_evolution"/>
-    <a name="circuit" val="ControlPathRegister3"/>
+    <a name="circuit" val="ControlPathRegister_E_M"/>
     <a name="circuitnamedboxfixedsize" val="true"/>
     <a name="simulationFrequency" val="16.0"/>
     <comp lib="0" loc="(510,1230)" name="Pin">
@@ -11440,35 +11469,35 @@ a000824 2a488000 6008014 0 30008420 6d00000c 0 56000008
     </comp>
     <comp lib="0" loc="(510,740)" name="Pin">
       <a name="appearance" val="NewPins"/>
-      <a name="label" val="RegWriteE"/>
+      <a name="label" val="RegWrite_E"/>
     </comp>
     <comp lib="0" loc="(510,840)" name="Pin">
       <a name="appearance" val="NewPins"/>
-      <a name="label" val="RegWriteDataSrcE"/>
+      <a name="label" val="RegWriteDataSrc_E"/>
       <a name="width" val="2"/>
     </comp>
     <comp lib="0" loc="(510,940)" name="Pin">
       <a name="appearance" val="NewPins"/>
-      <a name="label" val="MemOpE"/>
+      <a name="label" val="MemOp_E"/>
       <a name="width" val="4"/>
     </comp>
     <comp lib="0" loc="(620,740)" name="Pin">
       <a name="appearance" val="NewPins"/>
       <a name="facing" val="west"/>
-      <a name="label" val="RegWriteM"/>
+      <a name="label" val="RegWrite_M"/>
       <a name="type" val="output"/>
     </comp>
     <comp lib="0" loc="(620,840)" name="Pin">
       <a name="appearance" val="NewPins"/>
       <a name="facing" val="west"/>
-      <a name="label" val="RegWriteDataSrcM"/>
+      <a name="label" val="RegWriteDataSrc_M"/>
       <a name="type" val="output"/>
       <a name="width" val="2"/>
     </comp>
     <comp lib="0" loc="(620,940)" name="Pin">
       <a name="appearance" val="NewPins"/>
       <a name="facing" val="west"/>
-      <a name="label" val="MemOpM"/>
+      <a name="label" val="MemOp_M"/>
       <a name="type" val="output"/>
       <a name="width" val="4"/>
     </comp>
@@ -11502,18 +11531,18 @@ a000824 2a488000 6008014 0 30008420 6d00000c 0 56000008
     <wire from="(600,840)" to="(620,840)"/>
     <wire from="(600,940)" to="(620,940)"/>
   </circuit>
-  <circuit name="ControlPathRegister4">
+  <circuit name="ControlPathRegister_M_W">
     <a name="appearance" val="logisim_evolution"/>
-    <a name="circuit" val="ControlPathRegister4"/>
+    <a name="circuit" val="ControlPathRegister_M_W"/>
     <a name="circuitnamedboxfixedsize" val="true"/>
     <a name="simulationFrequency" val="16.0"/>
     <comp lib="0" loc="(510,740)" name="Pin">
       <a name="appearance" val="NewPins"/>
-      <a name="label" val="RegWriteM"/>
+      <a name="label" val="RegWrite_M"/>
     </comp>
     <comp lib="0" loc="(510,840)" name="Pin">
       <a name="appearance" val="NewPins"/>
-      <a name="label" val="RegWriteDataSrcM"/>
+      <a name="label" val="RegWriteDataSrc_M"/>
       <a name="width" val="2"/>
     </comp>
     <comp lib="0" loc="(510,940)" name="Pin">
@@ -11527,13 +11556,13 @@ a000824 2a488000 6008014 0 30008420 6d00000c 0 56000008
     <comp lib="0" loc="(620,740)" name="Pin">
       <a name="appearance" val="NewPins"/>
       <a name="facing" val="west"/>
-      <a name="label" val="RegWriteW"/>
+      <a name="label" val="RegWrite_W"/>
       <a name="type" val="output"/>
     </comp>
     <comp lib="0" loc="(620,840)" name="Pin">
       <a name="appearance" val="NewPins"/>
       <a name="facing" val="west"/>
-      <a name="label" val="RegWriteDataSrcW"/>
+      <a name="label" val="RegWriteDataSrc_W"/>
       <a name="type" val="output"/>
       <a name="width" val="2"/>
     </comp>
@@ -11558,21 +11587,21 @@ a000824 2a488000 6008014 0 30008420 6d00000c 0 56000008
     <wire from="(600,740)" to="(620,740)"/>
     <wire from="(600,840)" to="(620,840)"/>
   </circuit>
-  <circuit name="HazardShieldD">
+  <circuit name="HazardShield_D">
     <a name="appearance" val="logisim_evolution"/>
-    <a name="circuit" val="HazardShieldD"/>
+    <a name="circuit" val="HazardShield_D"/>
     <a name="circuitnamedboxfixedsize" val="true"/>
     <a name="simulationFrequency" val="16.0"/>
     <comp lib="0" loc="(1010,410)" name="Pin">
       <a name="appearance" val="NewPins"/>
       <a name="facing" val="west"/>
-      <a name="label" val="OverrideRegData1"/>
+      <a name="label" val="OverrideRegData1_D"/>
       <a name="type" val="output"/>
     </comp>
     <comp lib="0" loc="(1010,430)" name="Pin">
       <a name="appearance" val="NewPins"/>
       <a name="facing" val="west"/>
-      <a name="label" val="RegData1"/>
+      <a name="label" val="RegData1_D"/>
       <a name="radix" val="16"/>
       <a name="type" val="output"/>
       <a name="width" val="32"/>
@@ -11580,13 +11609,13 @@ a000824 2a488000 6008014 0 30008420 6d00000c 0 56000008
     <comp lib="0" loc="(1010,570)" name="Pin">
       <a name="appearance" val="NewPins"/>
       <a name="facing" val="west"/>
-      <a name="label" val="OverrideRegData2"/>
+      <a name="label" val="OverrideRegData2_D"/>
       <a name="type" val="output"/>
     </comp>
     <comp lib="0" loc="(1010,590)" name="Pin">
       <a name="appearance" val="NewPins"/>
       <a name="facing" val="west"/>
-      <a name="label" val="RegData2"/>
+      <a name="label" val="RegData2_D"/>
       <a name="radix" val="16"/>
       <a name="type" val="output"/>
       <a name="width" val="32"/>
@@ -11594,54 +11623,54 @@ a000824 2a488000 6008014 0 30008420 6d00000c 0 56000008
     <comp lib="0" loc="(1020,100)" name="Pin">
       <a name="appearance" val="NewPins"/>
       <a name="facing" val="west"/>
-      <a name="label" val="rt"/>
+      <a name="label" val="rt_D"/>
       <a name="type" val="output"/>
       <a name="width" val="5"/>
     </comp>
     <comp lib="0" loc="(1020,80)" name="Pin">
       <a name="appearance" val="NewPins"/>
       <a name="facing" val="west"/>
-      <a name="label" val="rs"/>
+      <a name="label" val="rs_D"/>
       <a name="type" val="output"/>
       <a name="width" val="5"/>
     </comp>
     <comp lib="0" loc="(220,210)" name="Pin">
       <a name="appearance" val="NewPins"/>
-      <a name="label" val="RegWriteE"/>
+      <a name="label" val="RegWrite_E"/>
     </comp>
     <comp lib="0" loc="(220,230)" name="Pin">
       <a name="appearance" val="NewPins"/>
-      <a name="label" val="IsMemOpE"/>
+      <a name="label" val="IsMemOp_E"/>
     </comp>
     <comp lib="0" loc="(220,290)" name="Pin">
       <a name="appearance" val="NewPins"/>
-      <a name="label" val="RegWriteM"/>
+      <a name="label" val="RegWrite_M"/>
     </comp>
     <comp lib="0" loc="(260,250)" name="Pin">
       <a name="appearance" val="NewPins"/>
-      <a name="label" val="WriteRegE"/>
+      <a name="label" val="WriteReg_E"/>
       <a name="width" val="5"/>
     </comp>
     <comp lib="0" loc="(260,310)" name="Pin">
       <a name="appearance" val="NewPins"/>
-      <a name="label" val="WriteRegM"/>
+      <a name="label" val="WriteReg_M"/>
       <a name="width" val="5"/>
     </comp>
     <comp lib="0" loc="(270,270)" name="Pin">
       <a name="appearance" val="NewPins"/>
-      <a name="label" val="WriteDataE"/>
+      <a name="label" val="RegWriteData_E"/>
       <a name="radix" val="16"/>
       <a name="width" val="32"/>
     </comp>
     <comp lib="0" loc="(270,330)" name="Pin">
       <a name="appearance" val="NewPins"/>
-      <a name="label" val="WriteDataM"/>
+      <a name="label" val="RegWriteData_M"/>
       <a name="radix" val="16"/>
       <a name="width" val="32"/>
     </comp>
     <comp lib="0" loc="(270,70)" name="Pin">
       <a name="appearance" val="NewPins"/>
-      <a name="label" val="Instruction"/>
+      <a name="label" val="Instruction_D"/>
       <a name="radix" val="16"/>
       <a name="width" val="32"/>
     </comp>
@@ -11683,13 +11712,13 @@ a000824 2a488000 6008014 0 30008420 6d00000c 0 56000008
     </comp>
     <comp lib="0" loc="(470,210)" name="Probe">
       <a name="appearance" val="NewPins"/>
-      <a name="label" val="in_rt"/>
+      <a name="label" val="rs"/>
       <a name="labelloc" val="north"/>
     </comp>
     <comp lib="0" loc="(550,210)" name="Probe">
       <a name="appearance" val="NewPins"/>
       <a name="facing" val="west"/>
-      <a name="label" val="in_rs"/>
+      <a name="label" val="rt"/>
       <a name="labelloc" val="north"/>
     </comp>
     <comp lib="1" loc="(340,220)" name="AND Gate">
@@ -11839,16 +11868,20 @@ a000824 2a488000 6008014 0 30008420 6d00000c 0 56000008
     <wire from="(990,340)" to="(990,350)"/>
     <wire from="(990,500)" to="(990,510)"/>
   </circuit>
-  <circuit name="HazardShieldE">
+  <circuit name="HazardShield_E">
     <a name="appearance" val="logisim_evolution"/>
-    <a name="circuit" val="HazardShieldE"/>
+    <a name="circuit" val="HazardShield_E"/>
     <a name="circuitnamedboxfixedsize" val="true"/>
     <a name="simulationFrequency" val="16.0"/>
-    <comp lib="0" loc="(250,960)" name="Pin">
+    <comp lib="0" loc="(230,390)" name="Pin">
+      <a name="appearance" val="NewPins"/>
+      <a name="label" val="RegWrite_M"/>
+    </comp>
+    <comp lib="0" loc="(250,750)" name="Pin">
       <a name="appearance" val="NewPins"/>
       <a name="label" val="CLK"/>
     </comp>
-    <comp lib="0" loc="(250,980)" name="Pin">
+    <comp lib="0" loc="(250,770)" name="Pin">
       <a name="appearance" val="NewPins"/>
       <a name="label" val="Reset"/>
     </comp>
@@ -11862,59 +11895,55 @@ a000824 2a488000 6008014 0 30008420 6d00000c 0 56000008
       <a name="label" val="rt_D"/>
       <a name="width" val="5"/>
     </comp>
-    <comp lib="0" loc="(270,390)" name="Pin">
-      <a name="appearance" val="NewPins"/>
-      <a name="label" val="RegWriteM"/>
-    </comp>
-    <comp lib="0" loc="(270,410)" name="Pin">
-      <a name="appearance" val="NewPins"/>
-      <a name="label" val="WriteRegM"/>
-      <a name="width" val="5"/>
-    </comp>
     <comp lib="0" loc="(270,430)" name="Pin">
       <a name="appearance" val="NewPins"/>
-      <a name="label" val="WriteDataM"/>
-      <a name="radix" val="16"/>
-      <a name="width" val="32"/>
-    </comp>
-    <comp lib="0" loc="(840,490)" name="Pin">
-      <a name="appearance" val="NewPins"/>
-      <a name="facing" val="west"/>
-      <a name="label" val="OverrideRegData1"/>
-      <a name="type" val="output"/>
-    </comp>
-    <comp lib="0" loc="(840,530)" name="Pin">
-      <a name="appearance" val="NewPins"/>
-      <a name="facing" val="west"/>
-      <a name="label" val="RegData1"/>
-      <a name="radix" val="16"/>
-      <a name="type" val="output"/>
-      <a name="width" val="32"/>
-    </comp>
-    <comp lib="0" loc="(840,590)" name="Pin">
-      <a name="appearance" val="NewPins"/>
-      <a name="facing" val="west"/>
-      <a name="label" val="OverrideRegData2"/>
-      <a name="type" val="output"/>
-    </comp>
-    <comp lib="0" loc="(840,630)" name="Pin">
-      <a name="appearance" val="NewPins"/>
-      <a name="facing" val="west"/>
-      <a name="label" val="RegData2"/>
-      <a name="radix" val="16"/>
-      <a name="type" val="output"/>
-      <a name="width" val="32"/>
-    </comp>
-    <comp lib="1" loc="(820,490)" name="AND Gate">
-      <a name="size" val="30"/>
-    </comp>
-    <comp lib="1" loc="(820,590)" name="AND Gate">
-      <a name="size" val="30"/>
-    </comp>
-    <comp lib="3" loc="(740,490)" name="Comparator">
+      <a name="label" val="WriteReg_M"/>
       <a name="width" val="5"/>
     </comp>
-    <comp lib="3" loc="(740,590)" name="Comparator">
+    <comp lib="0" loc="(280,450)" name="Pin">
+      <a name="appearance" val="NewPins"/>
+      <a name="label" val="RegWriteData_M"/>
+      <a name="radix" val="16"/>
+      <a name="width" val="32"/>
+    </comp>
+    <comp lib="0" loc="(840,560)" name="Pin">
+      <a name="appearance" val="NewPins"/>
+      <a name="facing" val="west"/>
+      <a name="label" val="OverrideRegData1_E"/>
+      <a name="type" val="output"/>
+    </comp>
+    <comp lib="0" loc="(840,600)" name="Pin">
+      <a name="appearance" val="NewPins"/>
+      <a name="facing" val="west"/>
+      <a name="label" val="RegData1_E"/>
+      <a name="radix" val="16"/>
+      <a name="type" val="output"/>
+      <a name="width" val="32"/>
+    </comp>
+    <comp lib="0" loc="(840,720)" name="Pin">
+      <a name="appearance" val="NewPins"/>
+      <a name="facing" val="west"/>
+      <a name="label" val="OverrideRegData2_E"/>
+      <a name="type" val="output"/>
+    </comp>
+    <comp lib="0" loc="(840,760)" name="Pin">
+      <a name="appearance" val="NewPins"/>
+      <a name="facing" val="west"/>
+      <a name="label" val="RegData2_E"/>
+      <a name="radix" val="16"/>
+      <a name="type" val="output"/>
+      <a name="width" val="32"/>
+    </comp>
+    <comp lib="1" loc="(820,560)" name="AND Gate">
+      <a name="size" val="30"/>
+    </comp>
+    <comp lib="1" loc="(820,720)" name="AND Gate">
+      <a name="size" val="30"/>
+    </comp>
+    <comp lib="3" loc="(740,560)" name="Comparator">
+      <a name="width" val="5"/>
+    </comp>
+    <comp lib="3" loc="(740,720)" name="Comparator">
       <a name="width" val="5"/>
     </comp>
     <comp lib="4" loc="(380,190)" name="Register">
@@ -11931,51 +11960,47 @@ a000824 2a488000 6008014 0 30008420 6d00000c 0 56000008
     <comp lib="6" loc="(490,195)" name="Text">
       <a name="text" val="rs_E"/>
     </comp>
-    <wire from="(250,960)" to="(370,960)"/>
-    <wire from="(250,980)" to="(410,980)"/>
+    <wire from="(230,390)" to="(780,390)"/>
+    <wire from="(250,750)" to="(370,750)"/>
+    <wire from="(250,770)" to="(410,770)"/>
     <wire from="(270,220)" to="(380,220)"/>
     <wire from="(270,320)" to="(380,320)"/>
-    <wire from="(270,390)" to="(780,390)"/>
-    <wire from="(270,410)" to="(600,410)"/>
-    <wire from="(270,430)" to="(610,430)"/>
+    <wire from="(270,430)" to="(630,430)"/>
+    <wire from="(280,450)" to="(610,450)"/>
     <wire from="(370,260)" to="(370,360)"/>
     <wire from="(370,260)" to="(380,260)"/>
-    <wire from="(370,360)" to="(370,960)"/>
+    <wire from="(370,360)" to="(370,750)"/>
     <wire from="(370,360)" to="(380,360)"/>
     <wire from="(410,280)" to="(410,380)"/>
-    <wire from="(410,380)" to="(410,980)"/>
-    <wire from="(440,220)" to="(580,220)"/>
-    <wire from="(440,320)" to="(590,320)"/>
-    <wire from="(580,220)" to="(580,480)"/>
-    <wire from="(580,480)" to="(580,800)"/>
-    <wire from="(580,480)" to="(700,480)"/>
-    <wire from="(590,320)" to="(590,580)"/>
-    <wire from="(590,580)" to="(590,800)"/>
-    <wire from="(590,580)" to="(700,580)"/>
-    <wire from="(600,410)" to="(600,500)"/>
-    <wire from="(600,500)" to="(600,600)"/>
-    <wire from="(600,500)" to="(700,500)"/>
-    <wire from="(600,600)" to="(600,800)"/>
-    <wire from="(600,600)" to="(700,600)"/>
-    <wire from="(610,430)" to="(610,530)"/>
-    <wire from="(610,530)" to="(610,630)"/>
-    <wire from="(610,530)" to="(840,530)"/>
-    <wire from="(610,630)" to="(610,800)"/>
-    <wire from="(610,630)" to="(840,630)"/>
-    <wire from="(740,490)" to="(790,490)"/>
-    <wire from="(740,590)" to="(790,590)"/>
-    <wire from="(780,390)" to="(780,480)"/>
-    <wire from="(780,480)" to="(780,580)"/>
-    <wire from="(780,480)" to="(790,480)"/>
-    <wire from="(780,580)" to="(790,580)"/>
-    <wire from="(790,490)" to="(790,500)"/>
-    <wire from="(790,590)" to="(790,600)"/>
-    <wire from="(820,490)" to="(840,490)"/>
-    <wire from="(820,590)" to="(840,590)"/>
+    <wire from="(410,380)" to="(410,770)"/>
+    <wire from="(440,220)" to="(690,220)"/>
+    <wire from="(440,320)" to="(670,320)"/>
+    <wire from="(610,450)" to="(610,600)"/>
+    <wire from="(610,600)" to="(610,760)"/>
+    <wire from="(610,600)" to="(840,600)"/>
+    <wire from="(610,760)" to="(840,760)"/>
+    <wire from="(630,430)" to="(630,570)"/>
+    <wire from="(630,570)" to="(630,730)"/>
+    <wire from="(630,570)" to="(700,570)"/>
+    <wire from="(630,730)" to="(700,730)"/>
+    <wire from="(670,320)" to="(670,710)"/>
+    <wire from="(670,710)" to="(700,710)"/>
+    <wire from="(690,220)" to="(690,550)"/>
+    <wire from="(690,550)" to="(700,550)"/>
+    <wire from="(740,560)" to="(790,560)"/>
+    <wire from="(740,720)" to="(790,720)"/>
+    <wire from="(780,390)" to="(780,550)"/>
+    <wire from="(780,550)" to="(780,710)"/>
+    <wire from="(780,550)" to="(790,550)"/>
+    <wire from="(780,710)" to="(790,710)"/>
+    <wire from="(790,560)" to="(790,570)"/>
+    <wire from="(790,720)" to="(790,730)"/>
+    <wire from="(820,560)" to="(840,560)"/>
+    <wire from="(820,720)" to="(840,720)"/>
   </circuit>
-  <circuit name="MemPreprocessor">
+  <circuit name="MM_Preprocessor">
     <a name="appearance" val="logisim_evolution"/>
-    <a name="circuit" val="MemPreprocessor"/>
+    <a name="circuit" val="MM_Preprocessor"/>
     <a name="circuitnamedboxfixedsize" val="true"/>
     <a name="simulationFrequency" val="16.0"/>
     <comp lib="0" loc="(1040,1230)" name="Splitter">
@@ -13216,9 +13241,9 @@ a000824 2a488000 6008014 0 30008420 6d00000c 0 56000008
     <wire from="(990,1520)" to="(1020,1520)"/>
     <wire from="(990,1530)" to="(1020,1530)"/>
   </circuit>
-  <circuit name="MemPostprocessor">
+  <circuit name="MM_Postprocessor">
     <a name="appearance" val="logisim_evolution"/>
-    <a name="circuit" val="MemPostprocessor"/>
+    <a name="circuit" val="MM_Postprocessor"/>
     <a name="circuitnamedboxfixedsize" val="true"/>
     <a name="simulationFrequency" val="16.0"/>
     <comp lib="0" loc="(1200,600)" name="Splitter">

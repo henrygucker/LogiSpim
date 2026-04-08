@@ -5,11 +5,18 @@
 # MainDecoder
 
 ## Purpose
-TODO
+The Main Decoder lives inside the Control Unit, where it is the primary step for decoding instructions.
+While the goal of the Control Unit is to determine the values of every signal in the control path for a given instruction,
+some of the Main Decoder's outputs are further processed by the rest of the Control Unit before becoming signals in the
+control path.
+
+The goal of the Main Decoder is to decode primarily non-R-Type instructions based on their `OP` codes.
+However, the implementation of specific R-Type instructions has resulted in some of the Main Decoder's outputs being
+overridden internally for specific `Funct` values when the `OP` code is `0` (R-Type).
 
 ## Outputs
 
-Here is a description of what each output of the MainDecoder does.
+Below is a description of what each output of the MainDecoder does.
 
 ### RegWrite
 
@@ -25,7 +32,7 @@ This flag is passed into the `WriteEnable3` field of the RegisterFile as picture
 
 ### RegWriteDataSrc
 
-Relevant Pipeline Stages: `(5) Writeback`<br>
+Relevant Pipeline Stages: `(3) Execute`, and `(5) Writeback`<br>
 Bit Width: `2`<br>
 Category: `Multiplexer Control`
 
@@ -33,16 +40,130 @@ This signal controls a multiplexer in pipeline stage `(5) Writeback` that determ
 value to be written to the register specified by `WriteRegW`.
 The meaning of each value is given by the following table:
 
-|  #   | Purpose                             |
-|:----:|:------------------------------------|
-| `00` | Sets `RegWriteDataW` to `ALUOutW`   |
-| `01` | Sets `RegWriteDataW` to `ReadDataW` |
-| `10` | Sets `RegWriteDataW` to `UpperImmW` |
-| `11` | Sets `RegWriteDataW` to `PCPlus4W`  |
+|  #   | Purpose                                                                                   |
+|:----:|:------------------------------------------------------------------------------------------|
+| `00` | Sets `RegWriteData_W` to `ALUOut_W`                                                       |
+| `01` | Sets `RegWriteData_W` to `ReadData_W`                                                     |
+| `10` | Sets `RegWriteData_W` to `UpperImm_W`                                                     |
+| `11` | Sets `RegWriteData_W` to `PCPlus4_W` and `RegWrite_E` to `$ra` <a href="#footnote1">*</a> |
+<p id="footnote1">
+<i>
+* Setting <code>RegWrite_E</code> to <code>$ra</code> is done in pipeline stage <code>(3) Execute</code>.
+This is done for the <code>jal</code> instruction to write to <code>$ra</code>.
+</i>
+</p>
+
+The function of the primary multiplexer is pictured below:
+
+![RegWriteDataSrcW Controlling Multiplexer](assets/reg_write_data_src.png)
+
+The conditional override of `RegWrite_E` is pictured below:
+
+![Override of WriteReg_E](assets/reg_write_data_src_write_reg_overwrite.png)
+
+### MemOp
+Relevant Pipeline Stages: `(4) Memory`<br>
+Bit Width: `4`<br>
+Category: `Operation Code`
+
+This signal controls which operation the Main Memory performs in pipeline stage `(4) Memory`.
+It is passed into the Main Memory Preprocessor (MM_Preprocessor) where it is processed to perform the corresponding action.
+The encoding of instructions and MemOp codes is given in the following table:
+
+|   #    | Write Operation |   #    | Read Operation |
+|:------:|:----------------|:------:|:---------------|
+| `0000` | `lb`            | `1000` | `sb`           |
+| `0001` | `lh`            | `1001` | `sh`           |
+| `0010` | `lw`            | `1010` | `sw`           |
+| `0011` | `N/A`           | `1011` | `N/A`          |
+| `0100` | `lbu`           | `1100` | `N/A`          |
+| `0101` | `lhu`           | `1101` | `N/A`          |
+| `0110` | `lwl`           | `1110` | `swl`          |
+| `0111` | `lwr`           | `1111` | `swr`          |
+
+
+### BranchOp
+Relevant Pipeline Stages: `(2) Decode`<br>
+Bit Width: `2`<br>
+Category: `Operation Code`
+
+This signal indicates which type of operation the instruction is executing in regard to branching/jumping.
+While the Control Unit outputs the signal, `PCSrc_D`, that directly controls the multiplexer behind the jump/branch functionality,
+the `BranchOp` output of the Main Decoder assists in the process.
+The Control Unit uses the last binary digit of the OP Code to differentiate between the negated conditionals of `beq/bne`
+and `blez/bgtz`.
+The logic for determining if branching should occur takes place in the Control Unit since it requires access to the
+`RegData1_D` and `RegData2_D` values.
+
+It is important to note that the `BranchOp` signal is not passed directly out of the Control Unit.
+However, it is used in determining the `PCSrc_D` output of the Control Unit.
+The key for `BranchOp` values is given below:
+
+|  #   | Meaning                           |
+|:----:|:----------------------------------|
+| `00` | No Branch/Jump                    |
+| `01` | `beq/bne`                         |
+| `10` | Jump to Jump Target Address (JTA) |
+| `11` | `blez/bgtz`                       |
+
+### ALUOp
+Relevant Pipeline Stages: `(2) Decode`<br>
+Bit Width: `4`<br>
+Category: `Operation Code`
+
+This signal is passed from the Main Decoder to the ALU Decoder while inside the Control Unit, and allows
+non-R-Type instructions to utilize a subset of the ALU's operations.
+The `ALUOp` code either overrides the outputs of the ALU Decoder that are determined by the `Funct` value of the instruction,
+or allows for such outputs to pass through.
+
+|   #    | Specified Operation |   #    | Specified Operation      |
+|:------:|:--------------------|:------:|:-------------------------|
+| `0000` | `A + B`             | `1000` | Look at value of `Funct` |
+| `0001` | `A + B` (Unsigned)  | `1001` | Look at value of `Funct` |
+| `0010` | `A - B` (Unsigned)  | `1010` | Look at value of `Funct` |
+| `0011` | `slt`               | `1011` | Look at value of `Funct` |
+| `0100` | `sltu`              | `1100` | Look at value of `Funct` |
+| `0101` | `A & B` (Bitwise)   | `1101` | Look at value of `Funct` |
+| `0110` | `A \| B` (Bitwise)  | `1110` | Look at value of `Funct` |
+| `0111` | `A ^ B` (Bitwise)   | `1111` | Look at value of `Funct` |
+
+
+### ALUSrcA
+Relevant Pipeline Stages: `(3) Execute`<br>
+Bit Width: `1`<br>
+Category: `Multiplexer Control`
+
+This signal controls what value is passed into the first, `A`, input of the ALU.
+The meaning of each value is given by the table below:
+
+|  #  | Purpose                            |
+|:---:|:-----------------------------------|
+| `0` | Sets ALU Input `A` to `RegData1_E` |
+| `1` | Sets ALU Input `A` to `shamt_E`    |
 
 The function of this multiplexer is pictured below:
 
-![RegWriteDataSrcW Controlling Multiplexer](assets/reg_write_data_src.png)
+![ALUSrcA Controlling Multiplexer](assets/alu_src_a.png)
+
+### ALUSrcB
+Relevant Pipeline Stages: `(3) Execute`<br>
+Bit Width: `2`<br>
+Category: `Multiplexer Control`
+
+This signal controls what value is passed into the second, `B`, input of the ALU.
+The meaning of each value is given by the table below:
+
+|  #   | Purpose                            |
+|:----:|:-----------------------------------|
+| `00` | Sets ALU Input `B` to `RegData2_E` |
+| `x1` | Sets ALU Input `B` to `SignImm_E`  |
+| `10` | Sets ALU Input `B` to `ZeroImm_E`  |
+
+The function of this multiplexer is pictured below:
+
+![ALUSrcA Controlling Multiplexer](assets/alu_src_b.png)
+
+### WriteRegSrc
 
 ## Output Mapping
 The key used in the following tables providing the outputs of MainDecoder for varying Op Codes and Funct values.

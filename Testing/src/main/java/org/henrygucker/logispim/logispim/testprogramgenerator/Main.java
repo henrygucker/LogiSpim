@@ -11,7 +11,7 @@ import java.util.ArrayList;
 import java.util.stream.Stream;
 
 public class Main {
-    private static final String outputFilename = "testing_test.s";
+    private static final String outputFilename = "dynamic_tests.s";
     private static final Path outputDirectory = Paths.get(System.getProperty("user.home") + File.separator + "LogiSpim" + File.separator + "src" + File.separator + "generated_tests");
 
     public static void main(String[] args) {
@@ -282,6 +282,32 @@ public class Main {
                         new int[]{0, 4, 8}, // Offsets on value in register to jump to
                         null,
                         new int[]{3, 1, 0}
+                )
+        });
+    }
+
+    static Stream<LogiSpimTest> getConditionalBranchAfterMemoryReadTests(int currentNumTests) {
+        // Tests for compiler adding nop between load instruction and conditional branch
+        return Stream.of(new LogiSpimTest[]{
+                new LogiSpimTest(
+                        ++currentNumTests,
+                        "addi $sp, $sp, -4\n" +
+                                "sw $s2, 0($sp)\n" + // Value of $s2 stored on stack
+                                "nop\n" +
+                                "lw $s0, 0($sp)\n" + // Value of $s0 overwritten with value of $s2 from stack
+                                "beq $s0, $t0, test_" + currentNumTests + "_success\n" +
+                                "li $a0, 0\n" + // Load 0 to $a0 if fail
+                                "j test_" + currentNumTests + "_done\n" +
+
+                                "test_" + currentNumTests + "_success:\n" +
+                                "li $a0, 1\n" +
+
+                                "test_" + currentNumTests + "_done:\n" +
+                                "addi $sp, $sp, 4\n",
+// TODO: test the test
+                        new int[]{0, 0, 8, 5}, // Initial values in $s0 to be overwritten
+                        new int[]{1, -1, 0, 12}, // Values to be stored on stack and read
+                        new int[]{1, 1, 1, 1} // $a0 is expected to be set to 1 on successful branch
                 )
         });
     }
