@@ -1,7 +1,7 @@
 # Compilation output directories
-/out/
-*/target/
-/docs/book/
+**/out/
+**/target/
+docs/book/
 
 # General Junk Files
 **/.DS_Store

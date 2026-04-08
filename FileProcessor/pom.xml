@@ -6,7 +6,7 @@
 
     <groupId>org.henrygucker.logispim</groupId>
     <artifactId>FileProcessor</artifactId>
-    <version>1.0pre</version>
+    <version>0.1.0</version>
 
     <properties>
         <maven.compiler.source>22</maven.compiler.source>
