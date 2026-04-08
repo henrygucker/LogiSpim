@@ -1,5 +1,5 @@
 # Summary
-- [Introduction](./00_intro/README.md)
+- [Introduction](00_intro/README.md)
 
 # User Guide
 - [Getting Started]()
@@ -16,7 +16,7 @@
   - [Instruction Memory]()
   - [Register File]()
   - [Control Unit]()
-    - [Main Decoder](./04_core_components/main_decoder.md)
+    - [Main Decoder](04_core_components/main_decoder.md)
     - [ALU Decoder]()
   - [ALU]()
   - [Main Memory]()

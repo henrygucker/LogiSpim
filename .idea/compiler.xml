@@ -6,13 +6,16 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="StaticTesting" />
         <module name="FileProcessor" />
-        <module name="DynamicTesting" />
+        <module name="StaticTesting" />
+        <module name="Testing" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
+      <module name="TestProgramGenerator" target="22" />
+      <module name="TestVectorGenerator" target="22" />
       <module name="ToolchainInstaller" target="22" />
+      <module name="untitled" target="22" />
     </bytecodeTargetLevel>
   </component>
 </project>
