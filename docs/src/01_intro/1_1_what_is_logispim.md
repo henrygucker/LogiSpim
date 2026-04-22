@@ -34,7 +34,7 @@ The process of executing an instruction with this pipelining is as follows:
 Each step of this outline is done with its respective pipeline stage.
 However, this pipelining causes issues when the order of operations for certain tasks is disturbed.
 The complexity this creates is why LogiSpim can help.
-More information on the pipelining of this processor is provided [here]().
+More information on the pipelining of this processor is provided [here](../05_pipeline_structure/index.md).
 
 ### Visual Demonstration
 This demo covers how LogiSpim can be used to learn how pipelining concepts can be implemented to improve processor
@@ -54,6 +54,6 @@ This is a brief overview of the File Processor tool and how it can be used to ea
 <iframe width="560" height="315" src="https://www.youtube.com/embed/oznr-1-poSU?si=TMw9bmlvfhv8-TEj" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 
 ### &#9888;&#65039; Important Notice
-Steps for installing and using the File Processor are given [here](../02_getting_started/README.md).
+Steps for installing and using the File Processor are given [here](../02_getting_started/index.md).
 This ensures that all prerequisite tooling is present and that LogiSpim is installed correctly.
 **Without taking these steps, the File Processor will not function properly.**

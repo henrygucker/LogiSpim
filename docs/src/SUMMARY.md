@@ -1,5 +1,5 @@
 # Summary
-- [Introduction](01_intro/README.md)
+- [Introduction](01_intro/index.md)
     - [What is LogiSpim?](01_intro/1_1_what_is_logispim.md)
 
 # User Guide
@@ -20,7 +20,7 @@
     - [ALU Decoder]()
   - [ALU]()
   - [Main Memory]()
-- [Pipeline Structure](05_pipeline_structure/README.md)
+- [Pipeline Structure](05_pipeline_structure/index.md)
     - [Fetch Stage]()
     - [Decode Stage]()
     - [Execute Stage]()
