@@ -304,7 +304,6 @@ public class Main {
 
                                 "test_" + currentNumTests + "_done:\n" +
                                 "addi $sp, $sp, 4\n",
-// TODO: test the test
                         new int[]{0, 0, 8, 5}, // Initial values in $s0 to be overwritten
                         new int[]{1, -1, 0, 12}, // Values to be stored on stack and read
                         new int[]{1, 1, 1, 1} // $a0 is expected to be set to 1 on successful branch

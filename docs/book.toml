@@ -3,6 +3,10 @@ title = "LogiSpim"
 authors = ["Henry Gucker"]
 language = "en"
 
+[preprocessor.mermaid]
+command = "mdbook-mermaid"
+
 [output.html]
 git-repository-url = "https://github.com/henrygucker/LogiSpim/"
 git-repository-icon = "fab-github"
+additional-js = ["mermaid.min.js", "mermaid-init.js"]

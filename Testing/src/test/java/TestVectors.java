@@ -23,7 +23,7 @@ public class TestVectors {
 
     static final Path logisimCircuitFilepath = Paths.get(System.getProperty("user.dir")).getParent().resolve("LogiSpim.circ");
 
-    @TempDir(cleanup = CleanupMode.ON_SUCCESS)
+    @TempDir(cleanup = CleanupMode.ALWAYS)
     static Path tempDir;
     static Path logisimEvolutionFilepath;
 

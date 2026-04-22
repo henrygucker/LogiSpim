@@ -2,8 +2,6 @@
 .table-wrapper {overflow-x: visible}
 </style>
 
-# MainDecoder
-
 ## Purpose
 The Main Decoder lives inside the Control Unit, where it is the primary step for decoding instructions.
 While the goal of the Control Unit is to determine the values of every signal in the control path for a given instruction,

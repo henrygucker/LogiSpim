@@ -1,7 +1,3 @@
-# Getting Started
-
-# Installation
-
 ## Pre-Requisites
 
 ### MacOS

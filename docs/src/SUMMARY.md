@@ -1,5 +1,6 @@
 # Summary
-- [Introduction](00_intro/README.md)
+- [Introduction](01_intro/README.md)
+    - [What is LogiSpim?](01_intro/1_1_what_is_logispim.md)
 
 # User Guide
 - [Getting Started]()
@@ -9,24 +10,17 @@
 
 # MIPS Processor
 - [Overview]()
-  - [Supported Instructions](02_processor_overview/supported_instructions.md)
+  - [Supported Instructions](03_processor_overview/3_1_supported_instructions.md)
   - [FAQ]()
-- [Pipeline Structure]()
 - [Core Components]()
   - [Instruction Memory]()
   - [Register File]()
   - [Control Unit]()
-    - [Main Decoder](04_core_components/main_decoder.md)
+    - [Main Decoder](04_core_components/4_3_1_main_decoder.md)
     - [ALU Decoder]()
   - [ALU]()
   - [Main Memory]()
-- [Control Path]()
-    - [Fetch Stage]()
-    - [Decode Stage]()
-    - [Execute Stage]()
-    - [Memory Stage]()
-    - [Writeback Stage]()
-- [Data Path]()
+- [Pipeline Structure](05_pipeline_structure/README.md)
     - [Fetch Stage]()
     - [Decode Stage]()
     - [Execute Stage]()
