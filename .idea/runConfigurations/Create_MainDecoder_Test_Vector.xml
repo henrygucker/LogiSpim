@@ -1,5 +1,5 @@
 <component name="ProjectRunConfigurationManager">
-  <configuration default="false" name="Create Test Vector" type="Application" factoryName="Application">
+  <configuration default="false" name="Create MainDecoder Test Vector" type="Application" factoryName="Application">
     <option name="MAIN_CLASS_NAME" value="MainDecoderMaster" />
     <module name="Testing" />
     <option name="PROGRAM_PARAMETERS" value="--write-test-vector" />

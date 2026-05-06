@@ -7,13 +7,8 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="FileProcessor" />
+        <module name="Testing" />
       </profile>
     </annotationProcessing>
-    <bytecodeTargetLevel>
-      <module name="LogiSpim" target="22" />
-      <module name="Testing" target="22" />
-      <module name="TestProgramGenerator" target="22" />
-      <module name="ToolchainInstaller" target="22" />
-    </bytecodeTargetLevel>
   </component>
 </project>
