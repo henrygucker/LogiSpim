@@ -22,4 +22,4 @@ jobs:
         cache: maven # Built-in caching for Maven dependencies
 
     - name: Build and run tests
-      run: mvn --batch-mode test
+      run: mvn -X --batch-mode test
