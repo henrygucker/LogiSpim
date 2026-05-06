@@ -1,3 +1,19 @@
+# The LogiSpim Project
+
+The project of LogiSpim is an educational tool that allows for interactive learning about pipelined microarchitecture.
+The core usage of the project allows users to run MIPS programs on a 32-bit MIPS CPU in Logisim-Evolution.
+This process is accomplished through the following process:
+
+```mermaid
+flowchart LR;
+    S["MIPS<br>Program"]
+    F["File<br>Processor"]
+    C["Logisim<br>Processor"]
+    
+    S -->|Source<br>Code File<br><i>.s</i>| F
+    F -->|Compiled<br>Binary Files<br><i>.hex</i>| C
+```
+
 ## Logisim Processor
 The core of the LogiSpim project is the 32-bit MIPS processor built in Logisim-Evolution.
 This processor is able to run most MIPS programs and includes the ability to emulate syscalls for easy program
@@ -43,7 +59,7 @@ performance.
 <iframe width="560" height="315" src="https://www.youtube.com/embed/oznr-1-poSU?si=TMw9bmlvfhv8-TEj" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 
 
-## MIPS File Processor
+## File Processor
 The LogiSpim File Processor is what allows users to take their MIPS assembly source code and run it on the processor.
 The File Processor uses cross-compilation toolchains and custom linker scripts to compile MIPS assembly code for the
 Logisim-Evolution circuit and extract contents of separate memory segments which are easily imported into Logisim-Evolution.

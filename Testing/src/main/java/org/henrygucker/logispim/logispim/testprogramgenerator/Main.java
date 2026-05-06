@@ -14,6 +14,7 @@ public class Main {
     private static final String outputFilename = "dynamic_tests.s";
     private static final Path outputDirectory = Paths.get(System.getProperty("user.home") + File.separator + "LogiSpim" + File.separator + "src" + File.separator + "generated_tests");
 
+    // TODO: Write more tests!
     public static void main(String[] args) {
         String preface = "Various tests...";
         ArrayList<LogiSpimTest> tests = new ArrayList<>();

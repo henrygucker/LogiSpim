@@ -3,15 +3,15 @@
     - [What is LogiSpim?](01_intro/1_1_what_is_logispim.md)
 
 # User Guide
-- [Getting Started]()
-    - [Prerequisite Steps]()
-    - [Installation Steps]()
-    - [Running Your First Program]()
+- [Getting Started](02_getting_started/index.md)
+    - [Prerequisite Steps](02_getting_started/2_1_prerequisite_installation.md)
+    - [Installation Steps](02_getting_started/2_2_installation.md)
+    - [Running Your First Program](02_getting_started/2_3_running_first_program.md)
 
 # MIPS Processor
 - [Overview]()
-  - [Supported Instructions](03_processor_overview/3_1_supported_instructions.md)
-  - [FAQ]()
+  - [FAQ](03_processor_overview/3_1_faq.md)
+  - [Supported Instructions](03_processor_overview/3_2_supported_instructions.md)
 - [Core Components]()
   - [Instruction Memory]()
   - [Register File]()

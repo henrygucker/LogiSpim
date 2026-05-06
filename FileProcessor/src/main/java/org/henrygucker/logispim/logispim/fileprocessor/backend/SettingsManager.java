@@ -13,6 +13,7 @@ import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
 import java.io.File;
 import java.io.IOException;
+import java.nio.file.Files;
 import java.nio.file.InvalidPathException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -179,7 +180,6 @@ public class SettingsManager {
     }
 
     private static synchronized void createDefaultFile(Path path) throws SettingsManagerException {
-        // TODO: CREATE DIRECTORY ON INITIAL STARTUP
         DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
         DocumentBuilder builder = null;
         Transformer transformer = null;
@@ -213,11 +213,14 @@ public class SettingsManager {
         try {
 
             DOMSource source = new DOMSource(doc);
+            Files.createDirectories(Path.of(path.toFile().getParent()));
             StreamResult result = new StreamResult(path.toFile());
             transformer.transform(source, result);
 
         } catch (TransformerException e) {
             throw new SettingsManagerException("Attempt to write default settings file failed. Target path: \"" + path.toString() + "\"");
+        } catch (IOException e) {
+            throw new SettingsManagerException("Attempt to create settings file parent directory failed. Target path: \"" + path.toString() + "\"");
         }
     }
 }

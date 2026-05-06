@@ -1,13 +1,13 @@
-# Introduction
 <!--suppress CssUnresolvedCustomProperty -->
 <style> .mdbook-version { position: absolute; right: 20px; top: 60px; background-color: var(--theme-popup-bg); border-radius: 8px; padding: 2px 5px 2px 5px; border: 1px solid var(--theme-popup-border); font-size: 0.9em; } </style>
 <p class="mdbook-version">Version: 0.1.0-SNAPSHOT</p>
 
-## ⚠️ Important Notice
-This website and project is currently under construction.
-Progress is being made, and will eventually be released, once a satisfactory amount of work has been done.
-*Expected Release during the Fall Semester of 2026.*
-___
+> [!WARNING]
+> This website and project is currently under construction.
+> Progress is being made, and will eventually be released once a satisfactory amount of work has been done.
+> Expected initial release during the **Fall Semester of 2026**.
+
+# Introduction
 
 **LogiSpim** is a 32-bit MIPS processor built in [Logisim-Evolution](https://github.com/logisim-evolution/logisim-evolution)
 support for running single-file MIPS programs on the processor from their source code. This has been created as a tool to help
