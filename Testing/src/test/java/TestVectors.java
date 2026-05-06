@@ -55,7 +55,8 @@ public class TestVectors {
         args.add(circuit.toAbsolutePath().toString());
 
         ProcessBuilder processBuilder = new ProcessBuilder(args)
-                .redirectOutput(tempDir.resolve("test_vector_output.txt").toFile());
+                .redirectOutput(tempDir.resolve("test_vector_output.txt").toFile())
+                .redirectErrorStream(true);
 
         Process testVectorProcess = processBuilder.start();
 
