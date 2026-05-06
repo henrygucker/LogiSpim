@@ -9,10 +9,10 @@
         <module name="FileProcessor" />
         <module name="StaticTesting" />
         <module name="Testing" />
+        <module name="TestProgramGenerator" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
-      <module name="TestProgramGenerator" target="22" />
       <module name="TestVectorGenerator" target="22" />
       <module name="ToolchainInstaller" target="22" />
       <module name="untitled" target="22" />
