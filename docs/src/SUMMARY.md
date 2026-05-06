@@ -4,9 +4,11 @@
 
 # User Guide
 - [Getting Started](02_getting_started/index.md)
-    - [Prerequisite Steps](02_getting_started/2_1_prerequisite_installation.md)
-    - [Installation Steps](02_getting_started/2_2_installation.md)
-    - [Running Your First Program](02_getting_started/2_3_running_first_program.md)
+    - [Prerequisite Installation](02_getting_started/2_1_prerequisite_installation.md)
+    - [Installation](02_getting_started/2_2_installation.md)
+    - [Running Your First Program](02_getting_started/2_3_running_first_program/index.md)
+      - [Video Guide](02_getting_started/2_3_running_first_program/2_3_1_video_guide.md)
+      - [Written Guide](02_getting_started/2_3_running_first_program/2_3_2_written_guide.md)
 
 # MIPS Processor
 - [Overview]()
