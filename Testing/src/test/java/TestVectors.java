@@ -58,7 +58,7 @@ public class TestVectors {
         Process testVectorProcess = processBuilder.start();
 
 
-        // Prints stdout from linker
+        // Stores stdout from test vector execution
         StringBuilder outputMessage = new StringBuilder();
         try (BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(testVectorProcess.getInputStream()))) {
             String line;
@@ -79,6 +79,9 @@ public class TestVectors {
         // Last line of output is formatted as follows:
         // "Passed: <num passed>, Failed: <num failed>"
         String[] outputMessageLines = outputMessage.toString().split("\n");
+
+        System.out.println("\nTest Vector Output:");
+        System.out.println(outputMessage);
 
         String numFailed = outputMessageLines[outputMessageLines.length - 1].split("\\s+")[3];
 
