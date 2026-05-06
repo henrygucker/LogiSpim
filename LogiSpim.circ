@@ -1545,20 +1545,20 @@
     <comp lib="6" loc="(2000,1580)" name="Text">
       <a name="text" val="rs [25:21]"/>
     </comp>
-    <comp lib="6" loc="(2018,415)" name="Text">
+    <comp lib="6" loc="(2015,415)" name="Text">
       <a name="text" val="Circuitry"/>
     </comp>
     <comp lib="6" loc="(2030,400)" name="Text">
       <a name="text" val="Suspension"/>
     </comp>
-    <comp lib="6" loc="(217,1538)" name="Text">
+    <comp lib="6" loc="(215,1535)" name="Text">
       <a name="text" val="10 - PCJumpAddr_D"/>
     </comp>
-    <comp lib="6" loc="(222,1553)" name="Text">
-      <a name="text" val="11 - Syscall Start Addr"/>
-    </comp>
-    <comp lib="6" loc="(223,1522)" name="Text">
+    <comp lib="6" loc="(220,1520)" name="Text">
       <a name="text" val="01 - PCBranchAddr_D"/>
+    </comp>
+    <comp lib="6" loc="(220,1550)" name="Text">
+      <a name="text" val="11 - Syscall Start Addr"/>
     </comp>
     <comp lib="6" loc="(2245,2035)" name="Text">
       <a name="font" val="SansSerif bold 18"/>
@@ -1597,11 +1597,11 @@
     <comp lib="6" loc="(2860,380)" name="Text">
       <a name="text" val="Reverse-Direction Control Path"/>
     </comp>
-    <comp lib="6" loc="(327,518)" name="Text">
+    <comp lib="6" loc="(325,515)" name="Text">
       <a name="font" val="SansSerif bold 12"/>
       <a name="text" val="(Must be held HIGH for at"/>
     </comp>
-    <comp lib="6" loc="(330,532)" name="Text">
+    <comp lib="6" loc="(330,530)" name="Text">
       <a name="font" val="SansSerif bold 12"/>
       <a name="text" val="least one clock cycle)"/>
     </comp>
@@ -7174,7 +7174,7 @@
     <comp lib="6" loc="(355,530)" name="Text">
       <a name="text" val="or"/>
     </comp>
-    <comp lib="6" loc="(358,610)" name="Text">
+    <comp lib="6" loc="(355,610)" name="Text">
       <a name="text" val="nor"/>
     </comp>
     <comp lib="6" loc="(360,810)" name="Text">
@@ -9755,7 +9755,7 @@
       <a name="halign" val="left"/>
       <a name="text" val="Write Data 3 goes to all"/>
     </comp>
-    <comp lib="6" loc="(400,767)" name="Text">
+    <comp lib="6" loc="(400,765)" name="Text">
       <a name="text" val="Write Functionality"/>
     </comp>
     <comp lib="6" loc="(80,1315)" name="Text">

@@ -54,13 +54,18 @@ public class TestVectors {
         args.add(testVector.toAbsolutePath().toString());
         args.add(circuit.toAbsolutePath().toString());
 
-        ProcessBuilder processBuilder = new ProcessBuilder(args);
+        ProcessBuilder processBuilder = new ProcessBuilder(args)
+                .redirectOutput(tempDir.resolve("test_vector_output.txt").toFile());
+
         Process testVectorProcess = processBuilder.start();
 
+        testVectorProcess.waitFor(15, TimeUnit.SECONDS);
 
-        // Stores stdout from test vector execution
+        Assertions.assertFalse(testVectorProcess.isAlive());
+
+        // Loads stdout from test vector execution
         StringBuilder outputMessage = new StringBuilder();
-        try (BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(testVectorProcess.getInputStream()))) {
+        try (BufferedReader bufferedReader = new BufferedReader(new FileReader(tempDir.resolve("test_vector_output.txt").toFile()))) {
             String line;
             int lineCount = 0;
             while ((line = bufferedReader.readLine()) != null) {
@@ -70,9 +75,6 @@ public class TestVectors {
             }
         }
 
-        testVectorProcess.waitFor(15, TimeUnit.SECONDS);
-
-        Assertions.assertFalse(testVectorProcess.isAlive());
 
         System.out.println(outputMessage);
 
