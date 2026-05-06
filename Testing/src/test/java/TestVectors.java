@@ -54,9 +54,7 @@ public class TestVectors {
         args.add(testVector.toAbsolutePath().toString());
         args.add(circuit.toAbsolutePath().toString());
 
-        ProcessBuilder processBuilder = new ProcessBuilder(args)
-                .redirectOutput(tempDir.resolve("test_vector_output.txt").toFile())
-                .redirectErrorStream(true);
+        ProcessBuilder processBuilder = new ProcessBuilder(args);
 
         Process testVectorProcess = processBuilder.start();
 
@@ -64,9 +62,9 @@ public class TestVectors {
 
         Assertions.assertFalse(testVectorProcess.isAlive());
 
-        // Loads stdout from test vector execution
+        // Reads stdout from test vector process
         StringBuilder outputMessage = new StringBuilder();
-        try (BufferedReader bufferedReader = new BufferedReader(new FileReader(tempDir.resolve("test_vector_output.txt").toFile()))) {
+        try (BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(testVectorProcess.getInputStream()))) {
             String line;
             int lineCount = 0;
             while ((line = bufferedReader.readLine()) != null) {
@@ -77,14 +75,12 @@ public class TestVectors {
         }
 
 
+        System.out.println("\nTest Vector Output:");
         System.out.println(outputMessage);
 
         // Last line of output is formatted as follows:
         // "Passed: <num passed>, Failed: <num failed>"
         String[] outputMessageLines = outputMessage.toString().split("\n");
-
-        System.out.println("\nTest Vector Output:");
-        System.out.println(outputMessage);
 
         String numFailed = outputMessageLines[outputMessageLines.length - 1].split("\\s+")[3];
 

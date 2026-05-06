@@ -20,6 +20,10 @@ jobs:
         java-version: '22' # Specify your Java version
         distribution: 'temurin'
         cache: maven # Built-in caching for Maven dependencies
+    - name: Install Xvfb
+      run: |
+          sudo apt-get update
+          sudo apt-get install -y xvfb # Install Xvfb
 
     - name: Build and run tests
-      run: mvn -X --batch-mode test
+      run: xvfb-run --auto-servernum mvn -X --batch-mode test
