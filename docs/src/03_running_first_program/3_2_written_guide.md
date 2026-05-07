@@ -21,7 +21,7 @@ For MIPS assembly source code to be considered a LogiSpim program, it must satis
     * To end the program's execution, the main program must return to the address stored in `$ra` following the initial jump to `main`.
 2. It must only use `.text` and `.data` segments.
     * LogiSpim does not yet support more specialized segments such as `.rodata`.
-3. It must conform to MIPS assembly standards while only using [instructions that are implemented by LogiSpim](../../03_processor_overview/3_2_supported_instructions.md).
+3. It must conform to MIPS assembly standards while only using [instructions that are implemented by LogiSpim](../04_processor_overview/4_2_supported_instructions.md).
     * LogiSpim does not yet support all valid MIPS instructions or syscall codes. Failure to follow this restriction will 
 result in undefined behavior.
     * Any MIPS errors detected by the compiler or linker will result in a failure to compile and a subsequent popup
