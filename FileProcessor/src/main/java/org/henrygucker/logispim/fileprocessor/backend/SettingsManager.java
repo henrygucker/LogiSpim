@@ -1,6 +1,6 @@
-package org.henrygucker.logispim.logispim.fileprocessor.backend;
+package org.henrygucker.logispim.fileprocessor.backend;
 
-import org.henrygucker.logispim.logispim.fileprocessor.backend.exceptions.SettingsManagerException;
+import org.henrygucker.logispim.fileprocessor.backend.exceptions.SettingsManagerException;
 import org.w3c.dom.Document;
 import org.w3c.dom.Node;
 import org.xml.sax.SAXException;

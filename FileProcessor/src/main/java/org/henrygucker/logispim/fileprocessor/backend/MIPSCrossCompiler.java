@@ -1,6 +1,6 @@
-package org.henrygucker.logispim.logispim.fileprocessor.backend;
+package org.henrygucker.logispim.fileprocessor.backend;
 
-import org.henrygucker.logispim.logispim.fileprocessor.backend.exceptions.CompilationException;
+import org.henrygucker.logispim.fileprocessor.backend.exceptions.CompilationException;
 
 import java.io.*;
 import java.nio.file.*;
@@ -95,10 +95,16 @@ public class MIPSCrossCompiler {
         StringBuilder assemblerErrorMessageBuilder = new StringBuilder();
         try (BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(assembler.getErrorStream()))) {
             String line;
-            while ((line = bufferedReader.readLine()) != null) {
+            int numLines = 0;
+            while ((line = bufferedReader.readLine()) != null && numLines < 15) {
                 assemblerErrorMessageBuilder.append(line);
                 assemblerErrorMessageBuilder.append('\n');
+
+                numLines++;
             }
+
+            if (line != null && numLines == 15)
+                assemblerErrorMessageBuilder.append("...\n");
         }
 
         if (assemblerErrorMessageBuilder.length() != 0) {
@@ -137,10 +143,16 @@ public class MIPSCrossCompiler {
         StringBuilder linkerErrorMessageBuilder = new StringBuilder();
         try (BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(linker.getErrorStream()))) {
             String line;
-            while ((line = bufferedReader.readLine()) != null) {
+            long numLines = 0;
+            while ((line = bufferedReader.readLine()) != null && numLines < 15) {
                 linkerErrorMessageBuilder.append(line);
                 linkerErrorMessageBuilder.append('\n');
+
+                numLines++;
             }
+
+            if (line != null && numLines == 15)
+                linkerErrorMessageBuilder.append("...\n");
         }
 
         if (linkerErrorMessageBuilder.length() != 0) {

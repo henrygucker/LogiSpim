@@ -1,4 +1,4 @@
-package org.henrygucker.logispim.logispim.fileprocessor.backend.elf;
+package org.henrygucker.logispim.fileprocessor.backend.elf;
 
 // This is a record for the 32-bit elf header from the relevant documentation:
 // https://refspecs.linuxbase.org/elf/gabi4+/ch4.sheader.html

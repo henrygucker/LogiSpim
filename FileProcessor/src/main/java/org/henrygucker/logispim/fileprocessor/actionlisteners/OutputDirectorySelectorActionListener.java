@@ -1,8 +1,8 @@
-package org.henrygucker.logispim.logispim.fileprocessor.actionlisteners;
+package org.henrygucker.logispim.fileprocessor.actionlisteners;
 
-import org.henrygucker.logispim.logispim.fileprocessor.backend.exceptions.SettingsManagerException;
-import org.henrygucker.logispim.logispim.fileprocessor.uicomponents.FileSelectorPanel;
-import org.henrygucker.logispim.logispim.fileprocessor.App;
+import org.henrygucker.logispim.fileprocessor.backend.exceptions.SettingsManagerException;
+import org.henrygucker.logispim.fileprocessor.uicomponents.FileSelectorPanel;
+import org.henrygucker.logispim.fileprocessor.App;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;

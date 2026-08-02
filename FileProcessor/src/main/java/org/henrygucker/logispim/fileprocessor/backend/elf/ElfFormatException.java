@@ -1,4 +1,4 @@
-package org.henrygucker.logispim.logispim.fileprocessor.backend.elf;
+package org.henrygucker.logispim.fileprocessor.backend.elf;
 
 public class ElfFormatException extends Exception {
     public ElfFormatException(String filename, String message) {

@@ -1,15 +1,15 @@
-package org.henrygucker.logispim.logispim.fileprocessor.actionlisteners;
+package org.henrygucker.logispim.fileprocessor.actionlisteners;
 
-import org.henrygucker.logispim.logispim.fileprocessor.backend.MIPSCrossCompiler;
-import org.henrygucker.logispim.logispim.fileprocessor.backend.PlatformToolchainCommands;
-import org.henrygucker.logispim.logispim.fileprocessor.backend.SettingsManager;
-import org.henrygucker.logispim.logispim.fileprocessor.backend.elf.ElfFile;
-import org.henrygucker.logispim.logispim.fileprocessor.backend.elf.ElfFormatException;
-import org.henrygucker.logispim.logispim.fileprocessor.backend.elf.SectionHeader;
-import org.henrygucker.logispim.logispim.fileprocessor.backend.elf.Symbol;
-import org.henrygucker.logispim.logispim.fileprocessor.backend.exceptions.CompilationException;
-import org.henrygucker.logispim.logispim.fileprocessor.backend.exceptions.SettingsManagerException;
-import org.henrygucker.logispim.logispim.fileprocessor.App;
+import org.henrygucker.logispim.fileprocessor.backend.MIPSCrossCompiler;
+import org.henrygucker.logispim.fileprocessor.backend.PlatformToolchainCommands;
+import org.henrygucker.logispim.fileprocessor.backend.SettingsManager;
+import org.henrygucker.logispim.fileprocessor.backend.elf.ElfFile;
+import org.henrygucker.logispim.fileprocessor.backend.elf.ElfFormatException;
+import org.henrygucker.logispim.fileprocessor.backend.elf.SectionHeader;
+import org.henrygucker.logispim.fileprocessor.backend.elf.Symbol;
+import org.henrygucker.logispim.fileprocessor.backend.exceptions.CompilationException;
+import org.henrygucker.logispim.fileprocessor.backend.exceptions.SettingsManagerException;
+import org.henrygucker.logispim.fileprocessor.App;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -118,11 +118,13 @@ public class CompileActionListener implements ActionListener {
         Path textOutputFile = binarySectionDataOutputDir.resolve("text.hex");
         Path dataOutputFile = binarySectionDataOutputDir.resolve("data.hex");
         Path kernelTextOutputFile = binarySectionDataOutputDir.resolve("text-kernel.hex");
+        Path disassemblyOutputFile = binarySectionDataOutputDir.resolve("disassembly-asm.lss");
 
         Path[] outputFilePaths = new Path[]{
                 textOutputFile,
                 dataOutputFile,
-                kernelTextOutputFile
+                kernelTextOutputFile,
+                disassemblyOutputFile
         };
 
         // Purges old output files to not confuse users if compilation fails or if program with same name is compiled as
@@ -216,7 +218,17 @@ public class CompileActionListener implements ActionListener {
             return;
         }
 
-        app.updateTextArea(objdumpOutputBuilder.toString());
+        String objdumpOutput = objdumpOutputBuilder.toString();
+
+        // Writing .lss disassembly file for viewing in Logisim
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(disassemblyOutputFile.toFile()))) {
+            writer.write(objdumpOutput);
+
+        } catch (IOException e) {
+            app.updateTextArea("An error occurred while writing disassembly content to file.");
+            return;
+        }
+        app.updateTextArea(objdumpOutput);
 
         JOptionPane.showMessageDialog(
                 app,

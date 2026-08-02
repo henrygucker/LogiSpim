@@ -1,4 +1,4 @@
-package org.henrygucker.logispim.logispim.fileprocessor.backend.elf;
+package org.henrygucker.logispim.fileprocessor.backend.elf;
 
 public enum SectionHeaderType {
     NULL(0),

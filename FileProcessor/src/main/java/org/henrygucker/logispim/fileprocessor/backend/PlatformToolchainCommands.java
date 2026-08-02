@@ -1,4 +1,4 @@
-package org.henrygucker.logispim.logispim.fileprocessor.backend;
+package org.henrygucker.logispim.fileprocessor.backend;
 
 import java.io.BufferedReader;
 import java.io.FileReader;

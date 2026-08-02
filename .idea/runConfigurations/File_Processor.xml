@@ -2,7 +2,7 @@
   <configuration default="false" name="File Processor" type="Application" factoryName="Application">
     <option name="ALTERNATIVE_JRE_PATH" value="openjdk-22" />
     <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
-    <option name="MAIN_CLASS_NAME" value="org.henrygucker.logispim.logispim.fileprocessor.Main" />
+    <option name="MAIN_CLASS_NAME" value="org.henrygucker.logispim.fileprocessor.Main" />
     <module name="FileProcessor" />
     <method v="2">
       <option name="Make" enabled="true" />

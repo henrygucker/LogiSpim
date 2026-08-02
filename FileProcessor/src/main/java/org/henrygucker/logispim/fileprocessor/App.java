@@ -1,10 +1,10 @@
-package org.henrygucker.logispim.logispim.fileprocessor;
+package org.henrygucker.logispim.fileprocessor;
 
-import org.henrygucker.logispim.logispim.fileprocessor.actionlisteners.CompileActionListener;
-import org.henrygucker.logispim.logispim.fileprocessor.actionlisteners.KernelTextCheckboxActionListener;
-import org.henrygucker.logispim.logispim.fileprocessor.backend.SettingsManager;
-import org.henrygucker.logispim.logispim.fileprocessor.backend.exceptions.SettingsManagerException;
-import org.henrygucker.logispim.logispim.fileprocessor.uicomponents.FileSelectorPanel;
+import org.henrygucker.logispim.fileprocessor.actionlisteners.CompileActionListener;
+import org.henrygucker.logispim.fileprocessor.actionlisteners.KernelTextCheckboxActionListener;
+import org.henrygucker.logispim.fileprocessor.backend.SettingsManager;
+import org.henrygucker.logispim.fileprocessor.backend.exceptions.SettingsManagerException;
+import org.henrygucker.logispim.fileprocessor.uicomponents.FileSelectorPanel;
 
 import javax.swing.*;
 import javax.swing.border.Border;
@@ -27,7 +27,8 @@ public class App extends JFrame {
     public App() {
         // App start
 
-        super();
+        super("LogiSpim");
+
         this.setPreferredSize(new Dimension(WIDTH, HEIGHT));
         this.setMinimumSize(new Dimension(WIDTH, HEIGHT));
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

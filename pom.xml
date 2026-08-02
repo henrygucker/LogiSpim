@@ -52,6 +52,19 @@
 				<artifactId>maven-surefire-plugin</artifactId>
 				<version>3.5.4</version>
 			</plugin>
+            <plugin>
+                <!-- Build an executable JAR -->
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-jar-plugin</artifactId>
+                <version>3.5.1</version>
+                <configuration>
+                    <archive>
+                        <manifest>
+                            <mainClass>com.henrygucker.logispim.Main</mainClass>
+                        </manifest>
+                    </archive>
+                </configuration>
+            </plugin>
 		</plugins>
 
         <directory>${project.basedir}/custom-target</directory>

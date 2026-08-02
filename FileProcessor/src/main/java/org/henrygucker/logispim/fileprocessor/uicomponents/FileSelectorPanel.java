@@ -1,11 +1,11 @@
-package org.henrygucker.logispim.logispim.fileprocessor.uicomponents;
+package org.henrygucker.logispim.fileprocessor.uicomponents;
 
-import org.henrygucker.logispim.logispim.fileprocessor.actionlisteners.FileSelectorActionListener;
-import org.henrygucker.logispim.logispim.fileprocessor.actionlisteners.OutputDirectorySelectorActionListener;
-import org.henrygucker.logispim.logispim.fileprocessor.actionlisteners.SourceFileSelectorActionListener;
-import org.henrygucker.logispim.logispim.fileprocessor.backend.SettingsManager;
-import org.henrygucker.logispim.logispim.fileprocessor.backend.exceptions.SettingsManagerException;
-import org.henrygucker.logispim.logispim.fileprocessor.App;
+import org.henrygucker.logispim.fileprocessor.actionlisteners.FileSelectorActionListener;
+import org.henrygucker.logispim.fileprocessor.actionlisteners.OutputDirectorySelectorActionListener;
+import org.henrygucker.logispim.fileprocessor.actionlisteners.SourceFileSelectorActionListener;
+import org.henrygucker.logispim.fileprocessor.backend.SettingsManager;
+import org.henrygucker.logispim.fileprocessor.backend.exceptions.SettingsManagerException;
+import org.henrygucker.logispim.fileprocessor.App;
 
 import javax.swing.*;
 import java.awt.*;
