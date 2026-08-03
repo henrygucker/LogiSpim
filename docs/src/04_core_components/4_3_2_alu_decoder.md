@@ -3,61 +3,63 @@
 </style>
 
 ## Purpose
-The Main Decoder lives inside the Control Unit, where it is the primary step for decoding instructions.
-While the goal of the Control Unit is to determine the values of every signal in the control path for a given instruction,
-some of the Main Decoder's outputs are further processed by the rest of the Control Unit before becoming signals in the
-control path.
+The ALU Decoder lives inside the Control Unit, where it maps `ALUOp` values from the Main Decoder and `Funct` values from
+instruction encodings to `ALUControl` values required by any given instruction.
 
-The goal of the Main Decoder is to decode primarily non-R-Type instructions based on their `OP` codes.
-However, the implementation of specific R-Type instructions has resulted in some of the Main Decoder's outputs being
-overridden internally for specific `Funct` values when the `OP` code is `0` (R-Type).
+`ALUOp` codes are used by non R-Type instructions to specify a subset of all `ALUControl` values.
+This allows for other types of instructions to utilize portions of the ALU.
 
-## Outputs
+## Output Documentation
 
-Below is a description of what each output of the MainDecoder does.
+Below is a description of what each output of the ALU Decoder does.
 
-### RegWrite
+### ALUControl
 
-Relevant Pipeline Stages: `(5) Writeback`<br>
-Bit Width: `1`<br>
-Category: `Flag`
+Relevant Pipeline Stages: `(3) Execute`
+Bit Width: `4`<br>
+Category: `Operation Code`
 
-This is a flag indicating if an instruction will write to a register during the falling edge of the clock while the
-instruction is in pipeline stage `(5) Writeback`.
-This flag is passed into the `WriteEnable3` field of the RegisterFile as pictured below:
+The ALU operation mapping for each value is given by the following table:
 
-![RegWriteW Being Passed into RegisterFile](assets/reg_write.png)
+|    #    | ALU Operation               |
+|:-------:|:----------------------------|
+| `00000` | `Q = A & B`                 |
+| `00001` | `Q = A \| B`                |
+| `00010` | `Q = A ^ B`                 |
+| `00011` | `Q = A << B` *(Logical)*    |
+| `00100` | `Q = B >> A` *(Logical)*    |
+| `00101` | `Q = A << B` *(Arithmetic)* |
+| `00110` | `Q = A + B`                 |
+| `00111` | `Q = A + B` *(Unsigned)*    |
+| `01000` | `Q = A - B`                 |
+| `01001` | `Q = A - B` *(Unsigned)*    |
+| `01010` | `Q = A * B`                 |
+| `01011` | `Q = A * B` *(Unsigned)*    |
+| `01100` | `Q = A / B`                 |
+| `01101` | `Q = A / B` *(Unsigned)*    |
+| `01110` | `slt Q, A, B`               |
+| `01111` | `sltu Q, A, B`              |
+| `10000` | `mfhi`                      |
+| `10001` | `mthi`                      |
+| `10010` | `mflo`                      |
+| `10011` | `mtlo`                      |
+| `10100` | `N/A`                       |
+| `10101` | `N/A`                       |
+| `10110` | `N/A`                       |
+| `10111` | `N/A`                       |
+| `11000` | `N/A`                       |
+| `11001` | `N/A`                       |
+| `11010` | `N/A`                       |
+| `11011` | `N/A`                       |
+| `11100` | `N/A`                       |
+| `11101` | `N/A`                       |
+| `11110` | `N/A`                       |
+| `11111` | `N/A`                       |
 
-### RegWriteDataSrc
+> [!TIP]
+> The ALU Operations in this table are formatted where `Q` is the output, `A` is the first input, and `B`
+> is the second input (if any).
 
-Relevant Pipeline Stages: `(3) Execute`, and `(5) Writeback`<br>
-Bit Width: `2`<br>
-Category: `Multiplexer Control`
-
-This signal controls a multiplexer in pipeline stage `(5) Writeback` that determines the value of `RegWriteDataW`, the
-value to be written to the register specified by `WriteRegW`.
-The meaning of each value is given by the following table:
-
-|  #   | Purpose                                                                                   |
-|:----:|:------------------------------------------------------------------------------------------|
-| `00` | Sets `RegWriteData_W` to `ALUOut_W`                                                       |
-| `01` | Sets `RegWriteData_W` to `ReadData_W`                                                     |
-| `10` | Sets `RegWriteData_W` to `UpperImm_W`                                                     |
-| `11` | Sets `RegWriteData_W` to `PCPlus4_W` and `RegWrite_E` to `$ra` <a href="#footnote1">*</a> |
-<p id="footnote1">
-<i>
-* Setting <code>RegWrite_E</code> to <code>$ra</code> is done in pipeline stage <code>(3) Execute</code>.
-This is done for the <code>jal</code> instruction to write to <code>$ra</code>.
-</i>
-</p>
-
-The function of the primary multiplexer is pictured below:
-
-![RegWriteDataSrcW Controlling Multiplexer](assets/reg_write_data_src.png)
-
-The conditional override of `RegWrite_E` is pictured below:
-
-![Override of WriteReg_E](assets/reg_write_data_src_write_reg_overwrite.png)
 
 ### MemOp
 Relevant Pipeline Stages: `(4) Memory`<br>

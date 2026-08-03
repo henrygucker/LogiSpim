@@ -1,4 +1,44 @@
-# Supported Instructions
+# Overview
+
+The Logisim processor allows users to run MIPS assembly code on exposed circuitry.
+This enables interactive learning about processor microarchitecture and the standard 5-stage RISC pipelining with real
+MIPS programs.
+Moreover, it includes support for features improving user experience such as keyboard-driven clock controls,
+breakpoints, an emulated kernel for console output via syscalls, and support for utilizing Logisim's assembly view.
+More details about these features can be found below.
+## Key Features
+### Assembly Viewer
+
+LogiSpim provides support for usage of the assembly viewer feature in Logisim-evolution.
+This viewer allows for the line of the object dump corresponding to the current instruction to be highlighted and
+displayed at all times.
+
+![Assembly viewer in action](assets/assembly_viewer.png)
+
+### Emulated Console
+
+The emulated console allows for user code to print integers, strings, and characters for program output as pictured below:
+
+![Emulated consle with hello world printed](assets/emulated_console.png)
+
+### Keyboard-Driven Controls
+
+Through the built-in keyboard component in Logisim-evolution, control over the clock with keyboard inputs is supported.
+This supports the ability to:
+- reset the processor by pressing `r`.
+- step through one clock cycle by pressing `space`.
+- toggle allowing the program to run at the set clock rate by pressing `t`.
+
+![Keyboard user input portion of main circuit](assets/keyboard_controls.png)
+
+### Breakpoints
+
+The breakpoint system allows users to set a breakpoint at an instruction address of their choosing, heavily aiding in
+debugging.
+
+![Breakpoint system user interface](assets/breakpoints.png)
+
+## Supported Instructions
 <!--suppress CssUnresolvedCustomProperty -->
 <style>
     .implemented {background-color: color-mix(in srgb, var(--blockquote-tip-color), transparent 60%)}
@@ -6,8 +46,6 @@
     .not-implemented {background-color: color-mix(in srgb, var(--blockquote-caution-color), transparent 60%)}
 </style>
 The instruction set implemented in this processor was based on [this MIPS reference sheet](https://booksite.elsevier.com/9780124077263/downloads/COD_5e_Greencard.pdf).
-
-*Note: This CPU currently does <u>NOT</u> support floating point operations.*
 
 <table>
     <thead>
