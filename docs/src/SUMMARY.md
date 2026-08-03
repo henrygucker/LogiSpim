@@ -1,5 +1,8 @@
 - [Introduction](01_intro/index.md)
-    - [What is LogiSpim?](01_intro/1_1_what_is_logispim.md)
+# User Guide
+- [What is LogiSpim?](01_intro/1_1_what_is_logispim/index.md)
+  - [Logisim Processor](01_intro/1_1_what_is_logispim/1_1_1_logisim_processor.md)
+  - [File Processor](01_intro/1_1_what_is_logispim/1_1_2_file_processor.md)
 - [Getting Started](02_getting_started/index.md)
     - [Installation](02_getting_started/2_1_installation.md)
     - [Running Your First Program](02_getting_started/2_2_running_first_program/index.md)
