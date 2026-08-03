@@ -17,4 +17,4 @@ main:           # Entry point to program denoted by "main" label
 ```
 > [!TIP]
 > For more information on the criteria MIPS programs must follow to be run with LogiSpim,
-> [see this section](2_2_1_written_guide.md#mips-program).
+> [see this section](01_written_guide.md#mips-program).

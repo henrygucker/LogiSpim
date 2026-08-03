@@ -34,7 +34,7 @@ The process of executing an instruction with this pipelining is as follows:
 Each step of this outline is done with its respective pipeline stage.
 However, this pipelining causes issues when the order of operations for certain tasks is disturbed.
 The complexity this creates is why LogiSpim can help.
-More information on the pipelining of this processor is provided [here](../../05_pipeline_structure/index.md).
+More information on the pipelining of this processor is provided [here](../06_pipeline_structure/index.md).
 
 ## Visual Demonstration
 This demo covers how LogiSpim can be used to learn how pipelining concepts can be implemented to improve processor

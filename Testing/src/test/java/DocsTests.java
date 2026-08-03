@@ -10,8 +10,7 @@ import java.nio.charset.StandardCharsets;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotEquals;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class DocsTests {
    static final Path DOCS_DIR = Paths.get(System.getProperty("user.dir")).getParent().resolve("docs");
@@ -19,8 +18,14 @@ public class DocsTests {
    static final Path MAIN_DECODER_MARKDOWN = DOCS_DIR.resolve("src" + File.separator + "05_core_components" + File.separator + "5_3_1_main_decoder.md");
 
     @Test
-    void mainDecoderTableTests() throws IOException {
-        String markdownContent = FileUtils.readFileToString(MAIN_DECODER_MARKDOWN.toFile(), StandardCharsets.UTF_8);
+    void mainDecoderTableTests() {
+        String markdownContent;
+        try {
+            markdownContent = FileUtils.readFileToString(MAIN_DECODER_MARKDOWN.toFile(), StandardCharsets.UTF_8);
+        } catch (IOException e) {
+            fail("Main Decoder docs file does not exist.");
+            return;
+        }
 
         String outputsByOpCode = MainDecoderMarkdownTableGenerator.getMarkdownTableStringByOpCode().replaceAll("\\s+", "").replaceAll("-+", "-");
         String RTypeOverriddenOutputs = MainDecoderMarkdownTableGenerator.getMarkdownTableStringRTypeOverrides().replaceAll("\\s+", "").replaceAll("-+", "-");

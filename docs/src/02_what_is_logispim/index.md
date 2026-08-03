@@ -15,5 +15,5 @@ flowchart LR;
     F -->|Compiled<br>Binary Files<br><i>.hex</i>| C
 ```
 
-For more information on the [logisim processor](1_1_1_logisim_processor.md) and the [file processor](1_1_2_file_processor.md),
+For more information on the [logisim processor](01_logisim_processor.md) and the [file processor](02_file_processor.md),
 refer to the following subchapters.

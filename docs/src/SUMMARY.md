@@ -1,24 +1,29 @@
 - [Introduction](01_intro/index.md)
+
+-----------
+
 # User Guide
-- [What is LogiSpim?](01_intro/1_1_what_is_logispim/index.md)
-  - [Logisim Processor](01_intro/1_1_what_is_logispim/1_1_1_logisim_processor.md)
-  - [File Processor](01_intro/1_1_what_is_logispim/1_1_2_file_processor.md)
-- [Getting Started](02_getting_started/index.md)
-    - [Installation](02_getting_started/2_1_installation.md)
-    - [Running Your First Program](02_getting_started/2_2_running_first_program/index.md)
-      - [Video Guide](02_getting_started/2_2_running_first_program/2_2_2_video_guide.md)
-      - [Written Guide](02_getting_started/2_2_running_first_program/2_2_1_written_guide.md)
+- [What is LogiSpim?](02_what_is_logispim/index.md)
+  - [Logisim Processor](02_what_is_logispim/01_logisim_processor.md)
+  - [File Processor](02_what_is_logispim/02_file_processor.md)
+- [Getting Started](03_getting_started/index.md)
+    - [Installation](03_getting_started/01_installation.md)
+    - [Running Your First Program](03_getting_started/02_running_first_program/index.md)
+      - [Video Guide](03_getting_started/02_running_first_program/02_video_guide.md)
+      - [Written Guide](03_getting_started/02_running_first_program/01_written_guide.md)
+
+-----------
 
 # Logisim Processor Docs
-- [Overview](03_processor_overview/index.md)
-  - [FAQ](03_processor_overview/3_1_faq.md)
+- [Overview](04_processor_overview/index.md)
+  - [FAQ](04_processor_overview/01_faq.md)
 - [Core Components]()
   - [Instruction Memory]()
   - [Register File]()
   - [Control Unit]()
-    - [Main Decoder](04_core_components/4_3_1_main_decoder.md)
-    - [ALU Decoder](04_core_components/4_3_2_alu_decoder.md)
+    - [Main Decoder](05_core_components/03_control_unit/01_main_decoder.md)
+    - [ALU Decoder](05_core_components/03_control_unit/02_alu_decoder.md)
   - [ALU]()
   - [Main Memory]()
-- [Pipeline Structure](05_pipeline_structure/index.md)
+- [Pipeline Structure](06_pipeline_structure/index.md)
     - [More to come...]()

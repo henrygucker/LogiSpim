@@ -9,6 +9,6 @@ This is a brief overview of the File Processor tool and how it can be used to ea
 <iframe width="560" height="315" src="https://www.youtube.com/embed/oznr-1-poSU?si=TMw9bmlvfhv8-TEj" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 
 > [!WARNING]
-> Steps for installing and using the File Processor are given [here](../../02_getting_started/index.md).
+> Steps for installing and using the File Processor are given [here](../03_getting_started/index.md).
 > This ensures that all prerequisite tooling is present and that LogiSpim is installed correctly.
 > **Without taking these steps, the File Processor will not function properly.**

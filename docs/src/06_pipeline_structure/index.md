@@ -4,7 +4,7 @@
 With the major components of the LogiSpim processor established, this chapter explores how they interact.
 In doing so, this chapter provides an in-depth explanation behind the operations of each stage of the processor's pipeline.
 
-As mentioned in [the introduction](../01_intro/1_1_what_is_logispim/index.md), LogiSpim's pipeline follows the standard
+As mentioned in [the introduction](../02_what_is_logispim/index.md), LogiSpim's pipeline follows the standard
 5-stage MIPS pipeline.
 
 ```mermaid
