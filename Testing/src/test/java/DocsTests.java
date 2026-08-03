@@ -15,7 +15,7 @@ import static org.junit.jupiter.api.Assertions.*;
 public class DocsTests {
    static final Path DOCS_DIR = Paths.get(System.getProperty("user.dir")).getParent().resolve("docs");
 
-   static final Path MAIN_DECODER_MARKDOWN = DOCS_DIR.resolve("src" + File.separator + "05_core_components" + File.separator + "5_3_1_main_decoder.md");
+   static final Path MAIN_DECODER_MARKDOWN = DOCS_DIR.resolve("src" + File.separator + "05_core_components" + File.separator + "03_control_unit" + File.separator + "01_main_decoder.md");
 
     @Test
     void mainDecoderTableTests() {
