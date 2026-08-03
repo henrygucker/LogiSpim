@@ -30,7 +30,7 @@ class MainDecoderMarkdownTableGenerator {
             if (i > 0)
                 builder.append("| `" + testcase[testcase.length - 1] + "` |");
             else
-                builder.append("| " + testcase[testcase.length - 1] + "`[*](#overrides-for-r-types) |");
+                builder.append("| `" + testcase[testcase.length - 1] + "`[*](#overrides-for-r-types) |");
 
             for (int j = 0; j < MainDecoderMaster.values().length; j++) {
                 if (!testcase[j].startsWith(" "))
