@@ -25,8 +25,12 @@ class MainDecoderMarkdownTableGenerator {
                 testcase = invalidOpCodeReplacementLine;
 
             builder.append(String.format("| %02d ", i));
-            builder.append("| `" + String.format("%6s", Integer.toBinaryString(i)).replaceAll(" ", "0") + "` ");
-            builder.append("| `" + testcase[testcase.length - 1] + "` |");
+            builder.append("| `" + String.format("%6s", Integer.toBinaryString(i)).replace(" ", "0") + "` ");
+
+            if (i > 0)
+                builder.append("| `" + testcase[testcase.length - 1] + "` |");
+            else
+                builder.append("| " + testcase[testcase.length - 1] + "`[*](#overrides-for-r-types) |");
 
             for (int j = 0; j < MainDecoderMaster.values().length; j++) {
                 if (!testcase[j].startsWith(" "))
