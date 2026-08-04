@@ -1,6 +1,6 @@
 <!--suppress CssUnresolvedCustomProperty -->
 <style> .mdbook-version { position: absolute; right: 20px; top: 60px; background-color: var(--theme-popup-bg); border-radius: 8px; padding: 2px 5px 2px 5px; border: 1px solid var(--theme-popup-border); font-size: 0.9em; } </style>
-<p class="mdbook-version">Version: 0.1.0-SNAPSHOT</p>
+<p class="mdbook-version">Version: 1.0.0-SNAPSHOT</p>
 
 > [!WARNING]
 > This website and project is currently under construction.

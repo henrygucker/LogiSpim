@@ -1,4 +1,4 @@
-# Textual Guide
+# Written Guide
 
 ```mermaid
 flowchart LR;
@@ -32,16 +32,7 @@ Once all the above standards are met, a MIPS assembly source file can be execute
 ### Example
 A simple example for a LogiSpim program is the following "Hello, world!" program.
 ```asm
-    .data
-str: .asciiz "Hello, world!"
-
-    .text
-main:           # Entry point to program denoted by "main" label
-    la $a0, str
-    li $v0, 4
-    syscall     # Loads address to and prints str to the emulated console
-
-    jr $ra      # Returns from the program, ending execution
+{{#include assets/hello_world.s }}
 ```
 
 ## File Processor
@@ -86,21 +77,26 @@ To do this, the following steps must be taken:
 
 ![Load Text Segment](assets/8_load_text.png)
 
+
 2. Return to the `main` circuit and find the `Main Memory` module in the Memory pipeline stage.
    Follow the instructions in the large red text next to the `data` RAM module to load the `data.hex` file.
-   *Note that this step may need to be repeated after program execution if modifications are made to data in this segment.*
 
 ![Load Data Segment](assets/9_load_data.png)
+
+> [!NOTE]
+> This step may need to be repeated after program execution if modifications are made to data in this segment.
+
+
+___
+> [!CAUTION]
+> **The following steps for using the logisim processor have changed since this guide was written.
+> An updated guide will be written once further changes to the logisim circuit are finished.**
 
 3. Now that the program is loaded, it's time to run the program!
    To do so, return to the upper-left corner of the main circuit and view the user control panel. Then, set the auto-tick
    clock frequency of Logisim to your desired frequency through the `Simulate > Auto-Tick Frequency` dropdown menu.
 
 ![Select Auto Tick Frequency](assets/10_set_frequency.png)
-
-> [!WARNING]
-> The LogiSpim CPU uses a 512:1 clock divider when executing user instructions, and the Auto. So the effective clock frequency
-> of a `8.0 kHz` Auto-Tick frequency is `8 Hz`.
 
 4. Enable the Auto-Ticking and hold the "Reset" button on the control panel down for at least one full clock cycle.
    Once released, the program will run until it exits.

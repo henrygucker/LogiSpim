@@ -9,10 +9,9 @@
 - [Getting Started](03_getting_started/index.md)
     - [Installation](03_getting_started/01_installation.md)
     - [Running Your First Program](03_getting_started/02_running_first_program/index.md)
-      - [Video Guide](03_getting_started/02_running_first_program/02_video_guide.md)
       - [Written Guide](03_getting_started/02_running_first_program/01_written_guide.md)
+      - [Video Guide](03_getting_started/02_running_first_program/02_video_guide.md)
 
------------
 
 # Logisim Processor Docs
 - [Overview](04_processor_overview/index.md)

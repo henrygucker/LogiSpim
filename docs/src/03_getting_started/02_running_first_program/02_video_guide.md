@@ -4,16 +4,7 @@ This video walks through the steps outlined below for running a program with Log
 
 ### Example Program Used
 ```asm
-    .data
-str: .asciiz "Hello, world!"
-
-    .text
-main:           # Entry point to program denoted by "main" label
-    la $a0, str
-    li $v0, 4
-    syscall     # Loads address to and prints str to the emulated console
-
-    jr $ra      # Returns from the program, ending execution
+{{#include assets/hello_world.s }}
 ```
 > [!TIP]
 > For more information on the criteria MIPS programs must follow to be run with LogiSpim,
