@@ -11,8 +11,7 @@ import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.transform.*;
 import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
-import java.io.File;
-import java.io.IOException;
+import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.InvalidPathException;
 import java.nio.file.Path;
@@ -137,6 +136,7 @@ public class SettingsManager {
      * @throws SettingsManagerException if an issue with parsing the file occurs, or if an issue with IO occurs.
      */
     public synchronized void set(Settings setting, Object value) throws SettingsManagerException {
+        // Deserialize xml
         Document doc;
         try {
             DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
@@ -146,9 +146,11 @@ public class SettingsManager {
             throw new SettingsManagerException("Unable to parse file while updating setting in settings file located at \"" + file.toString() + "\"");
         }
 
+        // Update target node
         Node curr = doc.getElementsByTagName(setting.getXmlTag()).item(0);
         curr.setTextContent(value.toString());
 
+        // Create transformer for serializing xml
         Transformer transformer;
         try {
             transformer = TransformerFactory.newInstance().newTransformer();
@@ -160,6 +162,7 @@ public class SettingsManager {
         transformer.setOutputProperty(OutputKeys.METHOD, "xml");
         transformer.setOutputProperty(OutputKeys.ENCODING, "UTF-8");
 
+        // Serialize and write updated xml
         try {
 
             DOMSource source = new DOMSource(doc);
@@ -168,6 +171,29 @@ public class SettingsManager {
 
         } catch (TransformerException e) {
             throw new SettingsManagerException("Attempt to write default settings file failed. Target path: \"" + file.toString() + "\"");
+        }
+
+        // Reading settings file to reformat (remove any blank lines left by the previous process)
+        StringBuilder contentBuilder = new StringBuilder();
+        try (BufferedReader br = new BufferedReader(new FileReader(file.toFile()))) {
+            String line;
+            while ((line = br.readLine()) != null) {
+                if (line.equals("\n"))
+                    continue;
+
+                contentBuilder.append(line);
+            }
+        } catch (IOException e) {
+            throw new SettingsManagerException("Attempt to read settings file failed while reformatting. "
+            + "Target path: \"" + file.toString() + "\"");
+        }
+
+        // Write reformatted settings file
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(file.toFile()))) {
+            writer.write(contentBuilder.toString());
+        } catch (IOException e) {
+            throw new SettingsManagerException("Attempt to write reformatted settings file failed. "
+            + "Target path: \"" + file.toString() + "\"");
         }
     }
 
