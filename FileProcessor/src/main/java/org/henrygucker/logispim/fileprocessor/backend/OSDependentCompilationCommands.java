@@ -5,7 +5,7 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.nio.file.Path;
 
-public enum PlatformToolchainCommands {
+public enum OSDependentCompilationCommands {
     MACOS("MacOS", new String[]{
             "mipsel-linux-gnu-as"
     }, new String[]{
@@ -33,7 +33,7 @@ public enum PlatformToolchainCommands {
     private final String[] linkerCommand;
     private final String[] objdumpCommand;
 
-    PlatformToolchainCommands(String displayName, String[] assemblerCommand, String[] linkerCommand, String[] objdumpCommand) {
+    OSDependentCompilationCommands(String displayName, String[] assemblerCommand, String[] linkerCommand, String[] objdumpCommand) {
         this.displayName = displayName;
         this.assemblerCommand = assemblerCommand;
         this.linkerCommand = linkerCommand;
@@ -65,18 +65,18 @@ public enum PlatformToolchainCommands {
     }
 
     /**
-     * Gets the correct {@link PlatformToolchainCommands} enum value for the current operating system.
-     * @return the appropriate {@link PlatformToolchainCommands} value. {@code null} if unsupported OS.
+     * Gets the correct {@link OSDependentCompilationCommands} enum value for the current operating system.
+     * @return the appropriate {@link OSDependentCompilationCommands} value. {@code null} if unsupported OS.
      */
-    public static PlatformToolchainCommands getAppropriateCommands() {
+    public static OSDependentCompilationCommands getForCurrentOS() {
         String osName = System.getProperty("os.name");
         String osVersion = System.getProperty("os.version");
         if (osName.startsWith("Windows")) {
-            return PlatformToolchainCommands.WINDOWS;
+            return OSDependentCompilationCommands.WINDOWS;
         } else if (osName.equalsIgnoreCase("macos") || osName.equalsIgnoreCase("mac os x")) {
-            return PlatformToolchainCommands.MACOS;
+            return OSDependentCompilationCommands.MACOS;
         } else if (isDebianBased()) {
-            return PlatformToolchainCommands.LINUX_DEBIAN;
+            return OSDependentCompilationCommands.LINUX_DEBIAN;
         }
 
         return null;
@@ -87,7 +87,7 @@ public enum PlatformToolchainCommands {
      * @param path The {@link Path} directed at the file's location.
      * @return The {@link String} that accounts for being run on Windows through wsl.
      */
-    public static String pathToAppropriateString(Path path) {
+    public static String pathToOSString(Path path) {
         if (!System.getProperty("os.name").startsWith("Windows")) {
             return path.toString();
         }
