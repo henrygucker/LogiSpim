@@ -1,6 +1,6 @@
 package org.henrygucker.logispim.fileprocessor.actionlisteners;
 
-import org.henrygucker.logispim.fileprocessor.backend.exceptions.SettingsManagerException;
+import org.henrygucker.logispim.fileprocessor.backend.exceptions.AppConfigException;
 import org.henrygucker.logispim.fileprocessor.uicomponents.FileSelectorPanel;
 import org.henrygucker.logispim.fileprocessor.App;
 
@@ -43,7 +43,7 @@ public class OutputDirectorySelectorActionListener implements FileSelectorAction
                     curr = curr.getParent();
 
                 panel.setCurrentPath(curr);
-            } catch (SettingsManagerException e) {
+            } catch (AppConfigException e) {
                 app.errorMessage("Output Directory Selection Error", "There was an issue saving your new output directory. Try again.");
             }
         }

@@ -1,7 +1,7 @@
 package org.henrygucker.logispim.fileprocessor.actionlisteners;
 
-import org.henrygucker.logispim.fileprocessor.backend.SettingsManager;
-import org.henrygucker.logispim.fileprocessor.backend.exceptions.SettingsManagerException;
+import org.henrygucker.logispim.fileprocessor.backend.AppConfig;
+import org.henrygucker.logispim.fileprocessor.backend.exceptions.AppConfigException;
 import org.henrygucker.logispim.fileprocessor.App;
 
 import javax.swing.*;
@@ -21,8 +21,9 @@ public class KernelTextCheckboxActionListener implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         try {
-            app.setSetting(SettingsManager.Settings.IS_KERNEL_TEXT, checkBox.isSelected());
-        } catch (SettingsManagerException _) {
+            //TODO: FINISH DOC COMMENTS
+            AppConfig.IS_KERNEL_TEXT.setValue(checkBox.isSelected());
+        } catch (AppConfigException _) {
             checkBox.setSelected(!checkBox.isSelected());
         }
     }

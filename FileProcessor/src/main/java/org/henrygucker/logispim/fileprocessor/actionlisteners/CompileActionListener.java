@@ -1,14 +1,14 @@
 package org.henrygucker.logispim.fileprocessor.actionlisteners;
 
 import org.henrygucker.logispim.fileprocessor.backend.MIPSCrossCompiler;
-import org.henrygucker.logispim.fileprocessor.backend.PlatformToolchainCommands;
-import org.henrygucker.logispim.fileprocessor.backend.SettingsManager;
+import org.henrygucker.logispim.fileprocessor.backend.OSDependentCompilationCommands;
+import org.henrygucker.logispim.fileprocessor.backend.AppConfig;
 import org.henrygucker.logispim.fileprocessor.backend.elf.ElfFile;
 import org.henrygucker.logispim.fileprocessor.backend.elf.ElfFormatException;
 import org.henrygucker.logispim.fileprocessor.backend.elf.SectionHeader;
 import org.henrygucker.logispim.fileprocessor.backend.elf.Symbol;
 import org.henrygucker.logispim.fileprocessor.backend.exceptions.CompilationException;
-import org.henrygucker.logispim.fileprocessor.backend.exceptions.SettingsManagerException;
+import org.henrygucker.logispim.fileprocessor.backend.exceptions.AppConfigException;
 import org.henrygucker.logispim.fileprocessor.App;
 
 import javax.swing.*;
@@ -48,30 +48,18 @@ public class CompileActionListener implements ActionListener {
 
     private synchronized void performAction() {
         // Getting settings values for compilation
-        Path outputDir = null;
-        Path sourcePath = null;
-        Boolean isKernelText = null;
-        try {
-            outputDir = (Path) app.getSetting(SettingsManager.Settings.OUTPUT_DIRECTORY_ABSOLUTE_PATH);
-            sourcePath = (Path) app.getSetting(SettingsManager.Settings.SOURCE_FILE_ABSOLUTE_PATH);
-            isKernelText = (Boolean) app.getSetting(SettingsManager.Settings.IS_KERNEL_TEXT);
-        } catch (SettingsManagerException e) {
-            app.errorMessage(e.getTitle(), e.getIsolatedMessage());
-        }
+        Path outputDir = (Path) AppConfig.OUTPUT_DIRECTORY_ABSOLUTE_PATH.getValue();
+        Path sourcePath = (Path) AppConfig.SOURCE_FILE_ABSOLUTE_PATH.getValue();
+        boolean isKernelText = (boolean) AppConfig.IS_KERNEL_TEXT.getValue();
 
         // Checking validity of read values
 
         // Invalid if was unable to get path (null returned) or if path is not directed at a directory
-        if (outputDir == null || !outputDir.toFile().exists() || !outputDir.toFile().isDirectory()) {
+        if (!outputDir.toFile().exists() || !outputDir.toFile().isDirectory()) {
             app.errorMessage("Compilation Error", "Invalid output directory selected.");
             return;
         }
 
-        // Invalid if was unable to get source path (null returned)
-        if (sourcePath == null) {
-            app.errorMessage("Compilation Error", "Invalid source path selected.");
-            return;
-        }
 
         // Invalid if source file does not exist
         if (!sourcePath.toFile().exists()) {
@@ -82,13 +70,6 @@ public class CompileActionListener implements ActionListener {
         // Invalid if source "file" is a directory
         if (sourcePath.toFile().isDirectory()) {
             app.errorMessage("Compilation Error", "Invalid source path selected. \"" + sourcePath.toString() + "\" is a directly, not a file.");
-            return;
-        }
-
-        // Invalid if issue reading true/false value (null returned)
-        if (isKernelText == null) {
-            app.errorMessage("Compilation Error", "An error occurred while reading settings for compilation. Try again.");
-
             return;
         }
 
@@ -156,12 +137,12 @@ public class CompileActionListener implements ActionListener {
         }
 
         ArrayList<String> objdumpArgs = new ArrayList<>();
-        for (String arg : PlatformToolchainCommands.getAppropriateCommands().getObjdumpCommand())
+        for (String arg : OSDependentCompilationCommands.getForCurrentOS().getObjdumpCommand())
             objdumpArgs.add(arg);
 
         objdumpArgs.add("-D");
 
-        objdumpArgs.add(PlatformToolchainCommands.pathToAppropriateString(elfPath));
+        objdumpArgs.add(OSDependentCompilationCommands.pathToOSString(elfPath));
 
         ProcessBuilder pb = new ProcessBuilder(objdumpArgs);
         Process objdump = null;

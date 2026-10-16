@@ -2,8 +2,8 @@ package org.henrygucker.logispim.fileprocessor;
 
 import org.henrygucker.logispim.fileprocessor.actionlisteners.CompileActionListener;
 import org.henrygucker.logispim.fileprocessor.actionlisteners.KernelTextCheckboxActionListener;
-import org.henrygucker.logispim.fileprocessor.backend.SettingsManager;
-import org.henrygucker.logispim.fileprocessor.backend.exceptions.SettingsManagerException;
+import org.henrygucker.logispim.fileprocessor.backend.AppConfig;
+import org.henrygucker.logispim.fileprocessor.backend.exceptions.AppConfigException;
 import org.henrygucker.logispim.fileprocessor.uicomponents.FileSelectorPanel;
 
 import javax.swing.*;
@@ -15,33 +15,29 @@ import java.nio.file.Paths;
 
 public class App extends JFrame {
 
+    // Window Dimensions
     private static final int WIDTH = 1080;
     private static final int HEIGHT = 800;
+
     public static final int CONTENT_WIDTH = 640;
 
+    // Swing Components
     private final GridBagLayout layout;
-    private final Path homePath;
-    private SettingsManager settingsManager;
     private final JTextArea textArea;
 
-    public App() {
-        // App start
+    // Other
+    private final Path homePath;
 
-        super("LogiSpim");
+    public App(String appName) {
+
+        // App start
+        super(appName);
 
         this.setPreferredSize(new Dimension(WIDTH, HEIGHT));
         this.setMinimumSize(new Dimension(WIDTH, HEIGHT));
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-
         homePath = Paths.get(System.getProperty("user.home") + File.separator + "LogiSpim");
-
-        try {
-            settingsManager = new SettingsManager(homePath.resolve("settings.xml"));
-        } catch (SettingsManagerException e) {
-            settingsManager = null;
-           errorMessage("Initialization Error", "There was an issue in creating the initial settings file: \"" + e.getIsolatedMessage() + "\"");
-        }
 
         JPanel mainPanel = new JPanel();
         mainPanel.setSize(new Dimension(WIDTH, HEIGHT));
@@ -99,16 +95,7 @@ public class App extends JFrame {
         mainPanel.add(compileButton);
 
         // Kernel Text CheckBox
-        boolean isKernelText = false;
-        try {
-            isKernelText = (boolean) getSetting(SettingsManager.Settings.IS_KERNEL_TEXT);
-        } catch (SettingsManagerException _) {
-            try {
-                setSetting(SettingsManager.Settings.IS_KERNEL_TEXT, isKernelText);
-            } catch (SettingsManagerException _) {
-                // Attempt to sync checkbox state to previous value failed, defaulting to false.
-            }
-        }
+        boolean isKernelText = (boolean) AppConfig.IS_KERNEL_TEXT.getValue();
         JCheckBox kernelTextCheckBox = new JCheckBox("Kernel Text", isKernelText);
         kernelTextCheckBox.addActionListener(new KernelTextCheckboxActionListener(this, kernelTextCheckBox));
 
@@ -249,24 +236,4 @@ public class App extends JFrame {
         );
     }
 
-    /**
-     * Gets the stored setting.
-     * @param setting The {@link SettingsManager.Settings} value to retrieve.
-     * @return The stored value that is retrieved. Will return {@code null} if value cannot be parsed.
-     * @throws SettingsManagerException if an issue occurs with IO, or if an issue occurs while resetting the settings file to default values.
-     */
-    public Object getSetting(SettingsManager.Settings setting) throws SettingsManagerException {
-        return settingsManager.get(setting);
-    }
-
-    /**
-     *
-     * @param setting Which {@link SettingsManager.Settings} value to update.
-     * @param value
-     * @throws SettingsManagerException
-     */
-    public void setSetting(SettingsManager.Settings setting, Object value) throws SettingsManagerException {
-        //TODO: FINISH DOC COMMENTS
-        settingsManager.set(setting, value);
-    }
 }

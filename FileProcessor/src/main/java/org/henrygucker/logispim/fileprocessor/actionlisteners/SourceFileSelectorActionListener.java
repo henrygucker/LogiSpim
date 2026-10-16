@@ -1,6 +1,6 @@
 package org.henrygucker.logispim.fileprocessor.actionlisteners;
 
-import org.henrygucker.logispim.fileprocessor.backend.exceptions.SettingsManagerException;
+import org.henrygucker.logispim.fileprocessor.backend.exceptions.AppConfigException;
 import org.henrygucker.logispim.fileprocessor.uicomponents.FileSelectorPanel;
 import org.henrygucker.logispim.fileprocessor.App;
 
@@ -42,7 +42,7 @@ public class SourceFileSelectorActionListener implements FileSelectorActionListe
             try {
                 panel.setCurrentPath(sourceFileChooser.getSelectedFile().toPath());
                 app.updateTextAreaWithFileContent(sourceFileChooser.getSelectedFile().toPath());
-            } catch (SettingsManagerException e) {
+            } catch (AppConfigException e) {
                 app.errorMessage("File Selection Error", "There was an issue saving your file selection. Try again.");
             }
         }

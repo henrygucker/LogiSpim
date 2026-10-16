@@ -3,8 +3,8 @@ package org.henrygucker.logispim.fileprocessor.uicomponents;
 import org.henrygucker.logispim.fileprocessor.actionlisteners.FileSelectorActionListener;
 import org.henrygucker.logispim.fileprocessor.actionlisteners.OutputDirectorySelectorActionListener;
 import org.henrygucker.logispim.fileprocessor.actionlisteners.SourceFileSelectorActionListener;
-import org.henrygucker.logispim.fileprocessor.backend.SettingsManager;
-import org.henrygucker.logispim.fileprocessor.backend.exceptions.SettingsManagerException;
+import org.henrygucker.logispim.fileprocessor.backend.AppConfig;
+import org.henrygucker.logispim.fileprocessor.backend.exceptions.AppConfigException;
 import org.henrygucker.logispim.fileprocessor.App;
 
 import javax.swing.*;
@@ -17,25 +17,25 @@ public class FileSelectorPanel extends JPanel {
     public enum FileSelectorPanelType {
         SOURCE_FILE(
                 "Source File",
-                SettingsManager.Settings.SOURCE_FILE_ABSOLUTE_PATH,
+                AppConfig.SOURCE_FILE_ABSOLUTE_PATH,
                 "LogiSpim",
                 new SourceFileSelectorActionListener()
                 ),
         OUTPUT_DIRECTORY(
                 "Output Directory",
-                SettingsManager.Settings.OUTPUT_DIRECTORY_ABSOLUTE_PATH,
+                AppConfig.OUTPUT_DIRECTORY_ABSOLUTE_PATH,
                 "LogiSpim" + File.separator + "out",
                 new OutputDirectorySelectorActionListener()
                 );
 
         private final String name;
-        private final SettingsManager.Settings setting;
+        private final AppConfig appConfig;
         private final String defaultPathRelativeFromHome;
         private final FileSelectorActionListener actionListenerEmptyInstance;
 
-        FileSelectorPanelType(String name, SettingsManager.Settings setting, String defaultPathRelativeFromHome, FileSelectorActionListener actionListenerEmptyInstance) throws IllegalArgumentException {
+        FileSelectorPanelType(String name, AppConfig appConfig, String defaultPathRelativeFromHome, FileSelectorActionListener actionListenerEmptyInstance) throws IllegalArgumentException {
             this.name = name;
-            this.setting = setting;
+            this.appConfig = appConfig;
             this.defaultPathRelativeFromHome = defaultPathRelativeFromHome;
             this.actionListenerEmptyInstance = actionListenerEmptyInstance;
         }
@@ -44,8 +44,8 @@ public class FileSelectorPanel extends JPanel {
             return name;
         }
 
-        public SettingsManager.Settings getAssociatedSetting() {
-            return setting;
+        public AppConfig getAssociatedSetting() {
+            return appConfig;
         }
 
         public Path getDefaultPath(App app) {
@@ -116,11 +116,7 @@ public class FileSelectorPanel extends JPanel {
      * @return the {@link Path} to either the most recently selected value, or the default value.
      */
     public Path getCurrentPath() {
-        Path path = null;
-        try {
-            path = (Path) app.getSetting(type.getAssociatedSetting());
-        } catch (SettingsManagerException e) {
-        }
+        Path path = (Path) type.getAssociatedSetting().getValue();
 
         if (path == null)
             path = type.getDefaultPath(app);
@@ -128,9 +124,10 @@ public class FileSelectorPanel extends JPanel {
         return path;
     }
 
-    public void setCurrentPath(Path path) throws SettingsManagerException {
+    public void setCurrentPath(Path path) throws AppConfigException {
         // If issue with updating setting occurs, SettingsManagerException will be thrown here
-        app.setSetting(type.getAssociatedSetting(), path);
+        //TODO: FINISH DOC COMMENTS
+        type.getAssociatedSetting().setValue(path);
 
         // Text field will not update if issue occurs with settings update
         textField.setText(path.toAbsolutePath().toString());

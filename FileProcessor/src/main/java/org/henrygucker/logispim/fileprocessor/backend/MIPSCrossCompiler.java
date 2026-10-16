@@ -66,7 +66,7 @@ public class MIPSCrossCompiler {
         Path preProcessedAsmFilePath = binDir.resolve(sourceName + "_processed.s");
         Path objectFilePath = binDir.resolve(sourceName + ".o");
         Path elfFilePath = binDir.resolve(sourceName + ".elf");
-        PlatformToolchainCommands commands = PlatformToolchainCommands.getAppropriateCommands();
+        OSDependentCompilationCommands commands = OSDependentCompilationCommands.getForCurrentOS();
 
         // Creates /sourceName/bin directory and all parent directories
         Files.createDirectories(binDir);
@@ -83,10 +83,10 @@ public class MIPSCrossCompiler {
         }
 
         assemblerArgs.add("-o");
-        assemblerArgs.add(PlatformToolchainCommands.pathToAppropriateString(objectFilePath));
+        assemblerArgs.add(OSDependentCompilationCommands.pathToOSString(objectFilePath));
 
         // Assembler input file
-        assemblerArgs.add(PlatformToolchainCommands.pathToAppropriateString(preProcessedAsmFilePath));
+        assemblerArgs.add(OSDependentCompilationCommands.pathToOSString(preProcessedAsmFilePath));
 
         ProcessBuilder pb = new ProcessBuilder(assemblerArgs);
         Process assembler = pb.start();
@@ -129,12 +129,12 @@ public class MIPSCrossCompiler {
         }
 
         linkerArgs.add("-T");
-        linkerArgs.add(PlatformToolchainCommands.pathToAppropriateString(linkerScriptPath));
+        linkerArgs.add(OSDependentCompilationCommands.pathToOSString(linkerScriptPath));
 
-        linkerArgs.add(PlatformToolchainCommands.pathToAppropriateString(objectFilePath));
+        linkerArgs.add(OSDependentCompilationCommands.pathToOSString(objectFilePath));
 
         linkerArgs.add("-o");
-        linkerArgs.add(PlatformToolchainCommands.pathToAppropriateString(elfFilePath));
+        linkerArgs.add(OSDependentCompilationCommands.pathToOSString(elfFilePath));
 
         pb = new ProcessBuilder(linkerArgs);
         Process linker = pb.start();
