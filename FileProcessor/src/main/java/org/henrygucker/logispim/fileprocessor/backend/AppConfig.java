@@ -11,21 +11,52 @@ import java.util.prefs.BackingStoreException;
 import java.util.prefs.Preferences;
 
 public enum AppConfig {
-    OUTPUT_DIRECTORY_ABSOLUTE_PATH("output_dir_abs_path", Path.class, (String val) -> {
-        try {
-            return Paths.get(val);
-        } catch (InvalidPathException e) {
-            return null;
-        }
-    }, System.getProperty("user.home") + File.separator + "LogiSpim" + File.separator + "out"),
-    SOURCE_FILE_ABSOLUTE_PATH("source_file_abs_path", Path.class, (String val) -> {
-        try {
-            return Paths.get(val);
-        } catch (InvalidPathException e) {
-            return null;
-        }
-    }, System.getProperty("user.home") + File.separator + "LogiSpim"),
-    IS_KERNEL_TEXT("is_kernel_text", Boolean.class, (String val) -> val.equals("true"), "false");
+    /**
+     * Stores the last used LogiSpim version. Stores "N/A" if uninitialized (by default).
+     * This value is to be updated once all local (and config) changes are made to support the current version.
+     */
+    LAST_USED_LOGISPIM_VERSION(
+            "logispim_version",
+            String.class,
+            (String val) -> val,
+            "N/A"
+    ),
+    /**
+     * Stores the normalized absolute path to the workspace directory (selected at initialization).
+     */
+    WORKSPACE_DIRECTORY(
+            "workspace_dir",
+            Path.class,
+            (String val) -> {
+                try {
+                    return Paths.get(val);
+                } catch (InvalidPathException e) {
+                    return null;
+                }
+            },
+            OSDependentData.getForCurrentOS().getDefaultWorkspaceDir().toString()
+    ),
+    /**
+     * Stores the normalized absolute path to the last source file chosen by the user.
+     */
+    LAST_CHOSEN_SOURCE_FILE_PATH(
+            "source_file_abs_path",
+            Path.class,
+            (String val) -> {
+                try {
+                    return Paths.get(val);
+                } catch (InvalidPathException e) {
+                    return null;
+                }
+            },
+            OSDependentData.getForCurrentOS().getDefaultWorkspaceDir().resolve("src").resolve("hello_world.s").toString()
+    ),
+    IS_KERNEL_TEXT(
+            "is_kernel_text",
+            Boolean.class,
+            (String val) -> val.equals("true"),
+            "false"
+    );
 
     private final String xmlTag;
     private final Class dataClass;
@@ -81,7 +112,7 @@ public enum AppConfig {
      */
     public synchronized Object getValue() {
         return this.castingFunc.apply(
-                PREFS.get(this.getXmlTag(), this.getDefaultValue())
+                PREFS.get(this.getXmlTag(), this.getDefaultValue()).toString() // .toString() to clone String output
         );
     }
 
@@ -105,6 +136,27 @@ public enum AppConfig {
         } catch (BackingStoreException e) {
             System.err.println("Failure to update AppConfig backing storage.");
             e.printStackTrace(System.err);
+        }
+    }
+
+    /**
+     * Resets this config value to its default value
+     */
+    public synchronized void restoreDefault() {
+        // Cannot throw exception since type of default value matches type of expected value
+        try {
+            this.setValue(this.getDefaultValue());
+        } catch (AppConfigException _) {}
+    }
+
+    public synchronized static void resetDefaults() {
+        try {
+            // Removes all key-value associations in this preference node
+            PREFS.clear();
+            // Forces changes to the persistent backing store
+            PREFS.flush();
+        } catch (BackingStoreException e) {
+            e.printStackTrace();
         }
     }
 }

@@ -5,35 +5,49 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.nio.file.Path;
 
-public enum OSDependentCompilationCommands {
-    MACOS("MacOS", new String[]{
-            "mipsel-linux-gnu-as"
-    }, new String[]{
-            "mipsel-linux-gnu-ld"
-    }, new String[]{
-            "mipsel-linux-gnu-objdump"
-    }),
-    WINDOWS("Windows", new String[]{
-            "wsl", "mipsel-linux-gnu-as"
-    }, new String[]{
-            "wsl", "mipsel-linux-gnu-ld"
-    }, new String[]{
-            "wsl", "mipsel-linux-gnu-objdump"
-    }),
-    LINUX_DEBIAN("Linux (Debian/Ubuntu)", new String[]{
-            "mipsel-linux-gnu-as"
-    }, new String[]{
-            "mipsel-linux-gnu-ld"
-    }, new String[]{
-            "mipsel-linux-gnu-objdump"
-    });
+public enum OSDependentData {
+    MACOS("MacOS",
+            new String[]{
+                    "mipsel-linux-gnu-as"
+            },
+            new String[]{
+                    "mipsel-linux-gnu-ld"
+            },
+            new String[]{
+                    "mipsel-linux-gnu-objdump"
+            }
+    ),
+    WINDOWS("Windows",
+            new String[]{
+                    "wsl", "mipsel-linux-gnu-as"
+            },
+            new String[]{
+                    "wsl", "mipsel-linux-gnu-ld"
+            },
+            new String[]{
+                    "wsl", "mipsel-linux-gnu-objdump"
+            }
+    ),
+    LINUX_DEBIAN("Linux (Debian/Ubuntu)",
+            new String[]{
+                    "mipsel-linux-gnu-as"
+            },
+            new String[]{
+                    "mipsel-linux-gnu-ld"
+            },
+            new String[]{
+                    "mipsel-linux-gnu-objdump"
+            }
+    );
+
+    private static final String APP_NAME = "LogiSpim";
 
     private final String displayName;
     private final String[] assemblerCommand;
     private final String[] linkerCommand;
     private final String[] objdumpCommand;
 
-    OSDependentCompilationCommands(String displayName, String[] assemblerCommand, String[] linkerCommand, String[] objdumpCommand) {
+    OSDependentData(String displayName, String[] assemblerCommand, String[] linkerCommand, String[] objdumpCommand) {
         this.displayName = displayName;
         this.assemblerCommand = assemblerCommand;
         this.linkerCommand = linkerCommand;
@@ -64,19 +78,31 @@ public enum OSDependentCompilationCommands {
         return objdumpCommand.clone();
     }
 
+
+    public Path getDefaultWorkspaceDir() {
+        switch (this) {
+            case MACOS:
+            case WINDOWS:
+                return Path.of(System.getProperty("user.home"), "Documents", APP_NAME);
+            case LINUX_DEBIAN:
+                return Path.of(System.getProperty("user.home"), APP_NAME);
+        }
+        return null;
+    }
+
     /**
-     * Gets the correct {@link OSDependentCompilationCommands} enum value for the current operating system.
-     * @return the appropriate {@link OSDependentCompilationCommands} value. {@code null} if unsupported OS.
+     * Gets the correct {@link OSDependentData} enum value for the current operating system.
+     * @return the appropriate {@link OSDependentData} value. {@code null} if unsupported OS.
      */
-    public static OSDependentCompilationCommands getForCurrentOS() {
+    public static OSDependentData getForCurrentOS() {
         String osName = System.getProperty("os.name");
         String osVersion = System.getProperty("os.version");
         if (osName.startsWith("Windows")) {
-            return OSDependentCompilationCommands.WINDOWS;
+            return OSDependentData.WINDOWS;
         } else if (osName.equalsIgnoreCase("macos") || osName.equalsIgnoreCase("mac os x")) {
-            return OSDependentCompilationCommands.MACOS;
+            return OSDependentData.MACOS;
         } else if (isDebianBased()) {
-            return OSDependentCompilationCommands.LINUX_DEBIAN;
+            return OSDependentData.LINUX_DEBIAN;
         }
 
         return null;

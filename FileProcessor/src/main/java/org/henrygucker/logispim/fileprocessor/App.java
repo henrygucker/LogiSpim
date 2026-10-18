@@ -3,7 +3,6 @@ package org.henrygucker.logispim.fileprocessor;
 import org.henrygucker.logispim.fileprocessor.actionlisteners.CompileActionListener;
 import org.henrygucker.logispim.fileprocessor.actionlisteners.KernelTextCheckboxActionListener;
 import org.henrygucker.logispim.fileprocessor.backend.AppConfig;
-import org.henrygucker.logispim.fileprocessor.backend.exceptions.AppConfigException;
 import org.henrygucker.logispim.fileprocessor.uicomponents.FileSelectorPanel;
 
 import javax.swing.*;
@@ -11,7 +10,6 @@ import javax.swing.border.Border;
 import java.awt.*;
 import java.io.*;
 import java.nio.file.Path;
-import java.nio.file.Paths;
 
 public class App extends JFrame {
 
@@ -23,10 +21,9 @@ public class App extends JFrame {
 
     // Swing Components
     private final GridBagLayout layout;
+    private final FileSelectorPanel sourceSelectorPanel;
+    private final FileSelectorPanel workspaceSelectorPanel;
     private final JTextArea textArea;
-
-    // Other
-    private final Path homePath;
 
     public App(String appName) {
 
@@ -36,8 +33,6 @@ public class App extends JFrame {
         this.setPreferredSize(new Dimension(WIDTH, HEIGHT));
         this.setMinimumSize(new Dimension(WIDTH, HEIGHT));
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
-        homePath = Paths.get(System.getProperty("user.home") + File.separator + "LogiSpim");
 
         JPanel mainPanel = new JPanel();
         mainPanel.setSize(new Dimension(WIDTH, HEIGHT));
@@ -65,20 +60,21 @@ public class App extends JFrame {
 
         mainPanel.add(titleLabel);
 
-        FileSelectorPanel sourcePanel = new FileSelectorPanel(this, FileSelectorPanel.FileSelectorPanelType.SOURCE_FILE);
+        this.workspaceSelectorPanel = new FileSelectorPanel(this, FileSelectorPanel.FileSelectorPanelType.WORKSPACE_DIRECTORY);
 
         constraints.gridy = 1;
         constraints.fill = GridBagConstraints.HORIZONTAL;
-        this.layout.setConstraints(sourcePanel, constraints);
+        this.layout.setConstraints(workspaceSelectorPanel, constraints);
 
-        mainPanel.add(sourcePanel);
+        mainPanel.add(workspaceSelectorPanel);
 
-        FileSelectorPanel outputDirectoryPanel = new FileSelectorPanel(this, FileSelectorPanel.FileSelectorPanelType.OUTPUT_DIRECTORY);
+        this.sourceSelectorPanel = new FileSelectorPanel(this, FileSelectorPanel.FileSelectorPanelType.SOURCE_FILE);
 
         constraints.gridy = 2;
-        this.layout.setConstraints(outputDirectoryPanel, constraints);
+        this.layout.setConstraints(sourceSelectorPanel, constraints);
 
-        mainPanel.add(outputDirectoryPanel);
+        mainPanel.add(sourceSelectorPanel);
+
 
 
         // Compile Button
@@ -214,12 +210,14 @@ public class App extends JFrame {
     }
 
     /**
-     * Gets the home path of the program data.
-     * Default: user.home/LogiSpim
-     * @return The {@link Path} to the home directory of the program data.
+     * Refreshes all file selector panels with the most recently stored path
      */
-    public Path getHomePath() {
-        return homePath.toAbsolutePath();
+    public void refreshFileSelectors() {
+        // Update source file selector panel
+        this.sourceSelectorPanel.setCurrentPath((Path) AppConfig.LAST_CHOSEN_SOURCE_FILE_PATH.getValue());
+
+        // Update workspace selector panel
+        this.workspaceSelectorPanel.setCurrentPath((Path) AppConfig.WORKSPACE_DIRECTORY.getValue());
     }
 
     /**

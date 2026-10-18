@@ -12,66 +12,38 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 public class MIPSCrossCompiler {
-    private final Path sourcePath;
-    private final String sourceName;
-
-    private final Path linkerScriptPath;
-    private final Path outputDirectoryPath;
-
-    private final boolean isKernelText;
 
 
     private static final String[] asmArgs = {"-EL", "-g", "-msoft-float", "-O0"};
     private static final String[] ldArgs = {"-EL"};
 
     /**
-     * Creates {@link MIPSCrossCompiler} object to compile the source MIPS assembly file based on the specified criteria.
-     * This constructor is to be used if and only if <u>NOT</u> compiling kernel instructions.
-     * @param sourcePath A {@link Path} to the source MIPS assembly file containing a main function that will be called.
-     * @param linkerScriptPath A {@link Path} to the linker script that will be used by the linker.
-     * @param outputDirectoryPath The home directory for all outputs.
-     */
-    public MIPSCrossCompiler(Path sourcePath, Path linkerScriptPath, Path outputDirectoryPath) {
-        this(sourcePath, linkerScriptPath, outputDirectoryPath, false);
-    }
-
-    /**
-     * Creates {@link MIPSCrossCompiler} object to compile the source MIPS assembly file based on the specified criteria.
+     * Compiles the file located at the entered source path into an ELF file.
      * @param sourcePath A {@link Path} to the source MIPS assembly file containing a main function that will be called.
      * @param linkerScriptPath A {@link Path} to the linker script that will be used by the linker.
      * @param outputDirectoryPath The home directory for all outputs.
      * @param isKernelText true if {@code  sourcePath} is to be compiled to kernel instructions.
-     */
-    public MIPSCrossCompiler(Path sourcePath, Path linkerScriptPath, Path outputDirectoryPath, boolean isKernelText) {
-        this.sourcePath = sourcePath;
-        this.sourceName = sourcePath.getFileName().toString().split("\\.")[0];
-
-        this.linkerScriptPath = linkerScriptPath;
-        this.outputDirectoryPath = outputDirectoryPath;
-
-        this.isKernelText = isKernelText;
-    }
-
-    /**
-     * Compiles the file located at the entered source path into an ELF file.
      * @return the {@link Path} to the generated ELF file.
      * @throws IOException if an issue with IO occurs.
      * @throws InterruptedException if the thread working on compiling the
      * @throws CompilationException if an error occurs with either the assembler or linker; the isolated message is the
      * output of the assembler/linker.
      */
-    public Path compile() throws IOException, InterruptedException, CompilationException {
-        Path thisOutputDir = outputDirectoryPath.resolve(this.sourceName);
+    public static Path compile(Path sourcePath, Path linkerScriptPath, Path outputDirectoryPath, boolean isKernelText) throws IOException, InterruptedException, CompilationException {
+        String sourceName = sourcePath.getFileName().toString().split("\\.")[0];
+
+
+        Path thisOutputDir = outputDirectoryPath.resolve(sourceName);
         Path binDir = thisOutputDir.resolve("bin");
         Path preProcessedAsmFilePath = binDir.resolve(sourceName + "_processed.s");
         Path objectFilePath = binDir.resolve(sourceName + ".o");
         Path elfFilePath = binDir.resolve(sourceName + ".elf");
-        OSDependentCompilationCommands commands = OSDependentCompilationCommands.getForCurrentOS();
+        OSDependentData commands = OSDependentData.getForCurrentOS();
 
         // Creates /sourceName/bin directory and all parent directories
         Files.createDirectories(binDir);
 
-        preprocessor(preProcessedAsmFilePath);
+        preprocessor(sourcePath, preProcessedAsmFilePath, isKernelText);
 
         // Assembling
         ArrayList<String> assemblerArgs = new ArrayList<>();
@@ -83,10 +55,10 @@ public class MIPSCrossCompiler {
         }
 
         assemblerArgs.add("-o");
-        assemblerArgs.add(OSDependentCompilationCommands.pathToOSString(objectFilePath));
+        assemblerArgs.add(OSDependentData.pathToOSString(objectFilePath));
 
         // Assembler input file
-        assemblerArgs.add(OSDependentCompilationCommands.pathToOSString(preProcessedAsmFilePath));
+        assemblerArgs.add(OSDependentData.pathToOSString(preProcessedAsmFilePath));
 
         ProcessBuilder pb = new ProcessBuilder(assemblerArgs);
         Process assembler = pb.start();
@@ -129,17 +101,17 @@ public class MIPSCrossCompiler {
         }
 
         linkerArgs.add("-T");
-        linkerArgs.add(OSDependentCompilationCommands.pathToOSString(linkerScriptPath));
+        linkerArgs.add(OSDependentData.pathToOSString(linkerScriptPath));
 
-        linkerArgs.add(OSDependentCompilationCommands.pathToOSString(objectFilePath));
+        linkerArgs.add(OSDependentData.pathToOSString(objectFilePath));
 
         linkerArgs.add("-o");
-        linkerArgs.add(OSDependentCompilationCommands.pathToOSString(elfFilePath));
+        linkerArgs.add(OSDependentData.pathToOSString(elfFilePath));
 
         pb = new ProcessBuilder(linkerArgs);
         Process linker = pb.start();
 
-        // Prints stdout from linker
+        // Prints stdout from linker (truncates at 15 lines)
         StringBuilder linkerErrorMessageBuilder = new StringBuilder();
         try (BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(linker.getErrorStream()))) {
             String line;
@@ -175,11 +147,13 @@ public class MIPSCrossCompiler {
      * <br>
      * It is expected that the program should have the text section start with a "main" label which the program will
      * jump to, and when that function returns, the program will exit.
+     * @param sourcePath A {@link Path} to the source MIPS assembly file containing a main function that will be called.
      * @param destination The {@link Path} to the resulting MIPS assembly file.
+     * @param isKernelText true if {@code  sourcePath} is to be compiled to kernel instructions.
      * @throws IOException if an issue with IO occurs.
      */
-    private void preprocessor(Path destination) throws IOException {
-        String template = "_entry:\n" +
+    private static void preprocessor(Path sourcePath, Path destination, boolean isKernelText) throws IOException {
+        final String template = "_entry:\n" +
                 "\tjal main\n" +
                 "\n" +
                 "\t# exit program\n" +
@@ -232,30 +206,28 @@ public class MIPSCrossCompiler {
     }
 
     /**
-     * Creates the necessary directories for output files if they don't exist.
-     * @throws IOException if an issue with IO occurs.
-     */
-    private void createOutputDirs() throws IOException {
-        Files.createDirectories(outputDirectoryPath.resolve(sourceName + File.separator + "bin"));
-    }
-
-    /**
-     * Splits a line if it is a label followed by something other than an assembler directive.
+     * Splits a line if it is a label followed by something other than an assembler directive. Used by preprocessor.
      * @param line A {@link String} line comments removed and not containing semicolons allowing multiple instructions in the same line.
      * @return A {@link Stream} of the split {@link String} to be flattened.
      */
-    private Stream<String> splitIfLabelNotWithAssemblerDirective(String line) {
+    private static Stream<String> splitIfLabelNotWithAssemblerDirective(String line) {
+        // Splits at first occurrence of ':' that does not occur inside a string literal
         String[] split = line.split(":(?=(?:[^\"]*\"[^\"]*\")*[^\"]*$)", 1);
+
+        // Return if no split
         if (split.length < 2)
             return Stream.of(line);
 
         split[0] += ':';
-        boolean containsDirective = split[1].trim().startsWith(".");
 
+        // Returns the line as it was if the label is followed by a directive
+        boolean containsDirective = split[1].trim().startsWith(".");
         if (containsDirective) {
             return Stream.of(split[0] + split[1]);
         }
 
+        // Returns the split line if it was not a directive following the label (splits line if instructions were
+        // written on the same line as a label).
         return Stream.of(split);
     }
 }

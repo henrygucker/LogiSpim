@@ -1,5 +1,6 @@
 package org.henrygucker.logispim.fileprocessor.actionlisteners;
 
+import org.henrygucker.logispim.fileprocessor.backend.AppConfig;
 import org.henrygucker.logispim.fileprocessor.backend.exceptions.AppConfigException;
 import org.henrygucker.logispim.fileprocessor.uicomponents.FileSelectorPanel;
 import org.henrygucker.logispim.fileprocessor.App;
@@ -33,18 +34,14 @@ public class SourceFileSelectorActionListener implements FileSelectorActionListe
 
     @Override
     public void actionPerformed(ActionEvent event) {
-        JFileChooser sourceFileChooser = new JFileChooser(panel.getCurrentPath().toFile());
+        JFileChooser sourceFileChooser = new JFileChooser(((Path) AppConfig.LAST_CHOSEN_SOURCE_FILE_PATH.getValue()).toFile());
         FileNameExtensionFilter asmFileFilter = new FileNameExtensionFilter("MIPS Assembly Files (.s)", "s");
         sourceFileChooser.setFileFilter(asmFileFilter);
 
         int returnVal = sourceFileChooser.showDialog(app, "Select");
         if (returnVal == JFileChooser.APPROVE_OPTION) {
-            try {
-                panel.setCurrentPath(sourceFileChooser.getSelectedFile().toPath());
-                app.updateTextAreaWithFileContent(sourceFileChooser.getSelectedFile().toPath());
-            } catch (AppConfigException e) {
-                app.errorMessage("File Selection Error", "There was an issue saving your file selection. Try again.");
-            }
+            panel.setCurrentPath(sourceFileChooser.getSelectedFile().toPath());
+            app.updateTextAreaWithFileContent(sourceFileChooser.getSelectedFile().toPath());
         }
     }
 

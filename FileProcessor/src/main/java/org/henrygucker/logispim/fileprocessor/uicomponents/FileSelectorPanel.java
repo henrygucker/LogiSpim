@@ -1,7 +1,7 @@
 package org.henrygucker.logispim.fileprocessor.uicomponents;
 
 import org.henrygucker.logispim.fileprocessor.actionlisteners.FileSelectorActionListener;
-import org.henrygucker.logispim.fileprocessor.actionlisteners.OutputDirectorySelectorActionListener;
+import org.henrygucker.logispim.fileprocessor.actionlisteners.WorkspaceDirectorySelectorActionListener;
 import org.henrygucker.logispim.fileprocessor.actionlisteners.SourceFileSelectorActionListener;
 import org.henrygucker.logispim.fileprocessor.backend.AppConfig;
 import org.henrygucker.logispim.fileprocessor.backend.exceptions.AppConfigException;
@@ -10,33 +10,28 @@ import org.henrygucker.logispim.fileprocessor.App;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionListener;
-import java.io.File;
 import java.nio.file.Path;
 
 public class FileSelectorPanel extends JPanel {
     public enum FileSelectorPanelType {
         SOURCE_FILE(
                 "Source File",
-                AppConfig.SOURCE_FILE_ABSOLUTE_PATH,
-                "LogiSpim",
+                AppConfig.LAST_CHOSEN_SOURCE_FILE_PATH,
                 new SourceFileSelectorActionListener()
                 ),
-        OUTPUT_DIRECTORY(
-                "Output Directory",
-                AppConfig.OUTPUT_DIRECTORY_ABSOLUTE_PATH,
-                "LogiSpim" + File.separator + "out",
-                new OutputDirectorySelectorActionListener()
+        WORKSPACE_DIRECTORY(
+                "Workspace Directory",
+                AppConfig.WORKSPACE_DIRECTORY,
+                new WorkspaceDirectorySelectorActionListener()
                 );
 
         private final String name;
         private final AppConfig appConfig;
-        private final String defaultPathRelativeFromHome;
         private final FileSelectorActionListener actionListenerEmptyInstance;
 
-        FileSelectorPanelType(String name, AppConfig appConfig, String defaultPathRelativeFromHome, FileSelectorActionListener actionListenerEmptyInstance) throws IllegalArgumentException {
+        FileSelectorPanelType(String name, AppConfig appConfig, FileSelectorActionListener actionListenerEmptyInstance) throws IllegalArgumentException {
             this.name = name;
             this.appConfig = appConfig;
-            this.defaultPathRelativeFromHome = defaultPathRelativeFromHome;
             this.actionListenerEmptyInstance = actionListenerEmptyInstance;
         }
 
@@ -48,8 +43,8 @@ public class FileSelectorPanel extends JPanel {
             return appConfig;
         }
 
-        public Path getDefaultPath(App app) {
-            return app.getHomePath().resolve(defaultPathRelativeFromHome);
+        public Path getDefaultPath() {
+            return Path.of(this.getAssociatedSetting().getDefaultValue());
         }
 
         public ActionListener getActionListener(App app, FileSelectorPanel panel) {
@@ -63,15 +58,20 @@ public class FileSelectorPanel extends JPanel {
     private final JButton change;
 
     public FileSelectorPanel(App app, FileSelectorPanelType type) {
+        // Object initialization
         super();
         this.app = app;
         this.type = type;
+
+        // Layout initialization
         GridBagLayout layout = new GridBagLayout();
         this.setLayout(layout);
 
         GridBagConstraints constraints = new GridBagConstraints();
 
+        // Configure label and placement
         JLabel label = new JLabel(type.name);
+
         constraints.gridx = 0;
         constraints.gridy = 0;
         constraints.gridwidth = 2;
@@ -83,9 +83,10 @@ public class FileSelectorPanel extends JPanel {
         layout.setConstraints(label, constraints);
         this.add(label);
 
-        ActionListener actionListener = type.getActionListener(app, this);
-
+        // Configure change button and placement
         change = new JButton("Change");
+
+        ActionListener actionListener = type.getActionListener(app, this);
         change.addActionListener(actionListener);
 
         constraints.gridwidth = 1;
@@ -98,7 +99,8 @@ public class FileSelectorPanel extends JPanel {
         layout.setConstraints(change, constraints);
         this.add(change);
 
-        textField = new JTextField(getCurrentPath().toAbsolutePath().toString());
+        // Configure text field and placement
+        textField = new JTextField(((Path) type.getAssociatedSetting().getValue()).toAbsolutePath().normalize().toString());
         textField.setEditable(false);
 
         constraints.gridx = 0;
@@ -112,24 +114,10 @@ public class FileSelectorPanel extends JPanel {
 
 
     /**
-     * Retrieves the {@link Path} to the most recently accessed value.
-     * @return the {@link Path} to either the most recently selected value, or the default value.
+     * Sets the {@link Path} stored by this {@link FileSelectorPanel}, updating the text field
+     * @param path The new {@link Path} to store
      */
-    public Path getCurrentPath() {
-        Path path = (Path) type.getAssociatedSetting().getValue();
-
-        if (path == null)
-            path = type.getDefaultPath(app);
-
-        return path;
-    }
-
-    public void setCurrentPath(Path path) throws AppConfigException {
-        // If issue with updating setting occurs, SettingsManagerException will be thrown here
-        //TODO: FINISH DOC COMMENTS
-        type.getAssociatedSetting().setValue(path);
-
-        // Text field will not update if issue occurs with settings update
-        textField.setText(path.toAbsolutePath().toString());
+    public void setCurrentPath(Path path) {
+        textField.setText(path.toAbsolutePath().normalize().toString());
     }
 }
