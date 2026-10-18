@@ -124,9 +124,9 @@ public class CompileActionListener implements ActionListener {
 
         // Write appropriate files
         if (isKernelText) {
-            hexFileCompiler.writeKernelTextBinaryFiles(elfFile, kernelTextOutputFile);
+            hexFileCompiler.generateKernelProgramHexFiles(elfFile, kernelTextOutputFile);
         } else {
-            hexFileCompiler.writeNonKernelTextBinaryFiles(elfFile, textOutputFile, dataOutputFile);
+            hexFileCompiler.generateUserProgramHexFiles(elfFile, textOutputFile, dataOutputFile);
         }
 
 

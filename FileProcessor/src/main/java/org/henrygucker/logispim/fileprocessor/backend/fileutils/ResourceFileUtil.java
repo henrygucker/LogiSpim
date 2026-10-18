@@ -8,13 +8,16 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.StandardCopyOption;
 
+/**
+ * Class with static member functions for easily working with bundle resources as files
+ */
 public class ResourceFileUtil {
 
     /**
      * Copies contents of a resource into a file at a given path.
      * @param resourceName The name of the resource to copy
      * @param destination A {@link Path} to the desired file to be created (overwrites existing file)
-     * @return The {@link Path} to the resulting file on success, {@code null} on failure.
+     * @return The {@link Path} to the resulting file on success, {@code null} if {@code resourceName} does not exist.
      * @throws IOException if an IO issue occurs when accessing the resource or copying the resource.
      */
     public static Path copyResourceToLocation(String resourceName, Path destination) throws IOException {

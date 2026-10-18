@@ -5,8 +5,14 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.nio.file.Path;
 
+/**
+ * Enum which handles processes that vary across operating systems
+ */
 public enum OSDependentData {
-    MACOS("MacOS",
+    /**
+     * Used to access data applicable to macOS
+     */
+    MACOS("macOS",
             new String[]{
                     "mipsel-linux-gnu-as"
             },
@@ -17,6 +23,9 @@ public enum OSDependentData {
                     "mipsel-linux-gnu-objdump"
             }
     ),
+    /**
+     * Used to access data applicable to Windows
+     */
     WINDOWS("Windows",
             new String[]{
                     "wsl", "mipsel-linux-gnu-as"
@@ -28,6 +37,9 @@ public enum OSDependentData {
                     "wsl", "mipsel-linux-gnu-objdump"
             }
     ),
+    /**
+     * Used to access data applicable to Debian-based Linux
+     */
     LINUX_DEBIAN("Linux (Debian/Ubuntu)",
             new String[]{
                     "mipsel-linux-gnu-as"
@@ -78,7 +90,10 @@ public enum OSDependentData {
         return objdumpCommand.clone();
     }
 
-
+    /**
+     * Gets the default directory for the LogiSpim workspace directory
+     * @return A {@link Path} to such a workspace directory
+     */
     public Path getDefaultWorkspaceDir() {
         switch (this) {
             case MACOS:

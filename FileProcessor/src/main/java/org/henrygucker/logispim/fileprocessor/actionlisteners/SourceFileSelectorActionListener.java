@@ -40,40 +40,16 @@ public class SourceFileSelectorActionListener implements FileSelectorActionListe
 
         int returnVal = sourceFileChooser.showDialog(app, "Select");
         if (returnVal == JFileChooser.APPROVE_OPTION) {
-            panel.setCurrentPath(sourceFileChooser.getSelectedFile().toPath());
-            app.updateTextAreaWithFileContent(sourceFileChooser.getSelectedFile().toPath());
-        }
-    }
+            Path selectedPath = sourceFileChooser.getSelectedFile().toPath();
 
-    private void updateTextAreaWithFileContent(Path path) {
-        if (!path.toFile().exists() || path.toFile().isDirectory())
-            return;
+            // Updates config value
+            try {
+                AppConfig.LAST_CHOSEN_SOURCE_FILE_PATH.setValue(selectedPath);
+            } catch (AppConfigException _) {} // selectedPath is of type Path
 
-        int linesUntilTooMany = 500_000;
-        String inn;
-        StringBuilder builder = new StringBuilder();
-        try (BufferedReader reader = new BufferedReader(new FileReader(path.toFile()))) {
-            while ((inn = reader.readLine()) != null) {
-                builder.append(inn);
-                builder.append('\n');
-
-                linesUntilTooMany--;
-                if (linesUntilTooMany <= 0) {
-                    app.updateTextArea(
-                            "File \"" + path.toAbsolutePath().toString() + "\" is too long to display.\n" +
-                            "Line count exceeds 500,000."
-                    );
-                    return;
-                }
-            }
-
-            app.updateTextArea(builder.toString());
-
-        } catch (FileNotFoundException _) {
-            // This case would never happen since the method exits if the file does not exist.
-            return;
-        } catch (IOException e) {
-            app.updateTextArea("There was an issue when reading the contents of this file.");
+            // Updates panel text field and text area with file contents
+            panel.setCurrentPath(selectedPath);
+            app.updateTextAreaWithFileContent(selectedPath);
         }
     }
 }

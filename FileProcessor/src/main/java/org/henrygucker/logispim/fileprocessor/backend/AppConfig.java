@@ -2,7 +2,6 @@ package org.henrygucker.logispim.fileprocessor.backend;
 
 import org.henrygucker.logispim.fileprocessor.backend.exceptions.AppConfigException;
 
-import java.io.File;
 import java.nio.file.InvalidPathException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -10,6 +9,10 @@ import java.util.function.Function;
 import java.util.prefs.BackingStoreException;
 import java.util.prefs.Preferences;
 
+/**
+ * Enum which manages persistent application configuration for each of its enum values through member functions of
+ * its instances
+ */
 public enum AppConfig {
     /**
      * Stores the last used LogiSpim version. Stores "N/A" if uninitialized (by default).
@@ -44,8 +47,10 @@ public enum AppConfig {
             Path.class,
             (String val) -> {
                 try {
+                    System.out.println("Successfully fetched path: " + val);
                     return Paths.get(val);
                 } catch (InvalidPathException e) {
+                    e.printStackTrace(System.err);
                     return null;
                 }
             },
@@ -58,31 +63,37 @@ public enum AppConfig {
             "false"
     );
 
-    private final String xmlTag;
+    private final String configKey;
     private final Class dataClass;
 
-    /**
-     * A {@link Function}to parse the stored {@link String} to an {@link Object} of the correct associated type.
-     */
     private final Function<String, Object> castingFunc;
     private final String defaultValue;
 
     private static final Preferences PREFS = Preferences.userNodeForPackage(AppConfig.class);
 
-    AppConfig(String xmlTag, Class dataClass, Function<String, Object> castingFunc, String defaultValue) {
-        this.xmlTag = xmlTag;
+    /**
+     * Instantiate an enum value for a config setting
+     * @param configKey The unique {@link String} used to identify this config setting
+     * @param dataClass The {@link Class} of values stored by this config
+     * @param castingFunc A {@link Function}to parse the stored {@link String} to an {@link Object} of the
+     *                    correct associated type. Allows users to simply cast a returned {@link Object} to
+     *                    the expected type of any given setting rather than repeatedly parsing returned strings.
+     * @param defaultValue The default value of this config value
+     */
+    AppConfig(String configKey, Class dataClass, Function<String, Object> castingFunc, String defaultValue) {
+        this.configKey = configKey;
         this.dataClass = dataClass;
         this.castingFunc = castingFunc;
         this.defaultValue = defaultValue;
     }
 
     /**
-     * Gets the XML tag of this setting used in the settings file.
+     * Gets the key associated with this config as used by {@code PREFS}.
      *
      * @return a {@link String} which is used to reference this setting's value in the settings XML file.
      */
-    public String getXmlTag() {
-        return xmlTag;
+    private String getKey() {
+        return configKey;
     }
 
     /**
@@ -112,7 +123,8 @@ public enum AppConfig {
      */
     public synchronized Object getValue() {
         return this.castingFunc.apply(
-                PREFS.get(this.getXmlTag(), this.getDefaultValue()).toString() // .toString() to clone String output
+                // .toString() to clone String output and prevent accidental sharing of cached resource
+                PREFS.get(this.getKey(), this.getDefaultValue()).toString()
         );
     }
 
@@ -126,9 +138,9 @@ public enum AppConfig {
         // Ensure type matches
         if (!this.dataClass.isInstance(value))
             throw new AppConfigException("Value of type " + value.getClass().toString() + " does not meet the " +
-                    "requirement of setting " + this.getXmlTag() + ".");
+                    "requirement of setting " + this.getKey() + ".");
 
-        PREFS.put(this.getXmlTag(), value.toString());
+        PREFS.put(this.getKey(), value.toString());
 
         // Attempt to update backing storage (local file) with updated preferences
         try {
@@ -149,7 +161,10 @@ public enum AppConfig {
         } catch (AppConfigException _) {}
     }
 
-    public synchronized static void resetDefaults() {
+    /**
+     * Clears all config values
+     */
+    public synchronized static void clearAll() {
         try {
             // Removes all key-value associations in this preference node
             PREFS.clear();

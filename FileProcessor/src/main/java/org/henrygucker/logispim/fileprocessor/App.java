@@ -104,8 +104,6 @@ public class App extends JFrame {
         mainPanel.add(kernelTextCheckBox);
 
 
-
-
         // Text Area
         textArea = new JTextArea();
         textArea.setLineWrap(false);

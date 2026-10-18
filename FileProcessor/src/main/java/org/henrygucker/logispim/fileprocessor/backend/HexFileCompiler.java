@@ -13,6 +13,9 @@ import java.nio.ByteBuffer;
 import java.nio.file.Path;
 import java.util.HashMap;
 
+/**
+ * Class whose instances provide utilities for parsing ELF files to generate HEX files for import to Logisim-evolution
+ */
 public class HexFileCompiler {
     private final App app;
 
@@ -20,7 +23,12 @@ public class HexFileCompiler {
         this.app = app;
     }
 
-    public void writeKernelTextBinaryFiles(ElfFile elfFile, Path kernelTextBinaryFile) {
+    /**
+     * Generates .hex files to be imported to Logisim for kernel programs
+     * @param elfFile The {@link Path} to the ELF file of the compiled program
+     * @param kernelTextBinaryFile The {@link Path} to the HEX file which will store the kernel text section of the compiled program
+     */
+    public void generateKernelProgramHexFiles(ElfFile elfFile, Path kernelTextBinaryFile) {
         ByteBuffer currSectionContent = null;
 
         // Fetching text section content
@@ -72,7 +80,13 @@ public class HexFileCompiler {
         return;
     }
 
-    public void writeNonKernelTextBinaryFiles(ElfFile elfFile, Path textBinaryFile, Path dataBinaryFile) {
+    /**
+     * Generates .hex files to be imported to Logisim for user-space programs
+     * @param elfFile The {@link Path} to the ELF file of the compiled program
+     * @param textBinaryFile The {@link Path} to the HEX file which will store the text section of the compiled program
+     * @param dataBinaryFile The {@link Path} to the HEX file which will store the data section of the compiled program
+     */
+    public void generateUserProgramHexFiles(ElfFile elfFile, Path textBinaryFile, Path dataBinaryFile) {
         ByteBuffer currSectionContent = null;
 
         // Fetching text section content

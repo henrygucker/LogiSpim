@@ -11,8 +11,10 @@ import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
+/**
+ * Class storing static method for cross-compiling a single-file MIPS program
+ */
 public class MIPSCrossCompiler {
-
 
     private static final String[] asmArgs = {"-EL", "-g", "-msoft-float", "-O0"};
     private static final String[] ldArgs = {"-EL"};

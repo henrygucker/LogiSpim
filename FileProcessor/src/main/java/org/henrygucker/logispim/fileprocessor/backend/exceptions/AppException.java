@@ -1,5 +1,8 @@
 package org.henrygucker.logispim.fileprocessor.backend.exceptions;
 
+/**
+ * Base class for exceptions that are to be displayed as popups by {@link App}
+ */
 public class AppException extends Exception {
     private final String errorMessageTitle;
     private final String errorMessage;

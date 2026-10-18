@@ -18,7 +18,7 @@ package org.henrygucker.logispim.fileprocessor.backend.elf;
 //} Elf32_Shdr;
 public record SectionHeader(
         int name,
-        SectionHeaderType type, // TODO: Create the enum for type to distinguish types of section headers
+        SectionHeaderType type,
         int flags,
         int addr,
         int offset,

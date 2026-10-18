@@ -7,6 +7,9 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
+/**
+ * Class storing static methods for general-purpose file utilities
+ */
 public class FileUtil {
     /**
      * Deletes file/directory at a specified path recursively.

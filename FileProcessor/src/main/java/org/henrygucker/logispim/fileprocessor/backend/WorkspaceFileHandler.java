@@ -8,8 +8,16 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.StandardCopyOption;
 
+/**
+ * Class with static methods for managing the LogiSpim workspace directory
+ */
 public class WorkspaceFileHandler {
 
+    /**
+     * Migrate the current workspace directory to a specified directory. Assumes that the workspace directory stored
+     * by {@link AppConfig} is <b>NOT</b> the new directory.
+     * @param newDir The {@link Path} to the new workspace directory. This directory does not necessarily have to exist.
+     */
     public static void migrateWorkspace(Path newDir) {
         Path oldDir = (Path) AppConfig.WORKSPACE_DIRECTORY.getValue();
 
@@ -26,20 +34,47 @@ public class WorkspaceFileHandler {
             } catch (AppConfigException _) {} // Cannot be thrown since newDir is a Path
         }
 
+        // Updating source path moved file if the last chosen src file was in the old workspace
+        Path oldSourcePath = (Path) AppConfig.LAST_CHOSEN_SOURCE_FILE_PATH.getValue();
+
+        oldSourcePath = oldSourcePath.toAbsolutePath().normalize();
+        oldDir = oldDir.toAbsolutePath().normalize();
+
+        Path newSourcePath = null;
+        if (oldSourcePath.startsWith(oldDir)) {
+            Path relativeToSrc = oldDir.relativize(oldSourcePath);
+            newSourcePath = newDir.resolve(relativeToSrc);
+        } else {
+            newSourcePath = oldSourcePath;
+        }
+
         try {
             AppConfig.WORKSPACE_DIRECTORY.setValue(newDir);
-            AppConfig.LAST_CHOSEN_SOURCE_FILE_PATH.setValue(newDir.resolve("src", "hello_world.s"));
+            AppConfig.LAST_CHOSEN_SOURCE_FILE_PATH.setValue(newSourcePath);
         } catch (AppConfigException _) {} // Never throws an AppConfigException since params are of type Path
     }
 
+    /**
+     * Gets the workspace output directory.
+     * @return The {@link Path} to the workspace output directory
+     */
     public static Path getOutputDir() {
         return ((Path) AppConfig.WORKSPACE_DIRECTORY.getValue()).resolve("out");
     }
 
+    /**
+     * Gets the default directory for source files.
+     * @return The {@link Path} to the workspace's default directory for source files
+     */
     public static Path getDefaultSourceDir() {
         return ((Path) AppConfig.WORKSPACE_DIRECTORY.getValue()).resolve("src");
     }
 
+    /**
+     * Initializes the workspace directory at the currently stored workspace directory.
+     * Does not require a directory to exist at the specified directory.
+     * @throws IOException if an issue occurs with IO, possibly a lack of permissions
+     */
     public static void initializeWorkspace() throws IOException {
         // Each workspace has the following files and directories:
         // oldDir/
@@ -62,7 +97,7 @@ public class WorkspaceFileHandler {
 
     /**
      * Repairs a workspace, ensuring that it contains a source directory, output directory, and copy of the Logisim circuit file
-     * @throws IOException if an IO issue occurs when modifying files
+     * @throws IOException if an IO issue occurs when modifying files, possibly a lack of permissions
      */
     public static void repairWorkspace() throws IOException {
         // this will later earn its own button for users to repair their workspace
