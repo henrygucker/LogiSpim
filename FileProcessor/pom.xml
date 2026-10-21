@@ -4,15 +4,29 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>org.henrygucker.logispim</groupId>
+    <parent>
+        <groupId>org.henrygucker.logispim</groupId>
+        <artifactId>LogiSpim</artifactId>
+        <version>1.0.0-SNAPSHOT</version>
+        <relativePath>../pom.xml</relativePath>
+    </parent>
+
     <artifactId>FileProcessor</artifactId>
-    <version>1.0.0-SNAPSHOT</version>
 
     <properties>
         <maven.compiler.source>22</maven.compiler.source>
         <maven.compiler.target>22</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
+
+    <dependencies>
+        <!-- Source: https://mvnrepository.com/artifact/com.formdev/flatlaf -->
+        <dependency>
+            <groupId>com.formdev</groupId>
+            <artifactId>flatlaf</artifactId>
+            <version>3.7.2</version>
+        </dependency>
+    </dependencies>
 
     <build>
         <plugins>
@@ -27,7 +41,91 @@
                             <mainClass>org.henrygucker.logispim.fileprocessor.Main</mainClass>
                         </manifest>
                     </archive>
+                    <outputDirectory>${project.build.directory}/jar</outputDirectory>
                 </configuration>
+            </plugin>
+
+            <plugin>
+                <artifactId>maven-assembly-plugin</artifactId>
+                <version>3.8.0</version>
+                <configuration>
+                    <archive>
+                        <manifest>
+                            <mainClass>org.henrygucker.logispim.fileprocessor.Main</mainClass>
+                        </manifest>
+                    </archive>
+                    <descriptorRefs>
+                        <descriptorRef>jar-with-dependencies</descriptorRef>
+                    </descriptorRefs>
+                    <outputDirectory>${project.build.directory}/jar</outputDirectory>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>make-assembly</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>single</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+
+
+            <!-- Package JAR for different operating systems -->
+            <!-- Use mvn clean package jpackage:jpackage@mac to package for macOS -->
+            <!-- Use mvn clean package jpackage:jpackage@win to package for Windows -->
+            <!-- Use mvn clean package jpackage:jpackage@linux to package for Linux -->
+            <plugin>
+                <groupId>org.panteleyev</groupId>
+                <artifactId>jpackage-maven-plugin</artifactId>
+                <version>1.8.0</version>
+
+                <configuration>
+                    <name>LogiSpim</name>
+<!--                    <appVersion>${project.version}</appVersion>-->
+                    <appVersion>1.0.0</appVersion> <!-- Must not include the -SNAPSHOT -->
+                    <vendor>org.henrygucker</vendor>
+
+                    <input>${project.build.directory}/jar</input>
+                    <mainJar>FileProcessor-${project.version}-jar-with-dependencies.jar</mainJar>
+                    <mainClass>org.henrygucker.logispim.fileprocessor.Main</mainClass>
+
+                    <destination>${project.build.directory}/installer</destination>
+                    <javaOptions>
+                        <option>--enable-preview</option>
+                        <option>-Dfile.encoding=UTF-8</option>
+                    </javaOptions>
+                    <removeDestination>true</removeDestination>
+                    <!-- Windows -->
+                    <winMenu>true</winMenu>
+                </configuration>
+
+                <executions>
+                    <execution>
+                        <id>mac</id>
+                        <configuration>
+                            <resourceDir>.config-packaging/macos</resourceDir>
+                            <icon>../assets/icons/light_mode/LogiSpim_Icon_Light.icns</icon>
+                            <type>DMG</type>
+                            <javaoptions>-Dapple.awt.application.appearance=NSAppearanceNameDarkAqua</javaoptions>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>win</id>
+                        <configuration>
+                            <icon>../assets/icons/light_mode/LogiSpim_Icon_Light.ico</icon>
+                            <type>EXE</type>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>linux</id>
+                        <configuration>
+                            <type>APP_IMAGE</type>
+                            <icon>../assets/icons/light_mode/LogiSpim_Icon_Light.png</icon>
+                            <type>DEB</type>
+                        </configuration>
+                    </execution>
+                </executions>
             </plugin>
         </plugins>
 
@@ -40,6 +138,21 @@
 
                 <includes>
                     <include>**/*.circ</include>
+                </includes>
+            </resource>
+            <resource>
+                <directory>../assets/logo</directory>
+
+                <includes>
+                    <include>LogiSpim_Logo_Dark.png</include>
+                </includes>
+            </resource>
+            <resource>
+                <directory>../assets/fonts</directory>
+
+                <includes>
+                    <include>Nunito-VariableFont_wght.ttf</include>
+                    <include>Nunito-Italic-VariableFont_wght.ttf</include>
                 </includes>
             </resource>
         </resources>

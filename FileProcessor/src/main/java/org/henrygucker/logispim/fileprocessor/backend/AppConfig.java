@@ -47,7 +47,6 @@ public enum AppConfig {
             Path.class,
             (String val) -> {
                 try {
-                    System.out.println("Successfully fetched path: " + val);
                     return Paths.get(val);
                 } catch (InvalidPathException e) {
                     e.printStackTrace(System.err);
