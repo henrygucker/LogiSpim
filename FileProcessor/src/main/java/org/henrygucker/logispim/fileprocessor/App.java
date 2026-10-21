@@ -68,8 +68,8 @@ public class App extends JFrame {
         sourceSelectorPanel = initSourceSelectorPanel();
         compileButton = initCompileButton();
         kernelCheckBox = initKernelCheckBox();
-        textAreaScrollPane = initTextAreaScrollPane();
         textArea = initTextArea();
+        textAreaScrollPane = initTextAreaScrollPane();
 
         // Initialize columnWrapperPanel (primary content pane)
         columnWrapperPanel = initColumnWrapperPanel();
@@ -296,7 +296,6 @@ public class App extends JFrame {
         textArea.setMargin(new Insets(12, 12, 12, 12));
         textArea.setFont(new Font("Courier", Font.PLAIN, 12));
         textArea.setPreferredSize(new Dimension(CONTENT_WIDTH, HEIGHT));
-        textArea.putClientProperty("JComponent.roundRect", true);
 
         return textArea;
     }
@@ -306,7 +305,6 @@ public class App extends JFrame {
         scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
         scrollPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
         scrollPane.setPreferredSize(new Dimension(CONTENT_WIDTH, HEIGHT));
-        scrollPane.putClientProperty("JComponent.roundRect", true);
 
         GridBagConstraints constraints = new GridBagConstraints();
         constraints.gridy = 5;

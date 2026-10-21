@@ -183,8 +183,7 @@ public class CompileActionListener implements ActionListener {
             app.updateTextAreaWithFileContent(preProcessedSourcePath);
             app.errorMessage(e.getTitle(), e.getIsolatedMessage());
         } catch (IOException | InterruptedException e) {
-            app.errorMessage("Compilation Error", "An error occurred during the back-end compilation process. Try again. " + e.getMessage());
-            e.printStackTrace();
+            app.errorMessage("Compilation Error", "An error occurred during the back-end compilation process. Try again.");
         }
 
         return elfPath;

@@ -14,13 +14,13 @@ public enum OSDependentData {
      */
     MACOS("macOS",
             new String[]{
-                    "mipsel-linux-gnu-as"
+                    "/opt/homebrew/bin/mipsel-linux-gnu-as"
             },
             new String[]{
-                    "mipsel-linux-gnu-ld"
+                    "/opt/homebrew/bin/mipsel-linux-gnu-ld"
             },
             new String[]{
-                    "mipsel-linux-gnu-objdump"
+                    "/opt/homebrew/bin/mipsel-linux-gnu-objdump"
             }
     ),
     /**
