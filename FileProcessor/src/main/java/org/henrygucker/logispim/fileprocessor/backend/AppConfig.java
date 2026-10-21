@@ -15,19 +15,19 @@ import java.util.prefs.Preferences;
  */
 public enum AppConfig {
     /**
-     * Stores the last used LogiSpim version. Stores "N/A" if uninitialized (by default).
+     * Stores the last used LogiSpim version. Stores "null" if uninitialized (by default).
      * This value is to be updated once all local (and config) changes are made to support the current version.
      */
-    LAST_USED_LOGISPIM_VERSION(
+    VERSION(
             "logispim_version",
             String.class,
             (String val) -> val,
-            "N/A"
+            "null"
     ),
     /**
-     * Stores the normalized absolute path to the workspace directory (selected at initialization).
+     * Stores the normalized absolute path to the workspace directory.
      */
-    WORKSPACE_DIRECTORY(
+    WORKSPACE(
             "workspace_dir",
             Path.class,
             (String val) -> {
@@ -42,7 +42,7 @@ public enum AppConfig {
     /**
      * Stores the normalized absolute path to the last source file chosen by the user.
      */
-    LAST_CHOSEN_SOURCE_FILE_PATH(
+    SOURCE_FILE(
             "source_file_abs_path",
             Path.class,
             (String val) -> {
@@ -55,8 +55,34 @@ public enum AppConfig {
             },
             OSDependentData.getForCurrentOS().getDefaultWorkspaceDir().resolve("src").resolve("hello_world.s").toString()
     ),
-    IS_KERNEL_TEXT(
-            "is_kernel_text",
+    /**
+     * If on macOS or Linux, this stores the normalized absolute path to the directory holding the binary executables
+     * for the third-party MIPS cross-compilation toolchain.
+     * On Windows, this value stores the directory holding the wsl executable.
+     *
+     * Hence, this stored {@link Path} can be resolved with the first item of each argument array stored by
+     * {@link OSDependentData} to find the fully-qualified path to the desired executable for {@link ProcessBuilder}
+     * to run when using any cross-compilation toolchain program.
+     */
+    MIPS_TOOLCHAIN(
+            "mips_toolchain_bin_dir",
+            Path.class,
+            (String val) -> {
+                try {
+                    return Paths.get(val);
+                } catch (InvalidPathException e) {
+                    e.printStackTrace(System.err);
+                    return null;
+                }
+            },
+            OSDependentData.getForCurrentOS().getDefaultWorkspaceDir().resolve("src").resolve("hello_world.s").toString()
+    ),
+    /**
+     * Value corresponding to the Compile as Kernel check box, indicating if compiler should target kernel program
+     * space rather than user-space.
+     */
+    COMPILE_KERNEL(
+            "compile_kernel",
             Boolean.class,
             (String val) -> val.equals("true"),
             "false"

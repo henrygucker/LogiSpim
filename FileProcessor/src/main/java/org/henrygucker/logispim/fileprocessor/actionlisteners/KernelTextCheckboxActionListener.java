@@ -22,7 +22,7 @@ public class KernelTextCheckboxActionListener implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         try {
             // Should never throw an exception due to type conformity
-            AppConfig.IS_KERNEL_TEXT.setValue(checkBox.isSelected());
+            AppConfig.COMPILE_KERNEL.setValue(checkBox.isSelected());
         } catch (AppConfigException _) {
             checkBox.setSelected(!checkBox.isSelected());
         }

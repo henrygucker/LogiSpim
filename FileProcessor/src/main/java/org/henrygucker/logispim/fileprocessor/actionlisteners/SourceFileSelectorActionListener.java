@@ -8,10 +8,6 @@ import org.henrygucker.logispim.fileprocessor.App;
 import javax.swing.*;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import java.awt.event.ActionEvent;
-import java.io.BufferedReader;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.IOException;
 import java.nio.file.Path;
 
 public class SourceFileSelectorActionListener implements FileSelectorActionListener {
@@ -34,7 +30,7 @@ public class SourceFileSelectorActionListener implements FileSelectorActionListe
 
     @Override
     public void actionPerformed(ActionEvent event) {
-        JFileChooser sourceFileChooser = new JFileChooser(((Path) AppConfig.LAST_CHOSEN_SOURCE_FILE_PATH.getValue()).toFile());
+        JFileChooser sourceFileChooser = new JFileChooser(((Path) AppConfig.SOURCE_FILE.getValue()).toFile());
         FileNameExtensionFilter asmFileFilter = new FileNameExtensionFilter("MIPS Assembly Files (.s)", "s");
         sourceFileChooser.setFileFilter(asmFileFilter);
 
@@ -44,7 +40,7 @@ public class SourceFileSelectorActionListener implements FileSelectorActionListe
 
             // Updates config value
             try {
-                AppConfig.LAST_CHOSEN_SOURCE_FILE_PATH.setValue(selectedPath);
+                AppConfig.SOURCE_FILE.setValue(selectedPath);
             } catch (AppConfigException _) {} // selectedPath is of type Path
 
             // Updates panel text field and text area with file contents

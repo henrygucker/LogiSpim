@@ -135,10 +135,10 @@ public class App extends JFrame {
      */
     public void refreshFileSelectors() {
         // Update source file selector panel
-        this.sourceSelectorPanel.setCurrentPath((Path) AppConfig.LAST_CHOSEN_SOURCE_FILE_PATH.getValue());
+        this.sourceSelectorPanel.setCurrentPath((Path) AppConfig.SOURCE_FILE.getValue());
 
         // Update workspace selector panel
-        this.workspaceSelectorPanel.setCurrentPath((Path) AppConfig.WORKSPACE_DIRECTORY.getValue());
+        this.workspaceSelectorPanel.setCurrentPath((Path) AppConfig.WORKSPACE.getValue());
     }
 
     /**
@@ -272,7 +272,7 @@ public class App extends JFrame {
 
     private JCheckBox initKernelCheckBox() {
         // Fetch stored state
-        boolean isKernelText = (boolean) AppConfig.IS_KERNEL_TEXT.getValue();
+        boolean isKernelText = (boolean) AppConfig.COMPILE_KERNEL.getValue();
 
         JCheckBox kernelTextCheckBox = new JCheckBox("Compile as Kernel", isKernelText);
         kernelTextCheckBox.addActionListener(new KernelTextCheckboxActionListener(this, kernelTextCheckBox));

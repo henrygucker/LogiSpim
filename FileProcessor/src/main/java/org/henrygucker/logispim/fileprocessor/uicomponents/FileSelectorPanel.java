@@ -4,7 +4,6 @@ import org.henrygucker.logispim.fileprocessor.actionlisteners.FileSelectorAction
 import org.henrygucker.logispim.fileprocessor.actionlisteners.WorkspaceDirectorySelectorActionListener;
 import org.henrygucker.logispim.fileprocessor.actionlisteners.SourceFileSelectorActionListener;
 import org.henrygucker.logispim.fileprocessor.backend.AppConfig;
-import org.henrygucker.logispim.fileprocessor.backend.exceptions.AppConfigException;
 import org.henrygucker.logispim.fileprocessor.App;
 
 import javax.swing.*;
@@ -16,12 +15,12 @@ public class FileSelectorPanel extends JPanel {
     public enum FileSelectorPanelType {
         SOURCE_FILE(
                 "Source File",
-                AppConfig.LAST_CHOSEN_SOURCE_FILE_PATH,
+                AppConfig.SOURCE_FILE,
                 new SourceFileSelectorActionListener()
                 ),
         WORKSPACE_DIRECTORY(
                 "Workspace Directory",
-                AppConfig.WORKSPACE_DIRECTORY,
+                AppConfig.WORKSPACE,
                 new WorkspaceDirectorySelectorActionListener()
                 );
 

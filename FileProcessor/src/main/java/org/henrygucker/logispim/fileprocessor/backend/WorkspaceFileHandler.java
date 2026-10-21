@@ -19,7 +19,7 @@ public class WorkspaceFileHandler {
      * @param newDir The {@link Path} to the new workspace directory. This directory does not necessarily have to exist.
      */
     public static void migrateWorkspace(Path newDir) {
-        Path oldDir = (Path) AppConfig.WORKSPACE_DIRECTORY.getValue();
+        Path oldDir = (Path) AppConfig.WORKSPACE.getValue();
 
         try {
             Files.move(oldDir, newDir, StandardCopyOption.REPLACE_EXISTING);
@@ -27,7 +27,7 @@ public class WorkspaceFileHandler {
             // Occurs if new and old workspace directories are on different memory store partitions
 
             try {
-                AppConfig.WORKSPACE_DIRECTORY.setValue(newDir);
+                AppConfig.WORKSPACE.setValue(newDir);
                 initializeWorkspace();
             } catch (IOException f) {
                 System.err.println("Invalid workspace directory selected. Please select a new workspace directory.");
@@ -35,7 +35,7 @@ public class WorkspaceFileHandler {
         }
 
         // Updating source path moved file if the last chosen src file was in the old workspace
-        Path oldSourcePath = (Path) AppConfig.LAST_CHOSEN_SOURCE_FILE_PATH.getValue();
+        Path oldSourcePath = (Path) AppConfig.SOURCE_FILE.getValue();
 
         oldSourcePath = oldSourcePath.toAbsolutePath().normalize();
         oldDir = oldDir.toAbsolutePath().normalize();
@@ -49,8 +49,8 @@ public class WorkspaceFileHandler {
         }
 
         try {
-            AppConfig.WORKSPACE_DIRECTORY.setValue(newDir);
-            AppConfig.LAST_CHOSEN_SOURCE_FILE_PATH.setValue(newSourcePath);
+            AppConfig.WORKSPACE.setValue(newDir);
+            AppConfig.SOURCE_FILE.setValue(newSourcePath);
         } catch (AppConfigException _) {} // Never throws an AppConfigException since params are of type Path
     }
 
@@ -59,7 +59,7 @@ public class WorkspaceFileHandler {
      * @return The {@link Path} to the workspace output directory
      */
     public static Path getOutputDir() {
-        return ((Path) AppConfig.WORKSPACE_DIRECTORY.getValue()).resolve("out");
+        return ((Path) AppConfig.WORKSPACE.getValue()).resolve("out");
     }
 
     /**
@@ -67,7 +67,7 @@ public class WorkspaceFileHandler {
      * @return The {@link Path} to the workspace's default directory for source files
      */
     public static Path getDefaultSourceDir() {
-        return ((Path) AppConfig.WORKSPACE_DIRECTORY.getValue()).resolve("src");
+        return ((Path) AppConfig.WORKSPACE.getValue()).resolve("src");
     }
 
     /**
@@ -91,7 +91,7 @@ public class WorkspaceFileHandler {
         Files.createDirectories(getOutputDir());
 
         // Create ./LogiSpim.circ
-        if (null == ResourceFileUtil.copyResourceToLocation("LogiSpim.circ", ((Path) AppConfig.WORKSPACE_DIRECTORY.getValue()).resolve("LogiSpim.circ")))
+        if (null == ResourceFileUtil.copyResourceToLocation("LogiSpim.circ", ((Path) AppConfig.WORKSPACE.getValue()).resolve("LogiSpim.circ")))
             System.err.println("Failed to copy instance of Logisim-evolution circuit file when initializing workspace.");
     }
 
@@ -106,7 +106,7 @@ public class WorkspaceFileHandler {
         Files.createDirectories(getOutputDir());
         Files.createDirectories(getDefaultSourceDir());
 
-        if (null == ResourceFileUtil.copyResourceToLocation("LogiSpim.circ", ((Path) AppConfig.WORKSPACE_DIRECTORY.getValue()).resolve("LogiSpim.circ")))
+        if (null == ResourceFileUtil.copyResourceToLocation("LogiSpim.circ", ((Path) AppConfig.WORKSPACE.getValue()).resolve("LogiSpim.circ")))
             System.err.println("Failed to copy new instance of Logisim-evolution circuit file when repairing workspace.");
     }
 }

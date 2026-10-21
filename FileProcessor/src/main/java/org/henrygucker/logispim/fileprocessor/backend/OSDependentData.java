@@ -28,13 +28,13 @@ public enum OSDependentData {
      */
     WINDOWS("Windows",
             new String[]{
-                    "wsl", "mipsel-linux-gnu-as"
+                    "wsl.exe", "mipsel-linux-gnu-as"
             },
             new String[]{
-                    "wsl", "mipsel-linux-gnu-ld"
+                    "wsl.exe", "mipsel-linux-gnu-ld"
             },
             new String[]{
-                    "wsl", "mipsel-linux-gnu-objdump"
+                    "wsl.exe", "mipsel-linux-gnu-objdump"
             }
     ),
     /**

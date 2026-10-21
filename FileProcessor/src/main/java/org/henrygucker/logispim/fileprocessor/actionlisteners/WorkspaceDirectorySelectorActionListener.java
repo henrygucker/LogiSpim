@@ -2,7 +2,6 @@ package org.henrygucker.logispim.fileprocessor.actionlisteners;
 
 import org.henrygucker.logispim.fileprocessor.backend.AppConfig;
 import org.henrygucker.logispim.fileprocessor.backend.WorkspaceFileHandler;
-import org.henrygucker.logispim.fileprocessor.backend.exceptions.AppConfigException;
 import org.henrygucker.logispim.fileprocessor.uicomponents.FileSelectorPanel;
 import org.henrygucker.logispim.fileprocessor.App;
 
@@ -28,7 +27,7 @@ public class WorkspaceDirectorySelectorActionListener implements FileSelectorAct
 
     @Override
     public void actionPerformed(ActionEvent event) {
-        Path currentPath = (Path) AppConfig.WORKSPACE_DIRECTORY.getValue();
+        Path currentPath = (Path) AppConfig.WORKSPACE.getValue();
 
         // Creating file chooser
         JFileChooser fileChooser = new JFileChooser(currentPath.toFile());
@@ -51,7 +50,7 @@ public class WorkspaceDirectorySelectorActionListener implements FileSelectorAct
 
         // Do nothing if current workspace is selected
         if (curr.toAbsolutePath().normalize().equals(
-                ((Path) AppConfig.WORKSPACE_DIRECTORY.getValue()).toAbsolutePath().normalize()
+                ((Path) AppConfig.WORKSPACE.getValue()).toAbsolutePath().normalize()
         )) {
             return;
         }

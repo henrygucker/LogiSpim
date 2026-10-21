@@ -42,8 +42,8 @@ public class CompileActionListener implements ActionListener {
     private synchronized void performAction() {
         // Getting config values for compilation
         Path outputDir = WorkspaceFileHandler.getOutputDir();
-        Path sourcePath = (Path) AppConfig.LAST_CHOSEN_SOURCE_FILE_PATH.getValue();
-        boolean isKernelText = (boolean) AppConfig.IS_KERNEL_TEXT.getValue();
+        Path sourcePath = (Path) AppConfig.SOURCE_FILE.getValue();
+        boolean isKernelText = (boolean) AppConfig.COMPILE_KERNEL.getValue();
 
         // Checking validity of read values
 
