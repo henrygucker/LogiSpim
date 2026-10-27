@@ -1,6 +1,7 @@
 package org.henrygucker.logispim.fileprocessor.uicomponents;
 
 import org.henrygucker.logispim.fileprocessor.actionlisteners.FileSelectorActionListener;
+import org.henrygucker.logispim.fileprocessor.actionlisteners.FileSelectorPanelOpenDirectoryActionListener;
 import org.henrygucker.logispim.fileprocessor.actionlisteners.WorkspaceDirectorySelectorActionListener;
 import org.henrygucker.logispim.fileprocessor.actionlisteners.SourceFileSelectorActionListener;
 import org.henrygucker.logispim.fileprocessor.backend.AppConfig;
@@ -70,10 +71,11 @@ public class FileSelectorPanel extends JPanel {
 
         // Configure label and placement
         JLabel label = new JLabel(type.name);
+        label.setFont(app.defaultBaseFont.deriveFont(Font.BOLD, 15.0f));
 
         constraints.gridx = 0;
         constraints.gridy = 0;
-        constraints.gridwidth = 2;
+        constraints.gridwidth = 3;
         constraints.weightx = 1;
         constraints.weighty = 1;
         constraints.fill = GridBagConstraints.REMAINDER;
@@ -93,10 +95,22 @@ public class FileSelectorPanel extends JPanel {
         constraints.gridy = 1;
         constraints.weightx = 0;
         constraints.weighty = 0;
+        constraints.insets = new Insets(0, 5, 0, 0);
         constraints.fill = GridBagConstraints.NONE;
         constraints.anchor = GridBagConstraints.EAST;
         layout.setConstraints(change, constraints);
         this.add(change);
+
+        // Configure open dir button and placement
+        JButton open = new JButton("Open");
+
+        actionListener = new FileSelectorPanelOpenDirectoryActionListener(app, this.type);
+        open.addActionListener(actionListener);
+
+        constraints.gridx = 2;
+        layout.setConstraints(open, constraints);
+        this.add(open);
+
 
         // Configure text field and placement
         textField = new JTextField(((Path) type.getAssociatedSetting().getValue()).toAbsolutePath().normalize().toString());
