@@ -2,10 +2,12 @@
 str: .asciiz "Hello, world!\n"
 
     .text # .text section where instructions go
+main: # starting point of your program
 
-main: # The main label is the starting point of your program, coming directly before the first instruction to be executed.
+    # print str
     la $a0, str
     li $v0, 4
     syscall
 
-    jr $ra # This exits your program and stops execution of the processor.
+    # returns from your main function and stops execution of the processor
+    jr $ra
