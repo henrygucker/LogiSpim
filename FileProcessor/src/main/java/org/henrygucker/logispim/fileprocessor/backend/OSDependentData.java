@@ -1,8 +1,11 @@
 package org.henrygucker.logispim.fileprocessor.backend;
 
+import org.henrygucker.logispim.fileprocessor.backend.fileutils.FileUtil;
+
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
+import java.nio.charset.StandardCharsets;
 import java.nio.file.Path;
 
 /**
@@ -14,13 +17,13 @@ public enum OSDependentData {
      */
     MACOS("macOS",
             new String[]{
-                    "/opt/homebrew/bin/mipsel-linux-gnu-as"
+                    "mipsel-linux-gnu-as"
             },
             new String[]{
-                    "/opt/homebrew/bin/mipsel-linux-gnu-ld"
+                    "mipsel-linux-gnu-ld"
             },
             new String[]{
-                    "/opt/homebrew/bin/mipsel-linux-gnu-objdump"
+                    "mipsel-linux-gnu-objdump"
             }
     ),
     /**
@@ -68,6 +71,8 @@ public enum OSDependentData {
 
     /**
      * Gets the arguments to be passed to a {@link ProcessBuilder} to target the appropriate assembler binary.
+     * Note that the first value of the returned array must be used to resolve the directory given by
+     * {@link AppConfig}.{@code EXTERNAL_BIN_PREFIX_DIR}.
      * @return {@link String}{@code []} that stores the necessary arguments.
      */
     public String[] getAssemblerCommand() {
@@ -76,6 +81,8 @@ public enum OSDependentData {
 
     /**
      * Gets the arguments to be passed to a {@link ProcessBuilder} to target the appropriate linker binary.
+     * Note that the first value of the returned array must be used to resolve the directory given by
+     * {@link AppConfig}.{@code EXTERNAL_BIN_PREFIX_DIR}.
      * @return {@link String}{@code []} that stores the necessary arguments.
      */
     public String[] getLinkerCommand() {
@@ -84,6 +91,8 @@ public enum OSDependentData {
 
     /**
      * Gets the arguments to be passed to a {@link ProcessBuilder} to target the appropriate objdump binary.
+     * Note that the first value of the returned array must be used to resolve the directory given by
+     * {@link AppConfig}.{@code EXTERNAL_BIN_PREFIX_DIR}.
      * @return {@link String}{@code []} that stores the necessary arguments.
      */
     public String[] getObjdumpCommand() {
@@ -106,6 +115,23 @@ public enum OSDependentData {
     }
 
     /**
+     * Attempts to find a value for {@link AppConfig}{@code .EXTERNAL_BIN_PREFIX_DIR}.
+     * @return If a fully-qualified path to the required external executable(s) for compilation is/are found, returns its/their
+     * parent directory as a {@link String}. Otherwise, returns an empty {@link String}. Returning an empty {@link String} occurs on macOS or Linux if the
+     * cross-compilation toolchain's parent directory is not in the {@code PATH} environment variable. Returning
+     *  an empty {@link String} on Windows occurs if the parent directory of {@code wsl} is in the {@code PATH} environemnt
+     * variable.
+     */
+    public String findDefaultExternalBinaryDir() {
+        Path assemblerExecutable = FileUtil.findExecutable(this.assemblerCommand[0]);
+
+        if (assemblerExecutable == null)
+            return "";
+
+        return assemblerExecutable.getParent().toString();
+    }
+
+    /**
      * Gets the correct {@link OSDependentData} enum value for the current operating system.
      * @return the appropriate {@link OSDependentData} value. {@code null} if unsupported OS.
      */
@@ -121,6 +147,27 @@ public enum OSDependentData {
         }
 
         return null;
+    }
+
+    public static String getPATHEnvironmentVariable() {
+        OSDependentData currentOS = getForCurrentOS();
+        if (currentOS != MACOS) {
+            return System.getenv("PATH");
+        }
+
+        // Echos zsh's $PATH environment variable
+        ProcessBuilder pb = new ProcessBuilder("/bin/zsh", "-ilc", "echo $PATH");
+        Process zsh = null;
+        String PATH = null;
+        try {
+            zsh = pb.start();
+            PATH = new String(zsh.getInputStream().readAllBytes(), StandardCharsets.UTF_8);
+        } catch (IOException e) {
+            System.err.println("Failed to get shell $PATH:");
+            e.printStackTrace();
+        }
+
+        return PATH;
     }
 
     /**

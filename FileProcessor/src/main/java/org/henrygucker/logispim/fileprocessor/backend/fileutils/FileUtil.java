@@ -1,5 +1,8 @@
 package org.henrygucker.logispim.fileprocessor.backend.fileutils;
 
+import org.henrygucker.logispim.fileprocessor.backend.OSDependentData;
+
+import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -39,5 +42,27 @@ public class FileUtil {
         } finally {
             Files.delete(path);
         }
+    }
+
+    /**
+     * Searches the PATH environment variable for an executable with a given name (including extension).
+     * @param name The name of the executable file (including file extensions)
+     * @return A {@link Path} to the executable binary found. If no matching executable is found, returns {@code null}.
+     */
+    public static Path findExecutable(String name) {
+        String pathEnv = OSDependentData.getPATHEnvironmentVariable();
+        if (pathEnv == null) {
+            return null;
+        }
+
+        String[] pathDirs = pathEnv.split(File.pathSeparator);
+        for (String dir : pathDirs) {
+            Path dirPath = Path.of(dir);
+            File file = dirPath.resolve(name).normalize().toFile();
+            if (file.isFile() && file.canExecute()) {
+                return file.getAbsoluteFile().toPath().normalize();
+            }
+        }
+        return null;
     }
 }

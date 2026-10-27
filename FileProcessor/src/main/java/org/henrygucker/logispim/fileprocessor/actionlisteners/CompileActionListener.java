@@ -199,6 +199,15 @@ public class CompileActionListener implements ActionListener {
 
         objdumpArgs.add(OSDependentData.pathToOSString(elfPath));
 
+        // Specify full path to executable
+        Path externalBinDir = (Path) AppConfig.EXTERNAL_BIN_PREFIX_DIR.getValue();
+
+        if (!externalBinDir.equals("")) {
+            Path objdumpPath = externalBinDir.resolve(objdumpArgs.get(0)).toAbsolutePath().normalize();
+
+            objdumpArgs.set(0, objdumpPath.toString());
+        }
+
         // Build objdump process
         ProcessBuilder pb = new ProcessBuilder(objdumpArgs);
         Process objdump = null;

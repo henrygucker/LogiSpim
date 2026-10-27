@@ -108,6 +108,7 @@
                             <icon>../assets/icons/light_mode/LogiSpim_Icon_Light.icns</icon>
                             <type>DMG</type>
                             <javaoptions>-Dapple.awt.application.appearance=NSAppearanceNameDarkAqua</javaoptions>
+                            <javaoptions>--enable-native-access=ALL-UNNAMED</javaoptions>
                         </configuration>
                     </execution>
                     <execution>

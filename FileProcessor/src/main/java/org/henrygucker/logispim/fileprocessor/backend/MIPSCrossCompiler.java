@@ -62,8 +62,24 @@ public class MIPSCrossCompiler {
         // Assembler input file
         assemblerArgs.add(OSDependentData.pathToOSString(preProcessedAsmFilePath));
 
+        // Specify full path to executable
+        Path externalBinDir = (Path) AppConfig.EXTERNAL_BIN_PREFIX_DIR.getValue();
+
+        if (externalBinDir.equals("")) {
+            throw new CompilationException("Compiler Error", "Program failed to locate external binary directory.");
+        }
+
+        Path assemblerPath = externalBinDir.resolve(assemblerArgs.get(0)).toAbsolutePath().normalize();
+
+        assemblerArgs.set(0, assemblerPath.toString());
+
         ProcessBuilder pb = new ProcessBuilder(assemblerArgs);
-        Process assembler = pb.start();
+        Process assembler = null;
+        try {
+            assembler = pb.start();
+        } catch (IOException e) {
+            throw new CompilationException("XX", assemblerPath.toString());
+        }
 
         // Gets assembler error messages (if any)
         StringBuilder assemblerErrorMessageBuilder = new StringBuilder();
@@ -109,6 +125,10 @@ public class MIPSCrossCompiler {
 
         linkerArgs.add("-o");
         linkerArgs.add(OSDependentData.pathToOSString(elfFilePath));
+
+        // Specify full path to executable
+        Path linkerPath = externalBinDir.resolve(linkerArgs.get(0)).toAbsolutePath().normalize();
+        linkerArgs.set(0, linkerPath.toString());
 
         pb = new ProcessBuilder(linkerArgs);
         Process linker = pb.start();

@@ -49,7 +49,6 @@ public enum AppConfig {
                 try {
                     return Paths.get(val);
                 } catch (InvalidPathException e) {
-                    e.printStackTrace(System.err);
                     return null;
                 }
             },
@@ -60,22 +59,23 @@ public enum AppConfig {
      * for the third-party MIPS cross-compilation toolchain.
      * On Windows, this value stores the directory holding the wsl executable.
      *
-     * Hence, this stored {@link Path} can be resolved with the first item of each argument array stored by
+     * Hence, this stored {@link Path} can be resolved with the first item of each argument array given by
      * {@link OSDependentData} to find the fully-qualified path to the desired executable for {@link ProcessBuilder}
      * to run when using any cross-compilation toolchain program.
+     *
+     * This setting may return the value {@code null} if a {@link Path} cannot be found.
      */
-    MIPS_TOOLCHAIN(
-            "mips_toolchain_bin_dir",
+    EXTERNAL_BIN_PREFIX_DIR(
+            "external_bin_prefix_dir",
             Path.class,
             (String val) -> {
                 try {
                     return Paths.get(val);
                 } catch (InvalidPathException e) {
-                    e.printStackTrace(System.err);
-                    return null;
+                    return "";
                 }
             },
-            OSDependentData.getForCurrentOS().getDefaultWorkspaceDir().resolve("src").resolve("hello_world.s").toString()
+            OSDependentData.getForCurrentOS().findDefaultExternalBinaryDir()
     ),
     /**
      * Value corresponding to the Compile as Kernel check box, indicating if compiler should target kernel program
