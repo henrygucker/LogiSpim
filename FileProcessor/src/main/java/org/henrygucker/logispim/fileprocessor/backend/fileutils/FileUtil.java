@@ -1,7 +1,9 @@
 package org.henrygucker.logispim.fileprocessor.backend.fileutils;
 
+import org.henrygucker.logispim.fileprocessor.App;
 import org.henrygucker.logispim.fileprocessor.backend.OSDependentData;
 
+import java.awt.*;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
@@ -64,5 +66,35 @@ public class FileUtil {
             }
         }
         return null;
+    }
+
+    /**
+     * Opens an OS-native file explorer window to the entered directory.
+     * @param app The {@link App} instance used to create error messages if any errors occur.
+     * @param path A {@link Path} to the desired directory to be opened
+     */
+    public static void openDirectory(App app, Path path) {
+        // Ensure the Desktop API is supported by the current OS platform
+        if (!Desktop.isDesktopSupported()) {
+            app.errorMessage("Error Opening Directory", "Desktop API is not supported on this platform.");
+            return;
+        }
+
+        Desktop desktop = Desktop.getDesktop();
+        File dirToOpen = new File(path.toUri());
+
+        try {
+            if (dirToOpen.exists() && dirToOpen.isDirectory()) {
+                // Launches the native OS file explorer
+                desktop.open(dirToOpen);
+            } else {
+                app.errorMessage("Directory Not Found", "The directory does not exist.");
+                return;
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+            app.errorMessage("Error", "Failed to open file explorer: " + e.getMessage());
+            return;
+        }
     }
 }
