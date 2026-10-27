@@ -4,6 +4,8 @@ import com.formdev.flatlaf.FlatDarkLaf;
 import com.formdev.flatlaf.util.SystemInfo;
 import org.henrygucker.logispim.fileprocessor.actionlisteners.CompileActionListener;
 import org.henrygucker.logispim.fileprocessor.actionlisteners.KernelTextCheckboxActionListener;
+import org.henrygucker.logispim.fileprocessor.actionlisteners.OpenLogisimCircuitActionListener;
+import org.henrygucker.logispim.fileprocessor.actionlisteners.ReinitializeLogisimCircuitActionListener;
 import org.henrygucker.logispim.fileprocessor.backend.AppConfig;
 import org.henrygucker.logispim.fileprocessor.uicomponents.FileSelectorPanel;
 
@@ -26,10 +28,13 @@ public class App extends JFrame {
     public static final int CONTENT_WIDTH = 700;
 
     // Main Column Swing Components
+    private static final int MAIN_COLUMN_GRID_WIDTH = 3;
     private final JLabel titleLabel;
     private final FileSelectorPanel sourceSelectorPanel;
     private final FileSelectorPanel workspaceSelectorPanel;
     private final JButton compileButton;
+    private final JButton openLogisimCircButton;
+    private final JButton reinitializeLogisimCircButton;
     private final JCheckBox kernelCheckBox;
     private final JScrollPane textAreaScrollPane;
     private final JTextArea textArea;
@@ -66,7 +71,12 @@ public class App extends JFrame {
         titleLabel = initTitleLabel();
         workspaceSelectorPanel = initWorkspaceSelectorPanel();
         sourceSelectorPanel = initSourceSelectorPanel();
+
+        JSeparator separator = initSeparator();
+
         compileButton = initCompileButton();
+        openLogisimCircButton = initOpenLogisimCircButton();
+        reinitializeLogisimCircButton = initReinitializeLogisimCircButton();
         kernelCheckBox = initKernelCheckBox();
         textArea = initTextArea();
         textAreaScrollPane = initTextAreaScrollPane();
@@ -208,6 +218,7 @@ public class App extends JFrame {
         GridBagConstraints constraints = new GridBagConstraints();
         constraints.gridx = 0;
         constraints.gridy = 0;
+        constraints.gridwidth = MAIN_COLUMN_GRID_WIDTH;
         constraints.anchor = GridBagConstraints.CENTER;
         constraints.fill = GridBagConstraints.BOTH;
         constraints.ipady = 20;
@@ -233,6 +244,7 @@ public class App extends JFrame {
 
         GridBagConstraints constraints = new GridBagConstraints();
         constraints.gridy = 1;
+        constraints.gridwidth = MAIN_COLUMN_GRID_WIDTH;
         constraints.fill = GridBagConstraints.HORIZONTAL;
         constraints.insets = new Insets(0, 0, 10, 0);
         mainColumnPanelLayout.setConstraints(workspaceSelectorPanel, constraints);
@@ -247,6 +259,7 @@ public class App extends JFrame {
 
         GridBagConstraints constraints = new GridBagConstraints();
         constraints.gridy = 2;
+        constraints.gridwidth = MAIN_COLUMN_GRID_WIDTH;
         constraints.fill = GridBagConstraints.HORIZONTAL;
         constraints.insets = new Insets(0, 0, 10, 0);
         mainColumnPanelLayout.setConstraints(sourceSelectorPanel, constraints);
@@ -256,18 +269,69 @@ public class App extends JFrame {
         return sourceSelectorPanel;
     }
 
+    private JSeparator initSeparator() {
+        JSeparator separator = new JSeparator(SwingConstants.HORIZONTAL);
+
+        GridBagConstraints constraints = new GridBagConstraints();
+        constraints.gridy = 3;
+        constraints.gridwidth = MAIN_COLUMN_GRID_WIDTH;
+        constraints.weightx = 1;
+        constraints.fill = GridBagConstraints.HORIZONTAL;
+        constraints.insets = new Insets(5, 0, 15, 0);
+        mainColumnPanelLayout.setConstraints(separator, constraints);
+
+        mainColumnPanel.add(separator);
+
+        return separator;
+    }
+
     private JButton initCompileButton() {
         JButton compileButton = new JButton("Compile");
         compileButton.addActionListener(new CompileActionListener(this));
 
         GridBagConstraints constraints = new GridBagConstraints();
-        constraints.gridy = 3;
-        constraints.insets = new Insets(0, 0, 5, 0);
+        constraints.gridy = 4;
+        constraints.gridx = 0;
+        constraints.weightx = 1;
+        constraints.insets = new Insets(0, 0, 10, 0);
+        constraints.anchor = GridBagConstraints.EAST;
         mainColumnPanelLayout.setConstraints(compileButton, constraints);
 
         mainColumnPanel.add(compileButton);
 
         return compileButton;
+    }
+
+    private JButton initOpenLogisimCircButton() {
+        JButton openLogisimCircButton = new JButton("Open Logisim");
+        openLogisimCircButton.addActionListener(new OpenLogisimCircuitActionListener(this));
+
+        GridBagConstraints constraints = new GridBagConstraints();
+        constraints.gridy = 4;
+        constraints.gridx = 1;
+        constraints.insets = new Insets(0, 5, 10, 0);
+        mainColumnPanelLayout.setConstraints(openLogisimCircButton, constraints);
+
+        mainColumnPanel.add(openLogisimCircButton);
+
+        return openLogisimCircButton;
+    }
+
+    private JButton initReinitializeLogisimCircButton() {
+        JButton reinitLogisimCircButton = new JButton("Reinitialize Circuit");
+        reinitLogisimCircButton.addActionListener(new ReinitializeLogisimCircuitActionListener(this));
+
+        GridBagConstraints constraints = new GridBagConstraints();
+        constraints.gridy = 4;
+        constraints.gridx = 2;
+        constraints.weightx = 1;
+        constraints.insets = new Insets(0, 5, 10, 0);
+        constraints.anchor = GridBagConstraints.WEST;
+        mainColumnPanelLayout.setConstraints(reinitLogisimCircButton, constraints);
+
+        mainColumnPanel.add(reinitLogisimCircButton);
+
+        return reinitLogisimCircButton;
     }
 
     private JCheckBox initKernelCheckBox() {
@@ -277,11 +341,12 @@ public class App extends JFrame {
         JCheckBox kernelTextCheckBox = new JCheckBox("Compile as Kernel", isKernelText);
         kernelTextCheckBox.addActionListener(new KernelTextCheckboxActionListener(this, kernelTextCheckBox));
 
-        Border kernelTextCheckBoxBorder = BorderFactory.createEmptyBorder(0, 0, 6, 0);
+        Border kernelTextCheckBoxBorder = BorderFactory.createEmptyBorder(0, 0, 10, 0);
         kernelTextCheckBox.setBorder(kernelTextCheckBoxBorder);
 
         GridBagConstraints constraints = new GridBagConstraints();
-        constraints.gridy = 4;
+        constraints.gridy = 5;
+        constraints.gridwidth = MAIN_COLUMN_GRID_WIDTH;
         mainColumnPanelLayout.setConstraints(kernelTextCheckBox, constraints);
 
         mainColumnPanel.add(kernelTextCheckBox);
@@ -307,8 +372,9 @@ public class App extends JFrame {
         scrollPane.setPreferredSize(new Dimension(CONTENT_WIDTH, HEIGHT));
 
         GridBagConstraints constraints = new GridBagConstraints();
-        constraints.gridy = 5;
+        constraints.gridy = 6;
         constraints.weighty = 1.0;
+        constraints.gridwidth = MAIN_COLUMN_GRID_WIDTH;
         constraints.anchor = GridBagConstraints.NORTH;
         constraints.fill = GridBagConstraints.BOTH;
         mainColumnPanelLayout.setConstraints(scrollPane, constraints);
