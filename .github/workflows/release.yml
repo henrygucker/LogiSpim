@@ -2,8 +2,6 @@ name: Build and Package Release
 
 on:
   push:
-    paths:
-      - .github/workflows/release.yml # temporarily for debugging
     tags:
       - 'v*' # Triggers on any tag starting with v (e.g., v1.0.0)
 
