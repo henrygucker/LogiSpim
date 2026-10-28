@@ -1,4 +1,4 @@
-# LogiSpim
+![LogiSpim Logo](./assets/logo/LogiSpim_Logo_Dark.svg)
 
 This project is currently under construction.
 Expected initial release is estimated for during Fall Semester of 2026.
