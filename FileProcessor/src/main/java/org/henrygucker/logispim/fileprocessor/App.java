@@ -360,7 +360,6 @@ public class App extends JFrame {
         textArea.setEditable(false);
         textArea.setMargin(new Insets(12, 12, 12, 12));
         textArea.setFont(new Font("Courier", Font.PLAIN, 12));
-        textArea.setPreferredSize(new Dimension(CONTENT_WIDTH, HEIGHT));
 
         return textArea;
     }
@@ -370,6 +369,7 @@ public class App extends JFrame {
         scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
         scrollPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
         scrollPane.setPreferredSize(new Dimension(CONTENT_WIDTH, HEIGHT));
+        scrollPane.createVerticalScrollBar();
 
         GridBagConstraints constraints = new GridBagConstraints();
         constraints.gridy = 6;

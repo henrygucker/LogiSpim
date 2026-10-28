@@ -236,6 +236,11 @@ public class CompileActionListener implements ActionListener {
                 // Store line (if in text or data sections)
                 if (shouldStoreLines) {
                     objdumpOutputBuilder.append(line);
+
+                    // Inject comment into objdump to explain that syscall instruction has been wrapped
+                    if (line.contains("03e0d025"))
+                        objdumpOutputBuilder.append("\t# syscall wrapper instructions inserted");
+
                     objdumpOutputBuilder.append('\n');
                 }
             }
