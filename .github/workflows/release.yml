@@ -1,0 +1,122 @@
+name: Build and Package Release
+
+on:
+  push:
+    paths:
+      - .github/workflows/release.yml # temporarily for debugging
+    tags:
+      - 'v*' # Triggers on any tag starting with v (e.g., v1.0.0)
+
+jobs:
+  # Job 1: Initialize the GitHub Release draft
+  create-release:
+    name: Create GitHub Release Draft
+    runs-on: ubuntu-latest
+    outputs:
+      upload_url: ${{ steps.create_release.outputs.upload_url }}
+    steps:
+      - name: Create Release
+        id: create_release
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: ${{ github.ref_name }}
+          release_name: Release ${{ github.ref_name }}
+          draft: true
+          prerelease: true # temporary until is full release
+
+  # Job 2: Build cross-platform installers using the OS matrix
+  build-and-package:
+    name: Build Installer on ${{ matrix.os }}
+    needs: create-release
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        include:
+          - os: windows-latest
+            artifact_name: windows-installer
+            file_extension: ".exe" # or *.msi depending on your pom.xml config
+          - os: macos-latest
+            artifact_name: macos-installer
+            file_extension: ".dmg" # or *.pkg
+          - os: ubuntu-latest
+            artifact_name: linux-installer
+            file_extension: ".deb" # or *.rpm
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Set up JDK
+        uses: actions/setup-java@v4
+        with:
+          java-version: '21' # jpackage requires JDK 14+, JDK 17 or 21 (LTS) is recommended
+          distribution: 'temurin'
+          cache: 'maven'
+
+      # Linux-specific tool prerequisites for jpackage (Debian packaging tools)
+      - name: Install Linux Packaging Tools
+        if: matrix.os == 'ubuntu-latest'
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y binutils fakeroot UI-modules
+
+      # Windows-specific tool prerequisites (WiX Toolset is pre-installed on github runners, but needs pathing if required)
+      # Note: windows-latest runner already has WiX v3 toolset installed out of the box.
+
+        # This triggers your plugin execution. Adjust the profile (-P) or phase if necessary.
+      - name: Build Application and Generate Installers via Maven (MacOS)
+        if: matrix.os == 'macos-latest'
+        run: mvn clean package jpackage:jpackage@mac -pl FileProcessor -am
+
+      - name: Build Application and Generate Installers via Maven (Windows)
+        if: matrix.os == 'windows-latest'
+        run: mvn clean package jpackage:jpackage@win -pl FileProcessor -am
+
+      - name: Build Application and Generate Installers via Maven (Linux)
+        if: matrix.os == 'ubuntu-latest'
+        run: mvn clean package jpackage:jpackage@linux -pl FileProcessor -am
+
+      # Identify the generated installer file and upload it to the GitHub Release draft
+      - name: Upload Installer to GitHub Release
+        uses: actions/github-script@v7
+        env:
+          EXECUTABLE_NAME: ${{ format('LogiSpim-{0}-{1}{2}', github.ref_name, runner.arch, matrix.file_extension) }}
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          script: |
+            const fs = require('fs');
+            const path = require('path');
+            const glob = require('@actions/glob');
+            const io = require('@actions/io');
+            
+            // Search target directory for the installer file extension
+            const targetDir = 'target/installer'; 
+            const globber = await glob.create(`${targetDir}/**/*${matrix.file_extension}`);
+            const files = await globber.glob();
+            
+            if (files.length === 0) {
+              core.setFailed(`No installer file matching ${matrix.file_extension} found in target directory.`);
+              return;
+            }
+            
+            const filePath = files[0];
+            const dirName = path.dirname(filePath);
+            
+            const fileName = `${process.env.EXECUTABLE_NAME}`;
+            const newFilePath = path.resolve(filePath, fileName);
+            
+            io.mv(filePath, newFilePath);
+            
+            console.log(`Uploading ${fileName}...`);
+            
+            await github.rest.repos.uploadReleaseAsset({
+              url: '${{ needs.create-release.outputs.upload_url }}',
+              headers: {
+                'content-type': 'application/octet-stream',
+                'content-length': fs.statSync(newFilePath).size
+              },
+              name: fileName,
+              data: fs.readFileSync(newFilePath)
+            });

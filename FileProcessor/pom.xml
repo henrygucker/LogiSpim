@@ -7,7 +7,7 @@
     <parent>
         <groupId>org.henrygucker.logispim</groupId>
         <artifactId>LogiSpim</artifactId>
-        <version>1.0.0-SNAPSHOT</version>
+        <version>0.0.1</version>
         <relativePath>../pom.xml</relativePath>
     </parent>
 
@@ -82,8 +82,8 @@
 
                 <configuration>
                     <name>LogiSpim</name>
-<!--                    <appVersion>${project.version}</appVersion>-->
-                    <appVersion>1.0.0</appVersion> <!-- Must not include the -SNAPSHOT -->
+                    <appVersion>${project.version}</appVersion>
+<!--                    <appVersion>1.0.0</appVersion> &lt;!&ndash; Use prior to first full release &ndash;&gt;-->
                     <vendor>org.henrygucker</vendor>
 
                     <input>${project.build.directory}/jar</input>

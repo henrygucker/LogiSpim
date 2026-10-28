@@ -1,5 +1,5 @@
 # Compilation output directories
-**/build/
+**/target/
 docs/book/
 
 
