@@ -1,16 +1,20 @@
 <?xml version="1.0" standalone="no"?>
 <!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
-<svg version="1.1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 81.27091588776966 81.33110849504374"
-     width="243.81274766330898" height="243.9933254851312"><!-- svg-source:excalidraw -->
+<svg version="1.1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 291.89579615161165 81.33110849504374"
+     width="875.687388454835" height="243.9933254851312"><!-- svg-source:excalidraw -->
     <metadata></metadata>
     <defs>
         <style class="style-fonts">
+            @font-face { font-family: Nunito; src:
+            url(data:font/woff2;base64,d09GMgABAAAAAAU4AA8AAAAACmAAAATdAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAGhwbggQcZAZgP1NUQVREAFwRCAqHVIY5CxgAATYCJAMsBCAFhCQHIBuuCMgehXHjUyKUNlk5/GxzaCVkK/HwtVa+39M7AQJyB25jzwdJqLhLlGGF5Qnm//9O//ek5MxpHaPSpOBMSqVS4HW/iF+An5CCvwvivf4H2K99Nqb2r+QBddlV2CpdYwCvACgZR+AmZ1ynKgcoUZJlN+GXCjOQU5swckdzm6hysxdrIxQary7QEZAkIQuldkKgvfFy+K1cXdcM8Sdc5imIv6i3zkA8f/huDFw4ZZ6BYGZCWfrgJY+hvWQvf9ThrEClLFD9aV0fGKWCjKEzk1q+QLE27dXXZKTSVhjc0LljKAImmUFpRGZQgNHhLlZHFdP54yB2bq9lQqgSUlDKJOLilcEpx9ja2iKGdLWQ5TQ7vgogtTDagQ36juKwlGCbKqH7A+Ybw2nYyFh8+f+APCukQwG7AYgP6QyGCqrYVkLPgxmJ0XhmzIoBPwYhBuX05G+UUwwDrP5mRC2+AiQU6MlPoCd/a4HO2kpKGzUZNW6asZI5MczYHLTOWmusLsQRRVXV5bodQG+gE7EExB2gY2k8mZOk88Z+tx5zpZGRHTvP6x6Z7u3doWUPFnB1b9jS3ZA7OQ9Z3xWqb/F6xdfXrN27Ez/iCVvqw2bfbW31erHZPp8vbKmn8NrqVdu2EUe9oUvcp6F+p6XF44G62+2+g3kWY20d1uGhO3SJS7kXZ/XEsPSmurtzqc+Hzb5O3C2eliV7ML99z67emcHSWPN255sx/Z+js7VvrB6AGopnja3ALKRfwrqR0o1bsdMCkvo/OaFjfCK7A9R3tR1cG8DaPzmPWEyMIAeBHKiiCC+Niy/DIb+tYk8kNejZ5d1VmOXV/aHkwvbG4gzJoYqI8V49cd1dlIJXV57dm5pXNMU6dNhZGTX71aymBLWmJn0RX24hI8Z6Dsb3t1bLudWlGfoU4LzMGkKLLs0rf1i247AuhltZUVUxFeI7SpZo9QWZU1XZae0rdGw12Uf69rcjO4Hb0RqT2eSIlpUI2XUZOqqztP8JObWZNN0Ftow3o5UJTpxwJqxE40R38tuE/q+TB11N6nv9w98AR4k3olXIjuMjqGUzvzk/v6g271okcbC4KLtCzGnWBqJGnHAgRsmLjFwtXf4anSGmF1BAbavOFeaaqDxmdyHZys6ywEjpOTOzUloiYuvy26kuraREyDHvge4GWyvuIChkx4kR1LX5ew+pJfsKMo00lWHuLyDJuONb2N/ejTt+Se7ROEQKbEK99c5+xxISDycm7UpM3APlaAEotW/AgOXV7WOcFihup35/+OlmX1TBt7ZF8QXeoGcewHv1s8z/21iYpTkaKCUQvBm4FSBttoHJztchvlInrpY0QZloUu9gYQnrvtvyokdtUpKmWtWguibQwUEBzvNH48jm0S1QiNwOj+HnKAlTXZYknbVKCivZ12ZYUtNft7g0mbwp6Gi4DkHvDTV6+4cZJhTbGUzTm0EZNmSczbRqVnpTxg1qM2zcqDFWtMmcMX6yQTknKzO9One9DIFiq2FmlvcazGDSkMuipO6V89F0aOUriRgacVTHKXi9+d7mTFeVOb2UgZGLGZqdmpJKBqZmY4YxEWL9yXqDCcMGXSSBvNUYg4AxJiGKg6yMLPIoKF58HVhvM0BuUM26nYMMDEZNGTaililWFgozCOVE/GTqqkMNBAAAAA==);
+            }
+
             /* Default styles (Light Mode) */
-            .icon-stroke { stroke: #ffffff; }
+            .icon-stroke { stroke: #242a30; }
 
             /* Dark Mode override */
             @media (prefers-color-scheme: dark) {
-            .icon-stroke { stroke: #242a30; }
+            .icon-stroke { stroke: #ffffff; }
             }
         </style>
     </defs>
@@ -100,5 +104,11 @@
               stroke="none" stroke-width="0" fill="#377e21"></path>
         <path d="M9.99 0 C17.71 0, 25.44 0, 29.97 0 M9.99 0 C16.94 0, 23.88 0, 29.97 0 M29.97 0 C36.63 0, 39.96 3.33, 39.96 9.99 M29.97 0 C36.63 0, 39.96 3.33, 39.96 9.99 M39.96 9.99 C39.96 14.5, 39.96 19.02, 39.96 29.97 M39.96 9.99 C39.96 15.35, 39.96 20.72, 39.96 29.97 M39.96 29.97 C39.96 36.63, 36.63 39.96, 29.97 39.96 M39.96 29.97 C39.96 36.63, 36.63 39.96, 29.97 39.96 M29.97 39.96 C23 39.96, 16.03 39.96, 9.99 39.96 M29.97 39.96 C23.35 39.96, 16.73 39.96, 9.99 39.96 M9.99 39.96 C3.33 39.96, 0 36.63, 0 29.97 M9.99 39.96 C3.33 39.96, 0 36.63, 0 29.97 M0 29.97 C0 24.07, 0 18.18, 0 9.99 M0 29.97 C0 24.88, 0 19.79, 0 9.99 M0 9.99 C0 3.33, 3.33 0, 9.99 0 M0 9.99 C0 3.33, 3.33 0, 9.99 0"
               class="icon-stroke" stroke-width="4" fill="none"></path>
+    </g>
+    <g transform="translate(85.72128045356658 12.956405672734036) rotate(0 98.08725784902254 28.965053606996207)">
+        <text x="0" y="44.21225782571878" font-family="Nunito, sans-serif, Segoe UI Emoji"
+              font-size="46.34408577119369px" fill="#377e21" text-anchor="start" style="white-space: pre;"
+              direction="ltr" dominant-baseline="alphabetic">LogiSpim
+        </text>
     </g>
 </svg>
