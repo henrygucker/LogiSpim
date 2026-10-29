@@ -2,6 +2,8 @@ name: Build and Package Release
 
 on:
   push:
+    branches:
+      - main # temp for debugging this
     tags:
       - 'v*' # Triggers on any tag starting with v (e.g., v1.0.0)
 
@@ -35,13 +37,13 @@ jobs:
       matrix:
         include:
           - os: windows-latest
-            artifact_name: "${{ github.ref_name }}-windows"
+#            artifact_name: "${{ github.ref_name }}-windows"
             file_extension: ".exe" # or *.msi depending on your pom.xml config
           - os: macos-latest
-            artifact_name: "${{ github.ref_name }}-macos"
+#            artifact_name: "${{ github.ref_name }}-macos"
             file_extension: ".dmg" # or *.pkg
           - os: ubuntu-latest
-            artifact_name: "${{ github.ref_name }}-linux"
+#            artifact_name: "${{ github.ref_name }}-linux"
             file_extension: ".deb" # or *.rpm
 
     steps:
@@ -88,7 +90,7 @@ jobs:
       - name: Upload Installer to GitHub Release
         uses: actions/github-script@v7
         env:
-          EXECUTABLE_NAME: ${{ format('LogiSpim-{0}-{1}{2}', matrix.artifact_name, runner.arch, matrix.file_extension) }}
+          EXECUTABLE_NAME: ${{ format('LogiSpim-{0}{1}', runner.arch, matrix.file_extension) }}
           EXECUTABLE_FILE_EXTENSION: ${{ matrix.file_extension }}
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
