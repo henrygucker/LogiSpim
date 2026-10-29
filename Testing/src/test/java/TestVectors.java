@@ -39,7 +39,7 @@ public class TestVectors {
 
     @Test
     void mainDecoderTestVector() throws IOException, InterruptedException {
-        Path testVectorPath = tempDir.resolve("MainDecoder-test-vector.txt");
+        Path testVectorPath = tempDir.resolve("main_decoder.txt");
         MainDecoderMaster.writeTestVector(testVectorPath);
 
 
@@ -63,6 +63,11 @@ public class TestVectors {
         args.add(componentName);
         args.add(testVector.toAbsolutePath().toString());
         args.add(circuit.toAbsolutePath().toString());
+
+        System.out.println("Executing Command:");
+        for (String arg : args)
+            System.out.print(arg + " ");
+        System.out.println("\n");
 
         ProcessBuilder processBuilder = new ProcessBuilder(args);
 
