@@ -2,8 +2,6 @@ name: Build and Package Release
 
 on:
   push:
-    branches:
-      - main # temp for debugging this
     tags:
       - 'v*' # Triggers on any tag starting with v (e.g., v1.0.0)
 
@@ -93,7 +91,7 @@ jobs:
       - name: Upload Installer to GitHub Release
         uses: actions/github-script@v7
         env:
-          EXECUTABLE_NAME: ${{ matrix.artifact_name }}
+          EXECUTABLE_NAME: "${{ matrix.artifact_name }}${{ matrix.file_extension }}"
           EXECUTABLE_FILE_EXTENSION: ${{ matrix.file_extension }}
           RELEASE_ID: ${{ needs.create-release.outputs.release_id }}
         with:
