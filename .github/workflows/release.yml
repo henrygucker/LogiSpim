@@ -93,7 +93,7 @@ jobs:
       - name: Upload Installer to GitHub Release
         uses: actions/github-script@v7
         env:
-          EXECUTABLE_NAME: ${{ format('LogiSpim-{0}{1}', runner.arch, matrix.file_extension) }}
+          EXECUTABLE_NAME: ${{ format('LogiSpim-{0}-{1}{2}', runner.arch, matrix.artifact_name, matrix.file_extension) }}
           EXECUTABLE_FILE_EXTENSION: ${{ matrix.file_extension }}
           RELEASE_ID: ${{ needs.create-release.outputs.release_id }}
         with:
