@@ -24,7 +24,7 @@ jobs:
           tag_name: ${{ github.ref_name }}
           release_name: Release ${{ github.ref_name }}
           draft: true
-          prerelease: true # temporary until is full release
+          prerelease: true # TEMPORARY UNTIL IS FULL RELEASE
 
   # Job 2: Build cross-platform installers using the OS matrix
   build-and-package:
