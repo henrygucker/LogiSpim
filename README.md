@@ -1,5 +1,9 @@
 <div align="center">
-    <img src="./assets/logo/LogiSpim_Logo_Both.svg" width="500" alt="LogiSpim Logo">
+    <picture>
+      <source media="(prefers-color-scheme: dark)" srcset="./assets/logo/LogiSpim_Logo_Light.svg">
+      <source media="(prefers-color-scheme: light)" srcset="./assets/logo/LogiSpim_Logo_Dark.svg">
+      <img alt="LogiSpim Logo" width="500" src="./assets/logo/LogiSpim_Logo_Both_Invert.svg">
+    </picture>
 
 [![Latest GitHub Release](https://img.shields.io/github/v/release/henrygucker/LogiSpim?include_prereleases&sort=semver&display_name=tag&style=flat&label=latest)](https://github.com/henrygucker/LogiSpim/releases)
 [![Maven CI Status Shield](https://img.shields.io/github/actions/workflow/status/henrygucker/LogiSpim/maven.yml?style=flat&label=CI&branch=main)](https://github.com/henrygucker/LogiSpim/actions/workflows/maven.yml)
