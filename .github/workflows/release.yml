@@ -16,6 +16,7 @@ jobs:
       contents: write
     outputs:
       upload_url: ${{ steps.create_release.outputs.upload_url }}
+      release_id: ${{ steps.create_release.outputs.id }}
     steps:
       - name: Create Release
         id: create_release
@@ -92,6 +93,7 @@ jobs:
         env:
           EXECUTABLE_NAME: ${{ format('LogiSpim-{0}{1}', runner.arch, matrix.file_extension) }}
           EXECUTABLE_FILE_EXTENSION: ${{ matrix.file_extension }}
+          RELEASE_ID: ${{ needs.create-release.outputs.release_id }}
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           script: |
@@ -111,18 +113,21 @@ jobs:
               return;
             }
             
+            
             const filePath = files[0];
             const dirName = path.dirname(filePath);
             
             const fileName = EXECUTABLE_NAME;
-            const newFilePath = path.resolve(dirName, fileName);
+            const newFilePath = path.join(dirName, fileName);
             
-            io.mv(filePath, newFilePath);
+            await io.mv(filePath, newFilePath);
             
             console.log(`Uploading ${fileName}...`);
             
             await github.rest.repos.uploadReleaseAsset({
-              url: '${{ needs.create-release.outputs.upload_url }}',
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              release_id: Number(process.env.RELEASE_ID),
               headers: {
                 'content-type': 'application/octet-stream',
                 'content-length': fs.statSync(newFilePath).size
