@@ -95,12 +95,12 @@ jobs:
           script: |
             const fs = require('fs');
             const path = require('path');
-            const glob = require('@actions/glob');
+            const globs = require('@actions/glob');
             const io = require('@actions/io');
             
             // Search target directory for the installer file extension
             const targetDir = 'target/installer'; 
-            const globber = await glob.create(`${targetDir}/**/*${matrix.file_extension}`);
+            const globber = await globs.create(`${targetDir}/**/*${matrix.file_extension}`);
             const files = await globber.glob();
             
             if (files.length === 0) {
