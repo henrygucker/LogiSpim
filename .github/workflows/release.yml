@@ -115,7 +115,7 @@ jobs:
             const dirName = path.dirname(filePath);
             
             const fileName = EXECUTABLE_NAME;
-            const newFilePath = path.resolve(filePath, fileName);
+            const newFilePath = path.resolve(dirName, fileName);
             
             io.mv(filePath, newFilePath);
             
