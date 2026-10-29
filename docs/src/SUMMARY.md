@@ -16,13 +16,22 @@
 # Logisim Processor Docs
 - [Overview](04_processor_overview/index.md)
   - [FAQ](04_processor_overview/01_faq.md)
-- [Core Components]()
-  - [Instruction Memory]()
-  - [Register File]()
-  - [Control Unit]()
-    - [Main Decoder](05_core_components/03_control_unit/01_main_decoder.md)
-    - [ALU Decoder](05_core_components/03_control_unit/02_alu_decoder.md)
-  - [ALU]()
-  - [Main Memory]()
-- [Pipeline Structure](06_pipeline_structure/index.md)
-    - [More to come...]()
+
+[//]: # (- [Core Components]&#40;&#41;)
+
+[//]: # (  - [Instruction Memory]&#40;&#41;)
+
+[//]: # (  - [Register File]&#40;&#41;)
+
+[//]: # (  - [Control Unit]&#40;&#41;)
+
+[//]: # (    - [Main Decoder]&#40;05_core_components/03_control_unit/01_main_decoder.md&#41;)
+
+[//]: # (    - [ALU Decoder]&#40;05_core_components/03_control_unit/02_alu_decoder.md&#41;)
+
+[//]: # (  - [ALU]&#40;&#41;)
+
+[//]: # (  - [Main Memory]&#40;&#41;)
+
+[//]: # (- [Pipeline Structure]&#40;06_pipeline_structure/index.md&#41;)
+- [More to come...]()

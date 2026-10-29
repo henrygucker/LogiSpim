@@ -2,6 +2,11 @@
 **/target/
 docs/book/
 
+# IDE Junk Files
+**/.vscode/
+**/.idea/
+
+
 
 
 # General Junk Files
