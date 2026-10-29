@@ -141,7 +141,7 @@ public class App extends JFrame {
     }
 
     /**
-     * Refreshes all file selector panels with the most recently stored path
+     * Refreshes all file selector panels with the most recently stored path.
      */
     public void refreshFileSelectors() {
         // Update source file selector panel
