@@ -69,15 +69,21 @@ jobs:
         # This triggers your plugin execution. Adjust the profile (-P) or phase if necessary.
       - name: Build Application and Generate Installers via Maven (MacOS)
         if: matrix.os == 'macos-latest'
-        run: mvn clean package jpackage:jpackage@mac -pl FileProcessor -am
+        run: |
+          cd FileProcessor
+          mvn clean package jpackage:jpackage@mac
 
       - name: Build Application and Generate Installers via Maven (Windows)
         if: matrix.os == 'windows-latest'
-        run: mvn clean package jpackage:jpackage@win -pl FileProcessor -am
+        run: |
+          cd FileProcessor
+          mvn clean package jpackage:jpackage@win
 
       - name: Build Application and Generate Installers via Maven (Linux)
         if: matrix.os == 'ubuntu-latest'
-        run: mvn clean package jpackage:jpackage@linux -pl FileProcessor -am
+        run: |
+          cd FileProcessor
+          mvn clean package jpackage:jpackage@linux
 
       # Identify the generated installer file and upload it to the GitHub Release draft
       - name: Upload Installer to GitHub Release
