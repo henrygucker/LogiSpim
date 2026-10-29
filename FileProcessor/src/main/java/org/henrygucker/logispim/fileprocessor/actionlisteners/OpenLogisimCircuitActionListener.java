@@ -2,6 +2,7 @@ package org.henrygucker.logispim.fileprocessor.actionlisteners;
 
 import org.henrygucker.logispim.fileprocessor.App;
 import org.henrygucker.logispim.fileprocessor.backend.AppConfig;
+import org.henrygucker.logispim.fileprocessor.backend.WorkspaceFileHandler;
 
 import javax.swing.*;
 import java.awt.*;
@@ -21,8 +22,12 @@ public class OpenLogisimCircuitActionListener implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        Path workspaceDir = (Path) AppConfig.WORKSPACE.getValue();
-        Path circPath = workspaceDir.resolve("LogiSpim.circ").toAbsolutePath().normalize();
+        Path circPath = WorkspaceFileHandler.getLogisimCircPath();
+
+        if (circPath == null)
+                app.errorMessage("Error", "Failed to locate Logisim-evolution circuit file. Try" +
+                        " restarting or reinstalling the app.");
+
         File circFile = circPath.toFile();
 
         try {
