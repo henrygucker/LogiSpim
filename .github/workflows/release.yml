@@ -2,7 +2,6 @@ name: Build and Package Release
 
 on:
   push:
-    branches: ["main"]
     tags:
       - 'v*' # Triggers on any tag starting with v (e.g., v1.0.0)
 
@@ -90,26 +89,30 @@ jobs:
         uses: actions/github-script@v7
         env:
           EXECUTABLE_NAME: ${{ format('LogiSpim-{0}-{1}{2}', github.ref_name, runner.arch, matrix.file_extension) }}
+          EXECUTABLE_FILE_EXTENSION: ${{ format('{0}', matrix.file_extension) }}
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           script: |
             const fs = require('fs');
             const path = require('path');
             
+            const EXE_EXTENSION = matrix.file_extension;
+            const EXECUTABLE_NAME = process.env.EXECUTABLE_NAME;
+            
             // Search target directory for the installer file extension
             const targetDir = 'target/installer'; 
-            const globber = await glob.create(`${targetDir}/**/*${matrix.file_extension}`);
+            const globber = await glob.create(`${targetDir}/**/*${EXE_EXTENSION}`);
             const files = await globber.glob();
             
             if (files.length === 0) {
-              core.setFailed(`No installer file matching ${matrix.file_extension} found in target directory.`);
+              core.setFailed(`No installer file matching ${EXE_EXTENSION} found in target directory.`);
               return;
             }
             
             const filePath = files[0];
             const dirName = path.dirname(filePath);
             
-            const fileName = `${process.env.EXECUTABLE_NAME}`;
+            const fileName = EXECUTABLE_NAME;
             const newFilePath = path.resolve(filePath, fileName);
             
             io.mv(filePath, newFilePath);
