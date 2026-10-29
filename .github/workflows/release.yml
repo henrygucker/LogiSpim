@@ -35,13 +35,13 @@ jobs:
       matrix:
         include:
           - os: windows-latest
-            artifact_name: ${{ github.ref_name }}-windows-${{ runner.arch }}
+            artifact_name: ${{ github.ref_name }}-windows
             file_extension: ".exe" # or *.msi depending on your pom.xml config
           - os: macos-latest
-            artifact_name: ${{ github.ref_name }}-macos-${{ runner.arch }}
+            artifact_name: ${{ github.ref_name }}-macos
             file_extension: ".dmg" # or *.pkg
           - os: ubuntu-latest
-            artifact_name: ${{ github.ref_name }}-linux-${{ runner.arch }}
+            artifact_name: ${{ github.ref_name }}-linux
             file_extension: ".deb" # or *.rpm
 
     steps:
@@ -88,7 +88,7 @@ jobs:
       - name: Upload Installer to GitHub Release
         uses: actions/github-script@v7
         env:
-          EXECUTABLE_NAME: ${{ format('LogiSpim-{0}{1}', matrix.artifact_name, matrix.file_extension) }}
+          EXECUTABLE_NAME: ${{ format('LogiSpim-{0}-{1}{2}', matrix.artifact_name, runner.arch, matrix.file_extension) }}
           EXECUTABLE_FILE_EXTENSION: ${{ matrix.file_extension }}
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
