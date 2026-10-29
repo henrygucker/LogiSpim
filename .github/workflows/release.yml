@@ -2,6 +2,8 @@ name: Build and Package Release
 
 on:
   push:
+    branches:
+      - main
     tags:
       - 'v*' # Triggers on any tag starting with v (e.g., v1.0.0)
 
