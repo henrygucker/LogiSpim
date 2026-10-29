@@ -5,8 +5,8 @@
 
 <div align="center">
     <picture>
-      <source media="(prefers-color-scheme: dark)" srcset="./assets/LogiSpim_Logo_Light.svg">
-      <source media="(prefers-color-scheme: light)" srcset="./assets/LogiSpim_Logo_Dark.svg">
+      <source media="(prefers-color-scheme: dark)" srcset="assets/LogiSpim_Logo_Light.svg">
+      <source media="(prefers-color-scheme: light)" srcset="assets/LogiSpim_Logo_Dark.svg">
       <img alt="LogiSpim Logo" width="500" src="assets/LogiSpim_Logo_Both_Invert.svg">
     </picture>
 </div>
