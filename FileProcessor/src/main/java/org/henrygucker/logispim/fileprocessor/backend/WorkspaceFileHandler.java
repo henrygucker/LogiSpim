@@ -90,23 +90,48 @@ public class WorkspaceFileHandler {
         // Create ./out
         Files.createDirectories(getOutputDir());
 
-        // Create ./LogiSpim.circ
-        if (null == ResourceFileUtil.copyResourceToLocation("LogiSpim.circ", ((Path) AppConfig.WORKSPACE.getValue()).resolve("LogiSpim.circ")))
-            System.err.println("Failed to copy instance of Logisim-evolution circuit file when initializing workspace.");
+        // Create ./LogiSpim-VERSION.circ
+        writeLogisimCirc();
     }
 
     /**
-     * Repairs a workspace, ensuring that it contains a source directory, output directory, and copy of the Logisim circuit file
+     * Patches a workspace, ensuring that any files or directories which should exist, do exist.
+     * This runs during app startup.
      * @throws IOException if an IO issue occurs when modifying files, possibly a lack of permissions
      */
-    public static void repairWorkspace() throws IOException {
-        // this will later earn its own button for users to repair their workspace
-
-        // Create source and output directories
+    public static void patchWorkspace() throws IOException {
+        // Create source and output directories if they do not exist
         Files.createDirectories(getOutputDir());
         Files.createDirectories(getDefaultSourceDir());
 
-        if (null == ResourceFileUtil.copyResourceToLocation("LogiSpim.circ", ((Path) AppConfig.WORKSPACE.getValue()).resolve("LogiSpim.circ")))
+        // Writes logisim circ file if it does not exist
+        Path logisimCirc = getLogisimCircPath();
+
+        if (null != logisimCirc && !logisimCirc.toFile().exists())
+            writeLogisimCirc();
+    }
+
+    public static boolean writeLogisimCirc() throws IOException {
+        Path logisimCirc = getLogisimCircPath();
+
+        if (logisimCirc == null || null == ResourceFileUtil.copyResourceToLocation("LogiSpim.circ", logisimCirc)) {
             System.err.println("Failed to copy new instance of Logisim-evolution circuit file when repairing workspace.");
+            return false;
+        }
+
+        return true;
+    }
+
+    public static Path getLogisimCircPath() {
+        String version = (String) AppConfig.VERSION.getValue();
+
+        if (version == null)
+            return null;
+
+        return ((Path) AppConfig.WORKSPACE.getValue())
+                .resolve("LogiSpim-" + version + ".circ")
+                .toAbsolutePath()
+                .normalize();
+
     }
 }

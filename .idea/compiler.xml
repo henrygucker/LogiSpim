@@ -6,11 +6,6 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-      </profile>
-      <profile name="Annotation profile for LogiSpim" enabled="true">
-        <sourceOutputDir name="build/generated-sources/annotations" />
-        <sourceTestOutputDir name="build/generated-test-sources/test-annotations" />
-        <outputRelativeToContentRoot value="true" />
         <module name="FileProcessor" />
         <module name="Testing" />
       </profile>

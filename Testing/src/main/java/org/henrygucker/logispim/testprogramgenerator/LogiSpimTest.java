@@ -1,4 +1,4 @@
-package org.henrygucker.logispim.logispim.testprogramgenerator;
+package org.henrygucker.logispim.testprogramgenerator;
 
 public record LogiSpimTest(int num, String testInstruction, int[] primaryTestValues, int[] secondaryTestValues, int[] expectedValues) {
     public String getTestContentDataEntry() {

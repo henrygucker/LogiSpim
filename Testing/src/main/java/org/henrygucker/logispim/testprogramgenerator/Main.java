@@ -1,4 +1,4 @@
-package org.henrygucker.logispim.logispim.testprogramgenerator;
+package org.henrygucker.logispim.testprogramgenerator;
 
 import java.io.BufferedWriter;
 import java.io.File;

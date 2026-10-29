@@ -570,16 +570,6 @@
       <a name="labelfont" val="SansSerif bold 10"/>
       <a name="width" val="32"/>
     </comp>
-    <comp lib="0" loc="(270,210)" name="Tunnel">
-      <a name="facing" val="east"/>
-      <a name="label" val="PS_Reset"/>
-      <a name="labelfont" val="SansSerif bold 10"/>
-    </comp>
-    <comp lib="0" loc="(270,330)" name="Tunnel">
-      <a name="facing" val="east"/>
-      <a name="label" val="PS_Reset"/>
-      <a name="labelfont" val="SansSerif bold 10"/>
-    </comp>
     <comp lib="0" loc="(2790,700)" name="Tunnel">
       <a name="label" val="SuspendProcessor_D"/>
       <a name="labelfont" val="SansSerif bold 10"/>
@@ -592,6 +582,16 @@
       <a name="label" val="PCSrc_D"/>
       <a name="labelfont" val="SansSerif bold 10"/>
       <a name="width" val="2"/>
+    </comp>
+    <comp lib="0" loc="(280,210)" name="Tunnel">
+      <a name="facing" val="east"/>
+      <a name="label" val="PS_Reset"/>
+      <a name="labelfont" val="SansSerif bold 10"/>
+    </comp>
+    <comp lib="0" loc="(280,330)" name="Tunnel">
+      <a name="facing" val="east"/>
+      <a name="label" val="PS_Reset"/>
+      <a name="labelfont" val="SansSerif bold 10"/>
     </comp>
     <comp lib="0" loc="(2810,1590)" name="Tunnel">
       <a name="facing" val="east"/>
@@ -1501,15 +1501,15 @@
     <comp lib="6" loc="(1905,140)" name="Text">
       <a name="text" val="Clock Management (CM)"/>
     </comp>
-    <comp lib="6" loc="(1959,2156)" name="Text">
+    <comp lib="6" loc="(1955,2155)" name="Text">
       <a name="font" val="SansSerif bold 12"/>
       <a name="text" val="is R-Type Instruction (jr/jalr)"/>
     </comp>
-    <comp lib="6" loc="(1969,2146)" name="Text">
+    <comp lib="6" loc="(1965,2145)" name="Text">
       <a name="font" val="SansSerif bold 12"/>
       <a name="text" val="PCJumpAddr is set to rs value if"/>
     </comp>
-    <comp lib="6" loc="(1989,2078)" name="Text">
+    <comp lib="6" loc="(1985,2075)" name="Text">
       <a name="text" val="pc[31:28]"/>
     </comp>
     <comp lib="6" loc="(1990,385)" name="Text">
@@ -1527,11 +1527,11 @@
     <comp lib="6" loc="(2030,400)" name="Text">
       <a name="text" val="Suspension"/>
     </comp>
-    <comp lib="6" loc="(2244,2027)" name="Text">
+    <comp lib="6" loc="(2240,2025)" name="Text">
       <a name="font" val="SansSerif bold 18"/>
       <a name="text" val="Computing JTA"/>
     </comp>
-    <comp lib="6" loc="(2247,2038)" name="Text">
+    <comp lib="6" loc="(2245,2035)" name="Text">
       <a name="font" val="SansSerif bold 12"/>
       <a name="text" val="(Jump Target Address)"/>
     </comp>
@@ -1547,22 +1547,22 @@
     <comp lib="6" loc="(2270,1860)" name="Text">
       <a name="text" val="imm [15:0]"/>
     </comp>
-    <comp lib="6" loc="(236,520)" name="Text">
+    <comp lib="6" loc="(235,516)" name="Text">
       <a name="font" val="SansSerif bold 8"/>
       <a name="halign" val="left"/>
       <a name="text" val="Go to &quot;Simulate&quot; &gt; &quot;Auto-Tick Frequency&quot; in the menu bar"/>
     </comp>
-    <comp lib="6" loc="(237,529)" name="Text">
+    <comp lib="6" loc="(235,525)" name="Text">
       <a name="font" val="SansSerif bold 8"/>
       <a name="halign" val="left"/>
       <a name="text" val="and select 1.0 kHz+. Then, enable auto ticking and select the"/>
     </comp>
-    <comp lib="6" loc="(237,538)" name="Text">
+    <comp lib="6" loc="(235,535)" name="Text">
       <a name="font" val="SansSerif bold 8"/>
       <a name="halign" val="left"/>
       <a name="text" val="box under the &quot;User Controls&quot; label (above this guide) with"/>
     </comp>
-    <comp lib="6" loc="(238,547)" name="Text">
+    <comp lib="6" loc="(235,545)" name="Text">
       <a name="font" val="SansSerif bold 8"/>
       <a name="halign" val="left"/>
       <a name="text" val="the poke (hand) tool. Now, use the listed hotkeys:"/>
@@ -1570,7 +1570,7 @@
     <comp lib="6" loc="(250,3670)" name="Text">
       <a name="text" val="Breakpoint Logic"/>
     </comp>
-    <comp lib="6" loc="(254,509)" name="Text">
+    <comp lib="6" loc="(250,505)" name="Text">
       <a name="font" val="SansSerif bold 12"/>
       <a name="text" val="Guide"/>
     </comp>
@@ -1581,26 +1581,26 @@
       <a name="font" val="SansSerif bold 18"/>
       <a name="text" val="Computing BTA"/>
     </comp>
-    <comp lib="6" loc="(2648,2042)" name="Text">
+    <comp lib="6" loc="(2645,2040)" name="Text">
       <a name="font" val="SansSerif bold 12"/>
       <a name="text" val="(Branch Target Address)"/>
     </comp>
     <comp lib="6" loc="(2860,380)" name="Text">
       <a name="text" val="Reverse-Direction Control Path"/>
     </comp>
-    <comp lib="6" loc="(304,559)" name="Text">
+    <comp lib="6" loc="(300,555)" name="Text">
       <a name="font" val="SansSerif bold 8"/>
       <a name="text" val="r = Reset Processor"/>
     </comp>
-    <comp lib="6" loc="(306,569)" name="Text">
+    <comp lib="6" loc="(305,565)" name="Text">
       <a name="font" val="SansSerif bold 8"/>
       <a name="text" val="[Space] = Cycle Clock"/>
     </comp>
-    <comp lib="6" loc="(313,579)" name="Text">
+    <comp lib="6" loc="(310,575)" name="Text">
       <a name="font" val="SansSerif bold 8"/>
       <a name="text" val="t = Toggle Auto-Ticking"/>
     </comp>
-    <comp lib="6" loc="(334,1265)" name="Text">
+    <comp lib="6" loc="(330,1265)" name="Text">
       <a name="font" val="SansSerif bold 12"/>
       <a name="text" val="returns to LOW."/>
     </comp>
@@ -1611,7 +1611,7 @@
       <a name="font" val="SansSerif bold 12"/>
       <a name="text" val="(If RegWriteDataSrc_E == 0b11, WriteReg_E is $ra)"/>
     </comp>
-    <comp lib="6" loc="(394,1210)" name="Text">
+    <comp lib="6" loc="(390,1210)" name="Text">
       <a name="font" val="SansSerif bold 12"/>
       <a name="text" val="**Note: Registers in the RegisterFile are"/>
     </comp>
@@ -1619,15 +1619,15 @@
       <a name="font" val="SansSerif bold 18"/>
       <a name="text" val="User Controls"/>
     </comp>
-    <comp lib="6" loc="(412,1253)" name="Text">
-      <a name="font" val="SansSerif bold 12"/>
-      <a name="text" val="register writeback shown until the clock"/>
-    </comp>
-    <comp lib="6" loc="(414,1225)" name="Text">
+    <comp lib="6" loc="(410,1225)" name="Text">
       <a name="font" val="SansSerif bold 12"/>
       <a name="text" val="written to on FALLING edges of the clock."/>
     </comp>
-    <comp lib="6" loc="(424,1240)" name="Text">
+    <comp lib="6" loc="(410,1250)" name="Text">
+      <a name="font" val="SansSerif bold 12"/>
+      <a name="text" val="register writeback shown until the clock"/>
+    </comp>
+    <comp lib="6" loc="(420,1240)" name="Text">
       <a name="font" val="SansSerif bold 12"/>
       <a name="text" val="Therefore, the instruction in S5 will not have"/>
     </comp>
@@ -1638,11 +1638,11 @@
     <comp lib="6" loc="(495,3555)" name="Text">
       <a name="text" val="Used for the control panel in the top left"/>
     </comp>
-    <comp lib="6" loc="(5046,1526)" name="Text">
+    <comp lib="6" loc="(5045,1525)" name="Text">
       <a name="font" val="SansSerif bold 12"/>
       <a name="text" val="(Done to display stack) -&gt;"/>
     </comp>
-    <comp lib="6" loc="(5376,1320)" name="Text">
+    <comp lib="6" loc="(5375,1320)" name="Text">
       <a name="color" val="#cc1506"/>
       <a name="font" val="SansSerif bold 20"/>
       <a name="text" val="RIGHT CLICK RAM:"/>
@@ -1674,25 +1674,25 @@
       <a name="font" val="SansSerif bold 24"/>
       <a name="text" val="Main Memory (MM)"/>
     </comp>
-    <comp lib="6" loc="(650,80)" name="Text">
-      <a name="font" val="SansSerif bold 24"/>
-      <a name="text" val="Pipeline State"/>
-    </comp>
-    <comp lib="6" loc="(66,1507)" name="Text">
+    <comp lib="6" loc="(65,1505)" name="Text">
       <a name="halign" val="left"/>
       <a name="text" val="00 - nextPC = PCPlus4_F"/>
     </comp>
-    <comp lib="6" loc="(67,1522)" name="Text">
+    <comp lib="6" loc="(65,1520)" name="Text">
       <a name="halign" val="left"/>
       <a name="text" val="01 - nextPC = PCBranchAddr_D"/>
     </comp>
-    <comp lib="6" loc="(67,1538)" name="Text">
+    <comp lib="6" loc="(65,1535)" name="Text">
       <a name="halign" val="left"/>
       <a name="text" val="10 - nextPC = PCJumpAddr_D"/>
     </comp>
-    <comp lib="6" loc="(67,1555)" name="Text">
+    <comp lib="6" loc="(65,1555)" name="Text">
       <a name="halign" val="left"/>
       <a name="text" val="11 - nextPC = Syscall Start Addr"/>
+    </comp>
+    <comp lib="6" loc="(650,80)" name="Text">
+      <a name="font" val="SansSerif bold 24"/>
+      <a name="text" val="Pipeline State"/>
     </comp>
     <comp lib="6" loc="(670,615)" name="Text">
       <a name="font" val="SansSerif bold 24"/>
@@ -1709,6 +1709,9 @@
     <comp lib="6" loc="(825,1785)" name="Text">
       <a name="text" val="Determines if the next instruction will be executing a syscall."/>
     </comp>
+    <comp lib="6" loc="(95,1485)" name="Text">
+      <a name="text" val="PCSrc Codes:"/>
+    </comp>
     <comp lib="6" loc="(950,460)" name="Text">
       <a name="font" val="SansSerif bold 12"/>
       <a name="text" val="(likely due to invalid jump/branch)"/>
@@ -1716,9 +1719,6 @@
     <comp lib="6" loc="(955,365)" name="Text">
       <a name="font" val="SansSerif bold 18"/>
       <a name="text" val="Status Indicators"/>
-    </comp>
-    <comp lib="6" loc="(98,1487)" name="Text">
-      <a name="text" val="PCSrc Codes:"/>
     </comp>
     <comp loc="(1130,1600)" name="InstructionMemory"/>
     <comp loc="(1780,1620)" name="DataPathRegister_F_D"/>
@@ -1967,8 +1967,6 @@
     <wire from="(2690,2120)" to="(2690,2170)"/>
     <wire from="(2690,2170)" to="(2690,2340)"/>
     <wire from="(270,150)" to="(320,150)"/>
-    <wire from="(270,210)" to="(350,210)"/>
-    <wire from="(270,330)" to="(350,330)"/>
     <wire from="(2720,560)" to="(3050,560)"/>
     <wire from="(2720,580)" to="(3050,580)"/>
     <wire from="(2720,600)" to="(3050,600)"/>
@@ -1980,6 +1978,8 @@
     <wire from="(2720,720)" to="(2790,720)"/>
     <wire from="(2720,740)" to="(2720,780)"/>
     <wire from="(2720,800)" to="(2790,800)"/>
+    <wire from="(280,210)" to="(350,210)"/>
+    <wire from="(280,330)" to="(350,330)"/>
     <wire from="(2810,1590)" to="(2820,1590)"/>
     <wire from="(2820,1490)" to="(2830,1490)"/>
     <wire from="(2830,1490)" to="(2830,1520)"/>
@@ -2458,122 +2458,122 @@
     <comp lib="3" loc="(540,950)" name="Comparator">
       <a name="width" val="6"/>
     </comp>
-    <comp lib="6" loc="(1233,103)" name="Text">
+    <comp lib="6" loc="(1230,100)" name="Text">
       <a name="halign" val="left"/>
       <a name="text" val="10 - ALUInputB = ZeroImm"/>
     </comp>
-    <comp lib="6" loc="(1235,72)" name="Text">
+    <comp lib="6" loc="(1235,70)" name="Text">
       <a name="halign" val="left"/>
       <a name="text" val="00 - ALUInputB = RegData2"/>
     </comp>
-    <comp lib="6" loc="(1235,87)" name="Text">
+    <comp lib="6" loc="(1235,85)" name="Text">
       <a name="halign" val="left"/>
       <a name="text" val="x1 - ALUInputB = SignImm"/>
     </comp>
-    <comp lib="6" loc="(1242,152)" name="Text">
+    <comp lib="6" loc="(1240,150)" name="Text">
       <a name="halign" val="left"/>
       <a name="text" val="0 - WriteReg = rt"/>
     </comp>
-    <comp lib="6" loc="(1242,168)" name="Text">
+    <comp lib="6" loc="(1240,165)" name="Text">
       <a name="halign" val="left"/>
       <a name="text" val="1 - WriteReg = rd"/>
     </comp>
-    <comp lib="6" loc="(1244,220)" name="Text">
+    <comp lib="6" loc="(1240,220)" name="Text">
       <a name="halign" val="left"/>
       <a name="text" val="0 - Continue Execution"/>
     </comp>
-    <comp lib="6" loc="(1244,236)" name="Text">
+    <comp lib="6" loc="(1240,235)" name="Text">
       <a name="halign" val="left"/>
       <a name="text" val="1 - Fix CLK HIGH until reset"/>
     </comp>
-    <comp lib="6" loc="(1251,282)" name="Text">
+    <comp lib="6" loc="(1250,280)" name="Text">
       <a name="halign" val="left"/>
       <a name="text" val="0 - Do not print to emulated console"/>
     </comp>
-    <comp lib="6" loc="(1251,298)" name="Text">
+    <comp lib="6" loc="(1250,295)" name="Text">
       <a name="halign" val="left"/>
       <a name="text" val="1 - Print character stored in $a0"/>
     </comp>
-    <comp lib="6" loc="(1251,355)" name="Text">
+    <comp lib="6" loc="(1250,355)" name="Text">
       <a name="halign" val="left"/>
       <a name="text" val="00 - No Branch/Jump"/>
     </comp>
-    <comp lib="6" loc="(1252,370)" name="Text">
+    <comp lib="6" loc="(1250,370)" name="Text">
       <a name="halign" val="left"/>
       <a name="text" val="01 - beq/bne conditional branch to BTA"/>
     </comp>
-    <comp lib="6" loc="(1252,386)" name="Text">
+    <comp lib="6" loc="(1250,385)" name="Text">
       <a name="halign" val="left"/>
       <a name="text" val="10 - jump to JTA (Jump Target Address)"/>
     </comp>
-    <comp lib="6" loc="(1252,403)" name="Text">
+    <comp lib="6" loc="(1250,400)" name="Text">
       <a name="halign" val="left"/>
       <a name="text" val="11 - blez/bgtz conditional branch to BTA"/>
     </comp>
-    <comp lib="6" loc="(1281,50)" name="Text">
+    <comp lib="6" loc="(1280,50)" name="Text">
       <a name="text" val="ALUSrcB Codes:"/>
     </comp>
-    <comp lib="6" loc="(1289,265)" name="Text">
+    <comp lib="6" loc="(1285,265)" name="Text">
       <a name="text" val="PrintChar Codes:"/>
     </comp>
-    <comp lib="6" loc="(1294,134)" name="Text">
+    <comp lib="6" loc="(1290,130)" name="Text">
       <a name="text" val="WriteRegSrc Codes:"/>
     </comp>
     <comp lib="6" loc="(1295,335)" name="Text">
       <a name="text" val="BranchOp Codes:"/>
     </comp>
-    <comp lib="6" loc="(1323,202)" name="Text">
+    <comp lib="6" loc="(1320,200)" name="Text">
       <a name="text" val="SuspendProcessor Codes:"/>
     </comp>
-    <comp lib="6" loc="(337,69)" name="Text">
+    <comp lib="6" loc="(335,65)" name="Text">
       <a name="font" val="SansSerif bold 20"/>
       <a name="text" val="Control Unit"/>
     </comp>
-    <comp lib="6" loc="(62,241)" name="Text">
-      <a name="halign" val="left"/>
-      <a name="text" val="those codes."/>
-    </comp>
-    <comp lib="6" loc="(62,313)" name="Text">
-      <a name="halign" val="left"/>
-      <a name="text" val="values read by the current instruction. So, the Control Unit outputs a BranchOp"/>
-    </comp>
-    <comp lib="6" loc="(62,332)" name="Text">
-      <a name="halign" val="left"/>
-      <a name="text" val="code which feeds into the Branch Decoder to determine if any jumps or branches"/>
-    </comp>
-    <comp lib="6" loc="(62,350)" name="Text">
-      <a name="halign" val="left"/>
-      <a name="text" val="occur."/>
-    </comp>
-    <comp lib="6" loc="(63,222)" name="Text">
-      <a name="halign" val="left"/>
-      <a name="text" val="and Funct codes to decode all control path values which depend purely on"/>
-    </comp>
-    <comp lib="6" loc="(63,273)" name="Text">
-      <a name="halign" val="left"/>
-      <a name="text" val="Determining which source the program counter should retrieve its next value"/>
-    </comp>
-    <comp lib="6" loc="(63,295)" name="Text">
-      <a name="halign" val="left"/>
-      <a name="text" val="from requires branching to be handled. This requires access to the register"/>
-    </comp>
-    <comp lib="6" loc="(64,203)" name="Text">
+    <comp lib="6" loc="(60,200)" name="Text">
       <a name="halign" val="left"/>
       <a name="text" val="Existing in the Decode (D) stage, the Control Unit takes an instruction's Op"/>
     </comp>
-    <comp lib="6" loc="(65,119)" name="Text">
+    <comp lib="6" loc="(60,220)" name="Text">
+      <a name="halign" val="left"/>
+      <a name="text" val="and Funct codes to decode all control path values which depend purely on"/>
+    </comp>
+    <comp lib="6" loc="(60,240)" name="Text">
+      <a name="halign" val="left"/>
+      <a name="text" val="those codes."/>
+    </comp>
+    <comp lib="6" loc="(60,270)" name="Text">
+      <a name="halign" val="left"/>
+      <a name="text" val="Determining which source the program counter should retrieve its next value"/>
+    </comp>
+    <comp lib="6" loc="(60,295)" name="Text">
+      <a name="halign" val="left"/>
+      <a name="text" val="from requires branching to be handled. This requires access to the register"/>
+    </comp>
+    <comp lib="6" loc="(60,310)" name="Text">
+      <a name="halign" val="left"/>
+      <a name="text" val="values read by the current instruction. So, the Control Unit outputs a BranchOp"/>
+    </comp>
+    <comp lib="6" loc="(60,330)" name="Text">
+      <a name="halign" val="left"/>
+      <a name="text" val="code which feeds into the Branch Decoder to determine if any jumps or branches"/>
+    </comp>
+    <comp lib="6" loc="(60,350)" name="Text">
+      <a name="halign" val="left"/>
+      <a name="text" val="occur."/>
+    </comp>
+    <comp lib="6" loc="(65,115)" name="Text">
       <a name="halign" val="left"/>
       <a name="text" val="This circuit decodes control path values purely from an instruction's OP"/>
     </comp>
-    <comp lib="6" loc="(66,135)" name="Text">
+    <comp lib="6" loc="(65,135)" name="Text">
       <a name="halign" val="left"/>
       <a name="text" val="and Funct codes. Some outputs of the Control Unit are processed further"/>
     </comp>
-    <comp lib="6" loc="(67,152)" name="Text">
+    <comp lib="6" loc="(65,150)" name="Text">
       <a name="halign" val="left"/>
       <a name="text" val="by downstream decoders where more input data is required to create all control"/>
     </comp>
-    <comp lib="6" loc="(67,170)" name="Text">
+    <comp lib="6" loc="(65,170)" name="Text">
       <a name="halign" val="left"/>
       <a name="text" val="path values necessary for the processor to execute the current instruction."/>
     </comp>
@@ -2583,99 +2583,99 @@
     <comp lib="6" loc="(725,935)" name="Text">
       <a name="text" val="If OP = 21 (0x15), is print char instruction"/>
     </comp>
-    <comp lib="6" loc="(761,201)" name="Text">
+    <comp lib="6" loc="(760,200)" name="Text">
       <a name="halign" val="left"/>
       <a name="text" val="MemOp Codes:"/>
     </comp>
-    <comp lib="6" loc="(788,430)" name="Text">
+    <comp lib="6" loc="(785,430)" name="Text">
       <a name="halign" val="left"/>
       <a name="text" val="0 - ALUInputA = RegData1"/>
     </comp>
-    <comp lib="6" loc="(788,447)" name="Text">
+    <comp lib="6" loc="(785,445)" name="Text">
       <a name="halign" val="left"/>
       <a name="text" val="1 - ALUInputA = shamt (Zero-Extended)"/>
     </comp>
-    <comp lib="6" loc="(793,377)" name="Text">
-      <a name="halign" val="left"/>
-      <a name="text" val="See ALU or ALU Decoder..."/>
-    </comp>
-    <comp lib="6" loc="(794,157)" name="Text">
+    <comp lib="6" loc="(790,155)" name="Text">
       <a name="halign" val="left"/>
       <a name="text" val="10 - WriteData == ReadData (memory)"/>
     </comp>
-    <comp lib="6" loc="(794,173)" name="Text">
+    <comp lib="6" loc="(790,170)" name="Text">
       <a name="halign" val="left"/>
       <a name="text" val="11 - WriteData == PCPlus4 and WriteReg == $ra"/>
     </comp>
-    <comp lib="6" loc="(794,70)" name="Text">
+    <comp lib="6" loc="(790,375)" name="Text">
+      <a name="halign" val="left"/>
+      <a name="text" val="See ALU or ALU Decoder..."/>
+    </comp>
+    <comp lib="6" loc="(790,70)" name="Text">
       <a name="halign" val="left"/>
       <a name="text" val="0 - No write to register"/>
     </comp>
-    <comp lib="6" loc="(794,86)" name="Text">
+    <comp lib="6" loc="(790,85)" name="Text">
       <a name="halign" val="left"/>
       <a name="text" val="1 - Write to register in Writeback (W) stage"/>
     </comp>
-    <comp lib="6" loc="(796,142)" name="Text">
+    <comp lib="6" loc="(795,140)" name="Text">
       <a name="halign" val="left"/>
       <a name="text" val="0x - WriteData == ALUOut"/>
     </comp>
-    <comp lib="6" loc="(796,220)" name="Text">
+    <comp lib="6" loc="(795,220)" name="Text">
       <a name="halign" val="left"/>
       <a name="text" val="0000 - lb"/>
     </comp>
-    <comp lib="6" loc="(796,235)" name="Text">
+    <comp lib="6" loc="(795,235)" name="Text">
       <a name="halign" val="left"/>
       <a name="text" val="0001 - lh"/>
     </comp>
-    <comp lib="6" loc="(796,250)" name="Text">
+    <comp lib="6" loc="(795,250)" name="Text">
       <a name="halign" val="left"/>
       <a name="text" val="0010 - lw"/>
     </comp>
-    <comp lib="6" loc="(797,264)" name="Text">
+    <comp lib="6" loc="(795,260)" name="Text">
       <a name="halign" val="left"/>
       <a name="text" val="0011 - N/A"/>
     </comp>
-    <comp lib="6" loc="(797,278)" name="Text">
+    <comp lib="6" loc="(795,275)" name="Text">
       <a name="halign" val="left"/>
       <a name="text" val="0100 - lbu"/>
     </comp>
-    <comp lib="6" loc="(797,293)" name="Text">
+    <comp lib="6" loc="(795,290)" name="Text">
       <a name="halign" val="left"/>
       <a name="text" val="0101 - lhu"/>
     </comp>
-    <comp lib="6" loc="(797,308)" name="Text">
+    <comp lib="6" loc="(795,305)" name="Text">
       <a name="halign" val="left"/>
       <a name="text" val="0110 - lwl"/>
     </comp>
-    <comp lib="6" loc="(797,323)" name="Text">
+    <comp lib="6" loc="(795,320)" name="Text">
       <a name="halign" val="left"/>
       <a name="text" val="0111 - lwr"/>
     </comp>
-    <comp lib="6" loc="(827,48)" name="Text">
-      <a name="text" val="RegWrite Codes:"/>
-    </comp>
-    <comp lib="6" loc="(829,409)" name="Text">
+    <comp lib="6" loc="(825,405)" name="Text">
       <a name="text" val="ALUSrcA Codes:"/>
     </comp>
-    <comp lib="6" loc="(836,357)" name="Text">
-      <a name="text" val="ALUControl Codes:"/>
+    <comp lib="6" loc="(825,45)" name="Text">
+      <a name="text" val="RegWrite Codes:"/>
     </comp>
-    <comp lib="6" loc="(837,1027)" name="Text">
+    <comp lib="6" loc="(835,1025)" name="Text">
       <a name="font" val="SansSerif bold 12"/>
       <a name="text" val="(Forwarding BranchOp to BranchDecoder)"/>
     </comp>
-    <comp lib="6" loc="(858,120)" name="Text">
+    <comp lib="6" loc="(835,355)" name="Text">
+      <a name="text" val="ALUControl Codes:"/>
+    </comp>
+    <comp lib="6" loc="(855,120)" name="Text">
       <a name="text" val="RegWriteDataSrc Codes:"/>
     </comp>
-    <comp lib="6" loc="(924,221)" name="Text">
+    <comp lib="6" loc="(920,220)" name="Text">
       <a name="halign" val="left"/>
       <a name="text" val="1000 - sb"/>
     </comp>
-    <comp lib="6" loc="(924,236)" name="Text">
+    <comp lib="6" loc="(920,235)" name="Text">
       <a name="halign" val="left"/>
       <a name="text" val="1001 - sh"/>
     </comp>
-    <comp lib="6" loc="(924,251)" name="Text">
+    <comp lib="6" loc="(920,250)" name="Text">
       <a name="halign" val="left"/>
       <a name="text" val="1010 - sw"/>
     </comp>
@@ -2683,19 +2683,19 @@
       <a name="halign" val="left"/>
       <a name="text" val="1011 - N/A"/>
     </comp>
-    <comp lib="6" loc="(925,279)" name="Text">
+    <comp lib="6" loc="(925,275)" name="Text">
       <a name="halign" val="left"/>
       <a name="text" val="1100 - N/A"/>
     </comp>
-    <comp lib="6" loc="(925,294)" name="Text">
+    <comp lib="6" loc="(925,290)" name="Text">
       <a name="halign" val="left"/>
       <a name="text" val="1101 - N/A"/>
     </comp>
-    <comp lib="6" loc="(925,309)" name="Text">
+    <comp lib="6" loc="(925,305)" name="Text">
       <a name="halign" val="left"/>
       <a name="text" val="1110 - swl"/>
     </comp>
-    <comp lib="6" loc="(925,324)" name="Text">
+    <comp lib="6" loc="(925,320)" name="Text">
       <a name="halign" val="left"/>
       <a name="text" val="1111 - swr"/>
     </comp>
@@ -4452,7 +4452,7 @@
       <a name="facing" val="north"/>
       <a name="width" val="64"/>
     </comp>
-    <comp lib="6" loc="(1049,925)" name="Text">
+    <comp lib="6" loc="(1045,925)" name="Text">
       <a name="color" val="#636363"/>
       <a name="halign" val="left"/>
       <a name="text" val="strings is the zero-extended numerical representation of the string's binary value"/>
@@ -4462,20 +4462,20 @@
       <a name="halign" val="left"/>
       <a name="text" val="The constant passed into the AND gate associated with any of these binary"/>
     </comp>
-    <comp lib="6" loc="(1053,980)" name="Text">
+    <comp lib="6" loc="(1050,940)" name="Text">
+      <a name="color" val="#636363"/>
+      <a name="halign" val="left"/>
+      <a name="text" val="(excluding any '-' characters) with the first bit being the most significant bit."/>
+    </comp>
+    <comp lib="6" loc="(1050,980)" name="Text">
       <a name="color" val="#636363"/>
       <a name="halign" val="left"/>
       <a name="text" val="Updating the constant is done by typing &quot;0bxxxx...&quot; into its value field, where"/>
     </comp>
-    <comp lib="6" loc="(1053,999)" name="Text">
+    <comp lib="6" loc="(1050,995)" name="Text">
       <a name="color" val="#636363"/>
       <a name="halign" val="left"/>
       <a name="text" val="&quot;xxx...&quot; is the binary string without any '-' characters."/>
-    </comp>
-    <comp lib="6" loc="(1054,943)" name="Text">
-      <a name="color" val="#636363"/>
-      <a name="halign" val="left"/>
-      <a name="text" val="(excluding any '-' characters) with the first bit being the most significant bit."/>
     </comp>
     <comp lib="6" loc="(110,985)" name="Text">
       <a name="font" val="SansSerif bolditalic 16"/>
@@ -4493,92 +4493,92 @@
     <comp lib="6" loc="(115,1235)" name="Text">
       <a name="text" val="Funct: 0b0000xx"/>
     </comp>
-    <comp lib="6" loc="(1230,338)" name="Text">
-      <a name="halign" val="left"/>
-      <a name="text" val="10 - ALUInputB = ZeroImm"/>
-    </comp>
-    <comp lib="6" loc="(1232,307)" name="Text">
+    <comp lib="6" loc="(1230,305)" name="Text">
       <a name="halign" val="left"/>
       <a name="text" val="00 - ALUInputB = RegData2"/>
     </comp>
-    <comp lib="6" loc="(1232,322)" name="Text">
+    <comp lib="6" loc="(1230,320)" name="Text">
       <a name="halign" val="left"/>
       <a name="text" val="x1 - ALUInputB = SignImm"/>
     </comp>
-    <comp lib="6" loc="(1236,239)" name="Text">
+    <comp lib="6" loc="(1230,335)" name="Text">
       <a name="halign" val="left"/>
-      <a name="text" val="0 - ALUInputA = RegData1"/>
+      <a name="text" val="10 - ALUInputB = ZeroImm"/>
     </comp>
-    <comp lib="6" loc="(1236,256)" name="Text">
-      <a name="halign" val="left"/>
-      <a name="text" val="1 - ALUInputA = shamt (Zero-Extended)"/>
-    </comp>
-    <comp lib="6" loc="(1236,63)" name="Text">
-      <a name="halign" val="left"/>
-      <a name="text" val="0000 - add"/>
-    </comp>
-    <comp lib="6" loc="(1236,78)" name="Text">
-      <a name="halign" val="left"/>
-      <a name="text" val="0001 - addu"/>
-    </comp>
-    <comp lib="6" loc="(1236,93)" name="Text">
-      <a name="halign" val="left"/>
-      <a name="text" val="0010 - B &lt;&lt; 16 (for lui)"/>
-    </comp>
-    <comp lib="6" loc="(1237,107)" name="Text">
+    <comp lib="6" loc="(1235,105)" name="Text">
       <a name="halign" val="left"/>
       <a name="text" val="0011 - slt"/>
     </comp>
-    <comp lib="6" loc="(1237,121)" name="Text">
+    <comp lib="6" loc="(1235,120)" name="Text">
       <a name="halign" val="left"/>
       <a name="text" val="0100 - sltu"/>
     </comp>
-    <comp lib="6" loc="(1237,136)" name="Text">
+    <comp lib="6" loc="(1235,135)" name="Text">
       <a name="halign" val="left"/>
       <a name="text" val="0101 - and"/>
     </comp>
-    <comp lib="6" loc="(1237,151)" name="Text">
+    <comp lib="6" loc="(1235,150)" name="Text">
       <a name="halign" val="left"/>
       <a name="text" val="0110 - or"/>
     </comp>
-    <comp lib="6" loc="(1237,166)" name="Text">
+    <comp lib="6" loc="(1235,165)" name="Text">
       <a name="halign" val="left"/>
       <a name="text" val="0111 - xor"/>
     </comp>
-    <comp lib="6" loc="(1238,180)" name="Text">
+    <comp lib="6" loc="(1235,180)" name="Text">
       <a name="halign" val="left"/>
       <a name="text" val="1xxx - Look at Funct"/>
     </comp>
-    <comp lib="6" loc="(1239,387)" name="Text">
+    <comp lib="6" loc="(1235,235)" name="Text">
+      <a name="halign" val="left"/>
+      <a name="text" val="0 - ALUInputA = RegData1"/>
+    </comp>
+    <comp lib="6" loc="(1235,255)" name="Text">
+      <a name="halign" val="left"/>
+      <a name="text" val="1 - ALUInputA = shamt (Zero-Extended)"/>
+    </comp>
+    <comp lib="6" loc="(1235,385)" name="Text">
       <a name="halign" val="left"/>
       <a name="text" val="0 - WriteReg = rt"/>
     </comp>
-    <comp lib="6" loc="(1239,403)" name="Text">
+    <comp lib="6" loc="(1235,400)" name="Text">
       <a name="halign" val="left"/>
       <a name="text" val="1 - WriteReg = rd"/>
     </comp>
-    <comp lib="6" loc="(1260,869)" name="Text">
+    <comp lib="6" loc="(1235,60)" name="Text">
+      <a name="halign" val="left"/>
+      <a name="text" val="0000 - add"/>
+    </comp>
+    <comp lib="6" loc="(1235,75)" name="Text">
+      <a name="halign" val="left"/>
+      <a name="text" val="0001 - addu"/>
+    </comp>
+    <comp lib="6" loc="(1235,90)" name="Text">
+      <a name="halign" val="left"/>
+      <a name="text" val="0010 - B &lt;&lt; 16 (for lui)"/>
+    </comp>
+    <comp lib="6" loc="(1260,865)" name="Text">
       <a name="color" val="#636363"/>
       <a name="text" val="Main Decoder output for its associated instruction."/>
     </comp>
-    <comp lib="6" loc="(1268,820)" name="Text">
+    <comp lib="6" loc="(1265,820)" name="Text">
       <a name="color" val="#636363"/>
       <a name="text" val="(RegWrite-RegWriteDataSrc-. . .-ALUSrcB-WriteRegSrc)"/>
     </comp>
-    <comp lib="6" loc="(1271,43)" name="Text">
+    <comp lib="6" loc="(1270,40)" name="Text">
       <a name="text" val="ALUOp Codes:"/>
     </comp>
-    <comp lib="6" loc="(1277,218)" name="Text">
+    <comp lib="6" loc="(1275,215)" name="Text">
       <a name="text" val="ALUSrcA Codes:"/>
     </comp>
-    <comp lib="6" loc="(1278,285)" name="Text">
+    <comp lib="6" loc="(1275,285)" name="Text">
       <a name="text" val="ALUSrcB Codes:"/>
     </comp>
-    <comp lib="6" loc="(1289,566)" name="Text">
+    <comp lib="6" loc="(1285,565)" name="Text">
       <a name="font" val="SansSerif bold 20"/>
       <a name="text" val="Outputs"/>
     </comp>
-    <comp lib="6" loc="(1291,369)" name="Text">
+    <comp lib="6" loc="(1290,365)" name="Text">
       <a name="text" val="WriteRegSrc Codes:"/>
     </comp>
     <comp lib="6" loc="(130,820)" name="Text">
@@ -4588,15 +4588,15 @@
       <a name="color" val="#636363"/>
       <a name="text" val="The entire binary string with '-' separators describes the intended"/>
     </comp>
-    <comp lib="6" loc="(1343,591)" name="Text">
+    <comp lib="6" loc="(1340,590)" name="Text">
       <a name="color" val="#636363"/>
       <a name="text" val="&lt;- Output values are sorted (bottom-up) in the order used by the main circuit (left-to-right)."/>
     </comp>
-    <comp lib="6" loc="(1347,802)" name="Text">
+    <comp lib="6" loc="(1345,800)" name="Text">
       <a name="color" val="#636363"/>
       <a name="text" val="&lt;--  Each '-' separated binary value is an output value (in order of circuit outputs)."/>
     </comp>
-    <comp lib="6" loc="(1359,777)" name="Text">
+    <comp lib="6" loc="(1355,775)" name="Text">
       <a name="font" val="SansSerif bold 20"/>
       <a name="text" val="Binary String Labels"/>
     </comp>
@@ -4789,344 +4789,353 @@
     <comp lib="6" loc="(245,9965)" name="Text">
       <a name="text" val="OP: 58"/>
     </comp>
-    <comp lib="6" loc="(327,59)" name="Text">
+    <comp lib="6" loc="(325,55)" name="Text">
       <a name="font" val="SansSerif bold 20"/>
       <a name="text" val="Main Decoder"/>
     </comp>
-    <comp lib="6" loc="(52,201)" name="Text">
-      <a name="halign" val="left"/>
-      <a name="text" val="are processed further by downstream decoders before being passed to the"/>
-    </comp>
-    <comp lib="6" loc="(52,382)" name="Text">
-      <a name="halign" val="left"/>
-      <a name="text" val="for select R-Type (Op == 0) instructions.  The primary decoding of an instruction's"/>
-    </comp>
-    <comp lib="6" loc="(52,400)" name="Text">
-      <a name="halign" val="left"/>
-      <a name="text" val="Funct value occurs inside the ALU Decoder when an ALUOp code of 1xxx is output"/>
-    </comp>
-    <comp lib="6" loc="(52,417)" name="Text">
-      <a name="halign" val="left"/>
-      <a name="text" val="by the Main Decoder."/>
-    </comp>
-    <comp lib="6" loc="(53,183)" name="Text">
+    <comp lib="6" loc="(50,180)" name="Text">
       <a name="halign" val="left"/>
       <a name="text" val="Note that some outputs of the Main Decoder (namely ALUOp and BranchOp)"/>
     </comp>
-    <comp lib="6" loc="(53,218)" name="Text">
+    <comp lib="6" loc="(50,200)" name="Text">
+      <a name="halign" val="left"/>
+      <a name="text" val="are processed further by downstream decoders before being passed to the"/>
+    </comp>
+    <comp lib="6" loc="(50,215)" name="Text">
       <a name="halign" val="left"/>
       <a name="text" val="control path."/>
     </comp>
-    <comp lib="6" loc="(53,302)" name="Text">
+    <comp lib="6" loc="(50,300)" name="Text">
       <a name="halign" val="left"/>
       <a name="text" val="and maps them to an assortment of control path values and intermediary"/>
     </comp>
-    <comp lib="6" loc="(53,324)" name="Text">
+    <comp lib="6" loc="(50,320)" name="Text">
       <a name="halign" val="left"/>
       <a name="text" val="values--which are turned into control path values by the rest of the Control Unit."/>
     </comp>
-    <comp lib="6" loc="(54,361)" name="Text">
+    <comp lib="6" loc="(50,360)" name="Text">
       <a name="halign" val="left"/>
       <a name="text" val="Note that the Main Decoder only uses Funct values to override certain outputs"/>
     </comp>
-    <comp lib="6" loc="(55,109)" name="Text">
+    <comp lib="6" loc="(50,380)" name="Text">
+      <a name="halign" val="left"/>
+      <a name="text" val="for select R-Type (Op == 0) instructions.  The primary decoding of an instruction's"/>
+    </comp>
+    <comp lib="6" loc="(50,400)" name="Text">
+      <a name="halign" val="left"/>
+      <a name="text" val="Funct value occurs inside the ALU Decoder when an ALUOp code of 1xxx is output"/>
+    </comp>
+    <comp lib="6" loc="(50,415)" name="Text">
+      <a name="halign" val="left"/>
+      <a name="text" val="by the Main Decoder."/>
+    </comp>
+    <comp lib="6" loc="(55,105)" name="Text">
       <a name="halign" val="left"/>
       <a name="text" val="This circuit performs the bulk of decoding instructions into control path"/>
     </comp>
-    <comp lib="6" loc="(55,281)" name="Text">
-      <a name="halign" val="left"/>
-      <a name="text" val="takes the current instruction in the Decode (D) stage's Op and Funct codes"/>
-    </comp>
-    <comp lib="6" loc="(56,125)" name="Text">
+    <comp lib="6" loc="(55,125)" name="Text">
       <a name="halign" val="left"/>
       <a name="text" val="values. Existing within the Control Unit, this circuit maps instructions"/>
     </comp>
-    <comp lib="6" loc="(56,262)" name="Text">
-      <a name="halign" val="left"/>
-      <a name="text" val="Existing in the Decode (D) stage within the Control Unit, the Main Decoder"/>
-    </comp>
-    <comp lib="6" loc="(57,142)" name="Text">
+    <comp lib="6" loc="(55,140)" name="Text">
       <a name="halign" val="left"/>
       <a name="text" val="(primarily by OP code) to values which control operations on the data path."/>
     </comp>
-    <comp lib="6" loc="(573,895)" name="Text">
+    <comp lib="6" loc="(55,260)" name="Text">
+      <a name="halign" val="left"/>
+      <a name="text" val="Existing in the Decode (D) stage within the Control Unit, the Main Decoder"/>
+    </comp>
+    <comp lib="6" loc="(55,280)" name="Text">
+      <a name="halign" val="left"/>
+      <a name="text" val="takes the current instruction in the Decode (D) stage's Op and Funct codes"/>
+    </comp>
+    <comp lib="6" loc="(570,895)" name="Text">
       <a name="font" val="SansSerif bold 20"/>
       <a name="text" val="R-Type Overrides"/>
     </comp>
-    <comp lib="6" loc="(6592,594)" name="Text">
+    <comp lib="6" loc="(6590,590)" name="Text">
       <a name="text" val="10101 - ~(A | B)"/>
     </comp>
-    <comp lib="6" loc="(740,3193)" name="Text">
-      <a name="halign" val="left"/>
-      <a name="text" val="1-00-0000-00-0110-0-10-0"/>
-    </comp>
-    <comp lib="6" loc="(744,1229)" name="Text">
+    <comp lib="6" loc="(740,1225)" name="Text">
       <a name="halign" val="left"/>
       <a name="text" val="1-00-0000-00-1000-1-00-1"/>
     </comp>
-    <comp lib="6" loc="(744,802)" name="Text">
+    <comp lib="6" loc="(740,3190)" name="Text">
+      <a name="halign" val="left"/>
+      <a name="text" val="1-00-0000-00-0110-0-10-0"/>
+    </comp>
+    <comp lib="6" loc="(740,800)" name="Text">
       <a name="halign" val="left"/>
       <a name="text" val="1-00-0000-00-1000-0-00-1"/>
     </comp>
-    <comp lib="6" loc="(744,8292)" name="Text">
+    <comp lib="6" loc="(740,8290)" name="Text">
       <a name="halign" val="left"/>
       <a name="text" val="not yet implemented"/>
     </comp>
-    <comp lib="6" loc="(744,8442)" name="Text">
+    <comp lib="6" loc="(740,8440)" name="Text">
       <a name="halign" val="left"/>
       <a name="text" val="not yet implemented"/>
     </comp>
-    <comp lib="6" loc="(744,8592)" name="Text">
+    <comp lib="6" loc="(740,8590)" name="Text">
       <a name="halign" val="left"/>
       <a name="text" val="not yet implemented"/>
     </comp>
-    <comp lib="6" loc="(744,8742)" name="Text">
+    <comp lib="6" loc="(740,8740)" name="Text">
       <a name="halign" val="left"/>
       <a name="text" val="not yet implemented"/>
     </comp>
-    <comp lib="6" loc="(744,8892)" name="Text">
+    <comp lib="6" loc="(740,8890)" name="Text">
       <a name="halign" val="left"/>
       <a name="text" val="not yet implemented"/>
     </comp>
-    <comp lib="6" loc="(744,9192)" name="Text">
+    <comp lib="6" loc="(740,9190)" name="Text">
       <a name="halign" val="left"/>
       <a name="text" val="not yet implemented"/>
     </comp>
-    <comp lib="6" loc="(744,9342)" name="Text">
+    <comp lib="6" loc="(740,9340)" name="Text">
       <a name="halign" val="left"/>
       <a name="text" val="not yet implemented"/>
     </comp>
-    <comp lib="6" loc="(744,9642)" name="Text">
+    <comp lib="6" loc="(740,9640)" name="Text">
       <a name="halign" val="left"/>
       <a name="text" val="not yet implemented"/>
     </comp>
-    <comp lib="6" loc="(744,9791)" name="Text">
+    <comp lib="6" loc="(740,9790)" name="Text">
       <a name="halign" val="left"/>
       <a name="text" val="not yet implemented"/>
     </comp>
-    <comp lib="6" loc="(745,10391)" name="Text">
+    <comp lib="6" loc="(745,10390)" name="Text">
       <a name="halign" val="left"/>
       <a name="text" val="not yet implemented"/>
     </comp>
-    <comp lib="6" loc="(745,10541)" name="Text">
+    <comp lib="6" loc="(745,10540)" name="Text">
       <a name="halign" val="left"/>
       <a name="text" val="not yet implemented"/>
     </comp>
-    <comp lib="6" loc="(745,1142)" name="Text">
+    <comp lib="6" loc="(745,1060)" name="Text">
+      <a name="halign" val="left"/>
+      <a name="text" val="1-11-0000-10-0000-0-00-0"/>
+    </comp>
+    <comp lib="6" loc="(745,1140)" name="Text">
       <a name="halign" val="left"/>
       <a name="text" val="1-11-0000-00-0000-0-00-0"/>
     </comp>
-    <comp lib="6" loc="(745,1843)" name="Text">
+    <comp lib="6" loc="(745,1840)" name="Text">
       <a name="halign" val="left"/>
       <a name="text" val="0-00-0000-01-0000-0-00-0"/>
     </comp>
-    <comp lib="6" loc="(745,1993)" name="Text">
+    <comp lib="6" loc="(745,1990)" name="Text">
       <a name="halign" val="left"/>
       <a name="text" val="0-00-0000-01-0000-0-00-0"/>
     </comp>
-    <comp lib="6" loc="(745,2143)" name="Text">
+    <comp lib="6" loc="(745,2140)" name="Text">
       <a name="halign" val="left"/>
       <a name="text" val="0-00-0000-11-0000-0-00-0"/>
     </comp>
-    <comp lib="6" loc="(745,2293)" name="Text">
+    <comp lib="6" loc="(745,2290)" name="Text">
       <a name="halign" val="left"/>
       <a name="text" val="0-00-0000-11-0000-0-00-0"/>
     </comp>
-    <comp lib="6" loc="(745,2443)" name="Text">
+    <comp lib="6" loc="(745,2440)" name="Text">
       <a name="halign" val="left"/>
       <a name="text" val="1-00-0000-00-0000-0-01-0"/>
     </comp>
-    <comp lib="6" loc="(745,2593)" name="Text">
+    <comp lib="6" loc="(745,2590)" name="Text">
       <a name="halign" val="left"/>
       <a name="text" val="1-00-0000-00-0001-0-01-0"/>
     </comp>
-    <comp lib="6" loc="(745,2743)" name="Text">
+    <comp lib="6" loc="(745,2740)" name="Text">
       <a name="halign" val="left"/>
       <a name="text" val="1-00-0000-00-0011-0-01-0"/>
     </comp>
-    <comp lib="6" loc="(745,2893)" name="Text">
+    <comp lib="6" loc="(745,2890)" name="Text">
       <a name="halign" val="left"/>
       <a name="text" val="1-00-0000-00-0100-0-01-0"/>
     </comp>
-    <comp lib="6" loc="(745,3043)" name="Text">
+    <comp lib="6" loc="(745,3040)" name="Text">
       <a name="halign" val="left"/>
       <a name="text" val="1-00-0000-00-0101-0-10-0"/>
     </comp>
-    <comp lib="6" loc="(745,3343)" name="Text">
+    <comp lib="6" loc="(745,3340)" name="Text">
       <a name="halign" val="left"/>
       <a name="text" val="1-00-0000-00-0111-0-10-0"/>
     </comp>
-    <comp lib="6" loc="(745,3493)" name="Text">
+    <comp lib="6" loc="(745,3490)" name="Text">
       <a name="halign" val="left"/>
       <a name="text" val="1-00-0000-00-0010-0-01-0"/>
     </comp>
-    <comp lib="6" loc="(745,3791)" name="Text">
+    <comp lib="6" loc="(745,3790)" name="Text">
       <a name="halign" val="left"/>
       <a name="text" val="not yet implemented"/>
     </comp>
-    <comp lib="6" loc="(745,6043)" name="Text">
+    <comp lib="6" loc="(745,6040)" name="Text">
       <a name="halign" val="left"/>
       <a name="text" val="1-10-0000-00-0000-0-01-0"/>
     </comp>
-    <comp lib="6" loc="(745,6193)" name="Text">
+    <comp lib="6" loc="(745,6190)" name="Text">
       <a name="halign" val="left"/>
       <a name="text" val="1-10-0001-00-0000-0-01-0"/>
     </comp>
-    <comp lib="6" loc="(745,6343)" name="Text">
+    <comp lib="6" loc="(745,6340)" name="Text">
       <a name="halign" val="left"/>
       <a name="text" val="1-10-0110-00-0000-0-01-0"/>
     </comp>
-    <comp lib="6" loc="(745,6493)" name="Text">
+    <comp lib="6" loc="(745,6490)" name="Text">
       <a name="halign" val="left"/>
       <a name="text" val="1-10-0010-00-0000-0-01-0"/>
     </comp>
-    <comp lib="6" loc="(745,6643)" name="Text">
+    <comp lib="6" loc="(745,6640)" name="Text">
       <a name="halign" val="left"/>
       <a name="text" val="1-10-0100-00-0000-0-01-0"/>
     </comp>
-    <comp lib="6" loc="(745,6793)" name="Text">
+    <comp lib="6" loc="(745,6790)" name="Text">
       <a name="halign" val="left"/>
       <a name="text" val="1-10-0101-00-0000-0-01-0"/>
     </comp>
-    <comp lib="6" loc="(745,6943)" name="Text">
+    <comp lib="6" loc="(745,6940)" name="Text">
       <a name="halign" val="left"/>
       <a name="text" val="1-10-0111-00-0000-0-01-0"/>
     </comp>
-    <comp lib="6" loc="(745,7243)" name="Text">
+    <comp lib="6" loc="(745,7240)" name="Text">
       <a name="halign" val="left"/>
       <a name="text" val="0-00-1000-00-0000-0-01-0"/>
     </comp>
-    <comp lib="6" loc="(745,7393)" name="Text">
+    <comp lib="6" loc="(745,7390)" name="Text">
       <a name="halign" val="left"/>
       <a name="text" val="0-00-1001-00-0000-0-01-0"/>
     </comp>
-    <comp lib="6" loc="(745,7543)" name="Text">
+    <comp lib="6" loc="(745,7540)" name="Text">
       <a name="halign" val="left"/>
       <a name="text" val="0-00-1110-00-0000-0-01-0"/>
     </comp>
-    <comp lib="6" loc="(745,7693)" name="Text">
+    <comp lib="6" loc="(745,7690)" name="Text">
       <a name="halign" val="left"/>
       <a name="text" val="0-00-1010-00-0000-0-01-0"/>
     </comp>
-    <comp lib="6" loc="(745,8143)" name="Text">
+    <comp lib="6" loc="(745,8140)" name="Text">
       <a name="halign" val="left"/>
       <a name="text" val="0-00-1111-00-0000-0-01-0"/>
     </comp>
-    <comp lib="6" loc="(745,9941)" name="Text">
+    <comp lib="6" loc="(745,980)" name="Text">
+      <a name="halign" val="left"/>
+      <a name="text" val="0-00-0000-10-0000-0-00-0"/>
+    </comp>
+    <comp lib="6" loc="(745,9940)" name="Text">
       <a name="halign" val="left"/>
       <a name="text" val="not yet implemented"/>
     </comp>
-    <comp lib="6" loc="(746,1063)" name="Text">
-      <a name="halign" val="left"/>
-      <a name="text" val="1-11-0000-10-0000-0-00-0"/>
-    </comp>
-    <comp lib="6" loc="(749,982)" name="Text">
+    <comp lib="6" loc="(750,1540)" name="Text">
       <a name="halign" val="left"/>
       <a name="text" val="0-00-0000-10-0000-0-00-0"/>
     </comp>
-    <comp lib="6" loc="(750,1543)" name="Text">
-      <a name="halign" val="left"/>
-      <a name="text" val="0-00-0000-10-0000-0-00-0"/>
-    </comp>
-    <comp lib="6" loc="(753,199)" name="Text">
+    <comp lib="6" loc="(750,195)" name="Text">
       <a name="halign" val="left"/>
       <a name="text" val="MemOp Codes:"/>
     </comp>
-    <comp lib="6" loc="(760,1693)" name="Text">
+    <comp lib="6" loc="(760,1690)" name="Text">
       <a name="halign" val="left"/>
       <a name="text" val="1-11-0000-10-0000-0-00-0"/>
     </comp>
-    <comp lib="6" loc="(785,367)" name="Text">
-      <a name="halign" val="left"/>
-      <a name="text" val="00 - No Branch/Jump"/>
-    </comp>
-    <comp lib="6" loc="(786,155)" name="Text">
-      <a name="halign" val="left"/>
-      <a name="text" val="10 - WriteData == ReadData (memory)"/>
-    </comp>
-    <comp lib="6" loc="(786,171)" name="Text">
-      <a name="halign" val="left"/>
-      <a name="text" val="11 - WriteData == PCPlus4 and WriteReg == $ra"/>
-    </comp>
-    <comp lib="6" loc="(786,382)" name="Text">
-      <a name="halign" val="left"/>
-      <a name="text" val="01 - beq/bne conditional branch to BTA"/>
-    </comp>
-    <comp lib="6" loc="(786,398)" name="Text">
-      <a name="halign" val="left"/>
-      <a name="text" val="10 - jump to JTA (Jump Target Address)"/>
-    </comp>
-    <comp lib="6" loc="(786,415)" name="Text">
-      <a name="halign" val="left"/>
-      <a name="text" val="11 - blez/bgtz conditional branch to BTA"/>
-    </comp>
-    <comp lib="6" loc="(786,68)" name="Text">
-      <a name="halign" val="left"/>
-      <a name="text" val="0 - No write to register"/>
-    </comp>
-    <comp lib="6" loc="(786,84)" name="Text">
-      <a name="halign" val="left"/>
-      <a name="text" val="1 - Write to register in Writeback (W) stage"/>
-    </comp>
-    <comp lib="6" loc="(788,140)" name="Text">
+    <comp lib="6" loc="(785,140)" name="Text">
       <a name="halign" val="left"/>
       <a name="text" val="0x - WriteData == ALUOut"/>
     </comp>
-    <comp lib="6" loc="(788,218)" name="Text">
+    <comp lib="6" loc="(785,155)" name="Text">
+      <a name="halign" val="left"/>
+      <a name="text" val="10 - WriteData == ReadData (memory)"/>
+    </comp>
+    <comp lib="6" loc="(785,170)" name="Text">
+      <a name="halign" val="left"/>
+      <a name="text" val="11 - WriteData == PCPlus4 and WriteReg == $ra"/>
+    </comp>
+    <comp lib="6" loc="(785,215)" name="Text">
       <a name="halign" val="left"/>
       <a name="text" val="0000 - lb"/>
     </comp>
-    <comp lib="6" loc="(788,233)" name="Text">
+    <comp lib="6" loc="(785,230)" name="Text">
       <a name="halign" val="left"/>
       <a name="text" val="0001 - lh"/>
     </comp>
-    <comp lib="6" loc="(788,248)" name="Text">
+    <comp lib="6" loc="(785,245)" name="Text">
       <a name="halign" val="left"/>
       <a name="text" val="0010 - lw"/>
     </comp>
-    <comp lib="6" loc="(789,262)" name="Text">
+    <comp lib="6" loc="(785,260)" name="Text">
       <a name="halign" val="left"/>
       <a name="text" val="0011 - N/A"/>
     </comp>
-    <comp lib="6" loc="(789,276)" name="Text">
+    <comp lib="6" loc="(785,275)" name="Text">
       <a name="halign" val="left"/>
       <a name="text" val="0100 - lbu"/>
     </comp>
-    <comp lib="6" loc="(789,291)" name="Text">
+    <comp lib="6" loc="(785,290)" name="Text">
       <a name="halign" val="left"/>
       <a name="text" val="0101 - lhu"/>
     </comp>
-    <comp lib="6" loc="(789,306)" name="Text">
+    <comp lib="6" loc="(785,305)" name="Text">
       <a name="halign" val="left"/>
       <a name="text" val="0110 - lwl"/>
     </comp>
-    <comp lib="6" loc="(789,321)" name="Text">
+    <comp lib="6" loc="(785,320)" name="Text">
       <a name="halign" val="left"/>
       <a name="text" val="0111 - lwr"/>
     </comp>
-    <comp lib="6" loc="(819,46)" name="Text">
+    <comp lib="6" loc="(785,365)" name="Text">
+      <a name="halign" val="left"/>
+      <a name="text" val="00 - No Branch/Jump"/>
+    </comp>
+    <comp lib="6" loc="(785,380)" name="Text">
+      <a name="halign" val="left"/>
+      <a name="text" val="01 - beq/bne conditional branch to BTA"/>
+    </comp>
+    <comp lib="6" loc="(785,395)" name="Text">
+      <a name="halign" val="left"/>
+      <a name="text" val="10 - jump to JTA (Jump Target Address)"/>
+    </comp>
+    <comp lib="6" loc="(785,415)" name="Text">
+      <a name="halign" val="left"/>
+      <a name="text" val="11 - blez/bgtz conditional branch to BTA"/>
+    </comp>
+    <comp lib="6" loc="(785,65)" name="Text">
+      <a name="halign" val="left"/>
+      <a name="text" val="0 - No write to register"/>
+    </comp>
+    <comp lib="6" loc="(785,80)" name="Text">
+      <a name="halign" val="left"/>
+      <a name="text" val="1 - Write to register in Writeback (W) stage"/>
+    </comp>
+    <comp lib="6" loc="(815,45)" name="Text">
       <a name="text" val="RegWrite Codes:"/>
     </comp>
-    <comp lib="6" loc="(829,347)" name="Text">
+    <comp lib="6" loc="(825,345)" name="Text">
       <a name="text" val="BranchOp Codes:"/>
     </comp>
-    <comp lib="6" loc="(850,118)" name="Text">
+    <comp lib="6" loc="(850,115)" name="Text">
       <a name="text" val="RegWriteDataSrc Codes:"/>
     </comp>
-    <comp lib="6" loc="(860,4214)" name="Text">
+    <comp lib="6" loc="(860,4210)" name="Text">
       <a name="text" val="RESERVED FOR KERNEL"/>
     </comp>
-    <comp lib="6" loc="(860,4232)" name="Text">
+    <comp lib="6" loc="(860,4230)" name="Text">
       <a name="text" val="SUSPENDS PROCESSOR"/>
     </comp>
-    <comp lib="6" loc="(862,4356)" name="Text">
+    <comp lib="6" loc="(860,4355)" name="Text">
       <a name="text" val="RESERVED FOR KERNEL"/>
     </comp>
-    <comp lib="6" loc="(863,4376)" name="Text">
+    <comp lib="6" loc="(860,4375)" name="Text">
       <a name="text" val="PRINT CHAR ($a0)"/>
+    </comp>
+    <comp lib="6" loc="(865,10365)" name="Text">
+      <a name="text" val="sdc1"/>
     </comp>
     <comp lib="6" loc="(865,1040)" name="Text">
       <a name="text" val="jral"/>
+    </comp>
+    <comp lib="6" loc="(865,10515)" name="Text">
+      <a name="text" val="sdc2"/>
+    </comp>
+    <comp lib="6" loc="(865,1120)" name="Text">
+      <a name="text" val="syscall"/>
     </comp>
     <comp lib="6" loc="(865,1520)" name="Text">
       <a name="text" val="j"/>
@@ -5149,176 +5158,167 @@
     <comp lib="6" loc="(865,2420)" name="Text">
       <a name="text" val="addi"/>
     </comp>
+    <comp lib="6" loc="(865,2570)" name="Text">
+      <a name="text" val="addiu"/>
+    </comp>
+    <comp lib="6" loc="(865,2720)" name="Text">
+      <a name="text" val="slti"/>
+    </comp>
+    <comp lib="6" loc="(865,2870)" name="Text">
+      <a name="text" val="sltiu"/>
+    </comp>
+    <comp lib="6" loc="(865,3020)" name="Text">
+      <a name="text" val="andi"/>
+    </comp>
+    <comp lib="6" loc="(865,3170)" name="Text">
+      <a name="text" val="ori"/>
+    </comp>
+    <comp lib="6" loc="(865,3320)" name="Text">
+      <a name="text" val="xori"/>
+    </comp>
+    <comp lib="6" loc="(865,3470)" name="Text">
+      <a name="text" val="lui"/>
+    </comp>
+    <comp lib="6" loc="(865,3770)" name="Text">
+      <a name="text" val="F-Type"/>
+    </comp>
+    <comp lib="6" loc="(865,6020)" name="Text">
+      <a name="text" val="lb"/>
+    </comp>
+    <comp lib="6" loc="(865,6170)" name="Text">
+      <a name="text" val="lh"/>
+    </comp>
+    <comp lib="6" loc="(865,6320)" name="Text">
+      <a name="text" val="lwl"/>
+    </comp>
+    <comp lib="6" loc="(865,6470)" name="Text">
+      <a name="text" val="lw"/>
+    </comp>
+    <comp lib="6" loc="(865,6620)" name="Text">
+      <a name="text" val="lbu"/>
+    </comp>
+    <comp lib="6" loc="(865,6770)" name="Text">
+      <a name="text" val="lhu"/>
+    </comp>
+    <comp lib="6" loc="(865,6920)" name="Text">
+      <a name="text" val="lwr"/>
+    </comp>
+    <comp lib="6" loc="(865,7220)" name="Text">
+      <a name="text" val="sb"/>
+    </comp>
+    <comp lib="6" loc="(865,7370)" name="Text">
+      <a name="text" val="sh"/>
+    </comp>
+    <comp lib="6" loc="(865,7520)" name="Text">
+      <a name="text" val="swl"/>
+    </comp>
+    <comp lib="6" loc="(865,7670)" name="Text">
+      <a name="text" val="sw"/>
+    </comp>
     <comp lib="6" loc="(865,780)" name="Text">
       <a name="text" val="R-Type"/>
+    </comp>
+    <comp lib="6" loc="(865,8120)" name="Text">
+      <a name="text" val="swr"/>
+    </comp>
+    <comp lib="6" loc="(865,8270)" name="Text">
+      <a name="text" val="cache"/>
+    </comp>
+    <comp lib="6" loc="(865,8420)" name="Text">
+      <a name="text" val="ll"/>
+    </comp>
+    <comp lib="6" loc="(865,8570)" name="Text">
+      <a name="text" val="lwc1"/>
+    </comp>
+    <comp lib="6" loc="(865,8720)" name="Text">
+      <a name="text" val="lwc2"/>
+    </comp>
+    <comp lib="6" loc="(865,8865)" name="Text">
+      <a name="text" val="pref"/>
+    </comp>
+    <comp lib="6" loc="(865,9165)" name="Text">
+      <a name="text" val="ldc1"/>
+    </comp>
+    <comp lib="6" loc="(865,9315)" name="Text">
+      <a name="text" val="ldc2"/>
     </comp>
     <comp lib="6" loc="(865,960)" name="Text">
       <a name="text" val="jr"/>
     </comp>
-    <comp lib="6" loc="(866,10369)" name="Text">
-      <a name="text" val="sdc1"/>
-    </comp>
-    <comp lib="6" loc="(866,10519)" name="Text">
-      <a name="text" val="sdc2"/>
-    </comp>
-    <comp lib="6" loc="(866,1120)" name="Text">
-      <a name="text" val="syscall"/>
-    </comp>
-    <comp lib="6" loc="(866,2570)" name="Text">
-      <a name="text" val="addiu"/>
-    </comp>
-    <comp lib="6" loc="(866,2720)" name="Text">
-      <a name="text" val="slti"/>
-    </comp>
-    <comp lib="6" loc="(866,2870)" name="Text">
-      <a name="text" val="sltiu"/>
-    </comp>
-    <comp lib="6" loc="(866,3020)" name="Text">
-      <a name="text" val="andi"/>
-    </comp>
-    <comp lib="6" loc="(866,3170)" name="Text">
-      <a name="text" val="ori"/>
-    </comp>
-    <comp lib="6" loc="(866,3320)" name="Text">
-      <a name="text" val="xori"/>
-    </comp>
-    <comp lib="6" loc="(866,3470)" name="Text">
-      <a name="text" val="lui"/>
-    </comp>
-    <comp lib="6" loc="(866,3770)" name="Text">
-      <a name="text" val="F-Type"/>
-    </comp>
-    <comp lib="6" loc="(866,6020)" name="Text">
-      <a name="text" val="lb"/>
-    </comp>
-    <comp lib="6" loc="(866,6170)" name="Text">
-      <a name="text" val="lh"/>
-    </comp>
-    <comp lib="6" loc="(866,6320)" name="Text">
-      <a name="text" val="lwl"/>
-    </comp>
-    <comp lib="6" loc="(866,6470)" name="Text">
-      <a name="text" val="lw"/>
-    </comp>
-    <comp lib="6" loc="(866,6620)" name="Text">
-      <a name="text" val="lbu"/>
-    </comp>
-    <comp lib="6" loc="(866,6770)" name="Text">
-      <a name="text" val="lhu"/>
-    </comp>
-    <comp lib="6" loc="(866,6920)" name="Text">
-      <a name="text" val="lwr"/>
-    </comp>
-    <comp lib="6" loc="(866,7220)" name="Text">
-      <a name="text" val="sb"/>
-    </comp>
-    <comp lib="6" loc="(866,7370)" name="Text">
-      <a name="text" val="sh"/>
-    </comp>
-    <comp lib="6" loc="(866,7520)" name="Text">
-      <a name="text" val="swl"/>
-    </comp>
-    <comp lib="6" loc="(866,7670)" name="Text">
-      <a name="text" val="sw"/>
-    </comp>
-    <comp lib="6" loc="(866,8120)" name="Text">
-      <a name="text" val="swr"/>
-    </comp>
-    <comp lib="6" loc="(866,8270)" name="Text">
-      <a name="text" val="cache"/>
-    </comp>
-    <comp lib="6" loc="(866,8420)" name="Text">
-      <a name="text" val="ll"/>
-    </comp>
-    <comp lib="6" loc="(866,8570)" name="Text">
-      <a name="text" val="lwc1"/>
-    </comp>
-    <comp lib="6" loc="(866,8720)" name="Text">
-      <a name="text" val="lwc2"/>
-    </comp>
-    <comp lib="6" loc="(866,8869)" name="Text">
-      <a name="text" val="pref"/>
-    </comp>
-    <comp lib="6" loc="(866,9169)" name="Text">
-      <a name="text" val="ldc1"/>
-    </comp>
-    <comp lib="6" loc="(866,9319)" name="Text">
-      <a name="text" val="ldc2"/>
-    </comp>
-    <comp lib="6" loc="(866,9619)" name="Text">
+    <comp lib="6" loc="(865,9615)" name="Text">
       <a name="text" val="sc"/>
     </comp>
-    <comp lib="6" loc="(866,9769)" name="Text">
+    <comp lib="6" loc="(865,9765)" name="Text">
       <a name="text" val="swc1"/>
     </comp>
-    <comp lib="6" loc="(866,9919)" name="Text">
+    <comp lib="6" loc="(865,9915)" name="Text">
       <a name="text" val="swc2"/>
     </comp>
-    <comp lib="6" loc="(872,1206)" name="Text">
+    <comp lib="6" loc="(870,1205)" name="Text">
       <a name="text" val="sll/srl/sra"/>
     </comp>
-    <comp lib="6" loc="(895,4136)" name="Text">
+    <comp lib="6" loc="(895,4135)" name="Text">
       <a name="text" val="The following reserved OP codes are not"/>
     </comp>
-    <comp lib="6" loc="(903,4156)" name="Text">
+    <comp lib="6" loc="(900,4155)" name="Text">
       <a name="text" val="to be directly used within user programs..."/>
     </comp>
-    <comp lib="6" loc="(916,219)" name="Text">
+    <comp lib="6" loc="(915,215)" name="Text">
       <a name="halign" val="left"/>
       <a name="text" val="1000 - sb"/>
     </comp>
-    <comp lib="6" loc="(916,234)" name="Text">
+    <comp lib="6" loc="(915,230)" name="Text">
       <a name="halign" val="left"/>
       <a name="text" val="1001 - sh"/>
     </comp>
-    <comp lib="6" loc="(916,249)" name="Text">
+    <comp lib="6" loc="(915,245)" name="Text">
       <a name="halign" val="left"/>
       <a name="text" val="1010 - sw"/>
     </comp>
-    <comp lib="6" loc="(917,263)" name="Text">
+    <comp lib="6" loc="(915,260)" name="Text">
       <a name="halign" val="left"/>
       <a name="text" val="1011 - N/A"/>
     </comp>
-    <comp lib="6" loc="(917,277)" name="Text">
+    <comp lib="6" loc="(915,275)" name="Text">
       <a name="halign" val="left"/>
       <a name="text" val="1100 - N/A"/>
     </comp>
-    <comp lib="6" loc="(917,292)" name="Text">
+    <comp lib="6" loc="(915,290)" name="Text">
       <a name="halign" val="left"/>
       <a name="text" val="1101 - N/A"/>
     </comp>
-    <comp lib="6" loc="(917,307)" name="Text">
+    <comp lib="6" loc="(915,305)" name="Text">
       <a name="halign" val="left"/>
       <a name="text" val="1110 - swl"/>
     </comp>
-    <comp lib="6" loc="(917,322)" name="Text">
+    <comp lib="6" loc="(915,320)" name="Text">
       <a name="halign" val="left"/>
       <a name="text" val="1111 - swr"/>
     </comp>
-    <comp lib="6" loc="(990,659)" name="Text">
-      <a name="color" val="#636363"/>
-      <a name="halign" val="left"/>
-      <a name="text" val="used in the Writeback (W) stage."/>
-    </comp>
-    <comp lib="6" loc="(991,624)" name="Text">
+    <comp lib="6" loc="(990,620)" name="Text">
       <a name="color" val="#636363"/>
       <a name="halign" val="left"/>
       <a name="text" val="Lower output values are used by the main circuit's data path before higher output"/>
     </comp>
-    <comp lib="6" loc="(991,690)" name="Text">
+    <comp lib="6" loc="(990,640)" name="Text">
+      <a name="color" val="#636363"/>
+      <a name="halign" val="left"/>
+      <a name="text" val="values. Bottom values are used in the Execute (E) stage while the top values are"/>
+    </comp>
+    <comp lib="6" loc="(990,655)" name="Text">
+      <a name="color" val="#636363"/>
+      <a name="halign" val="left"/>
+      <a name="text" val="used in the Writeback (W) stage."/>
+    </comp>
+    <comp lib="6" loc="(990,690)" name="Text">
       <a name="color" val="#636363"/>
       <a name="halign" val="left"/>
       <a name="text" val="An output value may be used in an earlier stage, but its placement here depends on the"/>
     </comp>
-    <comp lib="6" loc="(991,707)" name="Text">
+    <comp lib="6" loc="(990,705)" name="Text">
       <a name="color" val="#636363"/>
       <a name="halign" val="left"/>
       <a name="text" val="furthest point along the pipeline where the value is used."/>
-    </comp>
-    <comp lib="6" loc="(992,642)" name="Text">
-      <a name="color" val="#636363"/>
-      <a name="halign" val="left"/>
-      <a name="text" val="values. Bottom values are used in the Execute (E) stage while the top values are"/>
     </comp>
     <wire from="(0,480)" to="(1610,480)"/>
     <wire from="(1040,870)" to="(1040,1300)"/>
@@ -7428,108 +7428,114 @@
       <a name="facing" val="north"/>
       <a name="width" val="5"/>
     </comp>
-    <comp lib="6" loc="(1019,32)" name="Text">
+    <comp lib="6" loc="(1015,30)" name="Text">
       <a name="text" val="ALUControl Codes:"/>
     </comp>
-    <comp lib="6" loc="(1027,68)" name="Text">
-      <a name="text" val="00001 - A | B"/>
-    </comp>
-    <comp lib="6" loc="(1029,54)" name="Text">
+    <comp lib="6" loc="(1025,50)" name="Text">
       <a name="text" val="00000 - A &amp; B"/>
     </comp>
-    <comp lib="6" loc="(1030,82)" name="Text">
-      <a name="text" val="00010 - A ^ B"/>
+    <comp lib="6" loc="(1025,65)" name="Text">
+      <a name="text" val="00001 - A | B"/>
     </comp>
-    <comp lib="6" loc="(1031,165)" name="Text">
-      <a name="text" val="01000 - A - B"/>
-    </comp>
-    <comp lib="6" loc="(1031,195)" name="Text">
-      <a name="text" val="01010 - A * B"/>
-    </comp>
-    <comp lib="6" loc="(1033,224)" name="Text">
-      <a name="text" val="01100 - A / B"/>
-    </comp>
-    <comp lib="6" loc="(1034,136)" name="Text">
+    <comp lib="6" loc="(1030,135)" name="Text">
       <a name="text" val="00110 - A + B"/>
     </comp>
-    <comp lib="6" loc="(1051,252)" name="Text">
+    <comp lib="6" loc="(1030,165)" name="Text">
+      <a name="text" val="01000 - A - B"/>
+    </comp>
+    <comp lib="6" loc="(1030,195)" name="Text">
+      <a name="text" val="01010 - A * B"/>
+    </comp>
+    <comp lib="6" loc="(1030,220)" name="Text">
+      <a name="text" val="01100 - A / B"/>
+    </comp>
+    <comp lib="6" loc="(1030,80)" name="Text">
+      <a name="text" val="00010 - A ^ B"/>
+    </comp>
+    <comp lib="6" loc="(1050,250)" name="Text">
       <a name="text" val="01110 - slt Q, A, B"/>
     </comp>
-    <comp lib="6" loc="(1057,267)" name="Text">
+    <comp lib="6" loc="(1055,265)" name="Text">
       <a name="text" val="01111 - sltu Q, A, B"/>
     </comp>
-    <comp lib="6" loc="(1069,121)" name="Text">
+    <comp lib="6" loc="(1065,120)" name="Text">
       <a name="text" val="00101 - B &gt;&gt; A (arith.)"/>
     </comp>
-    <comp lib="6" loc="(1074,108)" name="Text">
+    <comp lib="6" loc="(1070,105)" name="Text">
       <a name="text" val="00100 - B &gt;&gt; A (logical)"/>
     </comp>
-    <comp lib="6" loc="(1074,95)" name="Text">
+    <comp lib="6" loc="(1070,95)" name="Text">
       <a name="text" val="00011 - B &lt;&lt; A (logical)"/>
     </comp>
-    <comp lib="6" loc="(1078,209)" name="Text">
+    <comp lib="6" loc="(1075,205)" name="Text">
       <a name="text" val="01011 - A * B (unsigned)"/>
     </comp>
-    <comp lib="6" loc="(1080,238)" name="Text">
-      <a name="text" val="01101 - A / B (unsigned)"/>
-    </comp>
-    <comp lib="6" loc="(1081,150)" name="Text">
+    <comp lib="6" loc="(1080,150)" name="Text">
       <a name="text" val="00111 - A + B (unsigned)"/>
     </comp>
-    <comp lib="6" loc="(1081,180)" name="Text">
+    <comp lib="6" loc="(1080,180)" name="Text">
       <a name="text" val="01001 - A - B (unsigned)"/>
+    </comp>
+    <comp lib="6" loc="(1080,235)" name="Text">
+      <a name="text" val="01101 - A / B (unsigned)"/>
+    </comp>
+    <comp lib="6" loc="(1290,140)" name="Text">
+      <a name="text" val="1011x - N/A"/>
     </comp>
     <comp lib="6" loc="(1290,155)" name="Text">
       <a name="text" val="11xxx - N/A"/>
     </comp>
-    <comp lib="6" loc="(1292,141)" name="Text">
-      <a name="text" val="1011x - N/A"/>
-    </comp>
-    <comp lib="6" loc="(1295,69)" name="Text">
-      <a name="text" val="10001 - mthi"/>
-    </comp>
-    <comp lib="6" loc="(1295,84)" name="Text">
-      <a name="text" val="10010 - mflo"/>
-    </comp>
-    <comp lib="6" loc="(1295,99)" name="Text">
-      <a name="text" val="10011 - mtlo"/>
-    </comp>
-    <comp lib="6" loc="(1298,55)" name="Text">
+    <comp lib="6" loc="(1295,55)" name="Text">
       <a name="text" val="10000 - mfhi "/>
     </comp>
-    <comp lib="6" loc="(1308,114)" name="Text">
-      <a name="text" val="10100 - ~(A | B)"/>
+    <comp lib="6" loc="(1295,65)" name="Text">
+      <a name="text" val="10001 - mthi"/>
     </comp>
-    <comp lib="6" loc="(1310,128)" name="Text">
-      <a name="text" val="10101 - B &lt;&lt; 16"/>
+    <comp lib="6" loc="(1295,80)" name="Text">
+      <a name="text" val="10010 - mflo"/>
     </comp>
-    <comp lib="6" loc="(133,141)" name="Text">
+    <comp lib="6" loc="(1295,95)" name="Text">
+      <a name="text" val="10011 - mtlo"/>
+    </comp>
+    <comp lib="6" loc="(130,140)" name="Text">
       <a name="text" val="Decode (D) stage."/>
     </comp>
-    <comp lib="6" loc="(317,124)" name="Text">
+    <comp lib="6" loc="(1305,110)" name="Text">
+      <a name="text" val="10100 - ~(A | B)"/>
+    </comp>
+    <comp lib="6" loc="(1310,125)" name="Text">
+      <a name="text" val="10101 - B &lt;&lt; 16"/>
+    </comp>
+    <comp lib="6" loc="(315,120)" name="Text">
       <a name="text" val="where control path values for an instruction are created in the"/>
     </comp>
-    <comp lib="6" loc="(327,107)" name="Text">
+    <comp lib="6" loc="(325,105)" name="Text">
       <a name="text" val="current instruction. This component lives inside the Control Unit,"/>
     </comp>
-    <comp lib="6" loc="(327,39)" name="Text">
+    <comp lib="6" loc="(325,35)" name="Text">
       <a name="font" val="SansSerif bold 20"/>
       <a name="text" val="ALU Decoder"/>
     </comp>
-    <comp lib="6" loc="(330,197)" name="Text">
+    <comp lib="6" loc="(330,195)" name="Text">
       <a name="text" val="Funct value, the ALU Decoder determines which ALUControl value"/>
     </comp>
-    <comp lib="6" loc="(332,217)" name="Text">
+    <comp lib="6" loc="(330,215)" name="Text">
       <a name="text" val="should be passed into the ALU during this instruction's execution."/>
     </comp>
-    <comp lib="6" loc="(337,89)" name="Text">
+    <comp lib="6" loc="(335,85)" name="Text">
       <a name="text" val="This circuit determines which ALU control code is required for the"/>
     </comp>
-    <comp lib="6" loc="(356,179)" name="Text">
+    <comp lib="6" loc="(355,175)" name="Text">
       <a name="text" val="Given the ALUOp code output by the Main Decoder and the instruction's"/>
     </comp>
-    <comp lib="6" loc="(360,1482)" name="Text">
+    <comp lib="6" loc="(360,1480)" name="Text">
       <a name="text" val="srl"/>
+    </comp>
+    <comp lib="6" loc="(365,1290)" name="Text">
+      <a name="text" val="sll"/>
+    </comp>
+    <comp lib="6" loc="(365,1700)" name="Text">
+      <a name="text" val="sra"/>
     </comp>
     <comp lib="6" loc="(365,680)" name="Text">
       <a name="text" val="ori"/>
@@ -7537,23 +7543,20 @@
     <comp lib="6" loc="(365,810)" name="Text">
       <a name="text" val="or"/>
     </comp>
-    <comp lib="6" loc="(368,1292)" name="Text">
-      <a name="text" val="sll"/>
-    </comp>
-    <comp lib="6" loc="(369,1701)" name="Text">
-      <a name="text" val="sra"/>
-    </comp>
     <comp lib="6" loc="(370,1090)" name="Text">
       <a name="text" val="xor"/>
     </comp>
-    <comp lib="6" loc="(371,2242)" name="Text">
+    <comp lib="6" loc="(370,2240)" name="Text">
       <a name="text" val="sub"/>
     </comp>
-    <comp lib="6" loc="(372,4232)" name="Text">
+    <comp lib="6" loc="(370,4230)" name="Text">
       <a name="text" val="nor"/>
     </comp>
-    <comp lib="6" loc="(375,1891)" name="Text">
+    <comp lib="6" loc="(375,1890)" name="Text">
       <a name="text" val="addr"/>
+    </comp>
+    <comp lib="6" loc="(375,2080)" name="Text">
+      <a name="text" val="addu"/>
     </comp>
     <comp lib="6" loc="(375,490)" name="Text">
       <a name="text" val="andi"/>
@@ -7564,16 +7567,13 @@
     <comp lib="6" loc="(375,960)" name="Text">
       <a name="text" val="xori"/>
     </comp>
-    <comp lib="6" loc="(378,2082)" name="Text">
-      <a name="text" val="addu"/>
-    </comp>
-    <comp lib="6" loc="(405,4327)" name="Text">
+    <comp lib="6" loc="(405,4325)" name="Text">
       <a name="text" val="B &lt;&lt; 16 (lui)"/>
     </comp>
-    <comp lib="6" loc="(411,1761)" name="Text">
+    <comp lib="6" loc="(410,1760)" name="Text">
       <a name="text" val="addi &amp; others"/>
     </comp>
-    <comp lib="6" loc="(416,1951)" name="Text">
+    <comp lib="6" loc="(415,1950)" name="Text">
       <a name="text" val="addiu &amp; others"/>
     </comp>
     <comp lib="6" loc="(770,1785)" name="Text">
@@ -7615,17 +7615,26 @@
     <comp lib="6" loc="(790,4060)" name="Text">
       <a name="text" val="10011 - mtlo"/>
     </comp>
-    <comp lib="6" loc="(807,102)" name="Text">
+    <comp lib="6" loc="(805,100)" name="Text">
       <a name="text" val="0011 - slt"/>
     </comp>
-    <comp lib="6" loc="(807,146)" name="Text">
+    <comp lib="6" loc="(805,145)" name="Text">
       <a name="text" val="0110 - or"/>
     </comp>
-    <comp lib="6" loc="(807,32)" name="Text">
+    <comp lib="6" loc="(805,30)" name="Text">
       <a name="text" val="ALUOp Codes:"/>
+    </comp>
+    <comp lib="6" loc="(810,115)" name="Text">
+      <a name="text" val="0100 - sltu"/>
     </comp>
     <comp lib="6" loc="(810,1190)" name="Text">
       <a name="text" val="00011 - A&lt;&lt;B (logical)"/>
+    </comp>
+    <comp lib="6" loc="(810,130)" name="Text">
+      <a name="text" val="0101 - and"/>
+    </comp>
+    <comp lib="6" loc="(810,160)" name="Text">
+      <a name="text" val="0111 - xor"/>
     </comp>
     <comp lib="6" loc="(810,1600)" name="Text">
       <a name="text" val="00101 - A &gt;&gt; B (arith.)"/>
@@ -7633,16 +7642,7 @@
     <comp lib="6" loc="(810,4160)" name="Text">
       <a name="text" val="10100 - ~(A | B)"/>
     </comp>
-    <comp lib="6" loc="(812,117)" name="Text">
-      <a name="text" val="0100 - sltu"/>
-    </comp>
-    <comp lib="6" loc="(812,131)" name="Text">
-      <a name="text" val="0101 - and"/>
-    </comp>
-    <comp lib="6" loc="(812,161)" name="Text">
-      <a name="text" val="0111 - xor"/>
-    </comp>
-    <comp lib="6" loc="(812,57)" name="Text">
+    <comp lib="6" loc="(810,55)" name="Text">
       <a name="text" val="0000 - add"/>
     </comp>
     <comp lib="6" loc="(815,1380)" name="Text">
@@ -7657,22 +7657,22 @@
     <comp lib="6" loc="(815,2770)" name="Text">
       <a name="text" val="01011 - A * B (unsigned)"/>
     </comp>
-    <comp lib="6" loc="(817,72)" name="Text">
+    <comp lib="6" loc="(815,70)" name="Text">
       <a name="text" val="0001 - addu"/>
     </comp>
     <comp lib="6" loc="(820,3175)" name="Text">
       <a name="text" val="01101 - A / B (unsigned)"/>
     </comp>
-    <comp lib="6" loc="(832,4249)" name="Text">
+    <comp lib="6" loc="(830,4245)" name="Text">
       <a name="text" val="10101 - B &lt;&lt; 16 (lui)"/>
     </comp>
-    <comp lib="6" loc="(842,176)" name="Text">
+    <comp lib="6" loc="(840,175)" name="Text">
       <a name="text" val="1XXX - Look at val"/>
     </comp>
-    <comp lib="6" loc="(848,87)" name="Text">
+    <comp lib="6" loc="(845,85)" name="Text">
       <a name="text" val="0010 - B &lt;&lt; 16 (lui)"/>
     </comp>
-    <comp lib="6" loc="(865,192)" name="Text">
+    <comp lib="6" loc="(865,190)" name="Text">
       <a name="text" val="of Funct"/>
     </comp>
     <wire from="(0,310)" to="(1440,310)"/>
@@ -8436,52 +8436,52 @@
     <comp lib="6" loc="(1495,420)" name="Text">
       <a name="text" val="&lt;-- outputs the bit address of the highest bit that is a 1."/>
     </comp>
-    <comp lib="6" loc="(337,69)" name="Text">
+    <comp lib="6" loc="(335,65)" name="Text">
       <a name="font" val="SansSerif bold 20"/>
       <a name="text" val="Branch Decoder"/>
     </comp>
     <comp lib="6" loc="(535,440)" name="Text">
       <a name="text" val="OP [0]"/>
     </comp>
-    <comp lib="6" loc="(59,284)" name="Text">
+    <comp lib="6" loc="(55,280)" name="Text">
       <a name="halign" val="left"/>
       <a name="text" val="determine the desired value of PCSrc which controls the address of the next"/>
     </comp>
-    <comp lib="6" loc="(59,302)" name="Text">
+    <comp lib="6" loc="(55,300)" name="Text">
       <a name="halign" val="left"/>
       <a name="text" val="instruction to be brought into the Fetch (F) stage of the pipeline."/>
     </comp>
-    <comp lib="6" loc="(61,263)" name="Text">
-      <a name="halign" val="left"/>
-      <a name="text" val="instruction from the Register File as inputs. The Branch Decoder does so to"/>
-    </comp>
-    <comp lib="6" loc="(63,245)" name="Text">
+    <comp lib="6" loc="(60,245)" name="Text">
       <a name="halign" val="left"/>
       <a name="text" val="the BranchOp code output by the Control Unit, and the data read by this "/>
     </comp>
-    <comp lib="6" loc="(65,119)" name="Text">
+    <comp lib="6" loc="(60,260)" name="Text">
+      <a name="halign" val="left"/>
+      <a name="text" val="instruction from the Register File as inputs. The Branch Decoder does so to"/>
+    </comp>
+    <comp lib="6" loc="(65,115)" name="Text">
       <a name="halign" val="left"/>
       <a name="text" val="This circuit decodes an intermediary BranchOp code from the Control Unit"/>
     </comp>
-    <comp lib="6" loc="(65,227)" name="Text">
-      <a name="halign" val="left"/>
-      <a name="text" val="takes the current instruction in the Decode (D) stage's Op and Funct codes,"/>
-    </comp>
-    <comp lib="6" loc="(66,135)" name="Text">
+    <comp lib="6" loc="(65,135)" name="Text">
       <a name="halign" val="left"/>
       <a name="text" val="into the control path value which determines the address of the next"/>
     </comp>
-    <comp lib="6" loc="(66,167)" name="Text">
+    <comp lib="6" loc="(65,150)" name="Text">
+      <a name="halign" val="left"/>
+      <a name="text" val="instruction to be executed. Determining if the processor should branch"/>
+    </comp>
+    <comp lib="6" loc="(65,165)" name="Text">
       <a name="halign" val="left"/>
       <a name="text" val="is done within this circuit."/>
     </comp>
-    <comp lib="6" loc="(66,208)" name="Text">
+    <comp lib="6" loc="(65,205)" name="Text">
       <a name="halign" val="left"/>
       <a name="text" val="Existing in the Decode (D) stage near the Control Unit, the Branch Decoder"/>
     </comp>
-    <comp lib="6" loc="(67,151)" name="Text">
+    <comp lib="6" loc="(65,225)" name="Text">
       <a name="halign" val="left"/>
-      <a name="text" val="instruction to be executed. Determining if the processor should branch"/>
+      <a name="text" val="takes the current instruction in the Decode (D) stage's Op and Funct codes,"/>
     </comp>
     <comp lib="6" loc="(740,720)" name="Text">
       <a name="text" val="R-Type w/Func = 0xc is syscall"/>
@@ -8489,42 +8489,42 @@
     <comp lib="6" loc="(750,665)" name="Text">
       <a name="text" val="Jump Instruction"/>
     </comp>
+    <comp lib="6" loc="(770,100)" name="Text">
+      <a name="halign" val="left"/>
+      <a name="text" val="00 - No Branch/Jump"/>
+    </comp>
+    <comp lib="6" loc="(770,115)" name="Text">
+      <a name="halign" val="left"/>
+      <a name="text" val="01 - beq/bne conditional branch to BTA"/>
+    </comp>
+    <comp lib="6" loc="(770,130)" name="Text">
+      <a name="halign" val="left"/>
+      <a name="text" val="10 - jump to JTA (Jump Target Address)"/>
+    </comp>
+    <comp lib="6" loc="(770,150)" name="Text">
+      <a name="halign" val="left"/>
+      <a name="text" val="11 - blez/bgtz conditional branch to BTA"/>
+    </comp>
     <comp lib="6" loc="(770,210)" name="Text">
       <a name="halign" val="left"/>
       <a name="text" val="00 - nextPC = PCPlus4_F"/>
     </comp>
-    <comp lib="6" loc="(771,225)" name="Text">
+    <comp lib="6" loc="(770,225)" name="Text">
       <a name="halign" val="left"/>
       <a name="text" val="01 - nextPC = PCBranchAddr_D"/>
     </comp>
-    <comp lib="6" loc="(771,241)" name="Text">
+    <comp lib="6" loc="(770,240)" name="Text">
       <a name="halign" val="left"/>
       <a name="text" val="10 - nextPC = PCJumpAddr_D"/>
     </comp>
-    <comp lib="6" loc="(771,258)" name="Text">
+    <comp lib="6" loc="(770,255)" name="Text">
       <a name="halign" val="left"/>
       <a name="text" val="11 - nextPC = Syscall Start Addr"/>
     </comp>
-    <comp lib="6" loc="(773,103)" name="Text">
-      <a name="halign" val="left"/>
-      <a name="text" val="00 - No Branch/Jump"/>
-    </comp>
-    <comp lib="6" loc="(774,118)" name="Text">
-      <a name="halign" val="left"/>
-      <a name="text" val="01 - beq/bne conditional branch to BTA"/>
-    </comp>
-    <comp lib="6" loc="(774,134)" name="Text">
-      <a name="halign" val="left"/>
-      <a name="text" val="10 - jump to JTA (Jump Target Address)"/>
-    </comp>
-    <comp lib="6" loc="(774,151)" name="Text">
-      <a name="halign" val="left"/>
-      <a name="text" val="11 - blez/bgtz conditional branch to BTA"/>
-    </comp>
-    <comp lib="6" loc="(802,190)" name="Text">
+    <comp lib="6" loc="(800,190)" name="Text">
       <a name="text" val="PCSrc Codes:"/>
     </comp>
-    <comp lib="6" loc="(817,83)" name="Text">
+    <comp lib="6" loc="(815,80)" name="Text">
       <a name="text" val="BranchOp Codes:"/>
     </comp>
     <comp lib="6" loc="(905,450)" name="Text">
@@ -9476,34 +9476,34 @@
       <a name="trigger" val="falling"/>
       <a name="width" val="32"/>
     </comp>
+    <comp lib="6" loc="(100,215)" name="Text">
+      <a name="text" val="the result, Q."/>
+    </comp>
     <comp lib="6" loc="(1010,595)" name="Text">
       <a name="text" val="00010 - A ^ B"/>
     </comp>
-    <comp lib="6" loc="(104,216)" name="Text">
-      <a name="text" val="the result, Q."/>
-    </comp>
-    <comp lib="6" loc="(1044,172)" name="Text">
+    <comp lib="6" loc="(1040,170)" name="Text">
       <a name="text" val="11xxx - N/A"/>
     </comp>
-    <comp lib="6" loc="(1046,158)" name="Text">
-      <a name="text" val="1011x - N/A"/>
-    </comp>
-    <comp lib="6" loc="(1049,101)" name="Text">
+    <comp lib="6" loc="(1045,100)" name="Text">
       <a name="text" val="10010 - mflo"/>
     </comp>
-    <comp lib="6" loc="(1049,116)" name="Text">
+    <comp lib="6" loc="(1045,115)" name="Text">
       <a name="text" val="10011 - mtlo"/>
     </comp>
-    <comp lib="6" loc="(1049,86)" name="Text">
+    <comp lib="6" loc="(1045,155)" name="Text">
+      <a name="text" val="1011x - N/A"/>
+    </comp>
+    <comp lib="6" loc="(1045,85)" name="Text">
       <a name="text" val="10001 - mthi"/>
     </comp>
-    <comp lib="6" loc="(1052,72)" name="Text">
+    <comp lib="6" loc="(1050,70)" name="Text">
       <a name="text" val="10000 - mfhi "/>
     </comp>
-    <comp lib="6" loc="(1062,131)" name="Text">
+    <comp lib="6" loc="(1060,130)" name="Text">
       <a name="text" val="10100 - ~(A | B)"/>
     </comp>
-    <comp lib="6" loc="(1064,145)" name="Text">
+    <comp lib="6" loc="(1060,145)" name="Text">
       <a name="text" val="10101 - B &lt;&lt; 16"/>
     </comp>
     <comp lib="6" loc="(1340,595)" name="Text">
@@ -9524,7 +9524,7 @@
     <comp lib="6" loc="(2655,590)" name="Text">
       <a name="text" val="00111 - A + B (addu)"/>
     </comp>
-    <comp lib="6" loc="(286,105)" name="Text">
+    <comp lib="6" loc="(285,105)" name="Text">
       <a name="text" val="of the processor. Supporting a wide range of operations, "/>
     </comp>
     <comp lib="6" loc="(2990,595)" name="Text">
@@ -9533,20 +9533,20 @@
     <comp lib="6" loc="(3030,735)" name="Text">
       <a name="text" val="Overflow"/>
     </comp>
-    <comp lib="6" loc="(309,125)" name="Text">
+    <comp lib="6" loc="(305,125)" name="Text">
       <a name="text" val="the ALU is critical to making a processor be &quot;general-purpose.&quot;"/>
     </comp>
-    <comp lib="6" loc="(312,176)" name="Text">
+    <comp lib="6" loc="(310,175)" name="Text">
       <a name="text" val="Given a control (or &quot;OP&quot;) code and two inputs (A and B), the ALU"/>
     </comp>
-    <comp lib="6" loc="(317,39)" name="Text">
+    <comp lib="6" loc="(315,195)" name="Text">
+      <a name="text" val="performs the operation specified by the control code and returns"/>
+    </comp>
+    <comp lib="6" loc="(315,35)" name="Text">
       <a name="font" val="SansSerif bold 20"/>
       <a name="text" val="Arithmetic Logic Unit (ALU)"/>
     </comp>
-    <comp lib="6" loc="(318,196)" name="Text">
-      <a name="text" val="performs the operation specified by the control code and returns"/>
-    </comp>
-    <comp lib="6" loc="(327,87)" name="Text">
+    <comp lib="6" loc="(325,85)" name="Text">
       <a name="text" val="This circuit performs arithmetic operations in the Execute (E) stage"/>
     </comp>
     <comp lib="6" loc="(3320,595)" name="Text">
@@ -9585,68 +9585,68 @@
     <comp lib="6" loc="(6380,595)" name="Text">
       <a name="text" val="10010 - mflo"/>
     </comp>
-    <comp lib="6" loc="(6592,594)" name="Text">
+    <comp lib="6" loc="(6590,590)" name="Text">
       <a name="text" val="10100 - ~(A | B)"/>
     </comp>
     <comp lib="6" loc="(680,595)" name="Text">
       <a name="text" val="00001 - A | B"/>
     </comp>
-    <comp lib="6" loc="(6922,594)" name="Text">
+    <comp lib="6" loc="(6920,590)" name="Text">
       <a name="text" val="10101 - B &lt;&lt; 16"/>
     </comp>
-    <comp lib="6" loc="(6967,606)" name="Text">
+    <comp lib="6" loc="(6965,605)" name="Text">
       <a name="font" val="SansSerif bold 12"/>
       <a name="text" val="(used for lui)"/>
     </comp>
-    <comp lib="6" loc="(773,51)" name="Text">
+    <comp lib="6" loc="(770,50)" name="Text">
       <a name="text" val="ALUControl Codes:"/>
     </comp>
-    <comp lib="6" loc="(781,85)" name="Text">
-      <a name="text" val="00001 - A | B"/>
-    </comp>
-    <comp lib="6" loc="(783,71)" name="Text">
+    <comp lib="6" loc="(780,70)" name="Text">
       <a name="text" val="00000 - A &amp; B"/>
     </comp>
-    <comp lib="6" loc="(784,99)" name="Text">
+    <comp lib="6" loc="(780,85)" name="Text">
+      <a name="text" val="00001 - A | B"/>
+    </comp>
+    <comp lib="6" loc="(780,95)" name="Text">
       <a name="text" val="00010 - A ^ B"/>
     </comp>
-    <comp lib="6" loc="(785,182)" name="Text">
-      <a name="text" val="01000 - A - B"/>
-    </comp>
-    <comp lib="6" loc="(785,212)" name="Text">
-      <a name="text" val="01010 - A * B"/>
-    </comp>
-    <comp lib="6" loc="(787,241)" name="Text">
-      <a name="text" val="01100 - A / B"/>
-    </comp>
-    <comp lib="6" loc="(788,153)" name="Text">
+    <comp lib="6" loc="(785,150)" name="Text">
       <a name="text" val="00110 - A + B"/>
     </comp>
-    <comp lib="6" loc="(805,269)" name="Text">
+    <comp lib="6" loc="(785,180)" name="Text">
+      <a name="text" val="01000 - A - B"/>
+    </comp>
+    <comp lib="6" loc="(785,210)" name="Text">
+      <a name="text" val="01010 - A * B"/>
+    </comp>
+    <comp lib="6" loc="(785,240)" name="Text">
+      <a name="text" val="01100 - A / B"/>
+    </comp>
+    <comp lib="6" loc="(805,265)" name="Text">
       <a name="text" val="01110 - slt Q, A, B"/>
     </comp>
-    <comp lib="6" loc="(811,284)" name="Text">
+    <comp lib="6" loc="(810,280)" name="Text">
       <a name="text" val="01111 - sltu Q, A, B"/>
     </comp>
-    <comp lib="6" loc="(823,138)" name="Text">
+    <comp lib="6" loc="(820,135)" name="Text">
       <a name="text" val="00101 - B &gt;&gt; A (arith.)"/>
     </comp>
-    <comp lib="6" loc="(828,112)" name="Text">
+    <comp lib="6" loc="(825,110)" name="Text">
       <a name="text" val="00011 - B &lt;&lt; A (logical)"/>
     </comp>
-    <comp lib="6" loc="(828,125)" name="Text">
+    <comp lib="6" loc="(825,125)" name="Text">
       <a name="text" val="00100 - B &gt;&gt; A (logical)"/>
     </comp>
-    <comp lib="6" loc="(832,226)" name="Text">
+    <comp lib="6" loc="(830,225)" name="Text">
       <a name="text" val="01011 - A * B (unsigned)"/>
     </comp>
-    <comp lib="6" loc="(834,255)" name="Text">
+    <comp lib="6" loc="(830,255)" name="Text">
       <a name="text" val="01101 - A / B (unsigned)"/>
     </comp>
-    <comp lib="6" loc="(835,167)" name="Text">
+    <comp lib="6" loc="(835,165)" name="Text">
       <a name="text" val="00111 - A + B (unsigned)"/>
     </comp>
-    <comp lib="6" loc="(835,197)" name="Text">
+    <comp lib="6" loc="(835,195)" name="Text">
       <a name="text" val="01001 - A - B (unsigned)"/>
     </comp>
     <wire from="(0,340)" to="(1300,340)"/>
@@ -10554,19 +10554,19 @@
       <a name="trigger" val="falling"/>
       <a name="width" val="32"/>
     </comp>
-    <comp lib="6" loc="(103,1523)" name="Text">
+    <comp lib="6" loc="(100,1520)" name="Text">
       <a name="text" val="32-bit registers"/>
     </comp>
-    <comp lib="6" loc="(134,142)" name="Text">
+    <comp lib="6" loc="(130,140)" name="Text">
       <a name="text" val="the Writeback (W) stage."/>
     </comp>
-    <comp lib="6" loc="(146,1498)" name="Text">
+    <comp lib="6" loc="(145,1495)" name="Text">
       <a name="text" val="Registers addressed 0-31"/>
     </comp>
-    <comp lib="6" loc="(148,1548)" name="Text">
+    <comp lib="6" loc="(145,1545)" name="Text">
       <a name="text" val="Write on falling clock edge,"/>
     </comp>
-    <comp lib="6" loc="(183,288)" name="Text">
+    <comp lib="6" loc="(180,285)" name="Text">
       <a name="text" val="edge of CLK if WriteEnable3 is HIGH."/>
     </comp>
     <comp lib="6" loc="(1830,305)" name="Text">
@@ -10581,156 +10581,156 @@
     <comp lib="6" loc="(2575,680)" name="Text">
       <a name="text" val="Outputs of Registers"/>
     </comp>
-    <comp lib="6" loc="(293,125)" name="Text">
+    <comp lib="6" loc="(290,125)" name="Text">
       <a name="text" val="the Decode (D) stage while synchronously writing values from"/>
     </comp>
-    <comp lib="6" loc="(298,108)" name="Text">
+    <comp lib="6" loc="(295,105)" name="Text">
       <a name="text" val="Placed within the Decode (D) stage, allows register reads inside"/>
     </comp>
-    <comp lib="6" loc="(303,90)" name="Text">
+    <comp lib="6" loc="(300,90)" name="Text">
       <a name="text" val="This circuit holds all general-purpose registers of the processor."/>
     </comp>
-    <comp lib="6" loc="(317,39)" name="Text">
+    <comp lib="6" loc="(315,35)" name="Text">
       <a name="font" val="SansSerif bold 20"/>
       <a name="text" val="Register File"/>
     </comp>
-    <comp lib="6" loc="(324,185)" name="Text">
+    <comp lib="6" loc="(320,185)" name="Text">
       <a name="text" val="Given two register addresses (Address1 &amp; Address2), the Register File"/>
     </comp>
-    <comp lib="6" loc="(329,267)" name="Text">
+    <comp lib="6" loc="(325,265)" name="Text">
       <a name="text" val="given address (Address3) with a new value (WriteData3) on the FALLING"/>
     </comp>
-    <comp lib="6" loc="(342,202)" name="Text">
+    <comp lib="6" loc="(340,200)" name="Text">
       <a name="text" val="outputs their respective registers' values (RegisterData1 &amp; RegisterData2)."/>
     </comp>
-    <comp lib="6" loc="(359,247)" name="Text">
+    <comp lib="6" loc="(355,245)" name="Text">
       <a name="text" val="Additionally, the Register File overwrites the contents of the register of another"/>
     </comp>
     <comp lib="6" loc="(400,925)" name="Text">
       <a name="text" val="Write Functionality"/>
     </comp>
-    <comp lib="6" loc="(72,1475)" name="Text">
+    <comp lib="6" loc="(70,1475)" name="Text">
       <a name="text" val="Register File"/>
     </comp>
-    <comp lib="6" loc="(777,61)" name="Text">
+    <comp lib="6" loc="(775,60)" name="Text">
       <a name="text" val="Register Addresses:"/>
     </comp>
-    <comp lib="6" loc="(782,81)" name="Text">
+    <comp lib="6" loc="(780,80)" name="Text">
       <a name="text" val="00000 - $0"/>
+    </comp>
+    <comp lib="6" loc="(785,105)" name="Text">
+      <a name="text" val="00010 - $v0"/>
+    </comp>
+    <comp lib="6" loc="(785,120)" name="Text">
+      <a name="text" val="00011 - $v1"/>
+    </comp>
+    <comp lib="6" loc="(785,135)" name="Text">
+      <a name="text" val="00100 - $a0"/>
+    </comp>
+    <comp lib="6" loc="(785,145)" name="Text">
+      <a name="text" val="00101 - $a1"/>
+    </comp>
+    <comp lib="6" loc="(785,160)" name="Text">
+      <a name="text" val="00110 - $a2"/>
+    </comp>
+    <comp lib="6" loc="(785,190)" name="Text">
+      <a name="text" val="01000 - $t0"/>
+    </comp>
+    <comp lib="6" loc="(785,205)" name="Text">
+      <a name="text" val="01001 - $t1"/>
+    </comp>
+    <comp lib="6" loc="(785,220)" name="Text">
+      <a name="text" val="01010 - $t2"/>
+    </comp>
+    <comp lib="6" loc="(785,235)" name="Text">
+      <a name="text" val="01011 - $t3"/>
     </comp>
     <comp lib="6" loc="(785,95)" name="Text">
       <a name="text" val="00001 - $at"/>
     </comp>
-    <comp lib="6" loc="(788,109)" name="Text">
-      <a name="text" val="00010 - $v0"/>
-    </comp>
-    <comp lib="6" loc="(788,122)" name="Text">
-      <a name="text" val="00011 - $v1"/>
-    </comp>
-    <comp lib="6" loc="(788,135)" name="Text">
-      <a name="text" val="00100 - $a0"/>
-    </comp>
-    <comp lib="6" loc="(789,148)" name="Text">
-      <a name="text" val="00101 - $a1"/>
-    </comp>
-    <comp lib="6" loc="(789,162)" name="Text">
-      <a name="text" val="00110 - $a2"/>
-    </comp>
-    <comp lib="6" loc="(789,192)" name="Text">
-      <a name="text" val="01000 - $t0"/>
-    </comp>
-    <comp lib="6" loc="(789,206)" name="Text">
-      <a name="text" val="01001 - $t1"/>
-    </comp>
-    <comp lib="6" loc="(789,222)" name="Text">
-      <a name="text" val="01010 - $t2"/>
-    </comp>
-    <comp lib="6" loc="(789,236)" name="Text">
-      <a name="text" val="01011 - $t3"/>
-    </comp>
-    <comp lib="6" loc="(790,176)" name="Text">
+    <comp lib="6" loc="(790,175)" name="Text">
       <a name="text" val="00111 - $a3"/>
     </comp>
-    <comp lib="6" loc="(791,251)" name="Text">
+    <comp lib="6" loc="(790,250)" name="Text">
       <a name="text" val="01100 - $t4"/>
     </comp>
-    <comp lib="6" loc="(791,265)" name="Text">
+    <comp lib="6" loc="(790,265)" name="Text">
       <a name="text" val="01101 - $t5"/>
     </comp>
-    <comp lib="6" loc="(791,279)" name="Text">
+    <comp lib="6" loc="(790,275)" name="Text">
       <a name="text" val="01110 - $t6"/>
     </comp>
-    <comp lib="6" loc="(791,294)" name="Text">
+    <comp lib="6" loc="(790,290)" name="Text">
       <a name="text" val="01111 - $t7"/>
     </comp>
-    <comp lib="6" loc="(915,79)" name="Text">
-      <a name="halign" val="left"/>
-      <a name="text" val="10000 - $s0"/>
+    <comp lib="6" loc="(90,1570)" name="Text">
+      <a name="text" val="Read is async"/>
     </comp>
-    <comp lib="6" loc="(916,93)" name="Text">
-      <a name="halign" val="left"/>
-      <a name="text" val="10001 - $s1"/>
-    </comp>
-    <comp lib="6" loc="(917,107)" name="Text">
+    <comp lib="6" loc="(915,105)" name="Text">
       <a name="halign" val="left"/>
       <a name="text" val="10010 - $s2"/>
     </comp>
-    <comp lib="6" loc="(917,120)" name="Text">
+    <comp lib="6" loc="(915,120)" name="Text">
       <a name="halign" val="left"/>
       <a name="text" val="10011 - $s3"/>
     </comp>
-    <comp lib="6" loc="(917,133)" name="Text">
+    <comp lib="6" loc="(915,130)" name="Text">
       <a name="halign" val="left"/>
       <a name="text" val="10100 - $s4"/>
     </comp>
-    <comp lib="6" loc="(918,146)" name="Text">
+    <comp lib="6" loc="(915,145)" name="Text">
       <a name="halign" val="left"/>
       <a name="text" val="10101 - $s5"/>
     </comp>
-    <comp lib="6" loc="(918,160)" name="Text">
+    <comp lib="6" loc="(915,160)" name="Text">
       <a name="halign" val="left"/>
       <a name="text" val="10110 - $s6"/>
     </comp>
-    <comp lib="6" loc="(918,190)" name="Text">
-      <a name="halign" val="left"/>
-      <a name="text" val="11000 - $t8"/>
-    </comp>
-    <comp lib="6" loc="(918,204)" name="Text">
-      <a name="halign" val="left"/>
-      <a name="text" val="11001 - $t9"/>
-    </comp>
-    <comp lib="6" loc="(918,220)" name="Text">
-      <a name="halign" val="left"/>
-      <a name="text" val="11010 - $k0"/>
-    </comp>
-    <comp lib="6" loc="(918,234)" name="Text">
-      <a name="halign" val="left"/>
-      <a name="text" val="11011 - $k1"/>
-    </comp>
-    <comp lib="6" loc="(919,174)" name="Text">
+    <comp lib="6" loc="(915,170)" name="Text">
       <a name="halign" val="left"/>
       <a name="text" val="10111 - $s7"/>
     </comp>
-    <comp lib="6" loc="(920,249)" name="Text">
+    <comp lib="6" loc="(915,190)" name="Text">
+      <a name="halign" val="left"/>
+      <a name="text" val="11000 - $t8"/>
+    </comp>
+    <comp lib="6" loc="(915,200)" name="Text">
+      <a name="halign" val="left"/>
+      <a name="text" val="11001 - $t9"/>
+    </comp>
+    <comp lib="6" loc="(915,220)" name="Text">
+      <a name="halign" val="left"/>
+      <a name="text" val="11010 - $k0"/>
+    </comp>
+    <comp lib="6" loc="(915,230)" name="Text">
+      <a name="halign" val="left"/>
+      <a name="text" val="11011 - $k1"/>
+    </comp>
+    <comp lib="6" loc="(915,75)" name="Text">
+      <a name="halign" val="left"/>
+      <a name="text" val="10000 - $s0"/>
+    </comp>
+    <comp lib="6" loc="(915,90)" name="Text">
+      <a name="halign" val="left"/>
+      <a name="text" val="10001 - $s1"/>
+    </comp>
+    <comp lib="6" loc="(920,245)" name="Text">
       <a name="halign" val="left"/>
       <a name="text" val="11100 - $gp"/>
     </comp>
-    <comp lib="6" loc="(920,263)" name="Text">
+    <comp lib="6" loc="(920,260)" name="Text">
       <a name="halign" val="left"/>
       <a name="text" val="11101 - $sp"/>
     </comp>
-    <comp lib="6" loc="(920,277)" name="Text">
+    <comp lib="6" loc="(920,275)" name="Text">
       <a name="halign" val="left"/>
       <a name="text" val="11110 - $fp"/>
     </comp>
-    <comp lib="6" loc="(920,292)" name="Text">
+    <comp lib="6" loc="(920,290)" name="Text">
       <a name="halign" val="left"/>
       <a name="text" val="11111 - $t7"/>
     </comp>
-    <comp lib="6" loc="(93,1573)" name="Text">
-      <a name="text" val="Read is async"/>
-    </comp>
-    <comp lib="6" loc="(972,2302)" name="Text">
+    <comp lib="6" loc="(970,2300)" name="Text">
       <a name="text" val="Breakout used for printing character stored in $a0"/>
     </comp>
     <wire from="(0,350)" to="(1090,350)"/>
@@ -11523,8 +11523,7 @@
       <a name="addrWidth" val="24"/>
       <a name="appearance" val="logisim_evolution"/>
       <a name="contents">addr/data: 24 32
-600100c 0 a000224 25d0e003 c000000 0 10083c 825
-48d 0 1000224 25d0e003 c000000 0 800e003
+0
 </a>
       <a name="dataWidth" val="32"/>
       <a name="label" val="user_text_section"/>
@@ -11563,119 +11562,119 @@ a000824 2a488000 6008014 0 30008420 6d00000c 0 56000008
     <comp lib="6" loc="(175,575)" name="Text">
       <a name="text" val="0x0040 0000 - 0x043f ffff"/>
     </comp>
-    <comp lib="6" loc="(317,49)" name="Text">
+    <comp lib="6" loc="(315,45)" name="Text">
       <a name="font" val="SansSerif bold 20"/>
       <a name="text" val="Instruction Memory"/>
     </comp>
-    <comp lib="6" loc="(41,406)" name="Text">
-      <a name="halign" val="left"/>
-      <a name="text" val="stored by this circuit, a nop instruction is output and the"/>
-    </comp>
-    <comp lib="6" loc="(41,423)" name="Text">
-      <a name="halign" val="left"/>
-      <a name="text" val="InvalidAddressFlag output is set HIGH."/>
-    </comp>
-    <comp lib="6" loc="(42,388)" name="Text">
-      <a name="halign" val="left"/>
-      <a name="text" val="If Address is not word-aligned or not within a region of memory"/>
-    </comp>
-    <comp lib="6" loc="(43,308)" name="Text">
+    <comp lib="6" loc="(40,305)" name="Text">
       <a name="halign" val="left"/>
       <a name="text" val="In other words, this region is 64MB starting at address 0x80000000."/>
     </comp>
-    <comp lib="6" loc="(44,367)" name="Text">
+    <comp lib="6" loc="(40,365)" name="Text">
       <a name="halign" val="left"/>
       <a name="text" val="the 32-bit instruction (Instruction) stored at the given address."/>
     </comp>
-    <comp lib="6" loc="(45,287)" name="Text">
+    <comp lib="6" loc="(40,385)" name="Text">
       <a name="halign" val="left"/>
-      <a name="text" val="(or the &quot;.ktext&quot; region). This spans from address 0x80000000 to 0x803fffff."/>
+      <a name="text" val="If Address is not word-aligned or not within a region of memory"/>
     </comp>
-    <comp lib="6" loc="(45,348)" name="Text">
+    <comp lib="6" loc="(40,405)" name="Text">
       <a name="halign" val="left"/>
-      <a name="text" val="Given a word-aligned address (Address), this circuit outputs"/>
+      <a name="text" val="stored by this circuit, a nop instruction is output and the"/>
     </comp>
-    <comp lib="6" loc="(45,99)" name="Text">
+    <comp lib="6" loc="(40,420)" name="Text">
       <a name="halign" val="left"/>
-      <a name="text" val="This circuit contains the ROM modules which store instructions for"/>
+      <a name="text" val="InvalidAddressFlag output is set HIGH."/>
     </comp>
-    <comp lib="6" loc="(46,115)" name="Text">
+    <comp lib="6" loc="(45,115)" name="Text">
       <a name="halign" val="left"/>
       <a name="text" val="the currently loaded program.  Rather than just storing the &quot;.text&quot;"/>
     </comp>
-    <comp lib="6" loc="(46,148)" name="Text">
-      <a name="halign" val="left"/>
-      <a name="text" val="the processor's kernel which handles syscalls."/>
-    </comp>
-    <comp lib="6" loc="(46,209)" name="Text">
-      <a name="halign" val="left"/>
-      <a name="text" val="memory (or the &quot;.text&quot; region). This spans from address 0x00400000 to"/>
-    </comp>
-    <comp lib="6" loc="(46,268)" name="Text">
-      <a name="halign" val="left"/>
-      <a name="text" val="Additionally, this circuit stores the kernel's instruction memory"/>
-    </comp>
-    <comp lib="6" loc="(47,132)" name="Text">
+    <comp lib="6" loc="(45,130)" name="Text">
       <a name="halign" val="left"/>
       <a name="text" val="section of the currently loaded program, this circuit also stores"/>
     </comp>
-    <comp lib="6" loc="(47,191)" name="Text">
+    <comp lib="6" loc="(45,145)" name="Text">
+      <a name="halign" val="left"/>
+      <a name="text" val="the processor's kernel which handles syscalls."/>
+    </comp>
+    <comp lib="6" loc="(45,190)" name="Text">
       <a name="halign" val="left"/>
       <a name="text" val="The first region of memory stored by this circuit is the program instruction"/>
     </comp>
-    <comp lib="6" loc="(47,226)" name="Text">
+    <comp lib="6" loc="(45,205)" name="Text">
+      <a name="halign" val="left"/>
+      <a name="text" val="memory (or the &quot;.text&quot; region). This spans from address 0x00400000 to"/>
+    </comp>
+    <comp lib="6" loc="(45,225)" name="Text">
       <a name="halign" val="left"/>
       <a name="text" val="0x043fffff. In other words, this region is 64MB starting at address 0x00400000."/>
     </comp>
-    <comp lib="6" loc="(777,71)" name="Text">
+    <comp lib="6" loc="(45,265)" name="Text">
+      <a name="halign" val="left"/>
+      <a name="text" val="Additionally, this circuit stores the kernel's instruction memory"/>
+    </comp>
+    <comp lib="6" loc="(45,285)" name="Text">
+      <a name="halign" val="left"/>
+      <a name="text" val="(or the &quot;.ktext&quot; region). This spans from address 0x80000000 to 0x803fffff."/>
+    </comp>
+    <comp lib="6" loc="(45,345)" name="Text">
+      <a name="halign" val="left"/>
+      <a name="text" val="Given a word-aligned address (Address), this circuit outputs"/>
+    </comp>
+    <comp lib="6" loc="(45,95)" name="Text">
+      <a name="halign" val="left"/>
+      <a name="text" val="This circuit contains the ROM modules which store instructions for"/>
+    </comp>
+    <comp lib="6" loc="(775,70)" name="Text">
       <a name="text" val="Register Addresses:"/>
     </comp>
-    <comp lib="6" loc="(782,91)" name="Text">
+    <comp lib="6" loc="(780,90)" name="Text">
       <a name="text" val="00000 - $0"/>
     </comp>
     <comp lib="6" loc="(785,105)" name="Text">
       <a name="text" val="00001 - $at"/>
     </comp>
-    <comp lib="6" loc="(788,119)" name="Text">
+    <comp lib="6" loc="(785,115)" name="Text">
       <a name="text" val="00010 - $v0"/>
     </comp>
-    <comp lib="6" loc="(788,132)" name="Text">
+    <comp lib="6" loc="(785,130)" name="Text">
       <a name="text" val="00011 - $v1"/>
     </comp>
-    <comp lib="6" loc="(788,145)" name="Text">
+    <comp lib="6" loc="(785,145)" name="Text">
       <a name="text" val="00100 - $a0"/>
     </comp>
-    <comp lib="6" loc="(789,158)" name="Text">
+    <comp lib="6" loc="(785,155)" name="Text">
       <a name="text" val="00101 - $a1"/>
     </comp>
-    <comp lib="6" loc="(789,172)" name="Text">
+    <comp lib="6" loc="(785,170)" name="Text">
       <a name="text" val="00110 - $a2"/>
     </comp>
-    <comp lib="6" loc="(789,202)" name="Text">
+    <comp lib="6" loc="(785,200)" name="Text">
       <a name="text" val="01000 - $t0"/>
     </comp>
-    <comp lib="6" loc="(789,216)" name="Text">
+    <comp lib="6" loc="(785,215)" name="Text">
       <a name="text" val="01001 - $t1"/>
     </comp>
-    <comp lib="6" loc="(789,232)" name="Text">
+    <comp lib="6" loc="(785,230)" name="Text">
       <a name="text" val="01010 - $t2"/>
     </comp>
-    <comp lib="6" loc="(789,246)" name="Text">
+    <comp lib="6" loc="(785,245)" name="Text">
       <a name="text" val="01011 - $t3"/>
     </comp>
-    <comp lib="6" loc="(790,186)" name="Text">
+    <comp lib="6" loc="(790,185)" name="Text">
       <a name="text" val="00111 - $a3"/>
     </comp>
-    <comp lib="6" loc="(791,261)" name="Text">
+    <comp lib="6" loc="(790,260)" name="Text">
       <a name="text" val="01100 - $t4"/>
     </comp>
-    <comp lib="6" loc="(791,275)" name="Text">
+    <comp lib="6" loc="(790,275)" name="Text">
       <a name="text" val="01101 - $t5"/>
     </comp>
-    <comp lib="6" loc="(791,289)" name="Text">
+    <comp lib="6" loc="(790,285)" name="Text">
       <a name="text" val="01110 - $t6"/>
     </comp>
-    <comp lib="6" loc="(791,304)" name="Text">
+    <comp lib="6" loc="(790,300)" name="Text">
       <a name="text" val="01111 - $t7"/>
     </comp>
     <comp lib="6" loc="(855,725)" name="Text">
@@ -11714,67 +11713,67 @@ a000824 2a488000 6008014 0 30008420 6d00000c 0 56000008
     <comp lib="6" loc="(910,1745)" name="Text">
       <a name="text" val="OP: 21; print char"/>
     </comp>
-    <comp lib="6" loc="(915,89)" name="Text">
-      <a name="halign" val="left"/>
-      <a name="text" val="10000 - $s0"/>
-    </comp>
-    <comp lib="6" loc="(916,103)" name="Text">
+    <comp lib="6" loc="(915,100)" name="Text">
       <a name="halign" val="left"/>
       <a name="text" val="10001 - $s1"/>
     </comp>
-    <comp lib="6" loc="(917,117)" name="Text">
+    <comp lib="6" loc="(915,115)" name="Text">
       <a name="halign" val="left"/>
       <a name="text" val="10010 - $s2"/>
     </comp>
-    <comp lib="6" loc="(917,130)" name="Text">
+    <comp lib="6" loc="(915,130)" name="Text">
       <a name="halign" val="left"/>
       <a name="text" val="10011 - $s3"/>
     </comp>
-    <comp lib="6" loc="(917,143)" name="Text">
+    <comp lib="6" loc="(915,140)" name="Text">
       <a name="halign" val="left"/>
       <a name="text" val="10100 - $s4"/>
     </comp>
-    <comp lib="6" loc="(918,156)" name="Text">
+    <comp lib="6" loc="(915,155)" name="Text">
       <a name="halign" val="left"/>
       <a name="text" val="10101 - $s5"/>
     </comp>
-    <comp lib="6" loc="(918,170)" name="Text">
+    <comp lib="6" loc="(915,170)" name="Text">
       <a name="halign" val="left"/>
       <a name="text" val="10110 - $s6"/>
     </comp>
-    <comp lib="6" loc="(918,200)" name="Text">
-      <a name="halign" val="left"/>
-      <a name="text" val="11000 - $t8"/>
-    </comp>
-    <comp lib="6" loc="(918,214)" name="Text">
-      <a name="halign" val="left"/>
-      <a name="text" val="11001 - $t9"/>
-    </comp>
-    <comp lib="6" loc="(918,230)" name="Text">
-      <a name="halign" val="left"/>
-      <a name="text" val="11010 - $k0"/>
-    </comp>
-    <comp lib="6" loc="(918,244)" name="Text">
-      <a name="halign" val="left"/>
-      <a name="text" val="11011 - $k1"/>
-    </comp>
-    <comp lib="6" loc="(919,184)" name="Text">
+    <comp lib="6" loc="(915,180)" name="Text">
       <a name="halign" val="left"/>
       <a name="text" val="10111 - $s7"/>
     </comp>
-    <comp lib="6" loc="(920,259)" name="Text">
+    <comp lib="6" loc="(915,200)" name="Text">
+      <a name="halign" val="left"/>
+      <a name="text" val="11000 - $t8"/>
+    </comp>
+    <comp lib="6" loc="(915,210)" name="Text">
+      <a name="halign" val="left"/>
+      <a name="text" val="11001 - $t9"/>
+    </comp>
+    <comp lib="6" loc="(915,230)" name="Text">
+      <a name="halign" val="left"/>
+      <a name="text" val="11010 - $k0"/>
+    </comp>
+    <comp lib="6" loc="(915,240)" name="Text">
+      <a name="halign" val="left"/>
+      <a name="text" val="11011 - $k1"/>
+    </comp>
+    <comp lib="6" loc="(915,85)" name="Text">
+      <a name="halign" val="left"/>
+      <a name="text" val="10000 - $s0"/>
+    </comp>
+    <comp lib="6" loc="(920,255)" name="Text">
       <a name="halign" val="left"/>
       <a name="text" val="11100 - $gp"/>
     </comp>
-    <comp lib="6" loc="(920,273)" name="Text">
+    <comp lib="6" loc="(920,270)" name="Text">
       <a name="halign" val="left"/>
       <a name="text" val="11101 - $sp"/>
     </comp>
-    <comp lib="6" loc="(920,287)" name="Text">
+    <comp lib="6" loc="(920,285)" name="Text">
       <a name="halign" val="left"/>
       <a name="text" val="11110 - $fp"/>
     </comp>
-    <comp lib="6" loc="(920,302)" name="Text">
+    <comp lib="6" loc="(920,300)" name="Text">
       <a name="halign" val="left"/>
       <a name="text" val="11111 - $t7"/>
     </comp>

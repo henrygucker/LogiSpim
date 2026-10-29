@@ -14,6 +14,8 @@ import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.concurrent.TimeUnit;
 
+import org.henrygucker.logispim.fileprocessor.backend.WorkspaceFileHandler;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 
@@ -21,7 +23,7 @@ public class TestVectors {
     private static final String LOGISIM_EVOLUTION_VERSION = "4.1.0";
     private static final String LOGISIM_EVOLUTION_URL = "https://github.com/logisim-evolution/logisim-evolution/releases/download/v" + LOGISIM_EVOLUTION_VERSION + "/logisim-evolution-" + LOGISIM_EVOLUTION_VERSION + "-all.jar";
 
-    static final Path logisimCircuitFilepath = Paths.get(System.getProperty("user.dir")).getParent().resolve("LogiSpim.circ");
+    static final Path logisimCircuitFilepath = WorkspaceFileHandler.getLogisimCircPath();
 
     @TempDir(cleanup = CleanupMode.ALWAYS)
     static Path tempDir;

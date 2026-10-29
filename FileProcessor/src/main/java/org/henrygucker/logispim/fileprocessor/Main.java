@@ -8,7 +8,7 @@ import java.io.IOException;
 import java.nio.file.Path;
 
 public class Main {
-    private static final String VERSION = "0.0.1";
+    private static final String VERSION = "0.0.1-alpha";
 
     public static void main(String[] args) {
         String lastUsedVersion = (String) AppConfig.VERSION.getValue();
@@ -35,7 +35,18 @@ public class Main {
         } else if (!lastUsedVersion.equals(VERSION)) {
             // Create any necessary changes since the last used version
 
-            // Currently none to be made
+            // VERSION is always of type String (as is required), so no exceptions are ever thrown
+            try {
+                AppConfig.VERSION.setValue(VERSION);
+            } catch (AppConfigException e) {}
+        }
+
+        try {
+            WorkspaceFileHandler.patchWorkspace();
+        } catch (IOException e) {
+                System.err.println("Failed to patch workspace at path \""
+                + ((Path) AppConfig.WORKSPACE.getValue()).toAbsolutePath().normalize().toString() + "\"");
+                e.printStackTrace(System.err);
         }
 
         App app = new App("LogiSpim");

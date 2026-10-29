@@ -7,7 +7,7 @@
     <parent>
         <groupId>org.henrygucker.logispim</groupId>
         <artifactId>LogiSpim</artifactId>
-        <version>0.0.1</version>
+        <version>0.0.1-alpha</version>
         <relativePath>../pom.xml</relativePath>
     </parent>
 
@@ -43,6 +43,11 @@
             <artifactId>commons-io</artifactId>
             <version>2.21.0</version>
         </dependency>
+        <dependency>
+            <groupId>org.henrygucker.logispim</groupId>
+            <artifactId>FileProcessor</artifactId>
+            <version>0.0.1-alpha</version>
+        </dependency>
     </dependencies>
 
     <build>
@@ -52,6 +57,16 @@
                 <version>3.5.4</version>
             </plugin>
         </plugins>
+
+        <resources>
+            <resource>
+                <directory>../docs/src/05_core_components/03_control_unit</directory>
+
+                <includes>
+                    <include>01_main_decoder.md</include>
+                </includes>
+            </resource>
+        </resources>
     </build>
 
     <properties>
