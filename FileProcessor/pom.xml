@@ -105,7 +105,7 @@
                         <id>mac</id>
                         <configuration>
                             <resourceDir>.config-packaging/macos</resourceDir>
-                            <icon>../assets/icons/light_mode/LogiSpim_Icon_Light.icns</icon>
+                            <icon>../assets/icons/light/LogiSpim_Icon_Light.icns</icon>
                             <type>DMG</type>
                             <javaoptions>-Dapple.awt.application.appearance=NSAppearanceNameDarkAqua</javaoptions>
                             <javaoptions>--enable-native-access=ALL-UNNAMED</javaoptions>
@@ -114,7 +114,7 @@
                     <execution>
                         <id>win</id>
                         <configuration>
-                            <icon>../assets/icons/light_mode/LogiSpim_Icon_Light.ico</icon>
+                            <icon>../assets/icons/light/LogiSpim_Icon_Light.ico</icon>
                             <type>EXE</type>
                         </configuration>
                     </execution>
@@ -122,7 +122,7 @@
                         <id>linux</id>
                         <configuration>
                             <type>APP_IMAGE</type>
-                            <icon>../assets/icons/light_mode/LogiSpim_Icon_Light.png</icon>
+                            <icon>../assets/icons/light/LogiSpim_Icon_Light.png</icon>
                             <type>DEB</type>
                         </configuration>
                     </execution>
@@ -145,7 +145,7 @@
                 <directory>../assets/logo</directory>
 
                 <includes>
-                    <include>LogiSpim_Logo_Dark.png</include>
+                    <include>LogiSpim_Logo_Light.png</include>
                 </includes>
             </resource>
             <resource>

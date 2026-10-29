@@ -7,7 +7,6 @@ language = "en"
 command = "mdbook-mermaid"
 
 [output.html]
-site-url = "/v0.0.1-alpha/"
 git-repository-url = "https://github.com/henrygucker/LogiSpim/"
 git-repository-icon = "fab-github"
 additional-js = ["mermaid.min.js", "mermaid-init.js"]

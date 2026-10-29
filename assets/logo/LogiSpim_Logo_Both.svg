@@ -10,11 +10,11 @@
             }
 
             /* Default styles (Light Mode) */
-            .icon-stroke { stroke: #242a30; }
+            .icon-stroke { stroke: #ffffff; }
 
             /* Dark Mode override */
             @media (prefers-color-scheme: dark) {
-            .icon-stroke { stroke: #ffffff; }
+            .icon-stroke { stroke: #242a30; }
             }
         </style>
     </defs>

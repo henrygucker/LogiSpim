@@ -223,7 +223,7 @@ public class App extends JFrame {
         constraints.fill = GridBagConstraints.BOTH;
         constraints.ipady = 20;
 
-        URL titleImageURL = ClassLoader.getSystemResource("LogiSpim_Logo_Dark.png");
+        URL titleImageURL = ClassLoader.getSystemResource("LogiSpim_Logo_Light.png");
         ImageIcon titleImage = new ImageIcon(titleImageURL);
         Image scaledImg = titleImage.getImage().getScaledInstance(CONTENT_WIDTH / 2, -1, Image.SCALE_SMOOTH);
         titleImage = new ImageIcon(scaledImg);
