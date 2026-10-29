@@ -40,13 +40,13 @@ jobs:
       matrix:
         include:
           - os: windows-latest
-            artifact_name: "${{ github.ref_name }}-windows"
+            artifact_name: "LogiSpim-${{ github.ref_name }}-windows-x86_64"
             file_extension: ".exe" # or *.msi depending on your pom.xml config
           - os: macos-latest
-            artifact_name: "${{ github.ref_name }}-macos"
+            artifact_name: "LogiSpim-${{ github.ref_name }}-macos-aarch64"
             file_extension: ".dmg" # or *.pkg
           - os: ubuntu-latest
-            artifact_name: "${{ github.ref_name }}-linux"
+            artifact_name: "LogiSpim-${{ github.ref_name }}-linux-x86_64"
             file_extension: ".deb" # or *.rpm
 
     steps:
@@ -93,7 +93,7 @@ jobs:
       - name: Upload Installer to GitHub Release
         uses: actions/github-script@v7
         env:
-          EXECUTABLE_NAME: ${{ format('LogiSpim-{0}-{1}{2}', runner.arch, matrix.artifact_name, matrix.file_extension) }}
+          EXECUTABLE_NAME: ${{ matrix.artifact_name }}
           EXECUTABLE_FILE_EXTENSION: ${{ matrix.file_extension }}
           RELEASE_ID: ${{ needs.create-release.outputs.release_id }}
         with:
