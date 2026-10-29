@@ -30,7 +30,7 @@ jobs:
       run: xvfb-run --auto-servernum mvn -X --batch-mode clean compile
 
     - name: Build and run Logisim & docs tests
-      run: xvfb-run --auto-servernum mvn -X test -pl Testing -am
+      run: xvfb-run --auto-servernum mvn -X --batch-mode test -pl Testing -am
 
     - name: Build and run File Processor tests
-      run: xvfb-run --auto-servernum mvn -X test -pl FileProcessor -am
+      run: xvfb-run --auto-servernum mvn -X --batch-mode test -pl FileProcessor -am

@@ -66,6 +66,13 @@
                     <include>01_main_decoder.md</include>
                 </includes>
             </resource>
+            <resource>
+                <directory>..</directory>
+
+                <includes>
+                    <include>**/*.circ</include>
+                </includes>
+            </resource>
         </resources>
     </build>
 
