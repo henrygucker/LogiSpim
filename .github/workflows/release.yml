@@ -102,7 +102,7 @@ jobs:
             const EXECUTABLE_NAME = process.env.EXECUTABLE_NAME;
             
             // Search target directory for the installer file extension
-            const targetDir = 'target/installer'; 
+            const targetDir = '**/target/installer'; 
             const globber = await glob.create(`${targetDir}/**/*${EXE_EXTENSION}`);
             const files = await globber.glob();
             
