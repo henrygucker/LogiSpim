@@ -1,3 +1,5 @@
+import org.henrygucker.logispim.fileprocessor.backend.OSDependentData;
+import org.henrygucker.logispim.fileprocessor.backend.fileutils.FileUtil;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
@@ -16,8 +18,7 @@ import java.util.concurrent.TimeUnit;
 
 import org.henrygucker.logispim.fileprocessor.backend.WorkspaceFileHandler;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class TestVectors {
     private static final String LOGISIM_EVOLUTION_VERSION = "4.1.0";
@@ -46,9 +47,16 @@ public class TestVectors {
     }
 
     static void runTestVector(Path logisimJar, String componentName, Path testVector, Path circuit) throws IOException, InterruptedException {
+        Path javaExecutable = FileUtil.findExecutable("java");
+
+        if (javaExecutable == null) {
+            fail("Unable to locate java executable.");
+            return;
+        }
+
         // java -jar logisim-evolution.jar --test-vector <circuit_name> <test_vector_file> <project.circ>
         ArrayList<String> args = new ArrayList<>();
-        args.add("java");
+        args.add(javaExecutable.toString());
         args.add("-jar");
         args.add(logisimJar.toAbsolutePath().toString());
         args.add("--test-vector");

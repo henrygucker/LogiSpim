@@ -1,3 +1,5 @@
+import org.henrygucker.logispim.fileprocessor.backend.AppConfig;
+
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
@@ -172,7 +174,7 @@ public enum MainDecoderMaster {
             new String[]{"000000", "111111", "1", "00", "0000", "00", "1000", "0", "00", "1"}
     };
 
-    private static final Path DEFAULT_TEST_VECTOR_PATH = Paths.get(System.getProperty("user.home") + File.separator + "LogiSpim" + File.separator + "test_vectors" + File.separator + "main_decoder.txt");
+    private static final Path DEFAULT_TEST_VECTOR_PATH = ((Path) AppConfig.WORKSPACE.getValue()).resolve("test_vectors", "main_decoder.txt");
 
     /**
      * Prints Markdown tables for MainDecoder outputs & can write MainDecoder test vector to a file specified by a commandline argument.
