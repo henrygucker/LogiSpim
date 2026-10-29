@@ -35,13 +35,13 @@ jobs:
       matrix:
         include:
           - os: windows-latest
-            artifact_name: windows-installer
+            artifact_name: ${{ github.ref_name }}-windows-${{ runner.arch }}
             file_extension: ".exe" # or *.msi depending on your pom.xml config
           - os: macos-latest
-            artifact_name: macos-installer
+            artifact_name: ${{ github.ref_name }}-macos-${{ runner.arch }}
             file_extension: ".dmg" # or *.pkg
           - os: ubuntu-latest
-            artifact_name: linux-installer
+            artifact_name: ${{ github.ref_name }}-linux-${{ runner.arch }}
             file_extension: ".deb" # or *.rpm
 
     steps:
@@ -88,15 +88,15 @@ jobs:
       - name: Upload Installer to GitHub Release
         uses: actions/github-script@v7
         env:
-          EXECUTABLE_NAME: ${{ format('LogiSpim-{0}-{1}{2}', github.ref_name, runner.arch, matrix.file_extension) }}
-          EXECUTABLE_FILE_EXTENSION: ${{ format('{0}', matrix.file_extension) }}
+          EXECUTABLE_NAME: ${{ format('LogiSpim-{0}{1}', matrix.artifact_name, matrix.file_extension) }}
+          EXECUTABLE_FILE_EXTENSION: ${{ matrix.file_extension }}
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           script: |
             const fs = require('fs');
             const path = require('path');
             
-            const EXE_EXTENSION = matrix.file_extension;
+            const EXE_EXTENSION = process.env.EXECUTABLE_FILE_EXTENSION;
             const EXECUTABLE_NAME = process.env.EXECUTABLE_NAME;
             
             // Search target directory for the installer file extension
