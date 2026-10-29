@@ -52,7 +52,7 @@ jobs:
       - name: Set up JDK
         uses: actions/setup-java@v4
         with:
-          java-version: '21' # jpackage requires JDK 14+, JDK 17 or 21 (LTS) is recommended
+          java-version: '22' # jpackage requires JDK 14+, JDK 17 or 21 (LTS) is recommended
           distribution: 'temurin'
           cache: 'maven'
 
@@ -71,19 +71,19 @@ jobs:
         if: matrix.os == 'macos-latest'
         run: |
           cd FileProcessor
-          mvn clean package jpackage:jpackage@mac
+          mvn clean package jpackage:jpackage@mac -X
 
       - name: Build Application and Generate Installers via Maven (Windows)
         if: matrix.os == 'windows-latest'
         run: |
           cd FileProcessor
-          mvn clean package jpackage:jpackage@win
+          mvn clean package jpackage:jpackage@win -X
 
       - name: Build Application and Generate Installers via Maven (Linux)
         if: matrix.os == 'ubuntu-latest'
         run: |
           cd FileProcessor
-          mvn clean package jpackage:jpackage@linux
+          mvn clean package jpackage:jpackage@linux -X
 
       # Identify the generated installer file and upload it to the GitHub Release draft
       - name: Upload Installer to GitHub Release
