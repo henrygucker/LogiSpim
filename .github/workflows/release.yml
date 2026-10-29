@@ -61,7 +61,7 @@ jobs:
         if: matrix.os == 'ubuntu-latest'
         run: |
           sudo apt-get update
-          sudo apt-get install -y binutils fakeroot UI-modules
+          sudo apt-get install -y fakeroot dpkg
 
       # Windows-specific tool prerequisites (WiX Toolset is pre-installed on github runners, but needs pathing if required)
       # Note: windows-latest runner already has WiX v3 toolset installed out of the box.
