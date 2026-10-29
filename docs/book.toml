@@ -10,3 +10,4 @@ command = "mdbook-mermaid"
 git-repository-url = "https://github.com/henrygucker/LogiSpim/"
 git-repository-icon = "fab-github"
 additional-js = ["mermaid.min.js", "mermaid-init.js"]
+site-url = "https://henrygucker.github.io/LogiSpim/"
