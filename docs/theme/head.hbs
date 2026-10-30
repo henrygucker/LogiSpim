@@ -1,11 +1,14 @@
 <!-- Redirects from henrygucker.github.io/LogiSim/ or .../LogiSim/index.html to .../LogiSpim/01_intro/index.html-->
 <!-- Prevents images/assets not loading on site index.html -->
-<head>
-  <script>
-    // Check if the user is currently at the root index.html
-    if (window.location.pathname === '/' || window.location.pathname === '/index.html') {
-      // Instantly replace the history state and redirect
-      window.location.replace('/01_intro/index.html');
+<script>
+    // Prefixes pathname with '/LogiSpim' if prefix is present (occurs on deployed site, not localhost)
+    var prefix = '';
+    if (window.location.pathname.toLowerCase().startsWith('/logispim'))
+        prefix = '/LogiSpim';
+
+
+    // Instantly replace the history state and redirect if the currently opened page is the root index.html page
+    if (window.location.pathname === prefix + '/' || window.location.pathname === prefix + '/index.html') {
+      window.location.replace(prefix + '/01_intro/index.html');
     }
-  </script>
-</head>
+</script>
