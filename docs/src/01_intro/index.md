@@ -1,6 +1,6 @@
 <!--suppress CssUnresolvedCustomProperty -->
 <style> .mdbook-version { position: absolute; right: 20px; top: 60px; background-color: var(--theme-popup-bg); border-radius: 8px; padding: 2px 5px 2px 5px; border: 1px solid var(--theme-popup-border); font-size: 0.9em; } </style>
-<p class="mdbook-version">v0.0.1-beta</p>
+<p class="mdbook-version">v0.0.1-alpha</p>
 
 
 <div align="center">
@@ -10,6 +10,8 @@
       <img alt="LogiSpim Logo" width="500" src="assets/LogiSpim_Logo_Both_Invert.svg">
     </picture>
 </div>
+
+___
 
 > [!WARNING]
 > This website and project is currently under construction.
