@@ -20,7 +20,7 @@ import java.util.concurrent.TimeUnit;
 import static org.junit.jupiter.api.Assertions.*;
 
 public class TestVectors {
-    private static final String LOGISIM_EVOLUTION_VERSION = "4.1.0";
+    private static final String LOGISIM_EVOLUTION_VERSION = "5.0.0";
     private static final String LOGISIM_EVOLUTION_URL = "https://github.com/logisim-evolution/logisim-evolution/releases/download/v" + LOGISIM_EVOLUTION_VERSION + "/logisim-evolution-" + LOGISIM_EVOLUTION_VERSION + "-all.jar";
 
 
