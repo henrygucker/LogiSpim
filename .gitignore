@@ -6,7 +6,8 @@ docs/book/
 **/.vscode/
 **/.idea/
 
-
+# Logisim autosave
+*.circ.autosave
 
 
 # General Junk Files
