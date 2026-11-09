@@ -91,7 +91,7 @@ public class CompileActionListener implements ActionListener {
         Path targetOutputDir = elfPath.getParent().getParent();
         Path textOutputFile = targetOutputDir.resolve("text.hex");
         Path dataOutputFile = targetOutputDir.resolve("data.hex");
-        Path kernelTextOutputFile = targetOutputDir.resolve("text-kernel.hex");
+        Path kernelTextOutputFile = targetOutputDir.resolve("ktext.hex");
         Path disassemblyOutputFile = targetOutputDir.resolve("disassembly-asm.lss");
 
         Path[] outputFilePaths = new Path[]{
@@ -235,7 +235,7 @@ public class CompileActionListener implements ActionListener {
 
                 // Store line (if in text or data sections)
                 if (shouldStoreLines) {
-                    objdumpOutputBuilder.append(line);
+                    objdumpOutputBuilder.append(line.trim());
 
                     // Inject comment into objdump to explain that syscall instruction has been wrapped
                     if (line.contains("03e0d025"))

@@ -101,7 +101,7 @@ public class MIPSCrossCompiler {
             throw new CompilationException("Assembler Error", assemblerErrorMessageBuilder.toString());
         }
 
-        assembler.waitFor(15, TimeUnit.SECONDS);
+        assembler.waitFor(5, TimeUnit.SECONDS);
 
         if (assembler.isAlive()) {
             assembler.destroy();
@@ -153,7 +153,7 @@ public class MIPSCrossCompiler {
             throw new CompilationException("Linker Error", linkerErrorMessageBuilder.toString());
         }
 
-        linker.waitFor(15, TimeUnit.SECONDS);
+        linker.waitFor(5, TimeUnit.SECONDS);
 
         if (linker.isAlive()) {
             linker.destroy();
@@ -194,7 +194,7 @@ public class MIPSCrossCompiler {
                 boolean innContainsComment = Pattern.compile("#(?=(?:[^\"]*\"[^\"]*\")*[^\"]*$)").matcher(inn).find();
 
                 for (String split : Arrays.stream(inn.split("#(?=(?:[^\"]*\"[^\"]*\")*[^\"]*$)")) // Splits each line at any # character not enclosed in quotes
-                        .limit(1)
+                        .limit(1) // Limits stream to the substring before the first # found
                         .flatMap(str -> Arrays.stream(str.split(";(?=(?:[^\"]*\"[^\"]*\")*[^\"]*$)")))
                         .flatMap(str -> splitIfLabelNotWithAssemblerDirective(str))
                         .map(String::trim)
@@ -204,7 +204,7 @@ public class MIPSCrossCompiler {
 
                     // Insert before current instruction
                     if (!isKernelText && split.equals("syscall"))
-                        bufferedWriter.write("\tmove $k0, $ra # Inserted by preprocessor due to syscall\n");
+                        bufferedWriter.write("\tmove $k0, $ra # Inserted by preprocessor for syscall\n");
 
                     // Skips writing line if it was entirely a comment
                     if (split.trim().length() == 0 && inn.contains("#"))

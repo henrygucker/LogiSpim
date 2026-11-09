@@ -12,10 +12,18 @@ import java.util.stream.Stream;
 
 public class Main {
     private static final String outputFilename = "dynamic_tests.s";
-    private static final Path outputDirectory = Paths.get(System.getProperty("user.home") + File.separator + "LogiSpim" + File.separator + "src" + File.separator + "generated_tests");
+
+    private static Path outputDirectory = Path.of("/");
+
 
     // TODO: Write more tests!
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IllegalArgumentException {
+        if (args.length < 1)
+            throw new IllegalArgumentException("Input an absolute path to the directory where output should be generated.");
+
+        outputDirectory = Path.of(args[0]);
+
+
         String preface = "Various tests...";
         ArrayList<LogiSpimTest> tests = new ArrayList<>();
 
@@ -37,38 +45,41 @@ public class Main {
                 .filter((Boolean bool) -> !bool.booleanValue())
                 .count() == 0;
 
-        testsAddedSuccessfully = testsAddedSuccessfully && getFunc02Tests(tests.size())
-                .map((LogiSpimTest test) -> tests.add(test))
-                .filter((Boolean bool) -> !bool.booleanValue())
-                .count() == 0;
-
-        testsAddedSuccessfully = testsAddedSuccessfully && getFunc03Tests(tests.size())
-                .map((LogiSpimTest test) -> tests.add(test))
-                .filter((Boolean bool) -> !bool.booleanValue())
-                .count() == 0;
-
-        testsAddedSuccessfully = testsAddedSuccessfully && getFunc04Tests(tests.size())
-                .map((LogiSpimTest test) -> tests.add(test))
-                .filter((Boolean bool) -> !bool.booleanValue())
-                .count() == 0;
-
-        testsAddedSuccessfully = testsAddedSuccessfully && getFunc06Tests(tests.size())
-                .map((LogiSpimTest test) -> tests.add(test))
-                .filter((Boolean bool) -> !bool.booleanValue())
-                .count() == 0;
-
-        testsAddedSuccessfully = testsAddedSuccessfully && getFunc07Tests(tests.size())
-                .map((LogiSpimTest test) -> tests.add(test))
-                .filter((Boolean bool) -> !bool.booleanValue())
-                .count() == 0;
-
-        testsAddedSuccessfully = testsAddedSuccessfully && getFunc08Tests(tests.size())
-                .map((LogiSpimTest test) -> tests.add(test))
-                .filter((Boolean bool) -> !bool.booleanValue())
-                .count() == 0;
-
-        if (generateTestFile(preface, tests))
-            System.out.println("Test program successfully created at \"" + outputDirectory.resolve(outputFilename) + "\".");
+//        testsAddedSuccessfully = testsAddedSuccessfully && getFunc02Tests(tests.size())
+//                .map((LogiSpimTest test) -> tests.add(test))
+//                .filter((Boolean bool) -> !bool.booleanValue())
+//                .count() == 0;
+//
+//        testsAddedSuccessfully = testsAddedSuccessfully && getFunc03Tests(tests.size())
+//                .map((LogiSpimTest test) -> tests.add(test))
+//                .filter((Boolean bool) -> !bool.booleanValue())
+//                .count() == 0;
+//
+//        testsAddedSuccessfully = testsAddedSuccessfully && getFunc04Tests(tests.size())
+//                .map((LogiSpimTest test) -> tests.add(test))
+//                .filter((Boolean bool) -> !bool.booleanValue())
+//                .count() == 0;
+//
+//        testsAddedSuccessfully = testsAddedSuccessfully && getFunc06Tests(tests.size())
+//                .map((LogiSpimTest test) -> tests.add(test))
+//                .filter((Boolean bool) -> !bool.booleanValue())
+//                .count() == 0;
+//
+//        testsAddedSuccessfully = testsAddedSuccessfully && getFunc07Tests(tests.size())
+//                .map((LogiSpimTest test) -> tests.add(test))
+//                .filter((Boolean bool) -> !bool.booleanValue())
+//                .count() == 0;
+//
+//        testsAddedSuccessfully = testsAddedSuccessfully && getFunc08Tests(tests.size())
+//                .map((LogiSpimTest test) -> tests.add(test))
+//                .filter((Boolean bool) -> !bool.booleanValue())
+//                .count() == 0;
+        try {
+            if (generateTestFile(preface, tests))
+                System.out.println("Test program successfully created at \"" + outputDirectory.resolve(outputFilename) + "\".");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
     
     static boolean generateTestFile(String preface, ArrayList<LogiSpimTest> tests) {

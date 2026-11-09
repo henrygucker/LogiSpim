@@ -60,6 +60,9 @@
 
         <resources>
             <resource>
+                <directory>src/main/resources</directory>
+            </resource>
+            <resource>
                 <directory>../docs/src/05_core_components/03_control_unit</directory>
 
                 <includes>
@@ -70,7 +73,7 @@
                 <directory>..</directory>
 
                 <includes>
-                    <include>**/*.circ</include>
+                    <include>*.circ</include>
                 </includes>
             </resource>
         </resources>

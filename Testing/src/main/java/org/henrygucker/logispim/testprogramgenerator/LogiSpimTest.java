@@ -27,7 +27,7 @@ public record LogiSpimTest(int num, String testInstruction, int[] primaryTestVal
         builder.append("test_");
         builder.append(num);
         if (secondaryTestValues == null) {
-            // No Secondary Test Values, allocates empty space to avoid segmentation fault
+            // No Secondary Test Values, allocates empty space to avoid undefned behavior
             builder.append("_secondary_test_values: .space ");
             builder.append(primaryTestValues.length * 4);
         } else {

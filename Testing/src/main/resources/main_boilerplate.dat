@@ -116,6 +116,7 @@ print_test_output_fail:
     sw $t0, 0($a2) # *fail_flag = 1;
 
     # Fetch and print "[FAIL]" text pointer
+    li $v0, 4
     la $a0, fail_text
     syscall
 

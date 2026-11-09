@@ -204,7 +204,7 @@ public enum MainDecoderMaster {
 
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(filepath.toFile()))) {
             writer.write("# MainDecoder Tests\n");
-            writer.write("Op[6] Funct[6] RegWrite[1] RegWriteDataSrc[2] MemOp[4] BranchOp[2] ALUOp[4] ALUSrcA[1] ALUSrcB[2] WriteRegSrc[1]\n");
+            writer.write("opcode[6] funct[6] RegWrite[1] RegWriteDataSrc[2] MemOp[4] BranchOp[2] ALUOp[4] ALUSrcA[1] ALUSrcB[2] WriteRegSrc[1]\n");
 
             // Testcases for varying Op Codes
             for (int i = 1; i < MainDecoderMaster.outputsByOpCode.length; i++) { // Skips index 0 (general R-Type) since that is only for the table printing

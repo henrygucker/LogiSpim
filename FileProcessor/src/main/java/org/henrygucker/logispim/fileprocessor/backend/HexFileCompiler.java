@@ -45,6 +45,7 @@ public class HexFileCompiler {
         // Needs to overwrite words at following symbols with these big-endian values as little-endian values:
         // - exit: 0x50000000
         // - print_char: 0x54000000
+        // - ..._inlined_print_char: 0x54000000
         HashMap<String, Integer> symbolOffsets = new HashMap<>();
         HashMap<String, Integer> symbolReplacements = new HashMap<>();
         symbolReplacements.put("exit", 0x50000000);
@@ -58,9 +59,14 @@ public class HexFileCompiler {
                 break;
             }
 
-        // Gets offsets of symbols with names as keys in symbolReplacements and stores in symbolOffsets
         for (Symbol sym : elfFile.symbols) {
+            // Gets offsets of symbols with names as keys in symbolReplacements and stores in symbolOffsets
             symbolOffsets.put(elfFile.getSymbolName(sym), sym.value() - textSectionStart);
+
+            // Adds any symbols ending in "_inline_print_char" to the set of symbols that will be replaced by the print char instruction
+            if (elfFile.getSymbolName(sym).endsWith("_inlined_print_char")) {
+                symbolReplacements.put(elfFile.getSymbolName(sym), 0x54000000);
+            }
         }
 
         // Replaces words at symbol locations in ByteBuffer
@@ -74,7 +80,7 @@ public class HexFileCompiler {
         try {
             HexFileCompiler.writeBufferToLogisimHexFile(currSectionContent, kernelTextBinaryFile);
         } catch (IOException e) {
-            app.errorMessage("Compilation Error", "An error occurred while writing \"text-kernel\" binary file.");
+            app.errorMessage("Compilation Error", "An error occurred while writing \"ktext.hex\" file.");
         }
 
         return;
@@ -104,7 +110,7 @@ public class HexFileCompiler {
         try {
             HexFileCompiler.writeBufferToLogisimHexFile(currSectionContent, textBinaryFile);
         } catch (IOException e) {
-            app.errorMessage("Compilation Error", "An error occurred while writing \"text\" binary file.");
+            app.errorMessage("Compilation Error", "An error occurred while writing \"text.hex\" file.");
         }
 
         // Fetching data section content
@@ -122,7 +128,7 @@ public class HexFileCompiler {
         try {
             HexFileCompiler.writeBufferToLogisimHexFile(currSectionContent, dataBinaryFile);
         } catch (IOException e) {
-            app.errorMessage("Compilation Error", "An error occurred while writing \"data\" binary file.");
+            app.errorMessage("Compilation Error", "An error occurred while writing \"data.hex\" file.");
         }
 
     }

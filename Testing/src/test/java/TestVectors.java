@@ -91,7 +91,7 @@ public class TestVectors {
         }
 
 
-        System.out.println("\nTest Vector Output:");
+        System.out.println("Test Vector Output:");
         System.out.println(outputMessage);
 
         // Last line of output is formatted as follows:
