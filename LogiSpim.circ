@@ -1094,7 +1094,7 @@
       <a name="incoming" val="7"/>
     </comp>
     <comp lib="0" loc="(660,480)" name="Constant">
-      <a name="value" val="0x400280"/>
+      <a name="value" val="0x400000"/>
       <a name="width" val="32"/>
     </comp>
     <comp lib="0" loc="(670,400)" name="Tunnel">
@@ -1616,16 +1616,16 @@ w/ op == 0x00</a>
       <a name="font" val="SansSerif bold 12"/>
       <a name="text" val="(Jump Target Address)"/>
     </comp>
-    <comp lib="7" loc="(2310,2255)" name="Text">
-      <a name="font" val="SansSerif bold 14"/>
-      <a name="text" val="PCJumpAddr_D"/>
-    </comp>
-    <comp lib="7" loc="(232,517)" name="Text">
+    <comp lib="7" loc="(230,515)" name="Text">
       <a name="font" val="SansSerif bold 8"/>
       <a name="halign" val="left"/>
       <a name="text">Enable Logisim Auto-Ticking (see FAQ docs) and select the rectangle
 under the "User Controls" label (above this guide) with the poke
 (hand) tool. Now, use the listed hotkeys:</a>
+    </comp>
+    <comp lib="7" loc="(2310,2255)" name="Text">
+      <a name="font" val="SansSerif bold 14"/>
+      <a name="text" val="PCJumpAddr_D"/>
     </comp>
     <comp lib="7" loc="(2385,155)" name="Text">
       <a name="color" val="#808080"/>
@@ -1641,7 +1641,7 @@ under the "User Controls" label (above this guide) with the poke
       <a name="font" val="SansSerif bold 12"/>
       <a name="text" val="Guide"/>
     </comp>
-    <comp lib="7" loc="(250,552)" name="Text">
+    <comp lib="7" loc="(250,550)" name="Text">
       <a name="font" val="SansSerif bold 8"/>
       <a name="halign" val="left"/>
       <a name="text">[Space] = Cycle Clock

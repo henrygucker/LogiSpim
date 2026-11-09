@@ -6,7 +6,7 @@
 
     <groupId>org.henrygucker.logispim</groupId>
     <artifactId>LogiSpim</artifactId>
-    <version>0.0.1-alpha</version>
+    <version>0.1.0-beta</version>
 
     <packaging>pom</packaging>
 

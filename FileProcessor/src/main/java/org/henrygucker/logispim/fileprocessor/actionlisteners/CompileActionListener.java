@@ -131,14 +131,18 @@ public class CompileActionListener implements ActionListener {
 
 
         // Get objdump output
-        String objdumpOutput = getObjdumpFilteredOutput(elfPath);
+        String objdumpTextOutput = getObjdumpOutput(elfPath, ".text", new String[]{"-dz"});
+        String objdumpDataOutput = getObjdumpOutput(elfPath, ".data", new String[]{"-s"});
+
+//        String objdumpOutput = objdumpTextOutput + "\n\n" + objdumpDataOutput;
+        String objdumpOutput = objdumpDataOutput + "\n\n" + objdumpTextOutput;
 
         // Write output to text area
         app.updateTextArea(objdumpOutput);
 
         // Writing .lss disassembly file for viewing in Logisim
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(disassemblyOutputFile.toFile()))) {
-            writer.write(objdumpOutput);
+            writer.write(objdumpTextOutput);
 
         } catch (IOException e) {
             app.updateTextArea("An error occurred while writing disassembly content to file.");
@@ -189,13 +193,18 @@ public class CompileActionListener implements ActionListener {
         return elfPath;
     }
 
-    private String getObjdumpFilteredOutput(Path elfPath) {
+    private String getObjdumpOutput(Path elfPath, String sectionName, String[] flags) {
         // Build CLI args
         ArrayList<String> objdumpArgs = new ArrayList<>();
         for (String arg : OSDependentData.getForCurrentOS().getObjdumpCommand())
             objdumpArgs.add(arg);
 
-        objdumpArgs.add("-D");
+        for (String flag : flags)
+            objdumpArgs.add(flag);
+
+        // Specifies decompiling the specific section
+        objdumpArgs.add("-j");
+        objdumpArgs.add(sectionName);
 
         objdumpArgs.add(OSDependentData.pathToOSString(elfPath));
 
@@ -225,33 +234,47 @@ public class CompileActionListener implements ActionListener {
             String line;
             while ((line = bufferedReader.readLine()) != null) {
 
-                // Start storing lines at start of text or data sections, stop at start of any other sections
-                if (line.equals("Disassembly of section .text:"))
-                    shouldStoreLines = true;
-                else if (line.equals("Disassembly of section .data:"))
-                    shouldStoreLines = true;
-                else if (line.startsWith("Disassembly of section "))
-                    shouldStoreLines = false;
+                // Start storing lines at start of desired section
+                if (
+                        line.equals("Disassembly of section " + sectionName + ":")
+                        || line.equals("Contents of section " + sectionName + ":")
 
-                // Store line (if in text or data sections)
+                )
+                    shouldStoreLines = true;
+
+                // Store line if past start of section
                 if (shouldStoreLines) {
-                    objdumpOutputBuilder.append(line.trim());
+
+                    // If line in data section has whitespace surrounded by non-whitespace (is line of actual data)
+                    // Not a perfect solution to this problem, but it works I guess
+                    if (sectionName.equals(".data") && !line.trim().isEmpty() && !line.startsWith("Contents of section")) {
+                        // Replaces gap between address and first chunk of hex data to include a colon
+                        line = line.trim().replaceFirst("(?<=\\S)\\s(?=\\S)", ": ");
+                    }
+
+                    // Inserts line
+                    objdumpOutputBuilder.append(' '); // Ensures conformity with Logisim-evolution Assembly Viewer regex
+                    objdumpOutputBuilder.append(line);
 
                     // Inject comment into objdump to explain that syscall instruction has been wrapped
-                    if (line.contains("03e0d025"))
-                        objdumpOutputBuilder.append("\t# syscall wrapper instructions inserted");
+                    if (sectionName.equals(".text") && line.contains("03e0d025")) // move instruction inserted before syscall
+                        objdumpOutputBuilder.append("\t# (syscall wrapper)");
+
+                    if (sectionName.equals(".text") && line.contains("<main>:"))
+                        objdumpOutputBuilder.append("\t\t\t# YOUR PROGRAM STARTS HERE");
+
 
                     objdumpOutputBuilder.append('\n');
                 }
             }
         } catch (IOException e) {
-            return "Error when fetching instructions.\n" +
+            return "Error when disassembling compiled binary.\n" +
                     "An issue occurred with IO.";
         }
 
         // Set timeout on objdump execution
         try {
-            objdump.waitFor(15, TimeUnit.SECONDS);
+            objdump.waitFor(5, TimeUnit.SECONDS);
         } catch (InterruptedException e) {
             return "Error when fetching instructions.\n" +
                     "Worker thread interrupted.";

@@ -19,13 +19,15 @@ import java.nio.file.Path;
 public class App extends JFrame {
 
     // Window Dimensions
-    private static final int MIN_WINDOW_WIDTH = 720;
+    public static final int CONTENT_WIDTH = 700;
+
     private static final int MIN_WINDOW_HEIGHT = 600;
+
+    private static final int MIN_WINDOW_WIDTH = CONTENT_WIDTH + 20;
 
     private static final int PREFERRED_WINDOW_WIDTH = 960;
     private static final int PREFERRED_WINDOW_HEIGHT = 1080;
 
-    public static final int CONTENT_WIDTH = 700;
 
     // Main Column Swing Components
     private static final int MAIN_COLUMN_GRID_WIDTH = 3;
@@ -63,6 +65,7 @@ public class App extends JFrame {
         // Init main column panel & layout
         mainColumnPanel = new JPanel();
         mainColumnPanel.setSize(new Dimension(CONTENT_WIDTH, PREFERRED_WINDOW_HEIGHT));
+        mainColumnPanel.setMinimumSize(new Dimension(MIN_WINDOW_WIDTH, MIN_WINDOW_HEIGHT));
 
         mainColumnPanelLayout = new GridBagLayout();
         mainColumnPanel.setLayout(mainColumnPanelLayout);
@@ -220,17 +223,16 @@ public class App extends JFrame {
         constraints.gridy = 0;
         constraints.gridwidth = MAIN_COLUMN_GRID_WIDTH;
         constraints.anchor = GridBagConstraints.CENTER;
-        constraints.fill = GridBagConstraints.BOTH;
-        constraints.ipady = 20;
+        constraints.insets = new Insets(20, 0, 20, 0);
 
         URL titleImageURL = ClassLoader.getSystemResource("LogiSpim_Logo_Light.png");
         ImageIcon titleImage = new ImageIcon(titleImageURL);
-        Image scaledImg = titleImage.getImage().getScaledInstance(CONTENT_WIDTH / 2, -1, Image.SCALE_SMOOTH);
+        Image scaledImg = titleImage.getImage().getScaledInstance(MIN_WINDOW_WIDTH / 2, -1, Image.SCALE_SMOOTH);
         titleImage = new ImageIcon(scaledImg);
 
         JLabel titleLabel = new JLabel(titleImage);
         titleLabel.setHorizontalAlignment(JLabel.CENTER);
-        titleLabel.setMinimumSize(new Dimension(CONTENT_WIDTH, -1));
+        titleLabel.setMinimumSize(new Dimension(MIN_WINDOW_WIDTH / 2, -1));
 
         mainColumnPanelLayout.setConstraints(titleLabel, constraints);
 

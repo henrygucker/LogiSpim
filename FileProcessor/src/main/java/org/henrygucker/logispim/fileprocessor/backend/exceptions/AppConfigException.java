@@ -1,5 +1,7 @@
 package org.henrygucker.logispim.fileprocessor.backend.exceptions;
 
+import org.henrygucker.logispim.fileprocessor.backend.AppConfig;
+
 /**
  * Exception thrown by {@link AppConfig} to be displayed in a popup
  */

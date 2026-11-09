@@ -7,7 +7,7 @@
     <parent>
         <groupId>org.henrygucker.logispim</groupId>
         <artifactId>LogiSpim</artifactId>
-        <version>0.0.1-alpha</version>
+        <version>0.1.0-beta</version>
         <relativePath>../pom.xml</relativePath>
     </parent>
 
@@ -46,7 +46,7 @@
         <dependency>
             <groupId>org.henrygucker.logispim</groupId>
             <artifactId>FileProcessor</artifactId>
-            <version>0.0.1-alpha</version>
+            <version>0.1.0-beta</version>
         </dependency>
     </dependencies>
 

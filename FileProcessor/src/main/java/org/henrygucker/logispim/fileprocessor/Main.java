@@ -8,7 +8,7 @@ import java.io.IOException;
 import java.nio.file.Path;
 
 public class Main {
-    private static final String VERSION = "0.0.1-alpha";
+    private static final String VERSION = "0.1.0-beta";
 
     public static void main(String[] args) {
         String lastUsedVersion = (String) AppConfig.VERSION.getValue();
