@@ -175,7 +175,7 @@ public class MIPSCrossCompiler {
      * @throws IOException if an issue with IO occurs.
      */
     private static void preprocessor(Path sourcePath, Path destination, boolean isKernelText) throws IOException {
-        final String template = "_entry:\n" +
+        final String template = "_start:\n" +
                 "\tjal main\n" +
                 "\n" +
                 "\t# exit program\n" +

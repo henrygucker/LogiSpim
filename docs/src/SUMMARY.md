@@ -4,18 +4,21 @@
 
 # User Guide
 - [What is LogiSpim?](02_what_is_logispim/index.md)
-  - [Logisim Processor](02_what_is_logispim/01_logisim_processor.md)
-  - [File Processor](02_what_is_logispim/02_file_processor.md)
-- [Getting Started](03_getting_started/index.md)
-    - [Installation](03_getting_started/01_installation.md)
-    - [Running Your First Program](03_getting_started/02_running_first_program/index.md)
-      - [Written Guide](03_getting_started/02_running_first_program/01_written_guide.md)
-      - [Video Guide](03_getting_started/02_running_first_program/02_video_guide.md)
+  - [LogiSpim App](02_what_is_logispim/01_logispim_app.md)
+  - [LogiSpim Processor](02_what_is_logispim/02_logispim_processor.md)
+- [Installation Guide](03_installation/index.md)
+  - [macOS](03_installation/01_macos/index.md)
+  - [Windows](03_installation/02_windows/index.md)
+  - [Linux](03_installation/03_linux/index.md)
+- [Usage Guide](04_usage_guide/index.md)
+- [FAQ](05_faq/index.md)
+  - [Application FAQ](05_faq/01_application_faq/index.md)
+  - [Processor FAQ](05_faq/02_processor_faq/index.md)
 
 
-# Logisim Processor Docs
-- [Overview](04_processor_overview/index.md)
-  - [FAQ](04_processor_overview/01_faq.md)
+[//]: # (# Logisim Processor Docs)
+[//]: # (- [Overview]&#40;06_processor_overview/index.md&#41;)
+[//]: # (  - [FAQ]&#40;06_processor_overview/01_faq.md&#41;)
 
 [//]: # (- [Core Components]&#40;&#41;)
 
@@ -34,4 +37,4 @@
 [//]: # (  - [Main Memory]&#40;&#41;)
 
 [//]: # (- [Pipeline Structure]&#40;06_pipeline_structure/index.md&#41;)
-- [More to come...]()
+[//]: # (- [More to come...]&#40;&#41;)

@@ -12,3 +12,7 @@ git-repository-icon = "fab-github"
 additional-js = ["mermaid.min.js", "mermaid-init.js"]
 site-url = "https://henrygucker.github.io/LogiSpim/"
 no-section-label = true
+
+[output.html.fold]
+enable = true   # Turns on sidebar section folding
+level = 0       # Set to 0 to ensure all nested folds start closed

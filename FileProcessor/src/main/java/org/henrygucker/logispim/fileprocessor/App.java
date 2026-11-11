@@ -376,6 +376,7 @@ public class App extends JFrame {
         GridBagConstraints constraints = new GridBagConstraints();
         constraints.gridy = 6;
         constraints.weighty = 1.0;
+        constraints.insets = new Insets(0, 0, 10, 0);
         constraints.gridwidth = MAIN_COLUMN_GRID_WIDTH;
         constraints.anchor = GridBagConstraints.NORTH;
         constraints.fill = GridBagConstraints.BOTH;

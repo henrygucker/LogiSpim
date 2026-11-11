@@ -1,13 +1,10 @@
-    .data # .data section for storing statically allocated values
-str: .asciiz "Hello, world!\n"
+    .data
+str: .asciiz "Hello, world!"
 
-    .text # .text section where instructions go
-main: # starting point of your program
-
-    # print str
+    .text
+main:           # Entry point to program denoted by "main" label
     la $a0, str
     li $v0, 4
-    syscall
+    syscall     # Loads prints str to the emulated console
 
-    # returns from your main function and stops execution of the processor
-    jr $ra
+    jr $ra      # Returns from the program, ending execution

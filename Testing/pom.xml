@@ -63,7 +63,7 @@
                 <directory>src/main/resources</directory>
             </resource>
             <resource>
-                <directory>../docs/src/05_core_components/03_control_unit</directory>
+                <directory>../docs/src/07_core_components/03_control_unit</directory>
 
                 <includes>
                     <include>01_main_decoder.md</include>

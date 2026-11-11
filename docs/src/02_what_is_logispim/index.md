@@ -1,19 +1,58 @@
-# The LogiSpim Project
+# What is LogiSpim?
 
-The project of LogiSpim is an educational tool that allows for interactive learning about pipelined microarchitecture.
-Through a custom program, users can run MIPS programs on a 32-bit, 5-stage pipelined MIPS CPU in Logisim-evolution.
+The LogiSpim project interactively teaches students pipelined microarchitecture through exploring a simulated [MIPS processor](02_logispim_processor.md).
 
-By using cross compilation toolchains, the file processor program converts MIPS source code into formatted binary files
-that are easily imported into Logisim-evolution for use by the processor:
+By immersing students in an implementation of MIPS microarchitecture, LogiSpim encourages its users to build a deeper
+understanding of computer architecture (and some operating systems concepts). Moreover, students who learn LogiSpim's
+implementation can contribute to the project, helping future students while gaining open-source contribution experience. 
+
+## LogiSpim's Novelty
+As part of LogiSpim's interactive mission, the project aims to let users run their own MIPS programs on the LogiSpim
+processor;
+however, this behavior is not supported directly by Logisim-evolution.
+
+To enable this behavior, LogiSpim includes [an application](01_logispim_app.md) dedicated to streamlining the compilation and loading process.
+On a high-level, the LogiSpim application compiles MIPS source code into files which can be easily
+imported into the LogiSpim processor.
+
+The described workflow is pictured below:
 ```mermaid
+---
+config:
+  htmlLabels: false
+---
 flowchart LR;
-    S["MIPS<br>Program"]
-    F["File<br>Processor"]
-    C["Logisim<br>Processor"]
+    subgraph "MIPS Program"
+        S["`Source
+        Code
+        *.s*`"]
+    end
+    subgraph "LogiSpim Application"
+        C["Compile
+        Tool"]
+        Text["`Compiled Instructions
+        *text.hex*`"]
+        Data["`Compiled Data
+        *data.hex*`"]
+    end
+    subgraph "LogiSpim Processor"
+        IM["`Instruction
+        Memory
+        *.text*`"]
+        MM["`Main
+        Memory
+        *.data*`"]
+    end
     
-    S -->|Source<br>Code File<br><i>.s</i>| F
-    F -->|Compiled<br>Binary Files<br><i>.hex</i>| C
+    S --> C
+    
+    C --> Text
+    C --> Data
+    
+    Text --> IM
+    Data --> MM
 ```
 
-For more information on the [logisim processor](01_logisim_processor.md) and the [file processor](02_file_processor.md),
-refer to the following subchapters.
+The following sections provide overviews of the project's key components:
+ - [The LogiSpim Application](01_logispim_app.md)
+ - [The LogiSpim Processor](02_logispim_processor.md)
