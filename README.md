@@ -33,18 +33,18 @@ instructions in every step.
 ### Printing
 Printing to the emulated console through syscalls:
 
-![Printing Demo](docs/src/01_intro/assets/printing_demo.gif)
+<img alt="Printing Demo" width="700" src="docs/src/01_intro/assets/printing_demo.gif">
 
 ### Clock Stepping & Assembly Viewer
 Manually stepping through instructions while zoomed into the processor's Execute stage with the Assembly Viewer open:
 
-![Stepping through instructions demo](docs/src/01_intro/assets/execute_stage_demo.gif)
+<img alt="Stepping through instructions demo" width="700" src="docs/src/01_intro/assets/execute_stage_demo.gif">
 
 ## LogiSpim Application
 The LogiSpim application enables users to run their own programs on LogiSpim's processor.
 More information about the application, its role in the LogiSpim project, and installation guides can be
 found [here](https://henrygucker.github.io/LogiSpim/02_what_is_logispim/01_app.html).
-![LogiSpim Application](docs/src/01_intro/assets/logispim_app.png)
+<img alt="LogiSpim Application" width="700" src="docs/src/01_intro/assets/logispim_app.png">
 
 ## Documentation
 Documentation for LogiSpim can be found on the [documentation page](https://henrygucker.github.io/LogiSpim/), including
