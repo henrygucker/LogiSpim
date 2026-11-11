@@ -11,8 +11,6 @@
 [![GitHub License](https://img.shields.io/github/license/henrygucker/LogiSpim?label=license)](LICENSE)
 </div>
 
-___
-
 ## Summary
 
 **LogiSpim** interactively teaches pipelined MIPS microarchitecture through exploration of its pipelined 32-bit MIPS
