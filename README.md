@@ -48,8 +48,6 @@ found [here](https://henrygucker.github.io/LogiSpim/02_what_is_logispim/01_app.h
 Documentation for LogiSpim can be found on the [documentation page](https://henrygucker.github.io/LogiSpim/), including
 installation & setup guides.
 
-___
-
 ## Additional Resources
 The microarchitecture of LogiSpim's processor was based primarily on [this textbook and its companion assets](https://shop.elsevier.com/books/book-companion/9780124077263),
 notably with the instruction set based on its [MIPS reference card](https://booksite.elsevier.com/9780124077263/downloads/COD_5e_Greencard.pdf).
