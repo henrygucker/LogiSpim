@@ -9,7 +9,15 @@
 [![Maven CI Status Shield](https://img.shields.io/github/actions/workflow/status/henrygucker/LogiSpim/maven.yml?style=flat&label=CI&branch=main)](https://github.com/henrygucker/LogiSpim/actions/workflows/maven.yml)
 [![Docs Build Status Shield](https://img.shields.io/github/actions/workflow/status/henrygucker/LogiSpim/mdbook.yml?style=flat&branch=main&label=docs)](https://henrygucker.github.io/LogiSpim/)
 [![GitHub License](https://img.shields.io/github/license/henrygucker/LogiSpim?label=license)](LICENSE)
+
+[Website][Documentation Page] | [Overview][Get Started] | [Installation Guide] | [Usage Guide] | [FAQ][FAQ Page]
 </div>
+
+[Documentation Page]: https://henrygucker.github.io/LogiSpim/01_intro/index.html
+[Get Started]: https://henrygucker.github.io/LogiSpim/02_what_is_logispim/index.html
+[Installation Guide]: https://henrygucker.github.io/LogiSpim/03_installation/index.html
+[Usage Guide]: https://henrygucker.github.io/LogiSpim/04_usage_guide/index.html
+[FAQ Page]: https://henrygucker.github.io/LogiSpim/05_faq/index.html
 
 ## Summary
 
@@ -25,29 +33,29 @@ instructions in every step.
 * Built-in breakpoints for debugging
 * Displays current register values and program assembly within Logisim-evolution
 
-*See the GIFs below to watch some of these features in action!*
+### Feature Showcase
+<details>
+    <summary><h4 style="display: inline; margin: 0">Printing</h4></summary>
 
-
-### Printing
 Printing to the emulated console through syscalls:
 
 <img alt="Printing Demo" width="700" src="docs/src/01_intro/assets/printing_demo.gif">
+</details>
 
-### Clock Stepping & Assembly Viewer
-Manually stepping through instructions while zoomed into the processor's Execute stage with the Assembly Viewer open:
+<details>
+    <summary><h4 style="display: inline; margin: 0">Clock Stepping & Assembly Viewer</h4></summary>
+
+Manually stepping through instructions while zoomed into the processor's execute stage with the Assembly Viewer open:
 
 <img alt="Stepping through instructions demo" width="700" src="docs/src/01_intro/assets/execute_stage_demo.gif">
+</details>
 
-## LogiSpim Application
+## LogiSpim Utility Application
 The LogiSpim application enables users to run their own programs on LogiSpim's processor.
 More information about the application, its role in the LogiSpim project, and installation guides can be
-found [here](https://henrygucker.github.io/LogiSpim/02_what_is_logispim/01_app.html).
-<img alt="LogiSpim Application" width="700" src="docs/src/01_intro/assets/logispim_app.png">
+found [here](https://henrygucker.github.io/LogiSpim/02_what_is_logispim/index.html#logispims-novelty).
 
-## Documentation
-Documentation for LogiSpim can be found on the [documentation page](https://henrygucker.github.io/LogiSpim/), including
-installation & setup guides.
 
 ## Additional Resources
 The microarchitecture of LogiSpim's processor was based primarily on [this textbook and its companion assets](https://shop.elsevier.com/books/book-companion/9780124077263),
-notably with the instruction set based on its [MIPS reference card](https://booksite.elsevier.com/9780124077263/downloads/COD_5e_Greencard.pdf).
+notably with the instruction set based on its [MIPS reference card](https://brand.elsevier.com/share/6aARqA6Vi7mcaoV8DWQs/assets/98319).
