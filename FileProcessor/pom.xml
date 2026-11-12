@@ -98,6 +98,7 @@
                     <removeDestination>true</removeDestination>
                     <!-- Windows -->
                     <winMenu>true</winMenu>
+                    <linuxShortcut>true</linuxShortcut>
                 </configuration>
 
                 <executions>
