@@ -168,7 +168,12 @@ public class App extends JFrame {
         );
     }
 
+    /**
+     * Initializes the look and feel of LogiSpim. Sets theme and any OS-specific configuration values to enhance the
+     * app visually.
+     */
     private void initLookAndFeel() {
+
         // Initialize theme
         try {
             UIManager.setLookAndFeel(new FlatDarkLaf());
@@ -197,6 +202,10 @@ public class App extends JFrame {
         }
     }
 
+    /**
+     * Loads LogiSpim's primary font.
+     * @return {@link Font} instance with the primary font's base font
+     */
     private Font initFont() {
         Font baseFont = null;
 
@@ -217,6 +226,10 @@ public class App extends JFrame {
         return baseFont;
     }
 
+    /**
+     * Initializes the title label (image) and places it on the {@code mailColumnPanel}.
+     * @return {@link JLabel} with the appropriate configuration
+     */
     private JLabel initTitleLabel() {
         GridBagConstraints constraints = new GridBagConstraints();
         constraints.gridx = 0;
@@ -241,6 +254,10 @@ public class App extends JFrame {
         return titleLabel;
     }
 
+    /**
+     * Initializes the workspace directory selector panel and places it on the {@code mailColumnPanel}.
+     * @return {@link FileSelectorPanel} with the appropriate configuration
+     */
     private FileSelectorPanel initWorkspaceSelectorPanel() {
         FileSelectorPanel workspaceSelectorPanel = new FileSelectorPanel(this, FileSelectorPanel.FileSelectorPanelType.WORKSPACE_DIRECTORY);
 
@@ -256,6 +273,10 @@ public class App extends JFrame {
         return workspaceSelectorPanel;
     }
 
+    /**
+     * Initializes the source file selector panel and places it on the {@code mailColumnPanel}.
+     * @return {@link FileSelectorPanel} with the appropriate configuration
+     */
     private FileSelectorPanel initSourceSelectorPanel() {
         FileSelectorPanel sourceSelectorPanel = new FileSelectorPanel(this, FileSelectorPanel.FileSelectorPanelType.SOURCE_FILE);
 
@@ -271,6 +292,10 @@ public class App extends JFrame {
         return sourceSelectorPanel;
     }
 
+    /**
+     * Initializes the separator bar which goes between the file selectors and the buttons/text area and places it on the {@code mailColumnPanel}.
+     * @return {@link JSeparator} with the appropriate configuration
+     */
     private JSeparator initSeparator() {
         JSeparator separator = new JSeparator(SwingConstants.HORIZONTAL);
 
@@ -287,6 +312,10 @@ public class App extends JFrame {
         return separator;
     }
 
+    /**
+     * Initializes the button for compiling the currently selected program and places it on the {@code mailColumnPanel}.
+     * @return {@link JButton} with the appropriate {@link ActionListener}
+     */
     private JButton initCompileButton() {
         JButton compileButton = new JButton("Compile");
         compileButton.addActionListener(new CompileActionListener(this));
@@ -304,6 +333,10 @@ public class App extends JFrame {
         return compileButton;
     }
 
+    /**
+     * Initializes the button for launching Logisim-evolution and opening the circuit file and places it on the {@code mailColumnPanel}.
+     * @return {@link JButton} with the appropriate {@link ActionListener}
+     */
     private JButton initOpenLogisimCircButton() {
         JButton openLogisimCircButton = new JButton("Open Logisim");
         openLogisimCircButton.addActionListener(new OpenLogisimCircuitActionListener(this));
@@ -319,6 +352,10 @@ public class App extends JFrame {
         return openLogisimCircButton;
     }
 
+    /**
+     * Initializes the button for reinitializing the Logisim-evolution circuit file and places it on the {@code mailColumnPanel}.
+     * @return {@link JButton}with the appropriate {@link ActionListener}
+     */
     private JButton initReinitializeLogisimCircButton() {
         JButton reinitLogisimCircButton = new JButton("Reinitialize Circuit");
         reinitLogisimCircButton.addActionListener(new ReinitializeLogisimCircuitActionListener(this));
@@ -336,6 +373,10 @@ public class App extends JFrame {
         return reinitLogisimCircButton;
     }
 
+    /**
+     * Initializes the Kernel check box and places it on the {@code mailColumnPanel}.
+     * @return {@link JCheckBox} linked to {@link AppConfig#COMPILE_KERNEL} config field
+     */
     private JCheckBox initKernelCheckBox() {
         // Fetch stored state
         boolean isKernelText = (boolean) AppConfig.COMPILE_KERNEL.getValue();
@@ -356,6 +397,10 @@ public class App extends JFrame {
         return kernelTextCheckBox;
     }
 
+    /**
+     * Initializes the {@link JTextArea}.
+     * @return Initialized, but not placed, {@link JTextArea}
+     */
     private JTextArea initTextArea() {
         JTextArea textArea = new JTextArea();
         textArea.setLineWrap(false);
@@ -366,6 +411,11 @@ public class App extends JFrame {
         return textArea;
     }
 
+    /**
+     * Places the {@link JTextArea} widget inside a {@link JScrollPane} to allow for scrolling throughout the text area.
+     * Also places the {@link JScrollPane} on the {@code mailColumnPanel}.
+     * @return {@link JScrollPane} which wraps the {@link JTextArea}
+     */
     private JScrollPane initTextAreaScrollPane() {
         JScrollPane scrollPane = new JScrollPane(textArea);
         scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
@@ -387,6 +437,16 @@ public class App extends JFrame {
         return scrollPane;
     }
 
+    /**
+     * Initializes the main frame storing each of the three column panels (creates both the left and right padding columns).
+     * So the column order from left to right is as follows:<br>
+     * 0) Left Padding<br>
+     * 1) Main Column<br>
+     * 2) Right Padding.<br>
+     * <br>
+     * This is done to center the content on the window.
+     * @return {@link JPanel} of the column wrapper panel
+     */
     private JPanel initColumnWrapperPanel() {
         // Creating left and right padding panels
         JPanel leftVerticalPadding = new JPanel();
