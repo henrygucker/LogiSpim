@@ -45,35 +45,35 @@ public class Main {
                 .filter((Boolean bool) -> !bool.booleanValue())
                 .count() == 0;
 
-//        testsAddedSuccessfully = testsAddedSuccessfully && getFunc02Tests(tests.size())
-//                .map((LogiSpimTest test) -> tests.add(test))
-//                .filter((Boolean bool) -> !bool.booleanValue())
-//                .count() == 0;
-//
-//        testsAddedSuccessfully = testsAddedSuccessfully && getFunc03Tests(tests.size())
-//                .map((LogiSpimTest test) -> tests.add(test))
-//                .filter((Boolean bool) -> !bool.booleanValue())
-//                .count() == 0;
-//
-//        testsAddedSuccessfully = testsAddedSuccessfully && getFunc04Tests(tests.size())
-//                .map((LogiSpimTest test) -> tests.add(test))
-//                .filter((Boolean bool) -> !bool.booleanValue())
-//                .count() == 0;
-//
-//        testsAddedSuccessfully = testsAddedSuccessfully && getFunc06Tests(tests.size())
-//                .map((LogiSpimTest test) -> tests.add(test))
-//                .filter((Boolean bool) -> !bool.booleanValue())
-//                .count() == 0;
-//
-//        testsAddedSuccessfully = testsAddedSuccessfully && getFunc07Tests(tests.size())
-//                .map((LogiSpimTest test) -> tests.add(test))
-//                .filter((Boolean bool) -> !bool.booleanValue())
-//                .count() == 0;
-//
-//        testsAddedSuccessfully = testsAddedSuccessfully && getFunc08Tests(tests.size())
-//                .map((LogiSpimTest test) -> tests.add(test))
-//                .filter((Boolean bool) -> !bool.booleanValue())
-//                .count() == 0;
+        testsAddedSuccessfully = testsAddedSuccessfully && getFunc02Tests(tests.size())
+                .map((LogiSpimTest test) -> tests.add(test))
+                .filter((Boolean bool) -> !bool.booleanValue())
+                .count() == 0;
+
+        testsAddedSuccessfully = testsAddedSuccessfully && getFunc03Tests(tests.size())
+                .map((LogiSpimTest test) -> tests.add(test))
+                .filter((Boolean bool) -> !bool.booleanValue())
+                .count() == 0;
+
+        testsAddedSuccessfully = testsAddedSuccessfully && getFunc04Tests(tests.size())
+                .map((LogiSpimTest test) -> tests.add(test))
+                .filter((Boolean bool) -> !bool.booleanValue())
+                .count() == 0;
+
+        testsAddedSuccessfully = testsAddedSuccessfully && getFunc06Tests(tests.size())
+                .map((LogiSpimTest test) -> tests.add(test))
+                .filter((Boolean bool) -> !bool.booleanValue())
+                .count() == 0;
+
+        testsAddedSuccessfully = testsAddedSuccessfully && getFunc07Tests(tests.size())
+                .map((LogiSpimTest test) -> tests.add(test))
+                .filter((Boolean bool) -> !bool.booleanValue())
+                .count() == 0;
+
+        testsAddedSuccessfully = testsAddedSuccessfully && getFunc08Tests(tests.size())
+                .map((LogiSpimTest test) -> tests.add(test))
+                .filter((Boolean bool) -> !bool.booleanValue())
+                .count() == 0;
         try {
             if (generateTestFile(preface, tests))
                 System.out.println("Test program successfully created at \"" + outputDirectory.resolve(outputFilename) + "\".");

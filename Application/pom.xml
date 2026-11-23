@@ -87,44 +87,75 @@
                     <vendor>org.henrygucker</vendor>
 
                     <input>${project.build.directory}/jar</input>
-                    <mainJar>FileProcessor-${project.version}-jar-with-dependencies.jar</mainJar>
+                    <mainJar>Application-${project.version}-jar-with-dependencies.jar</mainJar>
                     <mainClass>org.henrygucker.logispim.fileprocessor.Main</mainClass>
 
                     <destination>${project.build.directory}/installer</destination>
                     <javaOptions>
                         <option>--enable-preview</option>
                         <option>-Dfile.encoding=UTF-8</option>
+                        <option>-Dlogispim.binutils.dir=$APPDIR/binutils</option>
                     </javaOptions>
+
+                    <appContentPaths>
+                        <path>${project.basedir}/binutils/target/binutils</path>
+                    </appContentPaths>
+
                     <removeDestination>true</removeDestination>
-                    <!-- Windows -->
-                    <winMenu>true</winMenu>
-                    <linuxShortcut>true</linuxShortcut>
                 </configuration>
 
                 <executions>
                     <execution>
                         <id>mac</id>
                         <configuration>
-                            <resourceDir>.config-packaging/macos</resourceDir>
+                            <!-- Sets app icon -->
                             <icon>../assets/icons/light/LogiSpim_Icon_Light.icns</icon>
+
+<!--                        macOS-only installer configuration -->
+
+                            <!-- Use DMG installer for drag-and-drop install -->
                             <type>DMG</type>
-                            <javaoptions>-Dapple.awt.application.appearance=NSAppearanceNameDarkAqua</javaoptions>
-                            <javaoptions>--enable-native-access=ALL-UNNAMED</javaoptions>
+
+
+<!--                            <javaoptions>&#45;&#45;enable-native-access=ALL-UNNAMED</javaoptions>-->
                         </configuration>
                     </execution>
                     <execution>
                         <id>win</id>
                         <configuration>
+                            <!-- Sets app icon -->
                             <icon>../assets/icons/light/LogiSpim_Icon_Light.ico</icon>
+
+<!--                        Windows-only installer configuration -->
+
+                            <!-- Creates the installer as a .exe file (better for users installing their own programs) -->
                             <type>EXE</type>
+
+                            <!-- Adds the application to the Windows start menu -->
+                            <winMenu>true</winMenu>
+
+                            <!-- Lets the user choose where exactly to install the app -->
+                            <winDirChooser>true</winDirChooser>
+
+                            <!-- Lets the user opt in to creating a desktop shortcut to the app -->
+                            <winShortcutPrompt>true</winShortcutPrompt>
+
+                            <!-- Installs to user's AppData/Local rather than ProgramFiles, removing administrator requirement to install -->
+                            <winPerUserInstall>true</winPerUserInstall>
+
+                            <!-- Lets windows replace old version with new versions -->
+                            <winUpgradeUUID>c3e06f10-ff51-4e06-8409-50084b392feb</winUpgradeUUID>
                         </configuration>
                     </execution>
                     <execution>
                         <id>linux</id>
                         <configuration>
                             <type>APP_IMAGE</type>
+
                             <icon>../assets/icons/light/LogiSpim_Icon_Light.png</icon>
+
                             <type>DEB</type>
+                            <linuxShortcut>true</linuxShortcut>
                         </configuration>
                     </execution>
                 </executions>

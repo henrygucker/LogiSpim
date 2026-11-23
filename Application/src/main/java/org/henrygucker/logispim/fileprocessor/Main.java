@@ -5,15 +5,18 @@ import org.henrygucker.logispim.fileprocessor.backend.AppConfig;
 import org.henrygucker.logispim.fileprocessor.backend.WorkspaceFileHandler;
 import org.henrygucker.logispim.fileprocessor.backend.exceptions.AppConfigException;
 
+import javax.naming.ConfigurationException;
 import java.io.IOException;
 import java.nio.file.Path;
 
 public class Main {
     private static final String VERSION = "0.1.1-beta";
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws ConfigurationException {
         // Must be called before any JFrames are created
         FlatDarkLaf.setup();
+
+        validateBinutilsConfig();
 
         String lastUsedVersion = (String) AppConfig.VERSION.getValue();
 
@@ -70,5 +73,53 @@ public class Main {
         }
 
         App app = new App("LogiSpim");
+    }
+
+    private static void validateBinutilsConfig() throws ConfigurationException {
+        // Ensures binutils directory ENV variable is set
+        String binutilsDir = System.getProperty("logispim.binutils.dir");
+
+        // Handles when logispim.binutils.dir ENV variable is not set (app is not bundled)
+        if (binutilsDir == null) {
+            System.err.println(
+                    "Your run configuration does not set the ENV variable logispim.binutils.dir.\n" +
+                            "For more information, see LogiSpim/Application/binutils/README.md."
+            );
+
+            Path currentWorkingDirectory = Path.of("").toAbsolutePath();
+
+            // Assume launched from LogiSpim project directory
+            Path binutilsDirAssumingProjectRoot = currentWorkingDirectory.resolve(
+                    "Application",
+                    "binutils",
+                    "target",
+                    "binutils"
+            ).toAbsolutePath().normalize();
+
+            // Assume launched from Application module root directory
+            Path binutilsDirAssumingApplicationRoot = currentWorkingDirectory.resolve(
+                    "binutils",
+                    "target",
+                    "binutils"
+            ).toAbsolutePath().normalize();
+
+            if (binutilsDirAssumingProjectRoot.toFile().isDirectory()) {
+                System.err.println("\nDefaulting to: " + binutilsDirAssumingProjectRoot);
+
+                System.setProperty("logispim.binutils.dir", binutilsDirAssumingProjectRoot.toString());
+
+            } else if (binutilsDirAssumingApplicationRoot.toFile().isDirectory()) {
+                System.err.println("\nDefaulting to: " + binutilsDirAssumingApplicationRoot);
+
+                System.setProperty("logispim.binutils.dir", binutilsDirAssumingApplicationRoot.toString());
+            } else {
+
+                System.err.println();
+                throw new ConfigurationException(
+                        "Follow the steps in the README.md listed above to build a local instance of the GNU binutils" +
+                                "for cross-compiling MIPS code."
+                );
+            }
+        }
     }
 }

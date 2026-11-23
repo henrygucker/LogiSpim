@@ -13,8 +13,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.*;
 import java.nio.file.Path;
-import java.util.ArrayList;
-import java.util.concurrent.TimeUnit;
+import java.util.List;
 
 public class CompileActionListener implements ActionListener {
 
@@ -131,8 +130,16 @@ public class CompileActionListener implements ActionListener {
 
 
         // Get objdump output
-        String objdumpTextOutput = getObjdumpOutput(elfPath, ".text", new String[]{"-dz"});
-        String objdumpDataOutput = getObjdumpOutput(elfPath, ".data", new String[]{"-s"});
+        String objdumpTextOutput = "";
+        String objdumpDataOutput = "";
+        try {
+            objdumpTextOutput = MIPSCrossCompiler.objdumpSectionWithExtraFlags(elfPath, List.of("-dz"), ".text");
+            objdumpDataOutput = MIPSCrossCompiler.objdumpSectionWithExtraFlags(elfPath, List.of("-s"), ".data");
+        } catch (IOException e) {
+            e.printStackTrace();
+            app.updateTextArea("An error occurred while writing disassembly content to file.");
+            return;
+        }
 
 //        String objdumpOutput = objdumpTextOutput + "\n\n" + objdumpDataOutput;
         String objdumpOutput = objdumpDataOutput + "\n\n" + objdumpTextOutput;
@@ -192,103 +199,4 @@ public class CompileActionListener implements ActionListener {
 
         return elfPath;
     }
-
-    private String getObjdumpOutput(Path elfPath, String sectionName, String[] flags) {
-        // Build CLI args
-        ArrayList<String> objdumpArgs = new ArrayList<>();
-        for (String arg : OSDependentData.getForCurrentOS().getObjdumpCommand())
-            objdumpArgs.add(arg);
-
-        for (String flag : flags)
-            objdumpArgs.add(flag);
-
-        // Specifies decompiling the specific section
-        objdumpArgs.add("-j");
-        objdumpArgs.add(sectionName);
-
-        objdumpArgs.add(OSDependentData.pathToOSString(elfPath));
-
-        // Specify full path to executable
-        Path externalBinDir = (Path) AppConfig.EXTERNAL_BIN_PREFIX_DIR.getValue();
-
-        if (!externalBinDir.equals("")) {
-            Path objdumpPath = externalBinDir.resolve(objdumpArgs.get(0)).toAbsolutePath().normalize();
-
-            objdumpArgs.set(0, objdumpPath.toString());
-        }
-
-        // Build objdump process
-        ProcessBuilder pb = new ProcessBuilder(objdumpArgs);
-        Process objdump = null;
-        try {
-            // Start objdump process
-            objdump = pb.start();
-        } catch (IOException e) {
-            return "An IO error occurred when fetching instructions.\nTry again.";
-        }
-
-        // Only stores lines in data and text sections
-        boolean shouldStoreLines = false;
-        StringBuilder objdumpOutputBuilder = new StringBuilder();
-        try (BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(objdump.getInputStream()))) {
-            String line;
-            while ((line = bufferedReader.readLine()) != null) {
-
-                // Start storing lines at start of desired section
-                if (
-                        line.equals("Disassembly of section " + sectionName + ":")
-                        || line.equals("Contents of section " + sectionName + ":")
-
-                )
-                    shouldStoreLines = true;
-
-                // Store line if past start of section
-                if (shouldStoreLines) {
-
-                    // If line in data section has whitespace surrounded by non-whitespace (is line of actual data)
-                    // Not a perfect solution to this problem, but it works I guess
-                    if (sectionName.equals(".data") && !line.trim().isEmpty() && !line.startsWith("Contents of section")) {
-                        // Replaces gap between address and first chunk of hex data to include a colon
-                        line = line.trim().replaceFirst("(?<=\\S)\\s(?=\\S)", ": ");
-                    }
-
-                    // Inserts line
-                    objdumpOutputBuilder.append(' '); // Ensures conformity with Logisim-evolution Assembly Viewer regex
-                    objdumpOutputBuilder.append(line);
-
-                    // Inject comment into objdump to explain that syscall instruction has been wrapped
-                    if (sectionName.equals(".text") && line.contains("03e0d025")) // move instruction inserted before syscall
-                        objdumpOutputBuilder.append("\t# (syscall wrapper)");
-
-                    if (sectionName.equals(".text") && line.contains("<main>:"))
-                        objdumpOutputBuilder.append("\t\t\t# YOUR PROGRAM STARTS HERE");
-
-
-                    objdumpOutputBuilder.append('\n');
-                }
-            }
-        } catch (IOException e) {
-            return "Error when disassembling compiled binary.\n" +
-                    "An issue occurred with IO.";
-        }
-
-        // Set timeout on objdump execution
-        try {
-            objdump.waitFor(5, TimeUnit.SECONDS);
-        } catch (InterruptedException e) {
-            return "Error when fetching instructions.\n" +
-                    "Worker thread interrupted.";
-        }
-
-        // Check if objdump exceeded timeout
-        if (objdump.isAlive()) {
-            objdump.destroy();
-
-            return "Error when fetching instructions.\n" +
-                    "Runtime limit exceeded.";
-        }
-
-        return objdumpOutputBuilder.toString();
-    }
-
 }

@@ -1,68 +1,51 @@
 package org.henrygucker.logispim.fileprocessor.backend;
 
-import org.henrygucker.logispim.fileprocessor.backend.fileutils.FileUtil;
-
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Path;
 
+
 /**
  * Enum which handles processes that vary across operating systems
  */
 public enum OSDependentData {
+
     /**
      * Used to access data applicable to macOS
      */
     MACOS("macOS",
-            new String[]{
-                    "mipsel-linux-gnu-as"
-            },
-            new String[]{
-                    "mipsel-linux-gnu-ld"
-            },
-            new String[]{
-                    "mipsel-linux-gnu-objdump"
-            }
+            "mipsel-none-elf-as",
+            "mipsel-none-elf-ld",
+            "mipsel-none-elf-objdump"
     ),
     /**
      * Used to access data applicable to Windows
      */
     WINDOWS("Windows",
-            new String[]{
-                    "wsl.exe", "mipsel-linux-gnu-as"
-            },
-            new String[]{
-                    "wsl.exe", "mipsel-linux-gnu-ld"
-            },
-            new String[]{
-                    "wsl.exe", "mipsel-linux-gnu-objdump"
-            }
+            "mipsel-none-elf-as.exe",
+            "mipsel-none-elf-ld.exe",
+            "mipsel-linux-elf-objdump.exe"
     ),
     /**
      * Used to access data applicable to Debian-based Linux
      */
-    LINUX_DEBIAN("Linux (Debian/Ubuntu)",
-            new String[]{
-                    "mipsel-linux-gnu-as"
-            },
-            new String[]{
-                    "mipsel-linux-gnu-ld"
-            },
-            new String[]{
-                    "mipsel-linux-gnu-objdump"
-            }
+    LINUX("Linux",
+            "mipsel-none-elf-as",
+            "mipsel-none-elf-ld",
+            "mipsel-none-elf-objdump"
     );
 
     private static final String APP_NAME = "LogiSpim";
+    private static final Path BINUTILS_BIN_DIR = Path.of(System.getProperty("logispim.binutils.dir")).resolve("bin");
 
     private final String displayName;
-    private final String[] assemblerCommand;
-    private final String[] linkerCommand;
-    private final String[] objdumpCommand;
+    private final String assemblerCommand;
+    private final String linkerCommand;
+    private final String objdumpCommand;
 
-    OSDependentData(String displayName, String[] assemblerCommand, String[] linkerCommand, String[] objdumpCommand) {
+    OSDependentData(String displayName, String assemblerCommand, String linkerCommand, String objdumpCommand) {
         this.displayName = displayName;
         this.assemblerCommand = assemblerCommand;
         this.linkerCommand = linkerCommand;
@@ -70,33 +53,27 @@ public enum OSDependentData {
     }
 
     /**
-     * Gets the arguments to be passed to a {@link ProcessBuilder} to target the appropriate assembler binary.
-     * Note that the first value of the returned array must be used to resolve the directory given by
-     * {@link AppConfig}.{@code EXTERNAL_BIN_PREFIX_DIR}.
-     * @return {@link String}{@code []} that stores the necessary arguments.
+     * Gets the {@link Path} of the appropriate assembler binary.
+     * @return {@link Path} of the assembler binary
      */
-    public String[] getAssemblerCommand() {
-        return assemblerCommand.clone();
+    public Path getAssemblerPath() {
+        return BINUTILS_BIN_DIR.resolve(assemblerCommand);
     }
 
     /**
-     * Gets the arguments to be passed to a {@link ProcessBuilder} to target the appropriate linker binary.
-     * Note that the first value of the returned array must be used to resolve the directory given by
-     * {@link AppConfig}.{@code EXTERNAL_BIN_PREFIX_DIR}.
-     * @return {@link String}{@code []} that stores the necessary arguments.
+     * Gets the {@link Path} of the appropriate linker binary.
+     * @return {@link Path} of the linker binary
      */
-    public String[] getLinkerCommand() {
-        return linkerCommand.clone();
+    public Path getLinkerPath() {
+        return BINUTILS_BIN_DIR.resolve(linkerCommand);
     }
 
     /**
-     * Gets the arguments to be passed to a {@link ProcessBuilder} to target the appropriate objdump binary.
-     * Note that the first value of the returned array must be used to resolve the directory given by
-     * {@link AppConfig}.{@code EXTERNAL_BIN_PREFIX_DIR}.
-     * @return {@link String}{@code []} that stores the necessary arguments.
+     * Gets the {@link Path} of the appropriate objdump binary.
+     * @return {@link Path} of the objdump binary
      */
-    public String[] getObjdumpCommand() {
-        return objdumpCommand.clone();
+    public Path getObjdumpPath() {
+        return BINUTILS_BIN_DIR.resolve(objdumpCommand);
     }
 
     /**
@@ -108,27 +85,10 @@ public enum OSDependentData {
             case MACOS:
             case WINDOWS:
                 return Path.of(System.getProperty("user.home"), "Documents", APP_NAME);
-            case LINUX_DEBIAN:
+            case LINUX:
                 return Path.of(System.getProperty("user.home"), APP_NAME);
         }
         return null;
-    }
-
-    /**
-     * Attempts to find a value for {@link AppConfig}{@code .EXTERNAL_BIN_PREFIX_DIR}.
-     * @return If a fully-qualified path to the required external executable(s) for compilation is/are found, returns its/their
-     * parent directory as a {@link String}. Otherwise, returns an empty {@link String}. Returning an empty {@link String} occurs on macOS or Linux if the
-     * cross-compilation toolchain's parent directory is not in the {@code PATH} environment variable. Returning
-     *  an empty {@link String} on Windows occurs if the parent directory of {@code wsl} is in the {@code PATH} environemnt
-     * variable.
-     */
-    public String findDefaultExternalBinaryDir() {
-        Path assemblerExecutable = FileUtil.findExecutable(this.assemblerCommand[0]);
-
-        if (assemblerExecutable == null)
-            return "";
-
-        return assemblerExecutable.getParent().toString();
     }
 
     /**
@@ -137,91 +97,15 @@ public enum OSDependentData {
      */
     public static OSDependentData getForCurrentOS() {
         String osName = System.getProperty("os.name");
-        String osVersion = System.getProperty("os.version");
+
         if (osName.startsWith("Windows")) {
             return OSDependentData.WINDOWS;
         } else if (osName.equalsIgnoreCase("macos") || osName.equalsIgnoreCase("mac os x")) {
             return OSDependentData.MACOS;
-        } else if (isDebianBased()) {
-            return OSDependentData.LINUX_DEBIAN;
+        } else if (osName.equalsIgnoreCase("linux")) {
+            return OSDependentData.LINUX;
         }
 
         return null;
-    }
-
-    public static String getPATHEnvironmentVariable() {
-        OSDependentData currentOS = getForCurrentOS();
-        if (currentOS != MACOS) {
-            return System.getenv("PATH");
-        }
-
-        // Echos zsh's $PATH environment variable
-        ProcessBuilder pb = new ProcessBuilder("/bin/zsh", "-ilc", "echo $PATH");
-        Process zsh = null;
-        String PATH = null;
-        try {
-            zsh = pb.start();
-            PATH = new String(zsh.getInputStream().readAllBytes(), StandardCharsets.UTF_8);
-        } catch (IOException e) {
-            System.err.println("Failed to get shell $PATH:");
-            e.printStackTrace();
-        }
-
-        return PATH;
-    }
-
-    /**
-     * Gets the {@link String} that should be used in the {@link ProcessBuilder} arguments to refer to a file from its {@link Path}.
-     * @param path The {@link Path} directed at the file's location.
-     * @return The {@link String} that accounts for being run on Windows through wsl.
-     */
-    public static String pathToOSString(Path path) {
-        if (!System.getProperty("os.name").startsWith("Windows")) {
-            return path.toString();
-        }
-
-        return "\"$(wslpath '" + path.toAbsolutePath().toString() + "')\"";
-    }
-
-    /**
-     * Determines if the current operating system is a linux operating system based on Debian (includes Ubuntu)
-     * @return {@code true} if the current OS is some form of Debian-based OS, notably including Ubuntu, otherwise {@code false}.
-     */
-    private static boolean isDebianBased() {
-        if (!System.getProperty("os.name").equalsIgnoreCase("linux")) {
-            return false;
-        }
-
-        String id = "";
-        String idLike = "";
-        try (BufferedReader br = new BufferedReader(new FileReader("/etc/os-release"))) {
-            String inn;
-            String[] splits;
-            while ((inn = br.readLine()) != null) {
-                if (inn.trim().isEmpty() || !inn.contains("="))
-                    continue;
-
-                splits = inn.trim().split("=", 2);
-
-                if (splits[0].equals("ID"))
-                    id = splits[1].trim().replace("\"", "");
-
-                if (splits[0].equals("ID_LIKE"))
-                    idLike = splits[1].trim().replace("\"", "");
-            }
-        } catch (IOException e) {
-            System.err.println("IO Issue while reading /etc/os-release file to determine Linux distribution.");
-            e.printStackTrace();
-
-            return false;
-        }
-
-        if (id.equals("debian") || id.equals("ubuntu"))
-            return true;
-
-        if (idLike.contains("debian"))
-            return true;
-
-        return false;
     }
 }
