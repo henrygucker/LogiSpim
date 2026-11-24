@@ -130,26 +130,31 @@ public class CompileActionListener implements ActionListener {
 
 
         // Get objdump output
-        String objdumpTextOutput = "";
+        List<DisassemblyLine> objdumpTextOutput = null;
         String objdumpDataOutput = "";
         try {
-            objdumpTextOutput = MIPSCrossCompiler.objdumpSectionWithExtraFlags(elfPath, List.of("-dz"), ".text");
-            objdumpDataOutput = MIPSCrossCompiler.objdumpSectionWithExtraFlags(elfPath, List.of("-s"), ".data");
-        } catch (IOException e) {
+            objdumpTextOutput = MIPSCrossCompiler.objdumpInstructions(elfPath, null, true, ".text");
+            objdumpDataOutput = MIPSCrossCompiler.objdumpData(elfPath, null, true, ".data");
+        } catch (IOException | InterruptedException e) {
             e.printStackTrace();
-            app.updateTextArea("An error occurred while writing disassembly content to file.");
+            app.updateTextArea("An error occurred while writing disassembly content to file.\n\n" + e.getMessage());
             return;
         }
 
-//        String objdumpOutput = objdumpTextOutput + "\n\n" + objdumpDataOutput;
-        String objdumpOutput = objdumpDataOutput + "\n\n" + objdumpTextOutput;
+        // Build instruction objdump string
+        StringBuilder textObjdumpBuilder = new StringBuilder();
+        for (DisassemblyLine disassembledLine : objdumpTextOutput) {
+            textObjdumpBuilder.append(disassembledLine.toString());
+        }
+
+        String objdumpOutput = objdumpDataOutput + "\n\n" + textObjdumpBuilder.toString();
 
         // Write output to text area
         app.updateTextArea(objdumpOutput);
 
         // Writing .lss disassembly file for viewing in Logisim
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(disassemblyOutputFile.toFile()))) {
-            writer.write(objdumpTextOutput);
+            writer.write(textObjdumpBuilder.toString());
 
         } catch (IOException e) {
             app.updateTextArea("An error occurred while writing disassembly content to file.");
