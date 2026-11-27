@@ -210,6 +210,10 @@ public class CompileActionListener implements ActionListener {
             app.updateTextAreaWithFileContent(preProcessedSourcePath);
             app.errorMessage(e.getTitle(), e.getIsolatedMessage());
         } catch (IOException | InterruptedException e) {
+            System.out.println("Assembler Dir: " + OSDependentData.getForCurrentOS().getAssemblerPath().toString());
+            e.printStackTrace();
+            
+
             app.errorMessage("Compilation Error", "An error occurred during the back-end compilation process. Try again.");
         }
 

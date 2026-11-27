@@ -5,6 +5,7 @@ import org.henrygucker.logispim.application.backend.exceptions.CompilationExcept
 
 import java.io.*;
 import java.nio.file.*;
+import java.util.ArrayDeque;
 import java.util.Arrays;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
@@ -28,6 +29,20 @@ public class MIPSCrossCompiler {
     private static final List<String> LINKER_FLAGS = List.of(
             "-g"
     );
+    private static final String PROGRAM_BOILERPLATE = "_start:\n" +
+                "\tjal main\n" +
+                "\n" +
+                "\t# Exit program\n" +
+                "\tli $v0, 10\n" +
+                "\tmove $k0, $ra; syscall; nop\t# [Preprocessor Expansion]\n";
+
+    public static final long PROGRAM_BOILERPLATE_LINE_COUNT = PROGRAM_BOILERPLATE.chars().filter(c -> c == '\n').count();
+
+    /// The original source code line number which is associated with the boilerplate of the last compiled program
+    public static int programBoilerplateSourceLineNumber = 0;
+
+    public static ArrayDeque<Integer> lineNumberThresholdQueue = new ArrayDeque<>();
+    public static ArrayDeque<Integer> lineNumberOffsetQueue = new ArrayDeque<>();
 
     /**
      * Compiles the file located at the entered source path into an ELF file.
@@ -193,15 +208,32 @@ public class MIPSCrossCompiler {
      * @throws IOException if an issue with IO occurs.
      */
     private static void preprocessor(Path sourcePath, Path destination, boolean isKernelText) throws IOException {
-        final String template = "_start:\n" +
-                "\tjal main\n" +
-                "\n" +
-                "\t# Exit program\n" +
-                "\tli $v0, 10\n" +
-                "\tmove $k0, $ra\n" +
-                "\tsyscall\n" +
-                "\tnop\n" +
-                "\n";
+
+        // Pair of queues to track source code line number while iterating over lines of preprocessed code
+
+        lineNumberThresholdQueue = new ArrayDeque<>(); // Queue 1
+        lineNumberOffsetQueue = new ArrayDeque<>(); // Queue 2
+
+        /*
+        Explanation for queues:
+
+        Suppose line i of the original source code corresponds to line j of the preprocessed source code.
+
+        These queues track the offset between j and i (j + offset = i), with a new entry whenever the offset changes.
+
+        Goal:
+        By removing one element from each queue whenever j is greater than or equal to the next item in the threshold
+        queue, you can track the offset (j + offset = i) by storing the most recently dequeued value from
+        the offset queue.
+         */
+
+        // Initial condition (j=0, offset = 0)
+        lineNumberThresholdQueue.addLast(0);
+        lineNumberOffsetQueue.addLast(0);
+
+        int currOriginalSourceLineNumber = 0;
+        int currPreprocessedSourceLineNumber = 0;
+        int currOffset = 0;
 
         try (
                 BufferedReader bufferedReader = new BufferedReader(new FileReader(sourcePath.toFile()));
@@ -209,6 +241,8 @@ public class MIPSCrossCompiler {
         ) {
             String inn = "";
             while ((inn = bufferedReader.readLine()) != null) {
+                currOriginalSourceLineNumber++; // Track line number
+
                 final boolean innContainsComment = Pattern.compile("#(?=(?:[^\"]*\"[^\"]*\")*[^\"]*$)").matcher(inn).find();
                 boolean hasToWriteComment = innContainsComment;
 
@@ -217,41 +251,78 @@ public class MIPSCrossCompiler {
                         .flatMap(str -> Arrays.stream(str.split(";(?=(?:[^\"]*\"[^\"]*\")*[^\"]*$)"))) // Splits at any semicolons not enclosed in quotes
                         .flatMap(str -> splitIfLabelWithoutAssemblerDirective(str)) // Splits after colon if not followed by assembler directive (which starts with a .)
                         .map(String::trim)
-                        .filter(str -> str.length() != 0 || !innContainsComment) // Skips entirely empty lines
                         .toList()
                 ) {
+                    // Line number syncing
+                    currPreprocessedSourceLineNumber++;
+                    if (currPreprocessedSourceLineNumber + currOffset != currOriginalSourceLineNumber) {
+                        // Discrepancy detected
+                        currOffset = currOriginalSourceLineNumber - currPreprocessedSourceLineNumber;
+
+                        lineNumberThresholdQueue.addLast(currPreprocessedSourceLineNumber);
+                        lineNumberOffsetQueue.addLast(currOffset);
+                    }
 
                     // At this point, split must be the source code of the line read by inn.
-                    // If split is an empty string, inn must have contained a comment.
+                    // split may also be an empty string
 
-                    // Insert before current instruction
-                    if (!isKernelText && split.equals("syscall"))
-                        bufferedWriter.write("\tmove $k0, $ra # [inserted for syscall]\n");
+                    // Write here to insert before current instruction
 
-                    // Inserts a tab before non-labels code which does not contain a colon (excluding colons inside strings)
+                    // Inserts a tab before non-label's code which does not contain a colon (excluding colons inside strings)
                     if (!Pattern.compile(":(?=(?:[^\"]*\"[^\"]*\")*[^\"]*$)").matcher(split).find())
                         bufferedWriter.write('\t');
+
+                    // Prefix to syscall on the same line
+                    if (!isKernelText && split.equals("syscall"))
+                        bufferedWriter.write("move $k0, $ra; ");
 
                     // Writes current instruction
                     bufferedWriter.write(split.trim());
 
+                    // Suffix to syscall on the same line
+                    if (!isKernelText && split.equals("syscall"))
+                        bufferedWriter.write("; nop");
+
                     // If inn had a comment which hasn't been written yet, write it.
                     if (hasToWriteComment) {
                         hasToWriteComment = false;
-                        
+
                         String[] splits = inn.split("#(?=(?:[^\"]*\"[^\"]*\")*[^\"]*$)", 2);
                         bufferedWriter.write("\t# ");
+
+                        // Prefix comment on a syscall
+                        if (!isKernelText && split.equals("syscall"))
+                            bufferedWriter.write("[Preprocessor Expansion] ");
+
                         bufferedWriter.write(splits[1]);
-                    }
+
+
+                    } else if (!isKernelText && split.equals("syscall"))
+                        // Write comment on a syscall
+                        bufferedWriter.write("\t# [Preprocessor Expansion]");
 
                     bufferedWriter.write('\n');
 
 
-                    // Insert after current instruction
-                    if (!isKernelText && split.trim().equals(".text"))
-                        bufferedWriter.write(template);
-                    else if (!isKernelText && split.trim().equals("syscall"))
-                        bufferedWriter.write("\tnop\n");
+                    // Writes template if current line starts .text section
+                    if (!isKernelText && split.trim().equals(".text")) {
+                        bufferedWriter.write(PROGRAM_BOILERPLATE);
+
+                        // Update source line number (since offset updates for each line inserted, new entry is needed
+                        // for each line inserted)
+                        for (int i = 0; i < PROGRAM_BOILERPLATE_LINE_COUNT; i++) {
+                            currPreprocessedSourceLineNumber++;
+
+                            // Add discrepancy
+                            currOffset = currOriginalSourceLineNumber - currPreprocessedSourceLineNumber;
+
+                            lineNumberThresholdQueue.addLast(currPreprocessedSourceLineNumber);
+                            lineNumberOffsetQueue.addLast(currOffset);
+                        }
+
+                        // Stores boilerplate source code line number
+                        programBoilerplateSourceLineNumber = currOriginalSourceLineNumber;
+                    }
                 }
 
             }

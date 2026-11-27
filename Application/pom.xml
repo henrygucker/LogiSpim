@@ -87,14 +87,14 @@
                     <vendor>org.henrygucker</vendor>
 
                     <input>${project.build.directory}/jar</input>
-                    <mainJar>Application-${project.version}-jar-with-dependencies.jar</mainJar>
+                    <mainJar>${project.artifactId}-${project.version}-jar-with-dependencies.jar</mainJar>
                     <mainClass>org.henrygucker.logispim.application.Main</mainClass>
 
                     <destination>${project.build.directory}/installer</destination>
                     <javaOptions>
                         <option>--enable-preview</option>
                         <option>-Dfile.encoding=UTF-8</option>
-                        <option>-Dlogispim.binutils.dir=$APPDIR/binutils</option>
+                        <option>-Dlogispim.binutils.dir=$APPDIR/../binutils</option>
                     </javaOptions>
 
                     <appContentPaths>

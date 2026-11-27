@@ -7,8 +7,9 @@ import java.util.List;
 
 /**
  * Record for storing the resulting disassembly from an associated line of source code.
- * @param sourceLineNumber Stores the line number from the processed assembly code associated with this object.
+ * @param sourceLineNumber Stores the line number from the source assembly code associated with this object.
  *                         Stores {@code null} if the object stores a label.
+ *                         Stores {@code -1} if the object stores a line inserted by the preprocessor.
  * @param assemblyLines A {@link List} of lines of assembly resulting from the compilation of the one line of source code.
  * @param sourceLine The {@link String} line of source code associated with this object.
  *                   Stores {@code null} if the object stores a label.
@@ -16,6 +17,13 @@ import java.util.List;
 public record DisassemblyLine(Long sourceLineNumber, List<String> assemblyLines, String sourceLine) {
 
     public void appendToStyledDocument(StyledDocument doc, Style baseTextStyle, Style lineNumberStyle, Style inlinedTextStyle) {
+
+        // Inserts newline if object has no source line number (is label)
+        if (sourceLineNumber == null)
+            try {
+                doc.insertString(doc.getLength(), "\n", baseTextStyle);
+            } catch (BadLocationException e) { e.printStackTrace(); /* Shouldn't happen ever */}
+
         for (int i = 0; i < assemblyLines.size(); i++) {
             // Print current assembly line
             try {
@@ -40,13 +48,16 @@ public record DisassemblyLine(Long sourceLineNumber, List<String> assemblyLines,
                     doc.insertString(doc.getLength(), "|", lineNumberStyle);
 
                     // Writes line num (if exists)
-                    if (sourceLineNumber != null)
+                    if (sourceLineNumber != null && sourceLineNumber >= 0)
                         doc.insertString(doc.getLength(), String.format("%4d: ", sourceLineNumber), lineNumberStyle);
                     else
-                        doc.insertString(doc.getLength(), " n/a: ", lineNumberStyle);
+                        doc.insertString(doc.getLength(), " xxx: ", lineNumberStyle);
 
                     // Writes line (pre-comment)
-                    doc.insertString(doc.getLength(), split[0], inlinedTextStyle);
+                    if (!split[0].trim().equals("move $k0, $ra; syscall; nop"))
+                        doc.insertString(doc.getLength(), split[0], inlinedTextStyle);
+                    else
+                        doc.insertString(doc.getLength(), "syscall\t", inlinedTextStyle);
 
                     // Writes line (post-comment)
                     if (split.length > 1) {
@@ -86,7 +97,12 @@ public record DisassemblyLine(Long sourceLineNumber, List<String> assemblyLines,
                 // Writes source line (excludes comments)
                 builder.append("; ");
                 String[] splits = sourceLine.trim().split("#", 2);
-                builder.append(splits[0].trim());
+
+                // Writes line (pre-comment)
+                if (!splits[0].trim().equals("move $k0, $ra; syscall; nop"))
+                    builder.append(splits[0].trim());
+                else
+                    builder.append("syscall # [Preprocessor Expansion]");
             }
 
             builder.append('\n');

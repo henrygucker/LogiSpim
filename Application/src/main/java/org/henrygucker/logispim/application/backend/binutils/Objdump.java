@@ -7,6 +7,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.nio.file.InvalidPathException;
 import java.nio.file.Path;
+import java.util.ArrayDeque;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
@@ -21,8 +22,8 @@ public class Objdump {
 
     public static final List<String> OBJDUMP_DISASSEMBLY_FLAGS = List.of(
             "--source-comment=" + OBJDUMP_INLINE_SRC_PREFIX + "",
-            "-M",
-            "no-aliases",
+//            "-M",
+//            "no-aliases",
             "--disassemble-zeroes",
             "--inlines",
             "-ld"
@@ -142,6 +143,8 @@ public class Objdump {
      */
     public static List<DisassemblyLine> objdumpInstructions(Path elfPath, List<String> additionalFlags, boolean useDefaultFlags, String sectionName) throws IOException, InterruptedException {
         OSDependentData osDependentData = OSDependentData.getForCurrentOS();
+        ArrayDeque<Integer> thresholdQueue = MIPSCrossCompiler.lineNumberThresholdQueue.clone();
+        ArrayDeque<Integer> offsetQueue = MIPSCrossCompiler.lineNumberOffsetQueue.clone();
 
         Process objdump = new ProcessBuilder(
                  Stream.of(
@@ -178,6 +181,7 @@ public class Objdump {
         ArrayList<String> assemblyBuilder = new ArrayList();
         String currSourceLine = "";
         long currentLineNumber = 0;
+        int currentOffset = 0;
 
         try (BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(objdump.getInputStream()))) {
             String line = bufferedReader.readLine();
@@ -219,8 +223,21 @@ public class Objdump {
                         //
                         // where # is line number
 
-                        // Starts the process of reading a line of disassembled source code
-                        currentLineNumber = getInlineLineNumber(line); // Finds the line number of the current source line
+                        // Finds the original source code line number associated with the inlined (preprocessed) source code
+
+                        // Finds the line number of the current source line in the preprocessed assembly code
+                        long preprocessedSourceLineNumber = getInlineLineNumber(line);
+
+                        // Shuffles through queues to update the offset
+                        while (!thresholdQueue.isEmpty() && preprocessedSourceLineNumber >= thresholdQueue.peekFirst()) {
+                            currentOffset = offsetQueue.pollFirst();
+                            thresholdQueue.pollFirst();
+                        }
+
+                        currentLineNumber = preprocessedSourceLineNumber + currentOffset;
+                        if (currentLineNumber == MIPSCrossCompiler.programBoilerplateSourceLineNumber)
+                            currentLineNumber = -1;
+
                         assemblyBuilder.clear();        // Resets the assembly builder without reallocating
                         // currSourceLine will be overwritten on its own, so we don't need to reset that
 
@@ -280,6 +297,18 @@ public class Objdump {
 
                         assemblyBuilder.add(line);
                         line = bufferedReader.readLine();
+
+                        // Create disassembly record if last line of objdump output was just read
+                        if (line == null) {
+                            // Create disassembly record (using copies of reference types)
+                            disassembly.add(
+                                    new DisassemblyLine(
+                                            currentLineNumber,
+                                            (ArrayList<String>) assemblyBuilder.clone(),
+                                            "" + currSourceLine
+                                    )
+                            );
+                        }
                     }
                 }
             }
