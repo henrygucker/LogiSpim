@@ -42,8 +42,6 @@ public class DocsTests {
         String outputsByOpCode = MainDecoderMarkdownTableGenerator.getMarkdownTableStringByOpCode().replaceAll("\\s+", "").replaceAll("-+", "-");
         String RTypeOverriddenOutputs = MainDecoderMarkdownTableGenerator.getMarkdownTableStringRTypeOverrides().replaceAll("\\s+", "").replaceAll("-+", "-");
 
-//        System.out.println(markdownContent);
-
         markdownContent = markdownContent.replaceAll("\\s+", "").replaceAll("-+", "-");
 
         // Asserts that markdownContent must contain both tables provided by MainDecoderMarkdownTableGenerator
