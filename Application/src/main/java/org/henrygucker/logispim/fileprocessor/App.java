@@ -11,6 +11,7 @@ import org.henrygucker.logispim.fileprocessor.uicomponents.FileSelectorPanel;
 
 import javax.swing.*;
 import javax.swing.border.Border;
+import javax.swing.text.BadLocationException;
 import javax.swing.text.Style;
 import javax.swing.text.StyleConstants;
 import javax.swing.text.StyledDocument;
@@ -132,35 +133,44 @@ public class App extends JFrame {
         if (!path.toFile().exists() || path.toFile().isDirectory())
             return;
 
+
+        // Reset text pane & get doc
+        textPane.setText("");
+        StyledDocument doc = textPane.getStyledDocument();
+
         final int MAX_LINES = 500_000;
         final int MAX_LINE_COUNT_WIDTH = 6;
         int count = 0;
         String inn;
-        StringBuilder builder = new StringBuilder();
         try (BufferedReader reader = new BufferedReader(new FileReader(path.toFile()))) {
 
             while ((inn = reader.readLine()) != null) {
                 count++;
-                builder.append(String.format("%4d ", count));
-                builder.append(inn);
-                builder.append('\n');
+
+                doc.insertString(doc.getLength(), String.format("%4d ", count), lineNumberStyle);
+                doc.insertString(doc.getLength(), inn, baseTextStyle);
+                doc.insertString(doc.getLength(), "\n", baseTextStyle);
 
                 if (count > MAX_LINES) {
-                    updateTextArea(
-                            "File \"" + path.toAbsolutePath().toString() + "\" is too long to display.\n" +
-                                    "Line count exceeds 500,000."
+                    doc.insertString(
+                            doc.getLength(),
+                            "\n" +
+                                    "File \"" + path.toAbsolutePath().toString() + "\" is too long to display.\n" +
+                                    "Content truncated at 500,000 lines.",
+                            baseTextStyle
                     );
                     return;
                 }
             }
 
-            updateTextArea(builder.toString());
-
-        } catch (FileNotFoundException _) {
+        } catch (FileNotFoundException e) {
             // This case would never happen since the method exits if the file does not exist.
-            return;
+            e.printStackTrace();
         } catch (IOException e) {
             updateTextArea("There was an issue when reading the contents of this file.");
+        } catch (BadLocationException e) {
+            // This should never happen
+            e.printStackTrace();
         }
     }
 
