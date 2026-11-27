@@ -25,7 +25,6 @@ jobs:
           tag_name: ${{ github.ref_name }}
           release_name: Release ${{ github.ref_name }}
           draft: true
-          prerelease: true # temporary until is full release
 
   # Job 2: Build cross-platform installers using the OS matrix
   build-and-package:
@@ -68,23 +67,27 @@ jobs:
       # Windows-specific tool prerequisites (WiX Toolset is pre-installed on github runners, but needs pathing if required)
       # Note: windows-latest runner already has WiX v3 toolset installed out of the box.
 
+      - name: Build GNU Binutils From Source
+        run: |
+          python ./Application/binutils/build.py
+
         # This triggers your plugin execution. Adjust the profile (-P) or phase if necessary.
       - name: Build Application and Generate Installers via Maven (MacOS)
         if: matrix.os == 'macos-latest'
         run: |
-          cd FileProcessor
+          cd Application
           mvn clean package jpackage:jpackage@mac -X
 
       - name: Build Application and Generate Installers via Maven (Windows)
         if: matrix.os == 'windows-latest'
         run: |
-          cd FileProcessor
+          cd Application
           mvn clean package jpackage:jpackage@win -X
 
       - name: Build Application and Generate Installers via Maven (Linux)
         if: matrix.os == 'ubuntu-latest'
         run: |
-          cd FileProcessor
+          cd Application
           mvn clean package jpackage:jpackage@linux -X
 
       # Identify the generated installer file and upload it to the GitHub Release draft

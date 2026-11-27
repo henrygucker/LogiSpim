@@ -22,8 +22,8 @@ public class Objdump {
 
     public static final List<String> OBJDUMP_DISASSEMBLY_FLAGS = List.of(
             "--source-comment=" + OBJDUMP_INLINE_SRC_PREFIX + "",
-//            "-M",
-//            "no-aliases",
+            "-M",
+            "no-aliases",
             "--disassemble-zeroes",
             "--inlines",
             "-ld"
