@@ -38,7 +38,7 @@
                 <configuration>
                     <archive>
                         <manifest>
-                            <mainClass>org.henrygucker.logispim.fileprocessor.Main</mainClass>
+                            <mainClass>org.henrygucker.logispim.application.Main</mainClass>
                         </manifest>
                     </archive>
                     <outputDirectory>${project.build.directory}/jar</outputDirectory>
@@ -51,7 +51,7 @@
                 <configuration>
                     <archive>
                         <manifest>
-                            <mainClass>org.henrygucker.logispim.fileprocessor.Main</mainClass>
+                            <mainClass>org.henrygucker.logispim.application.Main</mainClass>
                         </manifest>
                     </archive>
                     <descriptorRefs>
@@ -88,7 +88,7 @@
 
                     <input>${project.build.directory}/jar</input>
                     <mainJar>Application-${project.version}-jar-with-dependencies.jar</mainJar>
-                    <mainClass>org.henrygucker.logispim.fileprocessor.Main</mainClass>
+                    <mainClass>org.henrygucker.logispim.application.Main</mainClass>
 
                     <destination>${project.build.directory}/installer</destination>
                     <javaOptions>

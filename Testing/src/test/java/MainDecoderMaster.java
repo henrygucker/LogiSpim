@@ -1,12 +1,10 @@
-import org.henrygucker.logispim.fileprocessor.backend.AppConfig;
+import org.henrygucker.logispim.application.backend.AppConfig;
 
 import java.io.BufferedWriter;
-import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.nio.file.Paths;
 
 public enum MainDecoderMaster {
     REG_WRITE("RegWrite", 1),
