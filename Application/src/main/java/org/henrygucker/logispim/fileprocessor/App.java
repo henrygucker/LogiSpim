@@ -120,7 +120,7 @@ public class App extends JFrame {
 
             while ((inn = reader.readLine()) != null) {
                 count++;
-                builder.append(String.format("%06d ", count));
+                builder.append(String.format("%4d ", count));
                 builder.append(inn);
                 builder.append('\n');
 
@@ -422,6 +422,12 @@ public class App extends JFrame {
         scrollPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
         scrollPane.setPreferredSize(new Dimension(CONTENT_WIDTH, HEIGHT));
         scrollPane.createVerticalScrollBar();
+
+        // Loads source file if it exists
+        Path sourcePath = (Path) AppConfig.SOURCE_FILE.getValue();
+        if (sourcePath.toFile().isFile()) {
+            this.updateTextAreaWithFileContent(sourcePath);
+        }
 
         GridBagConstraints constraints = new GridBagConstraints();
         constraints.gridy = 6;
