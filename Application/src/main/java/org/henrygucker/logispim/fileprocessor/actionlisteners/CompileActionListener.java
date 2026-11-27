@@ -141,35 +141,34 @@ public class CompileActionListener implements ActionListener {
             objdumpDataOutput = Objdump.objdumpData(elfPath, null, true, ".data");
         } catch (IOException | InterruptedException e) {
             e.printStackTrace();
-            app.updateTextArea("An error occurred while writing disassembly content to file.\n\n" + e.getMessage());
+            app.updateTextPane("An error occurred while writing disassembly content to file.\n\n" + e.getMessage());
             return;
         }
 
-        // Build instruction objdump string
-        StringBuilder textObjdumpBuilder = new StringBuilder();
-        for (DisassemblyLine disassembledLine : objdumpTextOutput) {
-            textObjdumpBuilder.append(disassembledLine.toString());
-        }
+        // Resets text area
+        app.updateTextPane("");
 
-        String objdumpOutput = objdumpDataOutput + "\n\n" + textObjdumpBuilder.toString();
-
-        // Write output to text area
-        app.updateTextArea(objdumpDataOutput);
-
-        // Appends two newline characters between data and text section output
+        // Writes disassembly to text pane
         try {
+
+            app.textPane.getStyledDocument().insertString(app.textPane.getStyledDocument().getLength(), "Contents of .data section:\n", app.lineNumberStyle);
+            app.textPane.getStyledDocument().insertString(app.textPane.getStyledDocument().getLength(), objdumpDataOutput, app.baseTextStyle);
             app.textPane.getStyledDocument().insertString(app.textPane.getStyledDocument().getLength(), "\n\n", app.baseTextStyle);
+
+            app.textPane.getStyledDocument().insertString(app.textPane.getStyledDocument().getLength(), "Disassembly of .text section:\n", app.lineNumberStyle);
+            for (DisassemblyLine disassembledLine : objdumpTextOutput)
+                disassembledLine.appendToStyledDocument(app.textPane.getStyledDocument(), app.baseTextStyle, app.lineNumberStyle, app.inlinedTextStyle);
+
         } catch (BadLocationException e) { e.printStackTrace(); /* Should never happen */}
 
-        for (DisassemblyLine disassembledLine : objdumpTextOutput)
-            disassembledLine.appendToStyledDocument(app.textPane.getStyledDocument(), app.baseTextStyle, app.lineNumberStyle, app.inlinedTextStyle);
 
         // Writing .lss disassembly file for viewing in Logisim
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(disassemblyOutputFile.toFile()))) {
-            writer.write(textObjdumpBuilder.toString());
+            for (DisassemblyLine disassemblyLine : objdumpTextOutput)
+                writer.write(disassemblyLine.toString());
 
         } catch (IOException e) {
-            app.updateTextArea("An error occurred while writing disassembly content to file.");
+            app.updateTextPane("An error occurred while writing disassembly content to file.");
             return;
         }
 

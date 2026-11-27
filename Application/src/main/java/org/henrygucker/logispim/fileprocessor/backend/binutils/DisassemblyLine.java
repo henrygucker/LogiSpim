@@ -27,7 +27,7 @@ public record DisassemblyLine(Long sourceLineNumber, List<String> assemblyLines,
 
                 // Insert appropriate number of tabs to align source code with other source lines
                 long desiredTabs = 5;
-                long numTabs = lineIndentWidth(assemblyLines.get(i));
+                long numTabs = lineIndentWidth(assemblyLines.get(i), 11);
                 for (long j = numTabs; j < desiredTabs; j++) {
                     try {
                         doc.insertString(doc.getLength(), "\t", baseTextStyle);
@@ -64,6 +64,11 @@ public record DisassemblyLine(Long sourceLineNumber, List<String> assemblyLines,
         }
     }
 
+    /**
+     * Converts this {@link DisassemblyLine} to a {@link String} for writing into {@code .lss} file which Logisim-evolution can use
+     * @return {@String} with newline character at the end containing this record formatted for use in
+     * {@code .lss} disassembly file.
+     */
     public String toString() {
         StringBuilder builder = new StringBuilder();
         for (int i = 0; i < assemblyLines.size(); i++) {
@@ -71,14 +76,17 @@ public record DisassemblyLine(Long sourceLineNumber, List<String> assemblyLines,
 
             // Write source line if it exists and is writing the first line of assembly
             if (i == 0 && sourceLine != null) {
-                long desiredTabs = 5;
-                long numTabs = lineIndentWidth(assemblyLines.get(i));
+                long desiredTabs = 7;
+                long numTabs = lineIndentWidth(assemblyLines.get(i), 8);
 
                 for (long j = numTabs; j < desiredTabs; j++) {
                     builder.append('\t');
                 }
-                builder.append("| ");
-                builder.append(sourceLine.trim());
+
+                // Writes source line (excludes comments)
+                builder.append("; ");
+                String[] splits = sourceLine.trim().split("#", 2);
+                builder.append(splits[0].trim());
             }
 
             builder.append('\n');
@@ -90,15 +98,16 @@ public record DisassemblyLine(Long sourceLineNumber, List<String> assemblyLines,
     /**
      * Computes the amount of indents (assuming 8 characters per indent) a string fully occupies.
      * @param line {@link String} to check; must be one line
+     * @param numCharsPerIndent specifies the number of monospaced characters which occupy the same width as one indent.
+     *                          This varies across different types of text fields.
      * @return the number of indents a string occupies
      */
-    private static int lineIndentWidth(String line) {
-        final int NUM_CHARS_PER_INDENT = 11;
+    private static int lineIndentWidth(String line, int numCharsPerIndent) {
         int currChars = 0;
         int numIndents = 0;
 
         for (char c : line.toCharArray()) {
-            if (c == '\t' || currChars == NUM_CHARS_PER_INDENT - 1) {
+            if (c == '\t' || currChars == numCharsPerIndent - 1) {
                 numIndents++;
                 currChars = 0;
                 continue;
@@ -107,6 +116,6 @@ public record DisassemblyLine(Long sourceLineNumber, List<String> assemblyLines,
             currChars++;
         }
 
-        return numIndents + (currChars / NUM_CHARS_PER_INDENT);
+        return numIndents + (currChars / numCharsPerIndent);
     }
 }
