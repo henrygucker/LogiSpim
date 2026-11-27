@@ -1,6 +1,9 @@
 package org.henrygucker.logispim.fileprocessor.actionlisteners;
 
 import org.henrygucker.logispim.fileprocessor.backend.*;
+import org.henrygucker.logispim.fileprocessor.backend.binutils.DisassemblyLine;
+import org.henrygucker.logispim.fileprocessor.backend.binutils.MIPSCrossCompiler;
+import org.henrygucker.logispim.fileprocessor.backend.binutils.Objdump;
 import org.henrygucker.logispim.fileprocessor.backend.exceptions.CompilationException;
 import org.henrygucker.logispim.fileprocessor.backend.fileutils.FileUtil;
 import org.henrygucker.logispim.fileprocessor.backend.elf.ElfFile;
@@ -133,8 +136,8 @@ public class CompileActionListener implements ActionListener {
         List<DisassemblyLine> objdumpTextOutput = null;
         String objdumpDataOutput = "";
         try {
-            objdumpTextOutput = MIPSCrossCompiler.objdumpInstructions(elfPath, null, true, ".text");
-            objdumpDataOutput = MIPSCrossCompiler.objdumpData(elfPath, null, true, ".data");
+            objdumpTextOutput = Objdump.objdumpInstructions(elfPath, null, true, ".text");
+            objdumpDataOutput = Objdump.objdumpData(elfPath, null, true, ".data");
         } catch (IOException | InterruptedException e) {
             e.printStackTrace();
             app.updateTextArea("An error occurred while writing disassembly content to file.\n\n" + e.getMessage());

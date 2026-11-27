@@ -83,7 +83,7 @@ public class Main {
         if (binutilsDir == null) {
             System.err.println(
                     "Your run configuration does not set the ENV variable logispim.binutils.dir.\n" +
-                            "For more information, see LogiSpim/Application/binutils/README.md."
+                            "For more information, see LogiSpim/Application/binutils/README.md.\n"
             );
 
             Path currentWorkingDirectory = Path.of("").toAbsolutePath();
@@ -104,7 +104,7 @@ public class Main {
             ).toAbsolutePath().normalize();
 
             if (binutilsDirAssumingProjectRoot.toFile().isDirectory()) {
-                System.err.println("\nDefaulting to: " + binutilsDirAssumingProjectRoot);
+                System.err.println("Defaulting to: " + binutilsDirAssumingProjectRoot + "\n");
 
                 System.setProperty("logispim.binutils.dir", binutilsDirAssumingProjectRoot.toString());
 

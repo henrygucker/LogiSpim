@@ -1,8 +1,6 @@
-package org.henrygucker.logispim.fileprocessor.backend;
+package org.henrygucker.logispim.fileprocessor.backend.binutils;
 
-import java.util.Arrays;
 import java.util.List;
-import java.util.stream.Stream;
 
 /**
  * Record for storing the resulting disassembly from an associated line of source code.
