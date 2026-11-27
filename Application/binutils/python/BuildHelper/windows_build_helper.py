@@ -51,7 +51,7 @@ class WindowsBuildHelper(BuildHelper):
         jobs = max(1, min(os.cpu_count() or 2, 4))
         self._run_msys(
             root,
-            f"JOBS={jobs} MAKEINFO=true bash {shlex.quote(script_path)}",
+            f"JOBS={jobs} bash {shlex.quote(script_path)}",
             description=f"Building GNU Binutils {version} for {self.TARGET_TRIPLET} ({self.host_tag})",
         )
 

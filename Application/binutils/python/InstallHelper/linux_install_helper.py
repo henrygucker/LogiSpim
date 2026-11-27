@@ -23,7 +23,7 @@ class _LinuxDistributionInstallHelper:
     """Shared implementation for Linux distribution-specific package managers."""
 
     strategy: _LinuxPackageStrategy
-    required_commands = ("gcc", "g++", "make", "bash", "tar", "xz")
+    required_commands = ("gcc", "g++", "make", "bash", "tar", "xz", "makeinfo")
 
     def install_prerequisites(self, *, non_interactive: bool = False) -> dict[str, str]:
         """Install missing native compiler and build utilities using this distribution's manager."""
@@ -83,7 +83,7 @@ class _DebianInstallHelper(_LinuxDistributionInstallHelper):
 
     strategy = _LinuxPackageStrategy(
         name="apt",
-        packages=("build-essential", "bash", "xz-utils"),
+        packages=("build-essential", "bash", "xz-utils", "texinfo"),
         update_command=("apt-get", "update"),
         install_command=("apt-get", "install", "-y"),
     )
@@ -97,14 +97,14 @@ class _FedoraInstallHelper(_LinuxDistributionInstallHelper):
         if manager == "dnf":
             self.strategy = _LinuxPackageStrategy(
                 name="dnf",
-                packages=("gcc", "gcc-c++", "make", "bash", "xz"),
+                packages=("gcc", "gcc-c++", "make", "bash", "xz", "texinfo"),
                 update_command=(),
                 install_command=("dnf", "install", "-y"),
             )
         else:
             self.strategy = _LinuxPackageStrategy(
                 name="yum",
-                packages=("gcc", "gcc-c++", "make", "bash", "xz"),
+                packages=("gcc", "gcc-c++", "make", "bash", "xz", "texinfo"),
                 update_command=(),
                 install_command=("yum", "install", "-y"),
             )
@@ -115,7 +115,7 @@ class _ArchInstallHelper(_LinuxDistributionInstallHelper):
 
     strategy = _LinuxPackageStrategy(
         name="pacman",
-        packages=("base-devel", "bash", "xz"),
+        packages=("base-devel", "bash", "xz", "texinfo"),
         update_command=("pacman", "-Syu", "--noconfirm"),
         install_command=("pacman", "-S", "--needed", "--noconfirm"),
     )
@@ -126,7 +126,7 @@ class _SuseInstallHelper(_LinuxDistributionInstallHelper):
 
     strategy = _LinuxPackageStrategy(
         name="zypper",
-        packages=("gcc", "gcc-c++", "make", "bash", "xz"),
+        packages=("gcc", "gcc-c++", "make", "bash", "xz", "texinfo"),
         update_command=(),
         install_command=("zypper", "--non-interactive", "install", "--no-recommends"),
     )

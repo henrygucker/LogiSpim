@@ -43,6 +43,8 @@ class _MacOSArchitectureInstallHelper:
             missing_commands.append("Clang C++ compiler")
         if not shutil.which("gmake", path=self._environment["PATH"]):
             missing_commands.append("GNU Make (gmake)")
+        if not shutil.which("makeinfo", path=self._environment["PATH"]):
+            missing_commands.append("GNU Texinfo (makeinfo)")
 
         if missing_commands:
             if not InstallHelper.approve_installation(missing_commands, non_interactive=non_interactive):
@@ -52,6 +54,8 @@ class _MacOSArchitectureInstallHelper:
                 packages.append("llvm")
             if "GNU Make (gmake)" in missing_commands:
                 packages.append("make")
+            if "GNU Texinfo (makeinfo)" in missing_commands:
+                packages.append("texinfo")
             InstallHelper.run_command(
                 [brew, "install", *packages],
                 env=self._environment,
@@ -63,6 +67,11 @@ class _MacOSArchitectureInstallHelper:
             self._environment["CC"] = str(llvm_prefix / "bin" / "clang")
             self._environment["CXX"] = str(llvm_prefix / "bin" / "clang++")
             self._environment["PATH"] = str(llvm_prefix / "bin") + os.pathsep + self._environment["PATH"]
+
+        texinfo_prefix = self._brew_prefix(brew, "texinfo")
+        if texinfo_prefix and (texinfo_prefix / "bin").is_dir():
+            self._environment["PATH"] = str(texinfo_prefix / "bin") + os.pathsep + self._environment["PATH"]
+        InstallHelper.require_command("makeinfo", path=self._environment["PATH"])
 
         make_prefix = self._brew_prefix(brew, "make")
         if make_prefix and (make_prefix / "bin" / "gmake").is_file():

@@ -250,7 +250,6 @@ class PosixBuildHelper(BuildHelper):
                 "BINUTILS_TARGET": self.TARGET_TRIPLET,
                 "BINUTILS_VERSION": version,
                 "JOBS": str(max(1, min(os.cpu_count() or 2, 4))),
-                "MAKEINFO": "true",
             }
         )
         self.run_command(

@@ -23,6 +23,10 @@ MSYS2_PACKAGES = (
     "base-devel",
     "mingw-w64-ucrt-x86_64-gcc",
     "mingw-w64-ucrt-x86_64-binutils",
+    # Binutils' configure scripts deliberately disable Info documentation
+    # only when a sufficiently recent GNU makeinfo is detected. The
+    # environment variable MAKEINFO=true is not a reliable substitute.
+    "mingw-w64-ucrt-x86_64-texinfo",
 )
 
 
@@ -54,7 +58,10 @@ class WindowsInstallHelper(InstallHelper):
 
         self._msys_root = root
         if not self._ucrt64_tools_available(root):
-            missing = ["MSYS2 UCRT64 GCC/G++, GNU Make, and binutils package group"]
+            missing = [
+                "MSYS2 UCRT64 build tools (GCC/G++, GNU Make, binutils, and GNU Texinfo/makeinfo)",
+                f"MSYS2 packages: {', '.join(MSYS2_PACKAGES)}",
+            ]
             if not self.approve_installation(missing, non_interactive=non_interactive):
                 raise BuildError("MSYS2 dependency installation was declined; no build was performed.")
             self._ensure_administrator("Installing MSYS2 UCRT64 build packages")
@@ -62,7 +69,10 @@ class WindowsInstallHelper(InstallHelper):
             self._install_ucrt64_packages(root)
 
         if not self._ucrt64_tools_available(root):
-            raise BuildError("MSYS2 setup completed, but UCRT64 gcc, g++, or make is still unavailable.")
+            raise BuildError(
+                "MSYS2 setup completed, but one or more required UCRT64 tools are still unavailable: "
+                "gcc, g++, make, objdump, or makeinfo."
+            )
         self.log(f"Using MSYS2 UCRT64 at {root}")
         return self._msys_environment(root)
 
@@ -169,16 +179,24 @@ class WindowsInstallHelper(InstallHelper):
         )
 
     def _ucrt64_tools_available(self, root: Path) -> bool:
-        """Check whether UCRT64 provides GCC, G++, GNU Make, and PE inspection tools."""
-        if not (root / "ucrt64" / "bin" / "gcc.exe").is_file():
+        """Check that UCRT64 has the compiler, build tools, and GNU makeinfo."""
+        required_executables = (
+            "gcc.exe",
+            "g++.exe",
+            "objdump.exe",
+        )
+        ucrt_bin = root / "ucrt64" / "bin"
+        if any(not (ucrt_bin / executable).is_file() for executable in required_executables):
             return False
-        if not (root / "ucrt64" / "bin" / "g++.exe").is_file():
-            return False
-        if not (root / "ucrt64" / "bin" / "objdump.exe").is_file():
-            return False
+
+        # Check makeinfo as a usable Texinfo executable, not merely as a file.
+        # This catches partially installed packages and missing Perl/runtime
+        # dependencies before configure or make starts.
         result = self._run_msys(
             root,
-            "command -v make >/dev/null 2>&1",
+            "command -v make >/dev/null 2>&1 "
+            "&& command -v makeinfo >/dev/null 2>&1 "
+            "&& makeinfo --version 2>&1 | grep -qi 'GNU texinfo'",
             check=False,
         )
         return result.returncode == 0
@@ -193,7 +211,7 @@ class WindowsInstallHelper(InstallHelper):
                 raise BuildError(f"MSYS2 full-system update failed (exit code {second.returncode}).")
 
     def _install_ucrt64_packages(self, root: Path) -> None:
-        """Install the UCRT64 compiler and the MSYS build-utility package group."""
+        """Install the UCRT64 compiler, MSYS build utilities, and GNU Texinfo."""
         packages = " ".join(MSYS2_PACKAGES)
         self._run_msys(root, f"pacman -S --needed --noconfirm {packages}")
 

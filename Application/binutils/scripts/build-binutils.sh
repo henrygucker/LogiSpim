@@ -23,6 +23,25 @@ if ! command -v "${MAKE_COMMAND}" >/dev/null 2>&1; then
     exit 1
 fi
 
+if ! command -v makeinfo >/dev/null 2>&1; then
+    echo "[binutils] ERROR: GNU Texinfo (makeinfo) is required to build GNU Binutils." >&2
+    if [[ "${MSYSTEM:-}" == "UCRT64" ]]; then
+        echo "[binutils] Install it with: pacman -S --needed mingw-w64-ucrt-x86_64-texinfo" >&2
+    fi
+    exit 1
+fi
+
+if ! makeinfo --version 2>&1 | grep -qi 'GNU texinfo'; then
+    echo "[binutils] ERROR: makeinfo is present but does not report GNU Texinfo; install a supported Texinfo release." >&2
+    exit 1
+fi
+
+# Use the verified executable explicitly. In particular, do not allow a
+# stale MAKEINFO=true inherited from the caller to bypass configure's version
+# check and be replaced with the failing "missing makeinfo" wrapper.
+MAKEINFO="$(command -v makeinfo)"
+export MAKEINFO
+
 mkdir -p "${BUILD_DIR}" "${OUTPUT_DIR}"
 cd "${BUILD_DIR}"
 
@@ -49,13 +68,13 @@ else
 fi
 
 echo "[binutils] Configuring GNU binutils for ${TARGET} (build host: ${BUILD_TRIPLET})"
-MAKEINFO="${MAKEINFO:-true}" bash "${SOURCE_DIR}/configure" "${CONFIGURE_ARGS[@]}"
+bash "${SOURCE_DIR}/configure" "${CONFIGURE_ARGS[@]}"
 
 echo "[binutils] Compiling with ${JOBS} job(s)"
-MAKEINFO="${MAKEINFO:-true}" "${MAKE_COMMAND}" -j"${JOBS}"
+"${MAKE_COMMAND}" -j"${JOBS}"
 
 echo "[binutils] Installing into ${OUTPUT_DIR}"
-MAKEINFO="${MAKEINFO:-true}" "${MAKE_COMMAND}" install
+"${MAKE_COMMAND}" install
 
 # MinGW/UCRT64 executables are native Windows PE files. Copy the GCC runtime
 # DLLs that may be imported by the tools, so the bundled tools do not require
