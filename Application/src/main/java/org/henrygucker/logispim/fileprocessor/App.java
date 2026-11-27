@@ -116,10 +116,10 @@ public class App extends JFrame {
     }
 
     /**
-     * Updates the text area with a specified {@link String}.
+     * Updates the text pane contents with a specified {@link String}.
      * @param text The {@link String} with contents that will be displayed in the {@link JTextArea}.
      */
-    public void updateTextArea(String text) {
+    public void updateTextPane(String text) {
         textPane.setText(text);
     }
 
@@ -144,6 +144,8 @@ public class App extends JFrame {
         String inn;
         try (BufferedReader reader = new BufferedReader(new FileReader(path.toFile()))) {
 
+            doc.insertString(doc.getLength(),  path.getFileName().toString() + "\n", lineNumberStyle);
+
             while ((inn = reader.readLine()) != null) {
                 count++;
 
@@ -167,7 +169,7 @@ public class App extends JFrame {
             // This case would never happen since the method exits if the file does not exist.
             e.printStackTrace();
         } catch (IOException e) {
-            updateTextArea("There was an issue when reading the contents of this file.");
+            updateTextPane("There was an issue when reading the contents of this file.");
         } catch (BadLocationException e) {
             // This should never happen
             e.printStackTrace();
@@ -437,6 +439,7 @@ public class App extends JFrame {
         textPane.setEditable(false);
         textPane.setMargin(new Insets(12, 12, 12, 12));
         textPane.setFont(new Font("Courier", Font.PLAIN, 12));
+        textPane.setForeground(Color.WHITE);
 
         return textPane;
     }
