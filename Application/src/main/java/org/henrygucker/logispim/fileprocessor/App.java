@@ -11,6 +11,9 @@ import org.henrygucker.logispim.fileprocessor.uicomponents.FileSelectorPanel;
 
 import javax.swing.*;
 import javax.swing.border.Border;
+import javax.swing.text.Style;
+import javax.swing.text.StyleConstants;
+import javax.swing.text.StyledDocument;
 import java.awt.*;
 import java.io.*;
 import java.net.URL;
@@ -39,7 +42,7 @@ public class App extends JFrame {
     private final JButton reinitializeLogisimCircButton;
     private final JCheckBox kernelCheckBox;
     private final JScrollPane textAreaScrollPane;
-    private final JTextArea textArea;
+    public final JTextPane textPane;
 
     private final JPanel mainColumnPanel;
     private final GridBagLayout mainColumnPanelLayout;
@@ -47,6 +50,9 @@ public class App extends JFrame {
     private final JPanel columnWrapperPanel;
 
     public final Font defaultBaseFont;
+    public final Style baseTextStyle;
+    public final Style inlinedTextStyle;
+    public final Style lineNumberStyle;
 
     public App(String appName) {
         // App start
@@ -81,7 +87,22 @@ public class App extends JFrame {
         openLogisimCircButton = initOpenLogisimCircButton();
         reinitializeLogisimCircButton = initReinitializeLogisimCircButton();
         kernelCheckBox = initKernelCheckBox();
-        textArea = initTextArea();
+
+        textPane = initTextPane();
+
+        // Initializing styles (to be refactored into its own methods)
+        StyledDocument doc = textPane.getStyledDocument();
+        baseTextStyle = doc.addStyle("base", null);
+        StyleConstants.setFontFamily(baseTextStyle, "Courier");
+        StyleConstants.setFontSize(baseTextStyle, 12);
+        StyleConstants.setForeground(baseTextStyle, Color.WHITE);
+
+        inlinedTextStyle = doc.addStyle("InlinedText", baseTextStyle);
+        StyleConstants.setForeground(inlinedTextStyle, new Color(0x4A7C30));
+
+        lineNumberStyle = doc.addStyle("LineNumber", baseTextStyle);
+        StyleConstants.setForeground(lineNumberStyle, Color.GRAY);
+
         textAreaScrollPane = initTextAreaScrollPane();
 
         // Initialize columnWrapperPanel (primary content pane)
@@ -98,7 +119,7 @@ public class App extends JFrame {
      * @param text The {@link String} with contents that will be displayed in the {@link JTextArea}.
      */
     public void updateTextArea(String text) {
-        textArea.setText(text);
+        textPane.setText(text);
     }
 
 
@@ -401,14 +422,13 @@ public class App extends JFrame {
      * Initializes the {@link JTextArea}.
      * @return Initialized, but not placed, {@link JTextArea}
      */
-    private JTextArea initTextArea() {
-        JTextArea textArea = new JTextArea();
-        textArea.setLineWrap(false);
-        textArea.setEditable(false);
-        textArea.setMargin(new Insets(12, 12, 12, 12));
-        textArea.setFont(new Font("Courier", Font.PLAIN, 12));
+    private JTextPane initTextPane() {
+        JTextPane textPane = new JTextPane();
+        textPane.setEditable(false);
+        textPane.setMargin(new Insets(12, 12, 12, 12));
+        textPane.setFont(new Font("Courier", Font.PLAIN, 12));
 
-        return textArea;
+        return textPane;
     }
 
     /**
@@ -417,11 +437,16 @@ public class App extends JFrame {
      * @return {@link JScrollPane} which wraps the {@link JTextArea}
      */
     private JScrollPane initTextAreaScrollPane() {
-        JScrollPane scrollPane = new JScrollPane(textArea);
+        // Wrapping textPane in JPanel to stop text from wrapping
+        JPanel noWrapPanel = new JPanel(new BorderLayout());
+        noWrapPanel.add(textPane);
+
+        JScrollPane scrollPane = new JScrollPane(noWrapPanel);
         scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
         scrollPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
         scrollPane.setPreferredSize(new Dimension(CONTENT_WIDTH, HEIGHT));
         scrollPane.createVerticalScrollBar();
+
 
         // Loads source file if it exists
         Path sourcePath = (Path) AppConfig.SOURCE_FILE.getValue();

@@ -1,5 +1,8 @@
 package org.henrygucker.logispim.fileprocessor.backend.binutils;
 
+import javax.swing.text.BadLocationException;
+import javax.swing.text.Style;
+import javax.swing.text.StyledDocument;
 import java.util.List;
 
 /**
@@ -12,6 +15,55 @@ import java.util.List;
  */
 public record DisassemblyLine(Long sourceLineNumber, List<String> assemblyLines, String sourceLine) {
 
+    public void appendToStyledDocument(StyledDocument doc, Style baseTextStyle, Style lineNumberStyle, Style inlinedTextStyle) {
+        for (int i = 0; i < assemblyLines.size(); i++) {
+            // Print current assembly line
+            try {
+                doc.insertString(doc.getLength(), assemblyLines.get(i), baseTextStyle);
+            } catch (BadLocationException e) { e.printStackTrace(); /* Shouldn't happen ever */}
+
+            // Write source line if it exists and is writing the first line of assembly
+            if (i == 0 && sourceLine != null) {
+
+                // Insert appropriate number of tabs to align source code with other source lines
+                long desiredTabs = 5;
+                long numTabs = lineIndentWidth(assemblyLines.get(i));
+                for (long j = numTabs; j < desiredTabs; j++) {
+                    try {
+                        doc.insertString(doc.getLength(), "\t", baseTextStyle);
+                    } catch (BadLocationException e) { e.printStackTrace(); /* Shouldn't happen ever */}
+                }
+
+                // Write source
+                String[] split = sourceLine.trim().split("#", 2);
+                try {
+                    doc.insertString(doc.getLength(), "|", lineNumberStyle);
+
+                    // Writes line num (if exists)
+                    if (sourceLineNumber != null)
+                        doc.insertString(doc.getLength(), String.format("%4d: ", sourceLineNumber), lineNumberStyle);
+                    else
+                        doc.insertString(doc.getLength(), " n/a: ", lineNumberStyle);
+
+                    // Writes line (pre-comment)
+                    doc.insertString(doc.getLength(), split[0], inlinedTextStyle);
+
+                    // Writes line (post-comment)
+                    if (split.length > 1) {
+                        doc.insertString(doc.getLength(), "#", lineNumberStyle);
+                        doc.insertString(doc.getLength(), split[1], lineNumberStyle);
+                    }
+
+                } catch (BadLocationException e) { e.printStackTrace(); /* Shouldn't happen ever */}
+            }
+
+            // Write newline char
+            try {
+                doc.insertString(doc.getLength(), "\n", baseTextStyle);
+            } catch (BadLocationException e) { e.printStackTrace(); /* Shouldn't happen ever */}
+        }
+    }
+
     public String toString() {
         StringBuilder builder = new StringBuilder();
         for (int i = 0; i < assemblyLines.size(); i++) {
@@ -19,7 +71,7 @@ public record DisassemblyLine(Long sourceLineNumber, List<String> assemblyLines,
 
             // Write source line if it exists and is writing the first line of assembly
             if (i == 0 && sourceLine != null) {
-                long desiredTabs = 8;
+                long desiredTabs = 5;
                 long numTabs = lineIndentWidth(assemblyLines.get(i));
 
                 for (long j = numTabs; j < desiredTabs; j++) {
@@ -41,7 +93,7 @@ public record DisassemblyLine(Long sourceLineNumber, List<String> assemblyLines,
      * @return the number of indents a string occupies
      */
     private static int lineIndentWidth(String line) {
-        final int NUM_CHARS_PER_INDENT = 8;
+        final int NUM_CHARS_PER_INDENT = 11;
         int currChars = 0;
         int numIndents = 0;
 

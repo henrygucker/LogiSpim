@@ -12,6 +12,7 @@ import org.henrygucker.logispim.fileprocessor.App;
 import org.henrygucker.logispim.fileprocessor.backend.fileutils.ResourceFileUtil;
 
 import javax.swing.*;
+import javax.swing.text.BadLocationException;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.*;
@@ -153,7 +154,15 @@ public class CompileActionListener implements ActionListener {
         String objdumpOutput = objdumpDataOutput + "\n\n" + textObjdumpBuilder.toString();
 
         // Write output to text area
-        app.updateTextArea(objdumpOutput);
+        app.updateTextArea(objdumpDataOutput);
+
+        // Appends two newline characters between data and text section output
+        try {
+            app.textPane.getStyledDocument().insertString(app.textPane.getStyledDocument().getLength(), "\n\n", app.baseTextStyle);
+        } catch (BadLocationException e) { e.printStackTrace(); /* Should never happen */}
+
+        for (DisassemblyLine disassembledLine : objdumpTextOutput)
+            disassembledLine.appendToStyledDocument(app.textPane.getStyledDocument(), app.baseTextStyle, app.lineNumberStyle, app.inlinedTextStyle);
 
         // Writing .lss disassembly file for viewing in Logisim
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(disassemblyOutputFile.toFile()))) {
