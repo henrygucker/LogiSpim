@@ -31,7 +31,8 @@ public record DisassemblyLine(Long sourceLineNumber, List<String> assemblyLines,
             } catch (BadLocationException e) { e.printStackTrace(); /* Shouldn't happen ever */}
 
             // Write source line if it exists and is writing the first line of assembly
-            if (i == 0 && sourceLine != null) {
+            // (skips if line has invalidated line number--due to not having source line or being boilerplate)
+            if (i == 0 && sourceLine != null && sourceLineNumber != null == sourceLineNumber >= 0) {
 
                 // Insert appropriate number of tabs to align source code with other source lines
                 long desiredTabs = 5;
