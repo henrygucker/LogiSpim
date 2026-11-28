@@ -34,15 +34,17 @@ instructions in every step.
 * Displays current register values and program assembly within Logisim-evolution
 
 ### Feature Showcase
-* <details>
-    <summary>Printing & Register Viewer</summary>
+*
+<details>
+    <summary>**Printing & Register Viewer**</summary>
 
 Printing to the emulated console through syscalls with the register view shown on the left:
 
 <img alt="Printing Demo" width="700" src="docs/src/01_intro/assets/printing_demo.gif">
 </details>
 
-* <details>
+*
+<details>
     <summary>Clock Stepping & Assembly Viewer</summary>
 
 Manually stepping through instructions while zoomed into the processor's execute stage with the Assembly Viewer open:
