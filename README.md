@@ -69,51 +69,6 @@ Compiling a MIPS program and viewing the disassembly, while processed binary fil
 <img alt="Stepping through instructions demo" width="700" loading="lazy" decoding="async" src="docs/src/01_intro/assets/demo_compile.gif">
 </details>
 
-<details>
-    <summary><b>LogiSpim Application Workflow</b></summary>
-
-To streamline the compilation and loading process, the LogiSpim application compiles MIPS source code into files which can be easily
-imported into the LogiSpim processor.
-
-The described workflow is pictured below:
-```mermaid
----
-config:
-  htmlLabels: false
----
-flowchart LR;
-    subgraph "MIPS Program"
-        S["`Source
-        Code
-        *.s*`"]
-    end
-    subgraph "LogiSpim Application"
-        C["Compile
-        Tool"]
-        Text["`Compiled Instructions
-        *text.hex*`"]
-        Data["`Compiled Data
-        *data.hex*`"]
-    end
-    subgraph "LogiSpim Processor"
-        IM["`Instruction
-        Memory
-        *.text*`"]
-        MM["`Main
-        Memory
-        *.data*`"]
-    end
-    
-    S --> C
-    
-    C --> Text
-    C --> Data
-    
-    Text --> IM
-    Data --> MM
-```
-</details>
-
 
 ## Installation and Usage
 Guides for installing and using LogiSpim are linked below:
