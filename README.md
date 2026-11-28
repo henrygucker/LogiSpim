@@ -33,7 +33,7 @@ instructions in every step.
 * Built-in breakpoints for debugging
 * Displays current register values and program assembly within Logisim-evolution
 
-### Feature Showcase
+### Showcase
 <details>
     <summary><b>Printing & Register Viewer</b></summary>
 

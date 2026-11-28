@@ -36,7 +36,7 @@ instructions in every step.
 
 ### Showcase
 <details>
-    <summary><h4 style="display: inline; margin: 0">Printing & Register Viewer</h4></summary>
+    <summary><b>Printing & Register Viewer</b></summary>
 
 Printing to the emulated console through syscalls with the register view shown on the left:
 
@@ -44,7 +44,7 @@ Printing to the emulated console through syscalls with the register view shown o
 </details>
 
 <details>
-    <summary><h4 style="display: inline; margin: 0">Clock Stepping & Assembly Viewer</h4></summary>
+    <summary><b>Clock Stepping & Assembly Viewer</b></summary>
 
 Manually stepping through instructions while zoomed into the processor's execute stage with the Assembly Viewer open:
 
@@ -63,7 +63,7 @@ look [here](../02_what_is_logispim/index.md#logispims-novelty).
 
 ### Showcase
 <details>
-    <summary><h4 style="display: inline; margin: 0">Compilation with Disassembly View</h4></summary>
+    <summary><b>Compilation with Disassembly View</b></summary>
 
 Compiling a MIPS program and viewing the disassembly, while processed binary files prepare for import to Logisim-evolution:
 
@@ -71,7 +71,7 @@ Compiling a MIPS program and viewing the disassembly, while processed binary fil
 </details>
 
 <details>
-    <summary><h4 style="display: inline; margin: 0">LogiSpim Application Workflow</h4></summary>
+    <summary><b>LogiSpim Application Workflow</b></summary>
 
 To streamline the compilation and loading process, the LogiSpim application compiles MIPS source code into files which can be easily
 imported into the LogiSpim processor.
