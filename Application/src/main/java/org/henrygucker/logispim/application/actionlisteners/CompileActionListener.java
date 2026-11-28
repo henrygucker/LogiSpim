@@ -151,7 +151,7 @@ public class CompileActionListener implements ActionListener {
         // Writes disassembly to text pane
         try {
 
-            app.textPane.getStyledDocument().insertString(app.textPane.getStyledDocument().getLength(), "Contents of .data section:\n", app.lineNumberStyle);
+            app.textPane.getStyledDocument().insertString(app.textPane.getStyledDocument().getLength(), "Contents of .data section:\n\n", app.lineNumberStyle);
             app.textPane.getStyledDocument().insertString(app.textPane.getStyledDocument().getLength(), objdumpDataOutput, app.baseTextStyle);
             app.textPane.getStyledDocument().insertString(app.textPane.getStyledDocument().getLength(), "\n\n", app.baseTextStyle);
 
