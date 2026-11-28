@@ -8,7 +8,7 @@ BINUTILS_DIR="$(cd -- "${SCRIPT_DIR}/.." && pwd -P)"
 
 SOURCE_DIR="${BINUTILS_SOURCE_DIR:-${BINUTILS_DIR}/target/src/binutils-$(tr -d '[:space:]' < "${BINUTILS_DIR}/.gnu_version")}"
 BUILD_DIR="${BINUTILS_BUILD_DIR:-${BINUTILS_DIR}/target/build}"
-OUTPUT_DIR="${BINUTILS_OUTPUT_DIR:-${BINUTILS_DIR}/target/out}"
+OUTPUT_DIR="${BINUTILS_OUTPUT_DIR:-${BINUTILS_DIR}/target/binutils}"
 TARGET="${BINUTILS_TARGET:-mipsel-none-elf}"
 JOBS="${JOBS:-2}"
 MAKE_COMMAND="${MAKE:-make}"
