@@ -16,9 +16,12 @@ import javax.swing.text.Style;
 import javax.swing.text.StyleConstants;
 import javax.swing.text.StyledDocument;
 import java.awt.*;
+import java.awt.font.TextAttribute;
 import java.io.*;
 import java.net.URL;
 import java.nio.file.Path;
+import java.util.HashMap;
+import java.util.Map;
 
 public class App extends JFrame {
 
@@ -51,6 +54,7 @@ public class App extends JFrame {
     private final JPanel columnWrapperPanel;
 
     public final Font defaultBaseFont;
+    private final Font monoFont;
     public final Style baseTextStyle;
     public final Style inlinedTextStyle;
     public final Style lineNumberStyle;
@@ -61,7 +65,8 @@ public class App extends JFrame {
 
         // Set look and feel (dark mode)
         initLookAndFeel();
-        defaultBaseFont = initFont();
+        defaultBaseFont = initBaseFont();
+        monoFont = initMonoFont();
 
         // Set window properties
         this.setSize(new Dimension(PREFERRED_WINDOW_WIDTH, PREFERRED_WINDOW_HEIGHT)); // Default size
@@ -90,20 +95,9 @@ public class App extends JFrame {
         kernelCheckBox = initKernelCheckBox();
 
         textPane = initTextPane();
-
-        // Initializing styles (to be refactored into its own methods)
-        StyledDocument doc = textPane.getStyledDocument();
-        baseTextStyle = doc.addStyle("base", null);
-        StyleConstants.setFontFamily(baseTextStyle, "Courier");
-        StyleConstants.setFontSize(baseTextStyle, 12);
-        StyleConstants.setForeground(baseTextStyle, Color.WHITE);
-
-        inlinedTextStyle = doc.addStyle("InlinedText", baseTextStyle);
-        StyleConstants.setForeground(inlinedTextStyle, new Color(0x4A7C30));
-
-        lineNumberStyle = doc.addStyle("LineNumber", baseTextStyle);
-        StyleConstants.setForeground(lineNumberStyle, Color.GRAY);
-
+        baseTextStyle = initBaseTextStyle();
+        inlinedTextStyle = initInlinedTextStyle();
+        lineNumberStyle = initLineNumberTextStyle();
         textAreaScrollPane = initTextAreaScrollPane();
 
         // Initialize columnWrapperPanel (primary content pane)
@@ -239,13 +233,15 @@ public class App extends JFrame {
      * Loads LogiSpim's primary font.
      * @return {@link Font} instance with the primary font's base font
      */
-    private Font initFont() {
+    private Font initBaseFont() {
         Font baseFont = null;
 
         // Load custom font
         try(InputStream is = ClassLoader.getSystemResourceAsStream("Nunito-VariableFont_wght.ttf")) {
-            if (is == null)
+            if (is == null) {
                 System.err.println("Font file not found in resources.");
+                return null;
+            }
 
             baseFont = Font.createFont(Font.TRUETYPE_FONT, is);
             Font font = baseFont.deriveFont(Font.BOLD, 12f);
@@ -257,6 +253,30 @@ public class App extends JFrame {
         }
 
         return baseFont;
+    }
+
+    /**
+     * Loads LogiSpim's monospaced font for the text pane.
+     * @return {@link Font} instance with the monospaced font's base font
+     */
+    private Font initMonoFont() {
+        Font monoFont = null;
+
+        // Load custom font
+        try(InputStream is = ClassLoader.getSystemResourceAsStream("JetBrainsMono-VariableFont_wght.ttf")) {
+            if (is == null) {
+                System.err.println("Font file not found in resources.");
+                return null;
+            }
+
+            monoFont = Font.createFont(Font.TRUETYPE_FONT, is);
+            monoFont = monoFont.deriveFont(Font.PLAIN, 12f);
+        } catch (FontFormatException | IOException e) {
+            System.err.println("An issue occurred while loading font.");
+            e.printStackTrace();
+        }
+
+        return monoFont;
     }
 
     /**
@@ -431,21 +451,61 @@ public class App extends JFrame {
     }
 
     /**
-     * Initializes the {@link JTextArea}.
-     * @return Initialized, but not placed, {@link JTextArea}
+     * Initializes the {@link JTextPane}.
+     * @return Initialized, but not placed, {@link JTextPane}
      */
     private JTextPane initTextPane() {
         JTextPane textPane = new JTextPane();
         textPane.setEditable(false);
         textPane.setMargin(new Insets(12, 12, 12, 12));
-        textPane.setFont(new Font("Courier", Font.PLAIN, 12));
+        textPane.setFont(monoFont);
         textPane.setForeground(Color.WHITE);
 
         return textPane;
     }
 
     /**
-     * Places the {@link JTextArea} widget inside a {@link JScrollPane} to allow for scrolling throughout the text area.
+     * Initializes the default {@link Font} for text within the {@link JTextPane}.
+     * @return the {@link Style} for default, base text
+     */
+    private Style initBaseTextStyle() {
+        StyledDocument doc = textPane.getStyledDocument();
+        Style baseTextStyle = doc.addStyle("base", null);
+        StyleConstants.setFontFamily(baseTextStyle, monoFont.getFamily());
+        StyleConstants.setFontSize(baseTextStyle, monoFont.getSize());
+        StyleConstants.setForeground(baseTextStyle, Color.WHITE);
+
+        return baseTextStyle;
+    }
+
+    /**
+     * Initializes the {@link Font} for inlined code within the {@link JTextPane}.
+     * @return The {@link Style} for inlined code
+     */
+    private Style initInlinedTextStyle() {
+        StyledDocument doc = textPane.getStyledDocument();
+
+        Style inlinedTextStyle = doc.addStyle("InlinedText", baseTextStyle);
+        StyleConstants.setForeground(inlinedTextStyle, new Color(0x4A7C30));
+
+        return inlinedTextStyle;
+    }
+
+    /**
+     * Initializes the {@link Font} for line numbers and comments within the {@link JTextPane}.
+     * @return The {@link Style} for line numbers and comments
+     */
+    private Style initLineNumberTextStyle() {
+        StyledDocument doc = textPane.getStyledDocument();
+
+        Style lineNumberStyle = doc.addStyle("LineNumber", baseTextStyle);
+        StyleConstants.setForeground(lineNumberStyle, Color.GRAY);
+
+        return lineNumberStyle;
+    }
+
+    /**
+     * Places the {@link JTextPane} widget inside a {@link JScrollPane} to allow for scrolling throughout the text area.
      * Also places the {@link JScrollPane} on the {@code mailColumnPanel}.
      * @return {@link JScrollPane} which wraps the {@link JTextArea}
      */

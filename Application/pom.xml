@@ -181,11 +181,17 @@
                 </includes>
             </resource>
             <resource>
-                <directory>../assets/fonts</directory>
+                <directory>../assets/fonts/Nunito</directory>
 
                 <includes>
                     <include>Nunito-VariableFont_wght.ttf</include>
-                    <include>Nunito-Italic-VariableFont_wght.ttf</include>
+                </includes>
+            </resource>
+            <resource>
+                <directory>../assets/fonts/JetBrains-Mono</directory>
+
+                <includes>
+                    <include>JetBrainsMono-VariableFont_wght.ttf</include>
                 </includes>
             </resource>
         </resources>
