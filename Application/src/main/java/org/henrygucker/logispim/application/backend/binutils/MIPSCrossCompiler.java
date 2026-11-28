@@ -34,7 +34,7 @@ public class MIPSCrossCompiler {
                 "\n" +
                 "\t# Exit program\n" +
                 "\tli $v0, 10\n" +
-                "\tmove $k0, $ra; syscall; nop\t# [Preprocessor Expansion]\n";
+                "\tmove $k0, $ra; syscall; nop # [Expanded]\n";
 
     public static final long PROGRAM_BOILERPLATE_LINE_COUNT = PROGRAM_BOILERPLATE.chars().filter(c -> c == '\n').count();
 
@@ -288,18 +288,18 @@ public class MIPSCrossCompiler {
                         hasToWriteComment = false;
 
                         String[] splits = inn.split("#(?=(?:[^\"]*\"[^\"]*\")*[^\"]*$)", 2);
-                        bufferedWriter.write("\t# ");
+                        bufferedWriter.write(" # ");
 
                         // Prefix comment on a syscall
                         if (!isKernelText && split.equals("syscall"))
-                            bufferedWriter.write("[Preprocessor Expansion] ");
+                            bufferedWriter.write("[Expanded] ");
 
-                        bufferedWriter.write(splits[1]);
+                        bufferedWriter.write(splits[1].trim());
 
 
                     } else if (!isKernelText && split.equals("syscall"))
                         // Write comment on a syscall
-                        bufferedWriter.write("\t# [Preprocessor Expansion]");
+                        bufferedWriter.write(" # [Expanded]");
 
                     bufferedWriter.write('\n');
 

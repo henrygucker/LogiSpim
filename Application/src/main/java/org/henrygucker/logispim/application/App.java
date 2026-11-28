@@ -143,8 +143,19 @@ public class App extends JFrame {
             while ((inn = reader.readLine()) != null) {
                 count++;
 
+                // Splits at #'s not enclosed in quotes
+                String[] split = inn.split("#(?=(?:[^\"]*\"[^\"]*\")*[^\"]*$)", 2);
+
+                // Inserts line number
                 doc.insertString(doc.getLength(), String.format("%4d ", count), lineNumberStyle);
-                doc.insertString(doc.getLength(), inn, baseTextStyle);
+
+                // Inserts instruction
+                doc.insertString(doc.getLength(), split[0], baseTextStyle);
+
+                // Inserts comment in darker color
+                if (split.length > 1)
+                    doc.insertString(doc.getLength(), "#" + split[1], lineNumberStyle);
+
                 doc.insertString(doc.getLength(), "\n", baseTextStyle);
 
                 if (count > MAX_LINES) {

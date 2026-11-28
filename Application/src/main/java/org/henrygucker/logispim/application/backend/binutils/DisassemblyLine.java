@@ -58,7 +58,7 @@ public record DisassemblyLine(Long sourceLineNumber, List<String> assemblyLines,
                     if (!split[0].trim().equals("move $k0, $ra; syscall; nop"))
                         doc.insertString(doc.getLength(), split[0], inlinedTextStyle);
                     else
-                        doc.insertString(doc.getLength(), "syscall\t", inlinedTextStyle);
+                        doc.insertString(doc.getLength(), "syscall ", inlinedTextStyle);
 
                     // Writes line (post-comment)
                     if (split.length > 1) {

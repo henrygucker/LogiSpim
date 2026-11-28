@@ -10,7 +10,7 @@ import java.io.IOException;
 import java.nio.file.Path;
 
 public class Main {
-    private static final String VERSION = "0.1.1-beta";
+    private static final String VERSION = "1.0.0";
 
     public static void main(String[] args) throws ConfigurationException {
         // Must be called before any JFrames are created
