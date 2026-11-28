@@ -36,9 +36,9 @@ instructions in every step.
 
 ### Showcase
 <details>
-    <summary><h4 style="display: inline; margin: 0">Printing</h4></summary>
+    <summary><h4 style="display: inline; margin: 0">Printing & Register Viewer</h4></summary>
 
-Printing to the emulated console through syscalls:
+Printing to the emulated console through syscalls with the register view shown on the left:
 
 <img alt="Printing Demo" width="700" loading="lazy" decoding="async" src="assets/printing_demo.gif">
 </details>
