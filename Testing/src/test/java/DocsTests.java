@@ -26,6 +26,9 @@ public class DocsTests {
     static void init() throws IOException, InterruptedException {
         mainDecoderMarkdownPath = tempDir.resolve(MAIN_DECODER_MARKDOWN_RESOURCE);
         ResourceFileUtil.copyResourceToLocation(MAIN_DECODER_MARKDOWN_RESOURCE, mainDecoderMarkdownPath);
+
+        // Just needs to be a valid path as to not crash when loaded by OSDependentData
+        System.setProperty("logispim.binutils.dir", System.getProperty("user.dir"));
     }
 
     @Test
