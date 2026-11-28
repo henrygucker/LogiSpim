@@ -109,6 +109,7 @@ public class Objdump {
                     }
                     case READING_ASSEMBLY -> {
                         dataBuilder.append(line);
+                        dataBuilder.append("\n");
                         line = bufferedReader.readLine();
                     }
                 }
@@ -336,8 +337,8 @@ public class Objdump {
      * @return the line number specified by the string if found. Otherwise, returns {@code -1}.
      */
     private static long getInlineLineNumber(String line) {
-        // Splits at all colons not inside strings
-        String[] split = line.split(":(?=(?:[^\"]*\"[^\"]*\")*[^\"]*$)", 2);
+        // Splits at all colons which are followed by a number and not inside strings
+        String[] split = line.split(":(?=(?:[^\"]*\"[^\"]*\")*[^\"]*$)(?=\\d)", 2);
 
         // Must have split
         if (split.length < 2)
@@ -346,15 +347,15 @@ public class Objdump {
         Path inlineFileLocation = null;
         try {
             inlineFileLocation = Path.of(split[0]);
+
+            if (!inlineFileLocation.toFile().isFile())
+                return -1;
         } catch (InvalidPathException e) {
             // Must be a valid path (logs if failure)
             e.printStackTrace();
 
             return -1;
         }
-
-        if (inlineFileLocation == null || !inlineFileLocation.toFile().isFile())
-            return -1;
 
         long lineNum = -1;
         try {

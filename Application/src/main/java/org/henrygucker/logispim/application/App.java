@@ -486,7 +486,7 @@ public class App extends JFrame {
         StyledDocument doc = textPane.getStyledDocument();
 
         Style inlinedTextStyle = doc.addStyle("InlinedText", baseTextStyle);
-        StyleConstants.setForeground(inlinedTextStyle, new Color(0x4A7C30));
+        StyleConstants.setForeground(inlinedTextStyle, new Color(0x6ab045));
 
         return inlinedTextStyle;
     }

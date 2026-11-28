@@ -45,7 +45,7 @@ public record DisassemblyLine(Long sourceLineNumber, List<String> assemblyLines,
                 // Write source
                 String[] split = sourceLine.trim().split("#", 2);
                 try {
-                    doc.insertString(doc.getLength(), "|", lineNumberStyle);
+                    doc.insertString(doc.getLength(), ";", lineNumberStyle);
 
                     // Writes line num (if exists)
                     if (sourceLineNumber != null && sourceLineNumber >= 0)
