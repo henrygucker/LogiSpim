@@ -31,8 +31,8 @@ public class TestVectors {
         logisimEvolutionFilepath = tempDir.resolve("logisim-evolution");
         logisimCircuitFilepath = tempDir.resolve("LogiSpim.circ");
 
-        // Just needs to be a non-null value (and a Path) as to not crash when loaded by OSDependentData
-        System.setProperty("logispim.binutils.dir", "/");
+        // Just needs to be a valid path as to not crash when loaded by OSDependentData
+        System.setProperty("logispim.binutils.dir", System.getProperty("user.dir"));
 
         ResourceFileUtil.copyResourceToLocation("LogiSpim.circ", logisimCircuitFilepath);
         downloadLogisim();
