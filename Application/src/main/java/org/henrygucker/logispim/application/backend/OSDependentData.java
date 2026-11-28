@@ -22,7 +22,7 @@ public enum OSDependentData {
     WINDOWS("Windows",
             "mipsel-none-elf-as.exe",
             "mipsel-none-elf-ld.exe",
-            "mipsel-linux-elf-objdump.exe"
+            "mipsel-none-elf-objdump.exe"
     ),
     /**
      * Used to access data applicable to Debian-based Linux
