@@ -6,12 +6,12 @@
 
     <groupId>org.henrygucker.logispim</groupId>
     <artifactId>LogiSpim</artifactId>
-    <version>0.1.0-beta</version>
+    <version>1.0.0</version>
 
     <packaging>pom</packaging>
 
     <modules>
-        <module>FileProcessor</module>
+        <module>Application</module>
         <module>Testing</module>
     </modules>
 

@@ -4,13 +4,12 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.CleanupMode;
 import org.junit.jupiter.api.io.TempDir;
 
-import java.io.File;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
-import org.henrygucker.logispim.fileprocessor.backend.fileutils.ResourceFileUtil;
+import org.henrygucker.logispim.application.backend.fileutils.ResourceFileUtil;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -42,8 +41,6 @@ public class DocsTests {
 
         String outputsByOpCode = MainDecoderMarkdownTableGenerator.getMarkdownTableStringByOpCode().replaceAll("\\s+", "").replaceAll("-+", "-");
         String RTypeOverriddenOutputs = MainDecoderMarkdownTableGenerator.getMarkdownTableStringRTypeOverrides().replaceAll("\\s+", "").replaceAll("-+", "-");
-
-//        System.out.println(markdownContent);
 
         markdownContent = markdownContent.replaceAll("\\s+", "").replaceAll("-+", "-");
 

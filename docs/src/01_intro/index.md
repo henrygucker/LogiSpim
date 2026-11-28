@@ -1,6 +1,5 @@
-<!--suppress CssUnresolvedCustomProperty -->
 <style> .mdbook-version { position: absolute; right: 20px; top: 60px; background-color: var(--theme-popup-bg); border-radius: 8px; padding: 2px 5px 2px 5px; border: 1px solid var(--theme-popup-border); font-size: 0.9em; } </style>
-<p class="mdbook-version">v0.1.0-beta</p>
+<p class="mdbook-version">v1.0.0</p>
 
 
 <div align="center">
@@ -35,27 +34,93 @@ instructions in every step.
 * Built-in breakpoints for debugging
 * Displays current register values and program assembly within Logisim-evolution
 
-### Feature Showcase
+### Showcase
 <details>
-    <summary><h4 style="display: inline; margin: 0">Printing</h4></summary>
+    <summary><b>Printing & Register Viewer</b></summary>
 
-Printing to the emulated console through syscalls:
+Printing to the emulated console through syscalls with the register view shown on the left:
 
-<img alt="Printing Demo" width="700" src="assets/printing_demo.gif">
+<img alt="Printing Demo" width="700" loading="lazy" decoding="async" src="assets/printing_demo.gif">
 </details>
 
 <details>
-    <summary><h4 style="display: inline; margin: 0">Clock Stepping & Assembly Viewer</h4></summary>
+    <summary><b>Clock Stepping & Assembly Viewer</b></summary>
 
 Manually stepping through instructions while zoomed into the processor's execute stage with the Assembly Viewer open:
 
-<img alt="Stepping through instructions demo" width="700" src="assets/execute_stage_demo.gif">
+<img alt="Stepping through instructions demo" width="700" loading="lazy" decoding="async" src="assets/execute_stage_demo.gif">
 </details>
 
 ## LogiSpim Application
-The LogiSpim application enables users to run their own programs on LogiSpim's processor.
-More information about the application, its role in the LogiSpim project, and installation guides can be
-found [here](../02_what_is_logispim/index.md#logispims-novelty).
+The LogiSpim application enables users to run their own programs on LogiSpim's processor through some
+utilities:
+* Automated compilation and processing of source code
+* Disassembly view with interleaved source code
+* Integrated Logisim-evolution controls and circuit management
+
+More information about the application and its role in the LogiSpim project, 
+look [here](../02_what_is_logispim/index.md#logispims-novelty).
+
+### Showcase
+<details>
+    <summary><b>Compilation with Disassembly View</b></summary>
+
+Compiling a MIPS program and viewing the disassembly, while processed binary files prepare for import to Logisim-evolution:
+
+<img alt="Stepping through instructions demo" width="700" loading="lazy" decoding="async" src="assets/demo_compile.gif">
+</details>
+
+<details>
+    <summary><b>LogiSpim Application Workflow</b></summary>
+
+To streamline the compilation and loading process, the LogiSpim application compiles MIPS source code into files which can be easily
+imported into the LogiSpim processor.
+
+The described workflow is pictured below:
+```mermaid
+---
+config:
+  htmlLabels: false
+---
+flowchart LR;
+    subgraph "MIPS Program"
+        S["`Source
+        Code
+        *.s*`"]
+    end
+    subgraph "LogiSpim Application"
+        C["Compile
+        Tool"]
+        Text["`Compiled Instructions
+        *text.hex*`"]
+        Data["`Compiled Data
+        *data.hex*`"]
+    end
+    subgraph "LogiSpim Processor"
+        IM["`Instruction
+        Memory
+        *.text*`"]
+        MM["`Main
+        Memory
+        *.data*`"]
+    end
+    
+    S --> C
+    
+    C --> Text
+    C --> Data
+    
+    Text --> IM
+    Data --> MM
+```
+</details>
+
+
+## Installation and Usage
+Guides for installing and using LogiSpim are linked below:
+* [Installation Guide]
+* [Usage Guide]
+
 
 ## Additional Resources
 The microarchitecture of LogiSpim's processor was based primarily on [this textbook and its companion assets](https://shop.elsevier.com/books/book-companion/9780124077263),

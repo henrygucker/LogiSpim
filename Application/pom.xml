@@ -1,0 +1,200 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>org.henrygucker.logispim</groupId>
+        <artifactId>LogiSpim</artifactId>
+        <version>1.0.0</version>
+        <relativePath>../pom.xml</relativePath>
+    </parent>
+
+    <artifactId>Application</artifactId>
+
+    <properties>
+        <maven.compiler.source>22</maven.compiler.source>
+        <maven.compiler.target>22</maven.compiler.target>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    </properties>
+
+    <dependencies>
+        <!-- Source: https://mvnrepository.com/artifact/com.formdev/flatlaf -->
+        <dependency>
+            <groupId>com.formdev</groupId>
+            <artifactId>flatlaf</artifactId>
+            <version>3.7.2</version>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <!-- Build an executable JAR -->
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-jar-plugin</artifactId>
+                <version>3.5.1</version>
+                <configuration>
+                    <archive>
+                        <manifest>
+                            <mainClass>org.henrygucker.logispim.application.Main</mainClass>
+                        </manifest>
+                    </archive>
+                    <outputDirectory>${project.build.directory}/jar</outputDirectory>
+                </configuration>
+            </plugin>
+
+            <plugin>
+                <artifactId>maven-assembly-plugin</artifactId>
+                <version>3.8.0</version>
+                <configuration>
+                    <archive>
+                        <manifest>
+                            <mainClass>org.henrygucker.logispim.application.Main</mainClass>
+                        </manifest>
+                    </archive>
+                    <descriptorRefs>
+                        <descriptorRef>jar-with-dependencies</descriptorRef>
+                    </descriptorRefs>
+                    <outputDirectory>${project.build.directory}/jar</outputDirectory>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>make-assembly</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>single</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+
+
+            <!-- Package JAR for different operating systems -->
+            <!-- Use mvn clean package jpackage:jpackage@mac to package for macOS -->
+            <!-- Use mvn clean package jpackage:jpackage@win to package for Windows -->
+            <!-- Use mvn clean package jpackage:jpackage@linux to package for Linux -->
+            <plugin>
+                <groupId>org.panteleyev</groupId>
+                <artifactId>jpackage-maven-plugin</artifactId>
+                <version>1.8.0</version>
+
+                <configuration>
+                    <name>LogiSpim</name>
+<!--                    <appVersion>${project.version}</appVersion>-->
+                    <appVersion>1.0.0</appVersion> <!-- Use prior to first full release -->
+                    <vendor>org.henrygucker</vendor>
+
+                    <input>${project.build.directory}/jar</input>
+                    <mainJar>${project.artifactId}-${project.version}-jar-with-dependencies.jar</mainJar>
+                    <mainClass>org.henrygucker.logispim.application.Main</mainClass>
+
+                    <destination>${project.build.directory}/installer</destination>
+                    <javaOptions>
+                        <option>--enable-preview</option>
+                        <option>-Dfile.encoding=UTF-8</option>
+                        <option>-Dlogispim.binutils.dir=$APPDIR/../binutils</option>
+                    </javaOptions>
+
+                    <appContentPaths>
+                        <path>${project.basedir}/binutils/target/binutils</path>
+                    </appContentPaths>
+
+                    <removeDestination>true</removeDestination>
+                </configuration>
+
+                <executions>
+                    <execution>
+                        <id>mac</id>
+                        <configuration>
+                            <!-- Sets app icon -->
+                            <icon>../assets/icons/light/LogiSpim_Icon_Light.icns</icon>
+
+<!--                        macOS-only installer configuration -->
+
+                            <!-- Use DMG installer for drag-and-drop install -->
+                            <type>DMG</type>
+
+
+<!--                            <javaoptions>&#45;&#45;enable-native-access=ALL-UNNAMED</javaoptions>-->
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>win</id>
+                        <configuration>
+                            <!-- Sets app icon -->
+                            <icon>../assets/icons/light/LogiSpim_Icon_Light.ico</icon>
+
+<!--                        Windows-only installer configuration -->
+
+                            <!-- Creates the installer as a .exe file (better for users installing their own programs) -->
+                            <type>EXE</type>
+
+                            <!-- Adds the application to the Windows start menu -->
+                            <winMenu>true</winMenu>
+
+                            <!-- Lets the user choose where exactly to install the app -->
+                            <winDirChooser>true</winDirChooser>
+
+                            <!-- Lets the user opt in to creating a desktop shortcut to the app -->
+                            <winShortcutPrompt>true</winShortcutPrompt>
+
+                            <!-- Installs to user's AppData/Local rather than ProgramFiles, removing administrator requirement to install -->
+                            <winPerUserInstall>true</winPerUserInstall>
+
+                            <!-- Lets windows replace old version with new versions -->
+                            <winUpgradeUUID>c3e06f10-ff51-4e06-8409-50084b392feb</winUpgradeUUID>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>linux</id>
+                        <configuration>
+                            <type>APP_IMAGE</type>
+
+                            <icon>../assets/icons/light/LogiSpim_Icon_Light.png</icon>
+
+                            <type>DEB</type>
+                            <linuxShortcut>true</linuxShortcut>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+
+        <resources>
+            <resource>
+                <directory>src/main/resources</directory>
+            </resource>
+            <resource>
+                <directory>..</directory>
+
+                <includes>
+                    <include>**/*.circ</include>
+                </includes>
+            </resource>
+            <resource>
+                <directory>../assets/logo</directory>
+
+                <includes>
+                    <include>LogiSpim_Logo_Light.png</include>
+                </includes>
+            </resource>
+            <resource>
+                <directory>../assets/fonts/Nunito</directory>
+
+                <includes>
+                    <include>Nunito-VariableFont_wght.ttf</include>
+                </includes>
+            </resource>
+            <resource>
+                <directory>../assets/fonts/JetBrains-Mono</directory>
+
+                <includes>
+                    <include>JetBrainsMono-VariableFont_wght.ttf</include>
+                </includes>
+            </resource>
+        </resources>
+    </build>
+
+</project>

@@ -1,0 +1,11 @@
+# All downloaded source, intermediate build output, and installed executables.
+/target/*
+!/target/.gitkeep
+
+# Python-generated files.
+__pycache__/
+*.py[cod]
+
+# Common local-machine artifacts.
+.DS_Store
+Thumbs.db

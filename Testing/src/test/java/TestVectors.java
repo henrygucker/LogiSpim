@@ -1,6 +1,4 @@
-import org.henrygucker.logispim.fileprocessor.backend.OSDependentData;
-import org.henrygucker.logispim.fileprocessor.backend.fileutils.FileUtil;
-import org.henrygucker.logispim.fileprocessor.backend.fileutils.ResourceFileUtil;
+import org.henrygucker.logispim.application.backend.fileutils.ResourceFileUtil;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
@@ -13,7 +11,6 @@ import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.concurrent.TimeUnit;
 
@@ -34,6 +31,9 @@ public class TestVectors {
         logisimEvolutionFilepath = tempDir.resolve("logisim-evolution");
         logisimCircuitFilepath = tempDir.resolve("LogiSpim.circ");
 
+        // Just needs to be a valid path as to not crash when loaded by OSDependentData
+        System.setProperty("logispim.binutils.dir", System.getProperty("user.dir"));
+
         ResourceFileUtil.copyResourceToLocation("LogiSpim.circ", logisimCircuitFilepath);
         downloadLogisim();
     }
@@ -48,7 +48,7 @@ public class TestVectors {
     }
 
     static void runTestVector(Path logisimJar, String componentName, Path testVector, Path circuit) throws IOException, InterruptedException {
-        Path javaExecutable = FileUtil.findExecutable("java");
+        Path javaExecutable = Util.findExecutable("java");
 
         if (javaExecutable == null) {
             fail("Unable to locate java executable.");

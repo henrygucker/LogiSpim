@@ -79,6 +79,7 @@ ___
   <summary>
     <h3 style="display: inline; margin: 0">Q: What instructions does the processor support?<br/></h3>
   </summary>
+<p id="supported-instructions"></p>
 
 <!--suppress CssUnresolvedCustomProperty -->
 <style>
@@ -334,11 +335,11 @@ ___
 Perform the following steps:
 1. In the menu bar, navigate to `Simulate` > `Auto-Tick Frequency` and select a frequency (ideally `>1.0kHz`).
 
-![Set Auto-Tick Frequency](../../04_usage_guide/assets/07_set_auto_tick.gif)
+![Set Auto-Tick Frequency](../../04_usage_guide/03_using_processor/assets/07_set_auto_tick.gif)
 
 2. In the menu bar, enable auto-ticking by toggling on `Simulate` > `Auto-Tick Enabled`.
 
-![Enable Auto-Ticking](../../04_usage_guide/assets/08_enable_auto_tick.gif)
+![Enable Auto-Ticking](../../04_usage_guide/03_using_processor/assets/08_enable_auto_tick.gif)
 ___
 </details><br/>
 
@@ -358,7 +359,7 @@ There should now be a pink oval around the box indicating that it is selected.
 While selected, this enables you to control the processor's clock with keyboard inputs
 listed below the selected box.
 
-![Select User Controls](../../04_usage_guide/assets/09_select_user_controls.gif)
+![Select User Controls](../../04_usage_guide/03_using_processor/assets/09_select_user_controls.gif)
 ___
 </details><br/>
 
